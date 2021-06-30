@@ -56,22 +56,36 @@ class EventDetail(DetailView):
         return context
 
 def index(request):
-    return render(request, 'index.html')
+    context = {}
+    context['menu'] = MenuCategory.objects.all()
+    return render(request, 'index.html', context=context)
 
 def about(request):
-    return render(request, 'about.html')
+    context = {}
+    context['menu'] = MenuCategory.objects.all()
+    return render(request, 'about.html', context=context)
 
 def schedule(request):
-    return render(request, 'class-schedule.html')
+    context = {}
+    context['menu'] = MenuCategory.objects.all()
+    return render(request, 'class-schedule.html', context=context)
 
 def contact(request):
-    return render(request, 'contact.html')
+    context = {}
+    context['menu'] = MenuCategory.objects.all()
+    return render(request, 'contact.html', context=context)
 
 def faq(request):
-    return render(request, 'faqs.html')
+    context = {}
+    context['menu'] = MenuCategory.objects.all()
+    return render(request, 'faqs.html', context=context)
 
 def login(request):
-    return render(request, 'login.html')
+    context = {}
+    context['menu'] = MenuCategory.objects.all()
+    return render(request, 'login.html', context=context)
 
 def registration(request):
-    return render(request, 'registration.html')
+    context = {}
+    context['menu'] = MenuCategory.objects.all()
+    return render(request, 'registration.html', context=context)
