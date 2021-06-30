@@ -16,8 +16,8 @@ from .views import (
 app_name = 'lessons_section'
 
 urlpatterns = [
-    path('lessons/', LessonList.as_view(), name='lessons_list'),
-    path('lesson/<slug:slug>', LessonDetail.as_view(), name='lesson_detail'),
+    path('classes/', LessonList.as_view(), name='lessons_list'),
+    path('class/<slug:slug>', LessonDetail.as_view(), name='lesson_detail'),
     path('event/<slug:slug>', EventDetail.as_view(), name='event_detail'),
     path('events/', EventsList.as_view(), name='events_list'),
     path('', index, name='index'),
