@@ -64,8 +64,8 @@ class Gallery(models.Model):
         return self.title
     
     class Meta:
-        verbose_name = 'Галлерея'
-        verbose_name_plural = 'Галлереи'
+        verbose_name = 'Галерея'
+        verbose_name_plural = 'Галерея'
 
     def preview(self):
         if self.image and hasattr(self.image, 'url'):
