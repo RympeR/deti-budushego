@@ -73,7 +73,8 @@ class User(AbstractUser):
     teacher = models.BooleanField(verbose_name='Учитель', default=False)
     sertificates = models.ManyToManyField(
         Attachments, related_name='user_sertificates', verbose_name='Сертификаты', blank=True)
-
+    most_popular = models.BooleanField('Отобразить на главной', default=False)
+    
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = [
     ]

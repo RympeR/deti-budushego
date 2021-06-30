@@ -48,6 +48,7 @@ class PostCategory(models.Model):
 
 class Gallery(models.Model):
     title = models.CharField(verbose_name='Заголовок', max_length=100)
+    description = models.CharField(verbose_name='Описание', max_length=100)
     image = ProcessedImageField(
         verbose_name='Вложение галереи',
         processors=[ResizeToFill(600, 600)],
@@ -57,6 +58,7 @@ class Gallery(models.Model):
         blank=True
     )
     category = models.ManyToManyField(GalleryCategory, verbose_name='Категория',  related_name='gallery_category')
+    most_popular = models.BooleanField('Отобразить на главной', default=False)
 
     def __str__(self):
         return self.title

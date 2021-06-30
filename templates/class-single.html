@@ -118,10 +118,12 @@
                             </div>
                             <div class="widget-body">
                                 <ul>
-                                    <li>
-                                        <div class="ques cl-i-one"><i class="fas fa-bell"></i>Start Date</div>
-                                        <div class="ans">{{ object.date_start|date }}</div>
-                                    </li>
+                                    {% if object.date_start %}
+                                        <li>
+                                            <div class="ques cl-i-one"><i class="fas fa-bell"></i>Start Date</div>
+                                            <div class="ans">{{ object.date_start|date }}</div>
+                                        </li>
+                                    {% endif %}
                                     <li>
                                         <div class="ques cl-i-two"><i class="fas fa-user"></i>Years old</div>
                                         <div class="ans">{{ object.years_old }}</div>
