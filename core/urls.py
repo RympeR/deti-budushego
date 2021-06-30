@@ -9,5 +9,6 @@ urlpatterns = [
     path('', include('apps.lessons.urls')),
     path('', include('apps.blog.urls')),
     path('', include('apps.ecommerce.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

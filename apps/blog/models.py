@@ -1,10 +1,13 @@
+from ckeditor.widgets import CKEditorWidget
+from ckeditor.fields import RichTextField
+
+from core.utils.utils import preview
 from django.db import models
-from core.utils.utils import preview
-from apps.users.models import User
-from core.utils.utils import preview
 from django.utils.safestring import mark_safe
 from imagekit.models import ProcessedImageField
 from pilkit.processors import ResizeToFill
+
+from apps.users.models import User
 
 
 class Tag(models.Model):
@@ -91,7 +94,7 @@ class Post(models.Model):
     created_at = models.DateField('Дата создания', auto_now_add=True)
     preview_text = models.TextField(verbose_name='Текст заставки')
     display = models.BooleanField(verbose_name='Отображать', default=True)
-    
+    full_text = RichTextField()
     def small_image(self):
         if self.preview and hasattr(self.preview, 'url'):
             return mark_safe('<img src="{}" width="100" /'.format(self.preview.url))

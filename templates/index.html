@@ -5,11 +5,10 @@
 <section class="banner-section bg_img" data-background="{% static 'images/banner/banner01.png' %}">
     <div class="container">
         <div class="banner-content cl-white">
-            <h3 class="cate">Our School is Best</h3>
-            <h1 class="title">For Your Childs</h1>
-            <p>Prescholer for the apcation testing and enrollment process for
-                publc and private schools the city of alo abu mal kita kores vai</p>
-            <a href="#" class="custom-button"><span>Get Started Now</span></a>
+            <h3 class="cate">Детский центр</h3>
+            <h1 class="title">Дети будущего</h1>
+            <p>Партнер института одаренного ребенка НАПН Украины. Занятия для детей от 1,5 до 7 лет - групповые и индивидуальные. Онлайн занятия для детей от 5 лет. </p>
+            <a href='{% url "lessons_section:lessons_list" %}' class="custom-button"><span>Выбрать занятие</span></a>
         </div>
     </div>
 </section>
@@ -160,132 +159,55 @@
             </div>
         </div>
         <div class="row justify-content-center mb-30-none">
+            {% for lesson in classes %}
+              
+            
             <div class="col-xl-4 col-md-6">
                 <div class="class-item">
                     <div class="class-thumb">
-                        <a href="class-schedule.html"><img src="{% static 'images/class/class01.jpg' %}" alt="class"></a>
+                        <a href="{% url 'lessons_section:lesson_detail' lesson.slug %}"><img
+                                src="{{ lesson.preview.url }}" alt="class"></a>
                     </div>
                     <div class="class-content">
                         <h5 class="title">
-                            <a href="class-schedule.html">Art And Color Management</a>
+                            <a href="{% url 'lessons_section:lesson_detail' lesson.slug %}">{{ lesson.title }}</a>
                         </h5>
                         <div class="class-meta">
                             <div class="class-author">
                                 <div class="thumb">
-                                    <a href="teacher-single.html"><img src="{% static 'images/class/teacher02.jpg' %}"
-                                            alt="class"></a>
+                                    <a href="{% url 'users_section:teacher_detail' lesson.teacher.username %}"><img
+                                            src="{{ lesson.teacher.image.url }}" alt="class"></a>
                                 </div>
                                 <div class="content">
-                                    <h6 class="subtitle"><a href="teacher-single.html">Joly Smith</a></h6>
-                                    <a href="teacher-single.html" class="info">View Profile</a>
+                                    <h6 class="subtitle"><a
+                                            href="{% url 'users_section:teacher_detail' lesson.teacher.username %}">{{ lesson.teacher.fio }}</a></h6>
+                                    <a href="{% url 'users_section:teacher_detail' lesson.teacher.username %}"
+                                        class="info">View Profile</a>
                                 </div>
                             </div>
                             <div class="cost-area">
-                                <h6 class="subtitle">$12.96</h6>
-                                <span class="info">Per Month</span>
+                                <h6 class="subtitle">₴{{ lesson.fee }}</h6>
+                                <span class="info">{{ lesson.class_duration }}</span>
                             </div>
                         </div>
                         <div class="schedule-area">
                             <div class="schedule-item">
-                                <h6 class="sub-title">24 - 30</h6>
+                                <h6 class="sub-title">{{ lesson.class_size }}</h6>
                                 <span class="info">Class Size</span>
                             </div>
                             <div class="schedule-item">
-                                <h6 class="sub-title">09:30 -12:00</h6>
+                                <h6 class="sub-title">{{ lesson.class_time }}</h6>
                                 <span class="info">Class Time</span>
                             </div>
                             <div class="schedule-item">
-                                <h6 class="sub-title">06 - 08</h6>
+                                <h6 class="sub-title">{{ lesson.years_old }}</h6>
                                 <span class="info">Years Old</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-md-6">
-                <div class="class-item">
-                    <div class="class-thumb">
-                        <a href="class-schedule.html"><img src="{% static 'images/class/class02.jpg' %}" alt="class"></a>
-                    </div>
-                    <div class="class-content">
-                        <h5 class="title">
-                            <a href="class-schedule.html">Music And Performance</a>
-                        </h5>
-                        <div class="class-meta">
-                            <div class="class-author">
-                                <div class="thumb">
-                                    <a href="teacher-single.html"><img src="{% static 'images/class/teacher01.jpg' %}"
-                                            alt="class"></a>
-                                </div>
-                                <div class="content">
-                                    <h6 class="subtitle"><a href="teacher-single.html">Mrs. Labonno</a></h6>
-                                    <a href="teacher-single.html" class="info">View Profile</a>
-                                </div>
-                            </div>
-                            <div class="cost-area">
-                                <h6 class="subtitle">$12.96</h6>
-                                <span class="info">Per Month</span>
-                            </div>
-                        </div>
-                        <div class="schedule-area">
-                            <div class="schedule-item">
-                                <h6 class="sub-title">24 - 30</h6>
-                                <span class="info">Class Size</span>
-                            </div>
-                            <div class="schedule-item">
-                                <h6 class="sub-title">09:30 -12:00</h6>
-                                <span class="info">Class Time</span>
-                            </div>
-                            <div class="schedule-item">
-                                <h6 class="sub-title">06 - 08</h6>
-                                <span class="info">Years Old</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-                <div class="class-item">
-                    <div class="class-thumb">
-                        <a href="class-schedule.html"><img src="{% static 'images/class/class03.jpg' %}" alt="class"></a>
-                    </div>
-                    <div class="class-content">
-                        <h5 class="title">
-                            <a href="class-schedule.html">Religion And History</a>
-                        </h5>
-                        <div class="class-meta">
-                            <div class="class-author">
-                                <div class="thumb">
-                                    <a href="teacher-single.html"><img src="{% static 'images/class/teacher03.jpg' %}"
-                                            alt="class"></a>
-                                </div>
-                                <div class="content">
-                                    <h6 class="subtitle"><a href="teacher-single.html">Robot Smith</a></h6>
-                                    <a href="teacher-single.html" class="info">View Profile</a>
-                                </div>
-                            </div>
-                            <div class="cost-area">
-                                <h6 class="subtitle">$12.96</h6>
-                                <span class="info">Per Month</span>
-                            </div>
-                        </div>
-                        <div class="schedule-area">
-                            <div class="schedule-item">
-                                <h6 class="sub-title">24 - 30</h6>
-                                <span class="info">Class Size</span>
-                            </div>
-                            <div class="schedule-item">
-                                <h6 class="sub-title">09:30 -12:00</h6>
-                                <span class="info">Class Time</span>
-                            </div>
-                            <div class="schedule-item">
-                                <h6 class="sub-title">06 - 08</h6>
-                                <span class="info">Years Old</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
         <div class="load-more">
             <a href="classes.html" class="custom-button"><span>Get Started Now</span></a>
@@ -385,90 +307,23 @@
             </div>
         </div>
         <div class="row justify-content-center mb--40--50">
+            {% for obj in gallery %}
+              
             <div class="col-xl-4 col-md-6 col-sm-10">
                 <div class="gallery-item">
                     <div class="gallery-inner">
                         <div class="gallery-thumb">
-                            <a href="{% static 'images/gallery/gallery1.jpg' %}" class="img-pop">
-                                <img src="{% static 'images/gallery/gallery1.jpg' %}" alt="gallery">
+                            <a class="img-pop" href="{{ obj.image.url }}"><img
+                                src="{{ obj.image.url }}" alt="gallery"></a>
                             </a>
                         </div>
                         <div class="gallery-content">
-                            <h6 class="title">Infants Learnings 2015</h6>
+                            <h6 class="title">{{ obj.title }}   </h6>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-md-6 col-sm-10">
-                <div class="gallery-item">
-                    <div class="gallery-inner">
-                        <div class="gallery-thumb">
-                            <a href="{% static 'images/gallery/gallery2.jpg' %}" class="img-pop">
-                                <img src="{% static 'images/gallery/gallery2.jpg' %}" alt="gallery">
-                            </a>
-                        </div>
-                        <div class="gallery-content">
-                            <h6 class="title">Art And Design Event 2016</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6 col-sm-10">
-                <div class="gallery-item">
-                    <div class="gallery-inner">
-                        <div class="gallery-thumb">
-                            <a href="{% static 'images/gallery/gallery3.jpg' %}" class="img-pop">
-                                <img src="{% static 'images/gallery/gallery3.jpg' %}" alt="gallery">
-                            </a>
-                        </div>
-                        <div class="gallery-content">
-                            <h6 class="title">Painting Course 2017</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6 col-sm-10">
-                <div class="gallery-item">
-                    <div class="gallery-inner">
-                        <div class="gallery-thumb">
-                            <a href="{% static 'images/gallery/gallery4.jpg' %}" class="img-pop">
-                                <img src="{% static 'images/gallery/gallery4.jpg' %}" alt="gallery">
-                            </a>
-                        </div>
-                        <div class="gallery-content">
-                            <h6 class="title">Early Years Math 2018</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6 col-sm-10">
-                <div class="gallery-item">
-                    <div class="gallery-inner">
-                        <div class="gallery-thumb">
-                            <a href="{% static 'images/gallery/gallery5.jpg' %}" class="img-pop">
-                                <img src="{% static 'images/gallery/gallery5.jpg' %}" alt="gallery">
-                            </a>
-                        </div>
-                        <div class="gallery-content">
-                            <h6 class="title">Letters Matching 2019</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6 col-sm-10">
-                <div class="gallery-item">
-                    <div class="gallery-inner">
-                        <div class="gallery-thumb">
-                            <a href="{% static 'images/gallery/gallery6.jpg' %}" class="img-pop">
-                                <img src="{% static 'images/gallery/gallery6.jpg' %}" alt="gallery">
-                            </a>
-                        </div>
-                        <div class="gallery-content">
-                            <h6 class="title">Advance Learning 2020</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -488,146 +343,27 @@
             </div>
         </div>
         <div class="row mb-30-none justify-content-center">
+            {% for teacher in teachers %}
+              
+            
             <div class="col-lg-6">
                 <div class="teacher-item">
                     <div class="teacher-inner">
                         <div class="teacher-thumb">
                             <div class="thumb-inner">
-                                <a href="teacher-single.html"><img src="{% static 'images/teacher/teacher01.jpg' %}"
+                                <a href="{% url 'users_section:teacher_detail' teacher.username %}"><img src="{{ teacher.image.url }}"
                                         alt="teacher"></a>
                             </div>
                         </div>
                         <div class="teacher-content">
-                            <h6 class="title"><a href="teacher-single.html">Steve Jobs</a></h6>
-                            <span class="info">Spanish Teacher</span>
-                            <p>Samet consectetuer apiscing elitsed diam nonumy nibh euismod nciduns awesome team
-                                mumber</p>
-                            <ul class="teacher-social">
-                                <li>
-                                    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="pinterest"><i class="fab fa-pinterest-p"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="vimeo"><i class="fab fa-vimeo-v"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="behance"><i class="fab fa-behance"></i></a>
-                                </li>
-                            </ul>
+                            <h6 class="title"><a href="{% url 'users_section:teacher_detail' teacher.username %}">{{ teacher.fio }}</a></h6>
+                            <span class="info">{{ teacher.specialization }}</span>
+                            <p>{{ teacher.characteristic }}</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="teacher-item">
-                    <div class="teacher-inner">
-                        <div class="teacher-thumb">
-                            <div class="thumb-inner">
-                                <a href="teacher-single.html"><img src="{% static 'images/teacher/teacher02.jpg' %}"
-                                        alt="teacher"></a>
-                            </div>
-                        </div>
-                        <div class="teacher-content">
-                            <h6 class="title"><a href="teacher-single.html">Mark Jukar</a></h6>
-                            <span class="info">Spanish Teacher</span>
-                            <p>Samet consectetuer apiscing elitsed diam nonumy nibh euismod nciduns awesome team
-                                mumber</p>
-                            <ul class="teacher-social">
-                                <li>
-                                    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="pinterest"><i class="fab fa-pinterest-p"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="vimeo"><i class="fab fa-vimeo-v"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="behance"><i class="fab fa-behance"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="teacher-item">
-                    <div class="teacher-inner">
-                        <div class="teacher-thumb">
-                            <div class="thumb-inner">
-                                <a href="teacher-single.html"><img src="{% static 'images/teacher/teacher03.jpg' %}"
-                                        alt="teacher"></a>
-                            </div>
-                        </div>
-                        <div class="teacher-content">
-                            <h6 class="title"><a href="teacher-single.html">Jesse Lingard</a></h6>
-                            <span class="info">Spanish Teacher</span>
-                            <p>Samet consectetuer apiscing elitsed diam nonumy nibh euismod nciduns awesome team
-                                mumber</p>
-                            <ul class="teacher-social">
-                                <li>
-                                    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="pinterest"><i class="fab fa-pinterest-p"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="vimeo"><i class="fab fa-vimeo-v"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="behance"><i class="fab fa-behance"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="teacher-item">
-                    <div class="teacher-inner">
-                        <div class="teacher-thumb">
-                            <div class="thumb-inner">
-                                <a href="teacher-single.html"><img src="{% static 'images/teacher/teacher04.jpg' %}"
-                                        alt="teacher"></a>
-                            </div>
-                        </div>
-                        <div class="teacher-content">
-                            <h6 class="title"><a href="teacher-single.html">Alison Tylor</a></h6>
-                            <span class="info">Spanish Teacher</span>
-                            <p>Samet consectetuer apiscing elitsed diam nonumy nibh euismod nciduns awesome team
-                                mumber</p>
-                            <ul class="teacher-social">
-                                <li>
-                                    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="pinterest"><i class="fab fa-pinterest-p"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="vimeo"><i class="fab fa-vimeo-v"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="behance"><i class="fab fa-behance"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -649,114 +385,21 @@
             </div>
         </div>
         <div class="row mb--20--50 justify-content-center">
+            {% for day in schedule %}
+              
             <div class="col-xl-4 col-md-6">
-                <div class="schedule-item-2 bg_img bg_contain" data-background="{% static 'images/schedule/monday.png' %}">
+                <div class="schedule-item-2 bg_img bg_contain" data-background="{{ day.background.url }}">
                     <ul>
+                        {% for program in day.programs.all %}
                         <li>
-                            <h6 class="title painting">Painting</h6>
-                            <span class="time">07:30am - 08:30am</span>
+                            <h6 class="title painting">{{ program.name }}</h6>
+                            <span class="time">{{ program.hours }}</span>
                         </li>
-                        <li>
-                            <h6 class="title">English</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title fitness">Power Fitnes</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
-            <div class="col-xl-4 col-md-6">
-                <div class="schedule-item-2 bg_img bg_contain" data-background="{% static 'images/schedule/tuesday.png' %}">
-                    <ul>
-                        <li>
-                            <h6 class="title painting">Painting</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title fitness">Power Fitnes</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title">English</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-                <div class="schedule-item-2 bg_img bg_contain" data-background="{% static 'images/schedule/wednesday.png' %}">
-                    <ul>
-                        <li>
-                            <h6 class="title">English</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title painting">Painting</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title fitness">Power Fitnes</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-                <div class="schedule-item-2 bg_img bg_contain" data-background="{% static 'images/schedule/thursday.png' %}">
-                    <ul>
-                        <li>
-                            <h6 class="title painting">Painting</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title">English</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title fitness">Power Fitnes</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-                <div class="schedule-item-2 bg_img bg_contain" data-background="{% static 'images/schedule/friday.png' %}">
-                    <ul>
-                        <li>
-                            <h6 class="title">English</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title painting">Painting</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title fitness">Power Fitnes</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-                <div class="schedule-item-2 bg_img bg_contain" data-background="{% static 'images/schedule/saturday.png' %}">
-                    <ul>
-                        <li>
-                            <h6 class="title painting">Painting</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title fitness">Power Fitnes</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title">English</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>

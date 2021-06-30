@@ -7,7 +7,8 @@ from .models import (
     Event,
     Lesson,
 )
-from apps.users.models import MenuCategory
+from apps.users.models import MenuCategory, User, Schedule
+from apps.blog.models import Gallery
 
 
 class LessonList(ListView):
@@ -58,6 +59,11 @@ class EventDetail(DetailView):
 def index(request):
     context = {}
     context['menu'] = MenuCategory.objects.all()
+    context['classes'] = Lesson.objects.filter(most_popular=True)
+    context['gallery'] = Gallery.objects.filter(most_popular=True)
+    context['teachers'] = User.objects.filter(most_popular=True)
+    context['schedule'] = Schedule.objects.all()
+
     return render(request, 'index.html', context=context)
 
 def about(request):

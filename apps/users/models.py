@@ -12,7 +12,8 @@ class MenuCategory(MPTTModel):
         'self', verbose_name='Родительская категория', blank=True, null=True, related_name='parent_category', on_delete=models.CASCADE)
     name = models.CharField('Название', max_length=100)
     link = models.URLField('Ссылка')
-    icon_class = models.CharField('Класс иконки', max_length=20, null=True, blank=True)
+    icon_class = models.CharField(
+        'Класс иконки', max_length=20, null=True, blank=True)
     display = models.BooleanField('Отобразить', default=True)
 
     def __str__(self):
@@ -74,7 +75,7 @@ class User(AbstractUser):
     sertificates = models.ManyToManyField(
         Attachments, related_name='user_sertificates', verbose_name='Сертификаты', blank=True)
     most_popular = models.BooleanField('Отобразить на главной', default=False)
-    
+
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = [
     ]
@@ -121,3 +122,26 @@ class User(AbstractUser):
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'
+
+
+class Program(models.Model):
+    name = models.TextField("Название программы")
+    hours = models.TextField("Чамы проведения программы")
+
+    class Meta:
+        verbose_name = 'Программма'
+        verbose_name_plural = 'Программмы'
+
+
+class Schedule(models.Model):
+    programs = models.ManyToManyField(
+        Program, related_name='schedule_program', verbose_name='Прогрмамы')
+    background = models.ImageField('Картинка на заднем плане')
+
+    def schedule_photo(self):
+        if self.background and hasattr(self.background, 'url'):
+            return mark_safe('<img src="{}" width="100" /'.format(self.background.url))
+        return None
+    class Meta:
+        verbose_name = 'Расписание'
+        verbose_name_plural = 'Расписание'

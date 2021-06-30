@@ -8,6 +8,8 @@ from .models import (
     MenuCategory,
     Attachments,
     User,
+    Program,
+    Schedule
 )
 
 @admin.register(User)
@@ -31,3 +33,16 @@ class MenuCategoryAdmin(DraggableMPTTAdmin):
     list_filter = (
         ('parent', TreeRelatedFieldListFilter),
     )
+
+@admin.register(Program)
+class ProgramAdmin(admin.ModelAdmin):
+    list_display = 'name', 'hours'
+    list_display_links = 'name',
+    search_fields = 'name',
+
+@admin.register(Schedule)
+class ScheduleAdmin(admin.ModelAdmin):
+    list_display = 'pk', 'schedule_photo'
+    list_display_links = 'pk',
+    filter_horizontal = 'programs',
+

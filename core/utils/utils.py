@@ -8,6 +8,8 @@ from django.core.validators import validate_email
 def id_generator(size=12, chars=string.ascii_uppercase + string.ascii_lowercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
+def get_filename(filename, request):
+    return filename.upper()
 
 def set_unique_file_name(file):
     if file:
