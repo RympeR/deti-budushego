@@ -22,8 +22,9 @@ class TemplateAdmin(admin.ModelAdmin):
 
 @admin.register(Gallery,)
 class GalleryAdmin(admin.ModelAdmin):
-    list_display = 'pk', 'preview',
-    list_display_links = 'pk',
+    list_display = 'title', 'preview',
+    list_display_links = 'title',
+    search_fields = 'title',
 
 
 @admin.register(Post)
@@ -36,7 +37,12 @@ class LessonThemeAdmin(ActionsModelAdmin):
         ('created_at', DateFieldListFilter),
     )
     actions_row = actions_detail = 'display_post', 'hide_post',
-
+    filter_horizontal = (
+        'related_gallery',
+        'related_posts',
+        'related_tags',
+        'related_categories',
+    )
     def display_post(self, request, pk):
         post = Post.objects.get(pk=pk)
         if post.display:

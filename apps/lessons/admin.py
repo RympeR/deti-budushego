@@ -26,6 +26,11 @@ class EventAdmin(admin.ModelAdmin):
         ('date_end', DateFieldListFilter),
         ('date_start', DateFieldListFilter),
     )
+    filter_horizontal = (
+        'related_posts',
+        'gallery',
+        'tags',
+    )
 
 
 @admin.register(Lesson)
@@ -37,4 +42,11 @@ class LessonAdmin(admin.ModelAdmin):
     list_filter = (
         ('class_duration', DateFieldListFilter),
         ('date_start', DateFieldListFilter),
+    )
+    filter_horizontal = (
+        'tags',
+        'related_lessons',
+        'related_posts',
+        'gallery',
+        'category',
     )
