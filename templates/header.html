@@ -1,34 +1,35 @@
 {% load static %}
+{% load mptt_tags %}
 <header>
     <div class="header-top">
         <div class="container">
             <div class="header-top-area">
                 <ul class="left">
                     <li>
-                        <i class="far fa-clock"></i> 9:30am - 6:30pm Mon - Sun
+                        <a href="tel: +38 (098) 842-39-19"><i class="fas fa-phone-alt"></i> +38 (098) 842-39-19</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fas fa-phone-alt"></i> +800-123-4567 6587</a>
+                        <a href="tel: +38 (095) 082-99-89"><i class="fas fa-phone-alt"></i> +38 (095) 082-99-89</a>
                     </li>
                     <li>
-                        <i class="fas fa-map-marker-alt"></i> Beverley, New York 224 US
+                        <i class="fas fa-map-marker-alt"></i> Фонтанская дорога 49/1, Одесса 
                     </li>
                 </ul>
                 <ul class="social-icons">
                     <li>
-                        <a href="#"><i class="fab fa-facebook-messenger"></i></a>
+                        <a href="https://www.facebook.com/deti.budushego"><i class="fab fa-facebook"></i></a>
                     </li>
                     <li>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://t.me/detibudushego"><i class="fab fa-telegram"></i></a>
                     </li>
                     <li>
-                        <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                        <a href="https://www.instagram.com/detibudushego.odessa?r=nametag"><i class="fab fa-instagram"></i></a>
                     </li>
                     <li>
-                        <a href="#"><i class="fab fa-skype"></i></a>
+                        <a href="#"><i class="fab fa-viber"></i></a>
                     </li>
                     <li>
-                        <a href="#"><i class="fas fa-wifi"></i></a>
+                        <a href="https://www.youtube.com/user/detibudushego/featured"><i class="fab fa-youtube"></i></a>
                     </li>
                 </ul>
             </div>
@@ -44,7 +45,20 @@
                 </div>
                 <div class="menu-area">
                     <ul class="menu">
-                        <li>
+                        
+                        {% recursetree menu %}
+                            <li>
+                                <a href='{{node.link}}'>{% if node.icon_class %}
+                                    <i class="fas {{ node.icon_class }}"></i>
+                                {% endif %}{{ node.name }}</a>
+                                {% if not node.is_leaf_node %}
+                                    <ul class="submenu">
+                                        {{ children }}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endrecursetree %}
+                        <!-- <li>
                             <a href='{% url "lessons_section:index" %}'><i class="fas fa-home"></i>Home</a>
                         </li>
                         <li>
@@ -108,7 +122,7 @@
                         </li>
                         <li>
                             <a href='{% url "lessons_section:contact" %}'><i class="fas fa-map-marker-alt"></i>Contact</a>
-                        </li>
+                        </li> -->
                     </ul>
                     <div class="search-button">
                         <a href="#">

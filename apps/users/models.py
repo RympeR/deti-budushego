@@ -11,6 +11,8 @@ class MenuCategory(MPTTModel):
     parent = TreeForeignKey(
         'self', verbose_name='Родительская категория', blank=True, null=True, related_name='parent_category', on_delete=models.CASCADE)
     name = models.CharField('Название', max_length=100)
+    link = models.URLField('Ссылка')
+    icon_class = models.CharField('Класс иконки', max_length=20, null=True, blank=True)
     display = models.BooleanField('Отобразить', default=True)
 
     def __str__(self):
