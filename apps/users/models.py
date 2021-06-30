@@ -19,7 +19,6 @@ class MenuCategory(MPTTModel):
         return f"{self.name}"
 
     class MPTTMeta:
-        order_insertion_by = ['pk']
         level_attr = 'mеnu_cat'
 
     class Meta:
