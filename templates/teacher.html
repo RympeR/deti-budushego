@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main_content %}
+<!-- ==========Banner Section Starts Here========== -->
+<section class="page-header bg_img" data-background="./assets/images/banner/page-header.jpg">
+    <div class="container">
+        <div class="page-header-content">
+            <h1 class="title">Our Best Teachers</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="#">Pages</a>
+                </li>
+                <li>
+                    Teachers
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- ==========Banner Section Ends Here========== -->
+
+
+<!-- ==========Teacher Section Starts Here========== -->
+<section class="teacher-section padding-top padding-bottom pos-rel">
+    <div class="top-shape-center">
+        <img src="{% static 'css/img/gallery1.png' %}" alt="css">
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="section-header">
+                    <span class="cate">Meet Our Staffs</span>
+                    <h3 class="title">Our Best Popular Teachers</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-30-none">
+            {% for teacher in teachers %}
+              
+            
+                <div class="col-lg-3 col-sm-6">
+                    <div class="teacher-item-2">
+                        <div class="teacher-thumb">
+                            <div class="thumb">
+                                <a href="{% url 'users_section:teacher_detail' teacher.username %}">
+                                    <img src="{{ teacher.image.url }}" alt="teacher">
+                                </a>
+                            </div>
+                            <div class="content">
+                                <h5 class="title"><a href="teacher-single.html">{{ teacher.fio }}</a></h5>
+                                <span>{{ teacher.specialization }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- ==========Teacher Section Ends Here========== -->
+
+
+<!-- ==========Call-In-Section Starts Here========== -->
+<section class="call-in-action call-overlay bg_img padding-bottom padding-top"
+    data-background="./assets/images/bg/call-bg.jpg">
+    <div class="container">
+        <div class="call-wrapper">
+            <div class="section-header mb-olpo">
+                <h3 class="title">Become A Teacher</h3>
+                <p>If you want to join with us as a trainer to share you knowledge & professional experiance,
+                    We will say you welcome as our trainer family</p>
+            </div>
+            <div class="text-center">
+                <a href="teacher-single.html" class="custom-button"><span>Get Started Now</span></a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ==========Call-In-Section Ends Here========== -->
+
+
+<!-- ==========Teacher Section Starts Here========== -->
+<section class="teacher-section padding-bottom padding-top bg_img"
+    data-background="./assets/images/teacher/teacher-bg.jpg">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="section-header">
+                    <span class="cate">Meet Our Stuffy</span>
+                    <h3 class="title">Our Best Popular Teachers</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-30-none justify-content-center">
+            <div class="col-lg-6">
+                <div class="teacher-item">
+                    <div class="teacher-inner">
+                        <div class="teacher-thumb">
+                            <div class="thumb-inner">
+                                <a href="teacher-single.html"><img src="./assets/images/teacher/teacher01.jpg"
+                                        alt="teacher"></a>
+                            </div>
+                        </div>
+                        <div class="teacher-content">
+                            <h6 class="title"><a href="teacher-single.html">Alison Tylor</a></h6>
+                            <span class="info">Spanish Teacher</span>
+                            <p>Samet consectetuer apiscing elitsed diam nonumy nibh euismod nciduns awesome team mumber
+                            </p>
+                            <ul class="teacher-social">
+                                <li>
+                                    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="pinterest"><i class="fab fa-pinterest-p"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="vimeo"><i class="fab fa-vimeo-v"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="behance"><i class="fab fa-behance"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="teacher-item">
+                    <div class="teacher-inner">
+                        <div class="teacher-thumb">
+                            <div class="thumb-inner">
+                                <a href="teacher-single.html"><img src="./assets/images/teacher/teacher02.jpg"
+                                        alt="teacher"></a>
+                            </div>
+                        </div>
+                        <div class="teacher-content">
+                            <h6 class="title"><a href="teacher-single.html">Robot Smith</a></h6>
+                            <span class="info">Spanish Teacher</span>
+                            <p>Samet consectetuer apiscing elitsed diam nonumy nibh euismod nciduns awesome team mumber
+                            </p>
+                            <ul class="teacher-social">
+                                <li>
+                                    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="pinterest"><i class="fab fa-pinterest-p"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="vimeo"><i class="fab fa-vimeo-v"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="behance"><i class="fab fa-behance"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="teacher-item">
+                    <div class="teacher-inner">
+                        <div class="teacher-thumb">
+                            <div class="thumb-inner">
+                                <a href="teacher-single.html"><img src="./assets/images/teacher/teacher03.jpg"
+                                        alt="teacher"></a>
+                            </div>
+                        </div>
+                        <div class="teacher-content">
+                            <h6 class="title"><a href="teacher-single.html">Dillon Harper</a></h6>
+                            <span class="info">Spanish Teacher</span>
+                            <p>Samet consectetuer apiscing elitsed diam nonumy nibh euismod nciduns awesome team mumber
+                            </p>
+                            <ul class="teacher-social">
+                                <li>
+                                    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="pinterest"><i class="fab fa-pinterest-p"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="vimeo"><i class="fab fa-vimeo-v"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="behance"><i class="fab fa-behance"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="teacher-item">
+                    <div class="teacher-inner">
+                        <div class="teacher-thumb">
+                            <div class="thumb-inner">
+                                <a href="teacher-single.html"><img src="./assets/images/teacher/teacher04.jpg"
+                                        alt="teacher"></a>
+                            </div>
+                        </div>
+                        <div class="teacher-content">
+                            <h6 class="title"><a href="teacher-single.html">De Yong</a></h6>
+                            <span class="info">Spanish Teacher</span>
+                            <p>Samet consectetuer apiscing elitsed diam nonumy nibh euismod nciduns awesome team mumber
+                            </p>
+                            <ul class="teacher-social">
+                                <li>
+                                    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="pinterest"><i class="fab fa-pinterest-p"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="vimeo"><i class="fab fa-vimeo-v"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="behance"><i class="fab fa-behance"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ==========Teacher Section Ends Here========== -->
+{% endblock main_content %}

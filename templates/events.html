@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load static %}
+{% load cart_template_tags %}
+{% block main_content %}
+    <!-- ==========Banner Section Starts Here========== -->
+    <section class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
+        <div class="container">
+            <div class="page-header-content">
+                <h1 class="title">Our Events Page</h1>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href='{% url "lessons_section:index" %}'>Home</a>
+                    </li>
+                    <li>
+                        <a href="#">Pages</a>
+                    </li>
+                    <li>
+                        Events
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- ==========Banner Section Ends Here========== -->
+
+
+    <!-- ==========Events Section Starts Here========== -->
+    <div class="events-section padding-top padding-bottom pos-rel">
+        <div class="top-shape-center">
+            <img src="{% static 'css/img/gallery1.png' %}" alt="css">
+        </div>
+        <div class="bottom-shape-left">
+            <img src="{% static 'css/img/bottom-shape.png' %}" alt="css">
+        </div>
+        <div class="container">
+            <ul class="filter">
+                <li data-filter="*">Show All</li>
+                {% for category in request|events_categories %}
+                    <li data-filter=".{{category.slug}}">{{category.title}}</li>
+                {% endfor %}
+                
+            </ul>
+            <div class="class-wrapper">
+                {% for event in events %}
+                  
+                
+                <div class="class-inner {% for cat in event.category.all %}
+                        {{ cat.slug }}
+                    {% endfor %}">
+                    <div class="event-item">
+                        <div class="event-thumb">
+                            <a href="{% url 'lessons_section:event_detail' event.slug %}"><img src="{{ event.preview.url }}" alt="events"></a>
+                            <div class="date-tag">
+                                <h3 class="title">{{ event.date_start|date:"d" }}</h3>
+                                <span class="mon">{{ event.date_start|date:"M Y" }}</span>
+                            </div>
+                        </div>
+                        <div class="event-content">
+                            <h5 class="title">
+                                <a href="{% url 'lessons_section:event_detail' event.slug %}">{{ event.title }}</a>
+                            </h5>
+                            <ul class="events-info">
+                                <li><i class="fas fa-clock"></i> {{ event.date_start|date }} - {{ event.date_end|date }} </li>
+                                <li><i class="fas fa-home"></i> {{ event.location }}. </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <ul class="default-pagination">
+                {% if page_obj.has_previous %}
+                <li>
+                    <a href="#"><i class="fas fa-angle-left"></i></a>
+                </li>
+                <li>
+                    <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                </li>
+                {% endif %}
+                <li>
+                    <a href="#" class="active">{{ page_obj.number }} </a>
+                </li>
+                {% if page_obj.has_next %}
+                <li>
+                    <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-angle-right"></i></a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <!-- ==========Events Section Ends Here========== -->
+
+
+    {% endblock main_content %}

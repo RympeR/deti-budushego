@@ -1,0 +1,258 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main_content %}
+<!-- ==========Banner Section Starts Here========== -->
+<section class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
+    <div class="container">
+        <div class="page-header-content">
+            <h1 class="title">{{ object.title }}</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a href='{% url "lessons_section:index" %}'>Home</a>
+                </li>
+                <li>
+                    <a href='{% url "lessons_section:events_list" %}'>Events</a>
+                </li>
+                <li>
+                    Events Single
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- ==========Banner Section Ends Here========== -->
+
+
+<!-- ==========Events Single Section Starts Here========== -->
+<section class="events-single-section padding-top padding-bottom">
+    <div class="container">
+        <div class="row mb--50">
+            <div class="col-lg-8 mb-50">
+                <div class="class-single-item">
+                    <div class="class-single-inner">
+                        <div class="event-thumb">
+                            <img src="{{ object.background_image.url }}" alt="events">
+                            <div class="date-tag">
+                                <h3 class="title">{{ object.date_start|date:"d" }}</h3>
+                                <span class="mon">{{ object.date_start|date:"M Y" }}</span>
+                            </div>
+                        </div>
+                        <div class="class-single-content">
+                            <div class="countdown-area">
+                                <h4 class="counts-title">The event will start in :</h4>
+                                <ul class="countdown">
+                                    <li>
+                                        <h4 class="count-title"><span class="days">00</span></h4>
+                                        <p class="days_text">days</p>
+                                    </li>
+                                    <li>
+                                        <h4 class="count-title"><span class="hours">00</span></h4>
+                                        <p class="hours_text">hour</p>
+                                    </li>
+                                    <li>
+                                        <h4 class="count-title"><span class="minutes">00</span></h4>
+                                        <p class="minu_text">minu</p>
+                                    </li>
+                                    <li>
+                                        <h4 class="count-title"><span class="seconds">00</span></h4>
+                                        <p class="seco_text">seco</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p>
+                                Serenity hassr taken posseson of my entire soung like these sweet mornngs sprng whch
+                                enjoy with
+                                my whole heart I am alonesi and feel the charm of exstenceths spot whch was the blis of
+                                souls like
+                                mineing am soo happy my dear frend absoribed the exquste sense enjoy with my whole heart
+                                in am
+                                alone and feel the charm of exstenceths spot whch was the blis of souls like mineing am
+                                so happyr
+                                my dear frend so absoribed the exqust sense tranquil existence that neglect my talentsr
+                                Ins should
+                                bye ncapable of drawng and singe wonderful serenty has taken possesison of my entrei
+                                souing like
+                                these sweet present moment and yet feel that never was greater artst
+                            </p>
+                            <blockquote class="single-quote">
+                                <div class="quotes">
+                                    Steal into The nering Sanc How Mysef Down Amon The Hal Gras Buz
+                                    Lttle World Amon The Stak And Grow Fama With Couns And Fesingri
+                                    Steal intoing Thene Sanc Hrow Myse Down Amon The Hall Gras Biss
+                                    The Almighty Among The Staks
+                                    <span>...Melissa Hunter</span>
+                                </div>
+                            </blockquote>
+                            <p>
+                                Serenity hassr taken posseson of my entire soung like these sweet mornngs sprng whch
+                                enjoy with
+                                my whole heart I am alonesi and feel the charm of exstenceths spot whch was the blis of
+                                souls like
+                                mineing am soo happy my dear frend absoribed the exquste sense enjoy with my whole heart
+                                in am
+                                alone and feel the charm of exstenceths spot whch was the blis of souls like mineing am
+                                so happyr
+                                my dear frend so absoribed the exqust sense tranquil existence that neglect my talentsr
+                                Ins should
+                                bye ncapable of drawng and singe wonderful serenty has taken possesison of my entrei
+                                souing like
+                                these sweet present moment and yet feel that never was greater artst
+                            </p>
+                            <div class="maps single-page-maps"></div>
+                            <p>
+                                Serenity hassr taken posseson of my entire soung like these sweet mornngs sprng whch
+                                enjoy with
+                                my whole heart I am alonesi and feel the charm of exstenceths spot whch was the blis of
+                                souls like
+                                mineing am soo happy my dear frend absoribed the exquste sense enjoy with my whole heart
+                                in am
+                                alone and feel the charm of exstenceths spot whch was the blis of souls like mineing am
+                                so happyr
+                                my dear frend so absoribed the exqust sense tranquil existence that neglect my talentsr
+                                Ins should
+                                bye ncapable of drawng and singe wonderful serenty has taken possesison of my entrei
+                                souing like
+                                these sweet present moment and yet feel that never was greater artst
+                            </p>
+                        </div>
+                        <div class="tags-area">
+                            <ul class="tags">
+                                <li>
+                                    <a href="#">{{ object.category.title }}</a>
+                                </li>
+                            </ul>
+                            <ul class="share">
+                                
+                                <li>
+                                    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dribble"><i class="fab fa-dribbble"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="google"><i class="fab fa-google-plus-g"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-50">
+                <aside>
+                    <div class="widget widget-feature">
+                        <div class="widget-header">
+                            <h5 class="title">Course Features</h5>
+                        </div>
+                        <div class="widget-body">
+                            <ul>
+                                <li>
+                                    <div class="ques cl-i-one"><i class="fas fa-calendar"></i>Start Date</div>
+                                    <div class="ans">{{ object.date_start|date}}</div>
+                                </li>
+                                <li>
+                                    <div class="ques cl-i-two"><i class="fas fa-clock"></i>Years old</div>
+                                    <div class="ans">{{ object.years_old }}</div>
+                                </li>
+                                <li>
+                                    <div class="ques cl-i-three"><i class="fas fa-calendar"></i>End Date</div>
+                                    <div class="ans">{{ object.date_end|date }}</div>
+                                </li>
+                                <!-- <li>
+                                    <div class="ques cl-i-four"><i class="fas fa-clock"></i>End Time</div>
+                                    <div class="ans">{{ object.date_end|date }}</div>
+                                </li> -->
+                                <li>
+                                    <div class="ques cl-i-five"><i class="fas fa-home"></i>Location</div>
+                                    <div class="ans">{{ object.location }}</div>
+                                </li>
+                                <li>
+                                    <div class="ques cl-i-six"><i class="fas fa-user"></i>Event Organizer</div>
+                                    <div class="ans">{{ object.organizer.fio }}</div>
+                                </li>
+
+                                <li>
+                                    <div class="ques cl-i-eight"><i class="fas fa-coins"></i>Event Ticket</div>
+                                    <div class="ans">₴{{ object.fee }}</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="widget widget-post">
+                        <div class="widget-header">
+                            <h5 class="title">Most Popular Post</h5>
+                        </div>
+                        <div class="widget-body">
+                            <ul>
+                                {% for post in object.related_posts.all %}
+                                <li>
+                                    <div class="thumb">
+                                        <a href="{% url 'blog_section:post_detail' post.slug %}">
+                                            <img src="{{ post.preview.url }}" alt="blog">
+                                        </a>
+                                    </div>
+                                    <div class="content">
+                                        <a href="{% url 'blog_section:post_detail' post.slug %}">{{ post.title }}</a>
+                                        <span>{{ post.created_at|date }}</span>
+                                    </div>
+                                </li>
+                                {% endfor %}                              
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="widget widget-gallery">
+                        <div class="widget-header">
+                            <h5 class="title">Gallery Photos</h5>
+                        </div>
+                        <div class="widget-body">
+                            <ul>
+                                {% for gallery in object.gallery.all %}
+                                <li>
+                                    <a href="{{ gallery.image.url }}" class="img-pop">
+                                        <img src="{{ gallery.image.url }}" alt="gallery">
+                                    </a>
+                                </li>
+                                {% endfor %}
+    
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="widget widget-tags">
+                        <div class="widget-header">
+                            <h5 class="title">Popular Tags</h5>
+                        </div>
+                        <div class="widget-body">
+                            <ul class="tags">
+                                {% for tag in object.tags.all %}
+                                <li>
+                                    <a href="#">{{ tag.title }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ==========Events Single Section Ends Here========== -->
+{% endblock main_content %}
+{% block custom_scripts %}
+<script src="{%static 'js/countdown.min.js' %}"></script>
+<script>
+    $(document).ready(function ($) {
+        $('.countdown').countdown({
+            date: '{{ object.timer_time|date:"m/d/Y"}} {{ object.timer_time|time:"h:s:i"}}',
+            offset: +2,
+            day: 'Day',
+            days: 'Days'
+        },
+            function () {
+                alert('Done!');
+            });
+    });
+</script>
+{% endblock custom_scripts %}

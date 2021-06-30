@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main_content %}
+<!-- ==========Banner Section Starts Here========== -->
+<section class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
+    <div class="container">
+        <div class="page-header-content">
+            <h3 class="title">Serenity hassr taken...</h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href='{% url "lessons_section:index" %}'>Home</a>
+                </li>
+                <li>
+                    Blog Datils
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- ==========Banner Section Ends Here========== -->
+
+
+<!-- ==========Blog Section Starts Here========== -->
+<div class="blog-section padding-top padding-bottom">
+    <div class="container">
+        <div class="row mb--50">
+            <div class="col-lg-8 mb-50">
+                <div class="class-single-item mb-30">
+                    <div class="class-single-inner">
+                        <div class="class-single-thumb">
+                            <img src="{{ object.background_image.url }}" alt="class">
+                        </div>
+                        <div class="class-single-content">
+
+                            <ul class="meta-post">
+                                <li>
+                                    <a href="#"><i class="far fa-user"></i> {{ object.author.fio }}</a>
+                                </li>
+                            </ul>
+                            <p>
+                                Serenity hassr taken posseson of my entire soung like these sweet mornngs sprng whch
+                                enjoy with
+                                my whole heart I am alonesi and feel the charm of exstenceths spot whch was the blis
+                                of souls like
+                                mineing am soo happy my dear frend absoribed the exquste sense enjoy with my whole
+                                heart in am
+                                alone and feel the charm of exstenceths spot whch was the blis of souls like mineing
+                                am so happyr
+                                my dear frend so absoribed the exqust sense tranquil existence that neglect my
+                                talentsr Ins should
+                                bye ncapable of drawng and singe wonderful serenty has taken possesison of my entrei
+                                souing like
+                                these sweet present moment and yet feel that never was greater artst
+                            </p>
+                            <blockquote class="single-quote">
+                                <div class="quotes">
+                                    Steal into The nering Sanc How Mysef Down Amon The Hal Gras Buz
+                                    Lttle World Amon The Stak And Grow Fama With Couns And Fesingri
+                                    Steal intoing Thene Sanc Hrow Myse Down Amon The Hall Gras Biss
+                                    The Almighty Among The Staks
+                                    <span>...Melissa Hunter</span>
+                                </div>
+                            </blockquote>
+                            <p>
+                                Serenity hassr taken posseson of my entire soung like these sweet mornngs sprng whch
+                                enjoy with
+                                my whole heart I am alonesi and feel the charm of exstenceths spot whch was the blis
+                                of souls like
+                                mineing am soo happy my dear frend absoribed the exquste sense enjoy with my whole
+                                heart in am
+                                alone and feel the charm of exstenceths spot whch was the blis of souls like mineing
+                                am so happyr
+                                my dear frend so absoribed the exqust sense tranquil existence that neglect my
+                                talentsr Ins should
+                                bye ncapable of drawng and singe wonderful serenty has taken possesison of my entrei
+                                souing like
+                                these sweet present moment and yet feel that never was greater artst
+                            </p>
+                            <div class="thumb-area">
+                                <img src="{% static 'images/blog/blog14.jpg' %}" alt="blog">
+                            </div>
+                            <p>
+                                Serenity hassr taken posseson of my entire soung like these sweet mornngs sprng whch
+                                enjoy with
+                                my whole heart I am alonesi and feel the charm of exstenceths spot whch was the blis
+                                of souls like
+                                mineing am soo happy my dear frend absoribed the exquste sense enjoy with my whole
+                                heart in am
+                                alone and feel the charm of exstenceths spot whch was the blis of souls like mineing
+                                am so happyr
+                                my dear frend so absoribed the exqust sense tranquil existence that neglect my
+                                talentsr Ins should
+                                bye ncapable of drawng and singe wonderful serenty has taken possesison of my entrei
+                                souing like
+                                these sweet present moment and yet feel that never was greater artst
+                            </p>
+                            <div class="video-area">
+                                <img src="{% static 'images/blog/blog16.jpg' %}" alt="blog">
+                                <a href="https://www.youtube.com/embed/6E9J8biF8RE" class="video-button popup"><i
+                                        class="flaticon-play"></i></a>
+                            </div>
+                            <p>
+                                Serenity hassr taken posseson of my entire soung like these sweet mornngs sprng whch
+                                enjoy with
+                                my whole heart I am alonesi and feel the charm of exstenceths spot whch was the blis
+                                of souls like
+                                mineing am soo happy my dear frend absoribed the exquste sense enjoy with my whole
+                                heart in am
+                                alone and feel the charm of exstenceths spot whch was the blis of souls like mineing
+                                am so happyr
+                                my dear frend so absoribed the exqust sense tranquil existence that neglect my
+                                talentsr Ins should
+                                bye ncapable of drawng and singe wonderful serenty has taken possesison of my entrei
+                                souing like
+                                these sweet present moment and yet feel that never was greater artst
+                            </p>
+                        </div>
+                        <div class="tags-area">
+                            <ul class="tags">
+                                {% for cat in object.related_categories.all %}
+                                    <li>
+                                        <a href="#">{{ cat.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <ul class="share">
+                                <li>
+                                    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dribble"><i class="fab fa-dribbble"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="google"><i class="fab fa-google-plus-g"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget widget-author">
+                    <div class="widget-body">
+                        <div class="post-author">
+                            <div class="thumb">
+                                <img src="{{ object.author.image.url }}" alt="blog">
+                            </div>
+                            <div class="content">
+                                <h5 class="title">{{ object.author.fio }}</h5>
+                                <p>{{ object.author.characteristic }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-lg-4 mb-50">
+                <aside>
+                    <!-- <div class="widget widget-category">
+                        <div class="widget-header">
+                            <h5 class="title">Post Category</h5>
+                        </div>
+                        <div class="widget-body">
+                            <ul>
+                                <li>
+                                    <a href="#"><span><i
+                                                class="fas fa-angle-double-right"></i>Themeforest</span><span>05</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> -->
+                    <div class="widget widget-post">
+                        <div class="widget-header">
+                            <h5 class="title">Most Popular Post</h5>
+                        </div>
+                        <div class="widget-body">
+                            <ul>
+                                {% for rel_post in related_posts.objects.all %}
+                                    <li>
+                                        <div class="thumb">
+                                            <a href="{% url 'blog_section:post_detail' rel_post.slug %}">
+                                                <img src="{{ rel_post.preview.url }}" alt="blog">
+                                            </a>
+                                        </div>
+                                        <div class="content">
+                                            <a href="{% url 'blog_section:post_detail' rel_post.slug %}">How Kids make sense of Life Experiences</a>
+                                            <span>{{ rel_post.created_at|date }}</span>
+                                        </div>
+                                    </li>
+                                  
+                                {% endfor %}
+                                
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="widget widget-gallery">
+                        <div class="widget-header">
+                            <h5 class="title">Gallery Photos</h5>
+                        </div>
+                        <div class="widget-body">
+                            <ul>
+                                {% for gallery in object.related_gallery.all %}
+                                        <li>
+                                            <a href="{{ gallery.image.url }}" class="img-pop">
+                                                <img src="{{ gallery.image.url }}" alt="gallery">
+                                            </a>
+                                        </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="widget widget-tags">
+                        <div class="widget-header">
+                            <h5 class="title">Popular Tags</h5>
+                        </div>
+                        <div class="widget-body">
+                            <ul class="tags">
+                                {% for tag in object.related_tags.all %}
+                                    <li>
+                                        <a href="#">{{ tag.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ==========Blog Section Ends Here========== -->
+
+{% endblock main_content %}

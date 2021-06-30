@@ -1,0 +1,136 @@
+{% load static %}
+<header>
+    <div class="header-top">
+        <div class="container">
+            <div class="header-top-area">
+                <ul class="left">
+                    <li>
+                        <i class="far fa-clock"></i> 9:30am - 6:30pm Mon - Sun
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-phone-alt"></i> +800-123-4567 6587</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i> Beverley, New York 224 US
+                    </li>
+                </ul>
+                <ul class="social-icons">
+                    <li>
+                        <a href="#"><i class="fab fa-facebook-messenger"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fab fa-skype"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-wifi"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="header-bottom">
+        <div class="container">
+            <div class="header-wrapper">
+                <div class="logo">
+                    <a href='{% url "lessons_section:index" %}'>
+                        <img src="{% static 'images/logo/logo.png' %}" alt="logo">
+                    </a>
+                </div>
+                <div class="menu-area">
+                    <ul class="menu">
+                        <li>
+                            <a href='{% url "lessons_section:index" %}'><i class="fas fa-home"></i>Home</a>
+                        </li>
+                        <li>
+                            <a href='{% url "lessons_section:about" %}'><i class="fas fa-user"></i>About</a>
+                        </li>
+                        <li>
+                            <a href='{% url "lessons_section:lessons_list" %}'><i class="fas fa-book"></i>Classes</a>
+                            <ul class="submenu">
+                                <li>
+                                    <a href='{% url "lessons_section:lessons_list" %}'>Classes</a>
+                                </li>
+                                <li>
+                                    <a href='{% url "lessons_section:schedule" %}'>Class Schedule</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href='{% url "blog_section:post_list" %}'><i class="fas fa-pencil-alt"></i>Blog</a>
+                        </li>
+                        <li>
+                            <a href="#0"><i class="fas fa-layer-group"></i>Pages</a>
+                            <ul class="submenu">
+                                <li>
+                                    <a href='{% url "users_section:teachers_list" %}'>Teachers</a>
+                                </li>
+                                <li>
+                                    <a href="#0">Account</a>
+                                    <ul class="submenu">
+                                        <li>
+                                            <a href="login.html">Sign In</a>
+                                        </li>
+                                        <li>
+                                            <a href="registration.html">Sign Up</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href='{% url "lessons_section:events_list" %}'>Events</a>
+                                </li>
+                                <li>
+                                    <a href="#0">Shop</a>
+                                    <ul class="submenu">
+                                        <li>
+                                            <a href="shop.html">Our Shop</a>
+                                        </li>
+                                        <li>
+                                            <a href="shop-single.html">Shop Single</a>
+                                        </li>
+                                        <li>
+                                            <a href="cart.html">Cart</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href='{% url "lessons_section:faq" %}'>Faqs</a>
+                                </li>
+                                <li>
+                                    <a href='{% url "blog_section:gallery" %}'>Our Gallery</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href='{% url "lessons_section:contact" %}'><i class="fas fa-map-marker-alt"></i>Contact</a>
+                        </li>
+                    </ul>
+                    <div class="search-button">
+                        <a href="#">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </div>
+                    <div class="cart-button">
+                        <a href="#">
+                            <span class="cart-amount">05</span>
+                            <i class="fas fa-shopping-basket"></i>
+                        </a>
+                    </div>
+                    <div class="header-bar d-lg-none">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="ellepsis-bar d-lg-none">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
