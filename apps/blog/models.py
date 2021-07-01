@@ -12,7 +12,7 @@ from apps.users.models import User
 class Tag(models.Model):
     title = models.CharField(
         verbose_name='Заголовок тэга', max_length=100)
-    slug = models.SlugField(verbose_name='Ярлык тэга')
+    slug = models.SlugField(verbose_name='Класс фильтра тэга')
 
     class Meta:
         verbose_name = 'Тэг'
@@ -25,7 +25,7 @@ class Tag(models.Model):
 class GalleryCategory(models.Model):
     title = models.CharField(
         verbose_name='Заголовок категории галереи', max_length=100)
-    slug = models.SlugField(verbose_name='Ярлык категории')
+    slug = models.SlugField(verbose_name='Класс фильтра категории')
 
     class Meta:
         verbose_name = 'Категория галереи'
@@ -38,7 +38,7 @@ class GalleryCategory(models.Model):
 class PostCategory(models.Model):
     title = models.CharField(
         verbose_name='Заголовок категории', max_length=100)
-    slug = models.SlugField(verbose_name='Ярлык категории')
+    slug = models.SlugField(verbose_name='Класс фильтра категории')
 
     class Meta:
         verbose_name = 'Категория публикации'
@@ -77,13 +77,13 @@ class Gallery(models.Model):
 
 class Post(models.Model):
     title = models.CharField(verbose_name='Заголовок публикации', max_length=100)
-    slug = models.SlugField("Slug")
-    preview = models.ImageField(verbose_name='Preview', upload_to=preview)
-    background_image = models.ImageField(verbose_name='Фон', upload_to=preview)
+    slug = models.SlugField("Url part")
+    preview = models.ImageField(verbose_name='Картинка в блоке', upload_to=preview)
+    background_image = models.ImageField(verbose_name='Картинка на странице', upload_to=preview)
     author = models.ForeignKey(
         User, related_name='author', verbose_name='Автор', on_delete=models.CASCADE)
     related_gallery = models.ManyToManyField(
-        Gallery, related_name='post_related_gallery', verbose_name='Связанные галереи', blank=True)
+        Gallery, related_name='post_related_gallery', verbose_name='Выбрать фото из галереи', blank=True)
     related_posts = models.ManyToManyField(
         'self', related_name='post_related_posts', verbose_name='Связанные публикации', blank=True)
     related_tags = models.ManyToManyField(
@@ -93,6 +93,7 @@ class Post(models.Model):
     created_at = models.DateField('Дата создания', auto_now_add=True)
     preview_text = models.TextField(verbose_name='Текст заставки')
     display = models.BooleanField(verbose_name='Отображать', default=True)
+    most_popular = models.BooleanField(verbose_name='Отображать на главной?', default=False)
     full_text = RichTextField()
 
     def small_image(self):

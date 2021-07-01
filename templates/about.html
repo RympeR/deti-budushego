@@ -236,142 +236,25 @@
             </div>
         </div>
         <div class="row justify-content-center mb-30-none">
+            {% for teacher in teachers %}
             <div class="col-lg-3 col-sm-6">
                 <div class="teacher-item-2">
                     <div class="teacher-thumb">
                         <div class="thumb">
-                            <a href='{% url "users_section:teachers_list" %}'>
-                                <img src="{% static 'images/teacher/teacher05.jpg' %}" alt="teacher">
-                            </a>
+                            <a href="{% url 'users_section:teacher_detail' teacher.username %}"><img src="{{ teacher.image.url }}"
+                                alt="teacher"></a>
                         </div>
                         <div class="content">
-                            <h5 class="title"><a href="teacher-single.html">Jason Kovalsky</a></h5>
-                            <span>Spanish Teacher</span>
+                            <h6 class="title"><a href="{% url 'users_section:teacher_detail' teacher.username %}">{{ teacher.fio }}</a></h6>
+                            <span>{{ teacher.specialization }}</span>
                         </div>
                     </div>
                     <div class="teacher-content">
-                        <ul class="teacher-social justify-content-center">
-                            <li>
-                                <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="google"><i class="fab fa-google-plus-g"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="dribble"><i class="fab fa-dribbble"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="vimeo"><i class="fab fa-vimeo-v"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="pinterest"><i class="fab fa-pinterest-p"></i></a>
-                            </li>
-                        </ul>
+                        
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="teacher-item-2">
-                    <div class="teacher-thumb">
-                        <div class="thumb">
-                            <a href="teacher-single.html">
-                                <img src="{% static 'images/teacher/teacher06.jpg' %}" alt="teacher">
-                            </a>
-                        </div>
-                        <div class="content">
-                            <h5 class="title"><a href="teacher-single.html">Bangile Yusha</a></h5>
-                            <span>Spanish Teacher</span>
-                        </div>
-                    </div>
-                    <div class="teacher-content">
-                        <ul class="teacher-social justify-content-center">
-                            <li>
-                                <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="google"><i class="fab fa-google-plus-g"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="dribble"><i class="fab fa-dribbble"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="vimeo"><i class="fab fa-vimeo-v"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="pinterest"><i class="fab fa-pinterest-p"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="teacher-item-2">
-                    <div class="teacher-thumb">
-                        <div class="thumb">
-                            <a href="teacher-single.html">
-                                <img src="{% static 'images/teacher/teacher07.jpg' %}" alt="teacher">
-                            </a>
-                        </div>
-                        <div class="content">
-                            <h5 class="title"><a href="teacher-single.html">Willium Kovalsky</a></h5>
-                            <span>Spanish Teacher</span>
-                        </div>
-                    </div>
-                    <div class="teacher-content">
-                        <ul class="teacher-social justify-content-center">
-                            <li>
-                                <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="google"><i class="fab fa-google-plus-g"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="dribble"><i class="fab fa-dribbble"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="vimeo"><i class="fab fa-vimeo-v"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="pinterest"><i class="fab fa-pinterest-p"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="teacher-item-2">
-                    <div class="teacher-thumb">
-                        <div class="thumb">
-                            <a href="teacher-single.html">
-                                <img src="{% static 'images/teacher/teacher08.jpg' %}" alt="teacher">
-                            </a>
-                        </div>
-                        <div class="content">
-                            <h5 class="title"><a href="teacher-single.html">Bini Zaara</a></h5>
-                            <span>Spanish Teacher</span>
-                        </div>
-                    </div>
-                    <div class="teacher-content">
-                        <ul class="teacher-social justify-content-center">
-                            <li>
-                                <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="google"><i class="fab fa-google-plus-g"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="dribble"><i class="fab fa-dribbble"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="vimeo"><i class="fab fa-vimeo-v"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="pinterest"><i class="fab fa-pinterest-p"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>

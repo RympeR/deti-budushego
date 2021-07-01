@@ -8,7 +8,7 @@ from .models import (
     Lesson,
 )
 from apps.users.models import MenuCategory, User, Schedule
-from apps.blog.models import Gallery
+from apps.blog.models import Gallery, Post
 
 
 class LessonList(ListView):
@@ -62,6 +62,7 @@ def index(request):
     context['classes'] = Lesson.objects.filter(most_popular=True)
     context['gallery'] = Gallery.objects.filter(most_popular=True)
     context['teachers'] = User.objects.filter(most_popular=True)
+    context['posts'] = Post.objects.filter(most_popular=True)
     context['schedule'] = Schedule.objects.all()
 
     return render(request, 'index.html', context=context)
@@ -69,6 +70,7 @@ def index(request):
 def about(request):
     context = {}
     context['menu'] = MenuCategory.objects.all()
+    context['teachers'] = User.objects.filter(most_popular=True)
     return render(request, 'about.html', context=context)
 
 def schedule(request):

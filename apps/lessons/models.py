@@ -13,7 +13,7 @@ from apps.users.models import User
 class LessonCategory(models.Model):
     title = models.CharField(
         verbose_name='Заголовок категории', max_length=100)
-    slug = models.SlugField(verbose_name='Ярлык категории')
+    slug = models.SlugField(verbose_name='Класс фильтра категории')
 
     class Meta:
         verbose_name = 'Возрастная группа занятия'
@@ -25,7 +25,7 @@ class LessonCategory(models.Model):
 class EventCategory(models.Model):
     title = models.CharField(
         verbose_name='Заголовок категории', max_length=100)
-    slug = models.SlugField(verbose_name='Ярлык категории')
+    slug = models.SlugField(verbose_name='Класс фильтра категории')
 
     class Meta:
         verbose_name = 'Возрастная группа мероприятия'
@@ -48,11 +48,11 @@ class Event(models.Model):
     time = models.TextField(verbose_name='Время проведения')
     timer_time = models.DateTimeField(verbose_name='Время начала мероприятия')
     related_posts = models.ManyToManyField(
-        Post, related_name='event_related_posts', verbose_name='Схожие посты')
+        Post, related_name='event_related_posts', blank=True, verbose_name='Схожие посты')
     gallery = models.ManyToManyField(
-        Gallery, related_name='event_related_gallery', verbose_name='Выбрать фото из галереи')
+        Gallery, related_name='event_related_gallery', blank=True, verbose_name='Выбрать фото из галереи')
     tags = models.ManyToManyField(
-        Tag, related_name='event_related_tags', verbose_name='Тэги мероприятия')
+        Tag, related_name='event_related_tags', blank=True, verbose_name='Тэги мероприятия')
     organizer = models.ForeignKey(
         User, related_name='organizer', verbose_name='Организатор', null=True, on_delete=models.SET_NULL)
     category = models.ForeignKey(
@@ -82,15 +82,15 @@ class Lesson(models.Model):
     date_start = models.TextField(verbose_name="Дата начала занятий группы", null=True, blank=True)
     fee = models.TextField(verbose_name='Цена абонемента')
     class_duration = models.TextField(verbose_name="Длительность абонемента")
-    class_time = models.TextField(verbose_name='Длительность занятия')
+    class_time = models.TextField(verbose_name='Расписание')
     tags = models.ManyToManyField(
-        Tag, related_name='lesson_related_tags', verbose_name='Тэги группы')
+        Tag, related_name='lesson_related_tags', blank=True, verbose_name='Тэги группы')
     related_lessons = models.ManyToManyField('self', related_name='related_lessons', verbose_name='Связанные занятия', blank=True)
     teacher = models.ForeignKey(
         User, related_name='teacher_set', verbose_name='Преподаватель', null=True, on_delete=models.SET_NULL)
     related_posts = models.ManyToManyField(Post, related_name='related_lessons_posts', verbose_name='Связанные публикации', blank=True)
     gallery = models.ManyToManyField(
-        Gallery, related_name='lesson_related_gallery', verbose_name='Выбрать фото из галереи')
+        Gallery, related_name='lesson_related_gallery', blank=True, verbose_name='Выбрать фото из галереи')
     category = models.ManyToManyField(
         LessonCategory, related_name='lesson_category', verbose_name='Возрастная категория')
     most_popular = models.BooleanField('Отобразить на главной', default=False)

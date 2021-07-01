@@ -559,78 +559,29 @@
             </div>
         </div>
         <div class="row mb-30-none justify-content-center">
+            {% for post in posts %}
             <div class="col-xl-4 col-md-6">
                 <div class="post-item">
                     <div class="post-thumb">
-                        <a href="blog-single.html"><img src="{% static 'images/blog/blog01.jpg' %}" alt="blog"></a>
+                        <a href="{% url 'blog_section:post_detail' post.slug %}"><img src="{{ post.preview.url }}" alt="blog"></a>
                     </div>
                     <div class="post-content">
                         <div class="post-top">
-                            <h5 class="title"><a href="blog-single.html">How Kids make sense of Life Experiences</a>
+                            <h5 class="title"><a href="{% url 'blog_section:post_detail' post.slug %}">{{ post.title }}</a>
                             </h5>
                             <div class="post-meta cate">
-                                <a href="#"><i class="far fa-calendar"></i> April 04, 2020</a>
-                                <a href="#"><i class="fas fa-user"></i> Robot Smith</a>
+                                <a href="#"><i class="far fa-calendar"></i> {{ post.created_at|date }} </a>
+                                <a href="#"><i class="fas fa-user"></i> {{ post.author.fio }} </a>
                             </div>
-                            <p>Enthusiastically morph magnetic scenarios Uniquelly synthesize strategic theme areas
-                                vis parallel customer service.</p>
+                            <p>{{ post.preview_text }}</p>
                         </div>
                         <div class="post-bottom">
-                            <a href="blog-single.html" class="read">Read More</a>
-                            <a href="#" class="comments"><i class="far fa-comments"></i> <span
-                                    class="comment-number">2</span></a>
+                            <a href="{% url 'blog_section:post_detail' post.slug %}" class="read">Read More</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-md-6">
-                <div class="post-item">
-                    <div class="post-thumb">
-                        <a href="blog-single.html"><img src="{% static 'images/blog/blog02.jpg' %}" alt="blog"></a>
-                    </div>
-                    <div class="post-content">
-                        <div class="post-top">
-                            <h5 class="title"><a href="blog-single.html">Why do aerobicay fit children have
-                                    better?</a></h5>
-                            <div class="post-meta cate">
-                                <a href="#"><i class="far fa-calendar"></i> April 04, 2020</a>
-                                <a href="#"><i class="fas fa-user"></i> Robot Smith</a>
-                            </div>
-                            <p>Enthusiastically morph magnetic scenarios Uniquelly synthesize strategic theme areas
-                                vis parallel customer service.</p>
-                        </div>
-                        <div class="post-bottom">
-                            <a href="blog-single.html" class="read">Read More</a>
-                            <a href="#" class="comments"><i class="far fa-comments"></i> <span
-                                    class="comment-number">2</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-                <div class="post-item">
-                    <div class="post-thumb">
-                        <a href="blog-single.html"><img src="{% static 'images/blog/blog03.jpg' %}" alt="blog"></a>
-                    </div>
-                    <div class="post-content">
-                        <div class="post-top">
-                            <h5 class="title"><a href="blog-single.html">Why do aerobically have better Math
-                                    Skills</a></h5>
-                            <div class="post-meta cate">
-                                <a href="#"><i class="far fa-calendar"></i> April 04, 2020</a>
-                                <a href="#"><i class="fas fa-user"></i> Robot Smith</a>
-                            </div>
-                            <p>Enthusiastically morph magnetic scenarios Uniquelly synthesize strategic theme areas
-                                vis parallel customer service.</p>
-                        </div>
-                        <div class="post-bottom">
-                            <a href="blog-single.html" class="read">Read More</a>
-                            <a href="#" class="comments"><i class="far fa-comments"></i> <span
-                                    class="comment-number">2</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
