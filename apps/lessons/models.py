@@ -81,6 +81,7 @@ class Lesson(models.Model):
     class_size = models.TextField(verbose_name='Размер группы')
     date_start = models.TextField(verbose_name="Дата начала занятий группы", null=True, blank=True)
     fee = models.TextField(verbose_name='Цена абонемента')
+    discount_fee = models.TextField(verbose_name='Цена абонемента со скидкой', null=True, blank=True)
     class_duration = models.TextField(verbose_name="Длительность абонемента")
     class_time = models.TextField(verbose_name='Расписание')
     tags = models.ManyToManyField(

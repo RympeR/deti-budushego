@@ -21,6 +21,7 @@ class LessonList(ListView):
         context = super().get_context_data(**kwargs)
         context['categories'] = LessonCategory.objects.all()
         context['menu'] = MenuCategory.objects.all()
+        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context
 
 
@@ -31,6 +32,7 @@ class LessonDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['menu'] = MenuCategory.objects.all()
+        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context
 
 
@@ -44,6 +46,7 @@ class EventsList(ListView):
         context = super().get_context_data(**kwargs)
         context['categories'] = EventCategory.objects.all()
         context['menu'] = MenuCategory.objects.all()
+        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context
 
 
@@ -54,6 +57,7 @@ class EventDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['menu'] = MenuCategory.objects.all()
+        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context
 
 def index(request):
@@ -64,6 +68,7 @@ def index(request):
     context['teachers'] = User.objects.filter(most_popular=True)
     context['posts'] = Post.objects.filter(most_popular=True)
     context['schedule'] = Schedule.objects.all()
+    context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
 
     return render(request, 'index.html', context=context)
 
@@ -71,30 +76,36 @@ def about(request):
     context = {}
     context['menu'] = MenuCategory.objects.all()
     context['teachers'] = User.objects.filter(most_popular=True)
+    context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
     return render(request, 'about.html', context=context)
 
 def schedule(request):
     context = {}
     context['menu'] = MenuCategory.objects.all()
     context['schedule'] = Schedule.objects.all()
+    context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
     return render(request, 'class-schedule.html', context=context)
 
 def contact(request):
     context = {}
     context['menu'] = MenuCategory.objects.all()
+    context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
     return render(request, 'contact.html', context=context)
 
 def faq(request):
     context = {}
     context['menu'] = MenuCategory.objects.all()
+    context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
     return render(request, 'faqs.html', context=context)
 
 def login(request):
     context = {}
     context['menu'] = MenuCategory.objects.all()
+    context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
     return render(request, 'login.html', context=context)
 
 def registration(request):
     context = {}
     context['menu'] = MenuCategory.objects.all()
+    context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
     return render(request, 'registration.html', context=context)

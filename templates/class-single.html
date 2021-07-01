@@ -10,13 +10,13 @@
                 <h3 class="title">{{ object.title }}</h3>
                 <ul class="breadcrumb">
                     <li>
-                        <a href='{% url "lessons_section:index" %}'>Home</a>
+                        <a href='{% url "lessons_section:index" %}'>Главная</a>
                     </li>
                     <li>
-                        <a href='{% url "lessons_section:lessons_list" %}'>Classes</a>
+                        <a href='{% url "lessons_section:lessons_list" %}'>Наши группы</a>
                     </li>
                     <li>
-                        Classes Single
+                        Группа
                     </li>
                 </ul>
             </div>
@@ -36,53 +36,7 @@
                                 <img src="{{ object.background_image.url }}" alt="class">
                             </div>
                             <div class="class-single-content">
-                                
-                                <ul class="meta-post">
-                                    <li>
-                                        <a href="#"><i class="far fa-user"></i> {{ object.teacher.fio }}</a>
-                                    </li>
-                                </ul>
-                                {{ object.full_text }}
-                                <p>
-                                    Serenity hassr taken posseson of my entire soung like these sweet mornngs sprng whch enjoy with 
-                                    my whole heart I am alonesi and feel the charm of exstenceths spot whch was the blis of souls like 
-                                    mineing am soo happy my dear frend absoribed the exquste sense enjoy with my whole heart in am 
-                                    alone and feel the charm of exstenceths spot whch was the blis of souls like mineing am so happyr 
-                                    my dear frend so absoribed the exqust sense tranquil existence that neglect my talentsr Ins should 
-                                    bye ncapable of drawng and singe wonderful serenty has taken possesison of my entrei souing like 
-                                    these sweet present moment and yet feel that never was greater artst
-                                </p>
-                                <blockquote class="single-quote">
-                                    <div class="quotes">
-                                        Steal into The nering Sanc How Mysef Down Amon The Hal Gras Buz
-                                        Lttle World Amon The Stak And Grow Fama With Couns And Fesingri
-                                        Steal intoing Thene Sanc Hrow Myse Down Amon The Hall Gras Biss
-                                        The Almighty Among The Staks 
-                                        <span>...Melissa Hunter</span>
-                                    </div>
-                                </blockquote>
-                                <p>
-                                    Serenity hassr taken posseson of my entire soung like these sweet mornngs sprng whch enjoy with 
-                                    my whole heart I am alonesi and feel the charm of exstenceths spot whch was the blis of souls like 
-                                    mineing am soo happy my dear frend absoribed the exquste sense enjoy with my whole heart in am 
-                                    alone and feel the charm of exstenceths spot whch was the blis of souls like mineing am so happyr 
-                                    my dear frend so absoribed the exqust sense tranquil existence that neglect my talentsr Ins should 
-                                    bye ncapable of drawng and singe wonderful serenty has taken possesison of my entrei souing like 
-                                    these sweet present moment and yet feel that never was greater artst
-                                </p>
-                                <div class="video-area">
-                                    <img src="{% static 'images/class/single2.jpg' %}" alt="class">
-                                    <a href="https://www.youtube.com/embed/6E9J8biF8RE" class="video-button popup"><i class="flaticon-play"></i></a>
-                                </div>
-                                <p>
-                                    Serenity hassr taken posseson of my entire soung like these sweet mornngs sprng whch enjoy with 
-                                    my whole heart I am alonesi and feel the charm of exstenceths spot whch was the blis of souls like 
-                                    mineing am soo happy my dear frend absoribed the exquste sense enjoy with my whole heart in am 
-                                    alone and feel the charm of exstenceths spot whch was the blis of souls like mineing am so happyr 
-                                    my dear frend so absoribed the exqust sense tranquil existence that neglect my talentsr Ins should 
-                                    bye ncapable of drawng and singe wonderful serenty has taken possesison of my entrei souing like 
-                                    these sweet present moment and yet feel that never was greater artst
-                                </p>
+                                {{ object.full_text|safe }}
                             </div>
                             <div class="tags-area">
                                 <ul class="tags">
@@ -93,7 +47,7 @@
                                     {% endfor %}
                                 
                                 </ul>
-                                <ul class="share">
+                                <!-- <ul class="share">
                                     <li>
                                         <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
                                     </li>
@@ -106,7 +60,7 @@
                                     <li>
                                         <a href="#" class="google"><i class="fab fa-google-plus-g"></i></a>
                                     </li>
-                                </ul>
+                                </ul> -->
                             </div>
                         </div>
                     </div>
@@ -115,42 +69,52 @@
                     <aside>
                         <div class="widget widget-feature">
                             <div class="widget-header">
-                                <h5 class="title">Course Features</h5>
+                                <h5 class="title">Информация о группе</h5>
                             </div>
                             <div class="widget-body">
                                 <ul>
-                                    {% if object.date_start %}
-                                        <li>
-                                            <div class="ques cl-i-one"><i class="fas fa-bell"></i>Start Date</div>
-                                            <div class="ans">{{ object.date_start|date }}</div>
-                                        </li>
-                                    {% endif %}
                                     <li>
-                                        <div class="ques cl-i-two"><i class="fas fa-user"></i>Years old</div>
+                                        <div class="ques cl-i-two"><i class="fas fa-user"></i>Возраст</div>
                                         <div class="ans">{{ object.years_old }}</div>
                                     </li>
                                     <li>
-                                        <div class="ques cl-i-three"><i class="fas fa-sitemap"></i>Class Size</div>
-                                        <div class="ans">{{ object.class_size }}</div>
-                                    </li>
-                                    <li>
-                                        <div class="ques cl-i-five"><i class="fas fa-address-book"></i>Class Duration</div>
-                                        <div class="ans">{{ object.class_duration }}</div>
-                                    </li>
-                                    <li>
-                                        <div class="ques cl-i-six"><i class="fas fa-clock"></i>Class time</div>
+                                        <div class="ques cl-i-six"><i class="fas fa-clock"></i>Дни, время</div>
                                         <div class="ans">{{ object.class_time }}</div>
                                     </li>
                                     <li>
-                                        <div class="ques cl-i-eight"><i class="fas fa-coins"></i>Tution Fee</div>
+                                        <div class="ques cl-i-three"><i class="fas fa-sitemap"></i>Количество</div>
+                                        <div class="ans">{{ object.class_size }}</div>
+                                    </li>
+                                    <li>
+                                        <div class="ques cl-i-five"><i class="fas fa-address-book"></i>Абонемент</div>
+                                        <div class="ans">{{ object.class_duration }}</div>
+                                    </li>
+                                    <li>
+                                        <div class="ques cl-i-eight"><i class="fas fa-coins"></i>Стоимость</div>
                                         <div class="ans">₴{{ object.fee }}</div>
+                                    </li>
+                                    {% if object.discount_fee %}
+                                    <li>
+                                        <div class="ques cl-i-eight"><i class="fas fa-coins"></i>Cо скидкой</div>
+                                        <div class="ans">₴{{ object.discount_fee }}</div>
+                                    </li>
+                                    {% endif %}
+                                    {% if object.date_start %}
+                                    <li>
+                                        <div class="ques cl-i-one"><i class="fas fa-bell"></i>Старт группы</div>
+                                        <div class="ans">{{ object.date_start }}</div>
+                                    </li>
+                                    {% endif %}
+                                    <li>
+                                        <div class="ques cl-i-two"><i class="fas fa-user"></i>Преподаватель</div>
+                                        <div class="ans">{{ object.teacher.fio }}</div>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="widget widget-post">
                             <div class="widget-header">
-                                <h5 class="title">Most Popular Post</h5>
+                                <h5 class="title">Статьи о программе</h5>
                             </div>
                             <div class="widget-body">
                                 <ul>
@@ -172,7 +136,7 @@
                         </div>
                         <div class="widget widget-gallery">
                             <div class="widget-header">
-                                <h5 class="title">Gallery Photos</h5>
+                                <h5 class="title">Галерея</h5>
                             </div>
                             <div class="widget-body">
                                 <ul>
@@ -188,7 +152,7 @@
                         </div>
                         <div class="widget widget-tags">
                             <div class="widget-header">
-                                <h5 class="title">Popular Tags</h5>
+                                <h5 class="title">Тематические теги</h5>
                             </div>
                             <div class="widget-body">
                                 <ul class="tags">

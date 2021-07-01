@@ -1,5 +1,6 @@
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from apps.lessons.models import Event
 from .models import (
     Tag,
     GalleryCategory,
@@ -19,6 +20,7 @@ class PostList(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['menu'] = MenuCategory.objects.all()
+        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context
 
 class PostDetail(DetailView):
@@ -30,6 +32,7 @@ class PostDetail(DetailView):
         context['categories'] = PostCategory.objects.all()
         context['tags'] = Tag.objects.all()
         context['menu'] = MenuCategory.objects.all()
+        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context
 
 
@@ -44,4 +47,5 @@ class GalleryList(ListView):
         context['categories'] = GalleryCategory.objects.all()
         context['tags'] = Tag.objects.all()
         context['menu'] = MenuCategory.objects.all()
+        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context

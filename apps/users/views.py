@@ -1,5 +1,6 @@
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from apps.lessons.models import Event
 from .models import (
     User,
     MenuCategory
@@ -15,6 +16,7 @@ class UserList(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['menu'] = MenuCategory.objects.all()
+        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context
 
 
@@ -25,4 +27,5 @@ class UserDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['menu'] = MenuCategory.objects.all()
+        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context

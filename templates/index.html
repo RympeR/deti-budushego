@@ -104,9 +104,9 @@
                     </div>
                     <div class="counter-content">
                         <div class="counter-header">
-                            <h2 class="title odometer" data-odometer-final="830">0</h2>
+                            <h2 class="title odometer" data-odometer-final="13">0</h2>
                         </div>
-                        <span class="cate">Students Enrolled</span>
+                        <span class="cate">лет работы</span>
                     </div>
                 </div>
             </div>
@@ -117,10 +117,10 @@
                     </div>
                     <div class="counter-content">
                         <div class="counter-header">
-                            <h2 class="title odometer" data-odometer-final="26">0</h2>
+                            <h2 class="title odometer" data-odometer-final="1000">0</h2>
                             <h2 class="title">+</h2>
                         </div>
-                        <span class="cate">Certified Trainer</span>
+                        <span class="cate">выпускников</span>
                     </div>
                 </div>
             </div>
@@ -134,7 +134,7 @@
                             <h2 class="title odometer" data-odometer-final="100">0</h2>
                             <h2 class="title">%</h2>
                         </div>
-                        <span class="cate">Yearly Success Rate</span>
+                        <span class="cate">успехи учеников</span>
                     </div>
                 </div>
             </div>
@@ -153,8 +153,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header">
-                    <span class="cate">Our School Classes</span>
-                    <h3 class="title">Most Popular School Classes</h3>
+                    <span class="cate">Для детей от 1.5 до 7 лет</span>
+                    <h3 class="title">Наши группы</h3>
                 </div>
             </div>
         </div>
@@ -182,26 +182,28 @@
                                     <h6 class="subtitle"><a
                                             href="{% url 'users_section:teacher_detail' lesson.teacher.username %}">{{ lesson.teacher.fio }}</a></h6>
                                     <a href="{% url 'users_section:teacher_detail' lesson.teacher.username %}"
-                                        class="info">View Profile</a>
+                                        class="info">Профиль</a>
                                 </div>
                             </div>
                             <div class="cost-area">
-                                <h6 class="subtitle">₴{{ lesson.fee }}</h6>
+                                <h6 class="subtitle">₴{{ lesson.fee }}{% if lesson.discount_fee %}
+                                    /₴ {{ lesson.discount_fee }}
+                                  {% endif %}</h6>
                                 <span class="info">{{ lesson.class_duration }}</span>
                             </div>
                         </div>
                         <div class="schedule-area">
                             <div class="schedule-item">
                                 <h6 class="sub-title">{{ lesson.class_size }}</h6>
-                                <span class="info">Class Size</span>
+                                <span class="info">Количество</span>
                             </div>
                             <div class="schedule-item">
                                 <h6 class="sub-title">{{ lesson.class_time }}</h6>
-                                <span class="info">Class Time</span>
+                                <span class="info">Расписание</span>
                             </div>
                             <div class="schedule-item">
                                 <h6 class="sub-title">{{ lesson.years_old }}</h6>
-                                <span class="info">Years Old</span>
+                                <span class="info">Возраст</span>
                             </div>
                         </div>
                     </div>
@@ -210,7 +212,7 @@
             {% endfor %}
         </div>
         <div class="load-more">
-            <a href="classes.html" class="custom-button"><span>Get Started Now</span></a>
+            <a href='{% url "lessons_section:lessons_list" %}' class="custom-button"><span>Посмотреть еще</span></a>
         </div>
     </div>
 </section>
@@ -301,8 +303,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header">
-                    <span class="cate">Photo Gallery</span>
-                    <h3 class="title">Our All School Photos Gallery</h3>
+                    <span class="cate">Галерея</span>
+                    <h3 class="title">Наши фотографии</h3>
                 </div>
             </div>
         </div>
@@ -337,8 +339,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header">
-                    <span class="cate">Meet Our Stuffy</span>
-                    <h3 class="title">Our Best Popular Teachers</h3>
+                    <span class="cate">Профессиональный и дружелюбный</span>
+                    <h3 class="title">Наш коллектив</h3>
                 </div>
             </div>
         </div>
@@ -351,12 +353,12 @@
                     <div class="teacher-inner">
                         <div class="teacher-thumb">
                             <div class="thumb-inner">
-                                <a href="{% url 'users_section:teacher_detail' teacher.username %}"><img src="{{ teacher.image.url }}"
+                                <a href="{% url 'users_section:teacher_detail' teacher.slug %}"><img src="{{ teacher.image.url }}"
                                         alt="teacher"></a>
                             </div>
                         </div>
                         <div class="teacher-content">
-                            <h6 class="title"><a href="{% url 'users_section:teacher_detail' teacher.username %}">{{ teacher.fio }}</a></h6>
+                            <h6 class="title"><a href="{% url 'users_section:teacher_detail' teacher.slug %}">{{ teacher.fio }}</a></h6>
                             <span class="info">{{ teacher.specialization }}</span>
                             <p>{{ teacher.characteristic }}</p>
                         </div>
@@ -369,7 +371,8 @@
 </section>
 <!-- ==========Teacher Section Ends Here========== -->
 
-
+{% comment %}
+  
 <!-- ==========Schedule Section Starts Here========== -->
 <section class="schedule-section padding-top padding-bottom">
     <div class="top-shape-center">
@@ -386,7 +389,7 @@
         </div>
         <div class="row mb--20--50 justify-content-center">
             {% for day in schedule %}
-              
+            
             <div class="col-xl-4 col-md-6">
                 <div class="schedule-item-2 bg_img bg_contain" data-background="{{ day.background.url }}">
                     <ul>
@@ -439,18 +442,18 @@
                         whereas goingi forward process mproveents and monetze fully tested
                         ergstcally plariarize team whereas goingi forward process an services
                         whereas going forward process</p>
-                    <div class="ratings">
-                        <span><i class="far fa-star"></i></span>
-                        <span><i class="far fa-star"></i></span>
-                        <span><i class="far fa-star"></i></span>
-                        <span><i class="far fa-star"></i></span>
-                        <span><i class="far fa-star"></i></span>
+                        <div class="ratings">
+                            <span><i class="far fa-star"></i></span>
+                            <span><i class="far fa-star"></i></span>
+                            <span><i class="far fa-star"></i></span>
+                            <span><i class="far fa-star"></i></span>
+                            <span><i class="far fa-star"></i></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="client-item">
-                <div class="client-header">
-                    <div class="author">
+                <div class="client-item">
+                    <div class="client-header">
+                        <div class="author">
                         <div class="thumb">
                             <img src="{% static 'images/client/client2.png' %}" alt="client">
                         </div>
@@ -469,18 +472,18 @@
                         whereas goingi forward process mproveents and monetze fully tested
                         ergstcally plariarize team whereas goingi forward process an services
                         whereas going forward process</p>
-                    <div class="ratings">
-                        <span><i class="far fa-star"></i></span>
-                        <span><i class="far fa-star"></i></span>
-                        <span><i class="far fa-star"></i></span>
-                        <span><i class="far fa-star"></i></span>
-                        <span><i class="far fa-star"></i></span>
+                        <div class="ratings">
+                            <span><i class="far fa-star"></i></span>
+                            <span><i class="far fa-star"></i></span>
+                            <span><i class="far fa-star"></i></span>
+                            <span><i class="far fa-star"></i></span>
+                            <span><i class="far fa-star"></i></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="client-item">
-                <div class="client-header">
-                    <div class="author">
+                <div class="client-item">
+                    <div class="client-header">
+                        <div class="author">
                         <div class="thumb">
                             <img src="{% static 'images/client/client1.png' %}" alt="client">
                         </div>
@@ -499,16 +502,16 @@
                         whereas goingi forward process mproveents and monetze fully tested
                         ergstcally plariarize team whereas goingi forward process an services
                         whereas going forward process</p>
-                    <div class="ratings">
-                        <span><i class="far fa-star"></i></span>
-                        <span><i class="far fa-star"></i></span>
-                        <span><i class="far fa-star"></i></span>
-                        <span><i class="far fa-star"></i></span>
-                        <span><i class="far fa-star"></i></span>
+                        <div class="ratings">
+                            <span><i class="far fa-star"></i></span>
+                            <span><i class="far fa-star"></i></span>
+                            <span><i class="far fa-star"></i></span>
+                            <span><i class="far fa-star"></i></span>
+                            <span><i class="far fa-star"></i></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="client-item">
+                <div class="client-item">
                 <div class="client-header">
                     <div class="author">
                         <div class="thumb">
@@ -529,9 +532,9 @@
                         whereas goingi forward process mproveents and monetze fully tested
                         ergstcally plariarize team whereas goingi forward process an services
                         whereas going forward process</p>
-                    <div class="ratings">
-                        <span><i class="far fa-star"></i></span>
-                        <span><i class="far fa-star"></i></span>
+                        <div class="ratings">
+                            <span><i class="far fa-star"></i></span>
+                            <span><i class="far fa-star"></i></span>
                         <span><i class="far fa-star"></i></span>
                         <span><i class="far fa-star"></i></span>
                         <span><i class="far fa-star"></i></span>
@@ -541,8 +544,9 @@
         </div>
     </div>
 </section>
-<!-- ==========Client Section Ends Here========== -->
+<!--==========Client Section Ends Here==========-->
 
+{% endcomment %}
 
 <!-- ==========Blog Section Starts Here========== -->
 <section class="blog-section padding-top padding-bottom pos-rel">
@@ -553,8 +557,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header">
-                    <span class="cate">our blog post</span>
-                    <h3 class="title">Our most popular posts</h3>
+                    <span class="cate">Познавательные и интересные</span>
+                    <h3 class="title">Наши статьи</h3>
                 </div>
             </div>
         </div>

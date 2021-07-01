@@ -6,16 +6,16 @@
 <section class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
-            <h1 class="title">Our School Photos</h1>
+            <h1 class="title">Наши фотографии</h1>
             <ul class="breadcrumb">
                 <li>
-                    <a href='{% url "lessons_section:index" %}'>Home</a>
+                    <a href='{% url "lessons_section:index" %}'>Главная</a>
                 </li>
                 <li>
-                    <a href="#">Pages</a>
+                    <a href='{% url "lessons_section:about" %}'>О нас</a>
                 </li>
                 <li>
-                    Gallery
+                    Галерея
                 </li>
             </ul>
         </div>
@@ -60,7 +60,7 @@
                 
         </div>
         <div class="load-more">
-            <a href="#" class="custom-button"><span>Get Started Now</span></a>
+            <a href='{% url "lessons_section:lessons_list" %}' class="custom-button"><span>Выбрать занятие</span></a>
         </div>
     </div>
 </div>
