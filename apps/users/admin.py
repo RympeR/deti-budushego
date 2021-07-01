@@ -20,7 +20,7 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Attachments)
 class AttachemntsAdmin(admin.ModelAdmin):
-    list_display = 'pk', 'attachment_type'
+    list_display = 'pk', 'attachment_type', 'attachment'
     list_display_links = 'pk',
     filter_fields ='attachment_type',
 

@@ -218,7 +218,7 @@
 
 
 <!-- ==========Facilities Section Starts Here========== -->
-<section class="facilities-section">
+<!-- <section class="facilities-section">
     <div class="container-fluid p-0">
         <div class="row m-0">
             <div class="col-lg-7 col-xl-6 px-0">
@@ -288,7 +288,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!-- ==========Facilities Section Ends Here========== -->
 
 
@@ -392,7 +392,7 @@
                     <ul>
                         {% for program in day.programs.all %}
                         <li>
-                            <h6 class="title painting">{{ program.name }}</h6>
+                            <h6 class="title {{ program.class_name }}">{{ program.name }}</h6>
                             <span class="time">{{ program.hours }}</span>
                         </li>
                         {% endfor %}

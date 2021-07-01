@@ -8,10 +8,10 @@
             <h1 class="title">Our Class Schedule</h1>
             <ul class="breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href='{% url "lessons_section:index" %}'>Home</a>
                 </li>
                 <li>
-                    <a href="classes.html">Classes</a>
+                    <a href='{% url "lessons_section:lessons_list" %}'>Classes</a>
                 </li>
                 <li>
                     Class Schedule
@@ -27,114 +27,21 @@
 <div class="schedule-section padding-top padding-bottom">
     <div class="container">
         <div class="row mb--20--50 justify-content-center">
+            {% for day in schedule %}
+              
             <div class="col-xl-4 col-md-6">
-                <div class="schedule-item-2 bg_img bg_contain" data-background="{% static 'images/schedule/monday.png' %}">
+                <div class="schedule-item-2 bg_img bg_contain" data-background="{{ day.background.url }}">
                     <ul>
+                        {% for program in day.programs.all %}
                         <li>
-                            <h6 class="title painting">Painting</h6>
-                            <span class="time">07:30am - 08:30am</span>
+                            <h6 class="title {{ program.class_name }}">{{ program.name }}</h6>
+                            <span class="time">{{ program.hours }}</span>
                         </li>
-                        <li>
-                            <h6 class="title">English</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title fitness">Power Fitnes</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
-            <div class="col-xl-4 col-md-6">
-                <div class="schedule-item-2 bg_img bg_contain" data-background="{% static 'images/schedule/tuesday.png' %}">
-                    <ul>
-                        <li>
-                            <h6 class="title painting">Painting</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title fitness">Power Fitnes</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title">English</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-                <div class="schedule-item-2 bg_img bg_contain" data-background="{% static 'images/schedule/wednesday.png' %}">
-                    <ul>
-                        <li>
-                            <h6 class="title">English</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title painting">Painting</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title fitness">Power Fitnes</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-                <div class="schedule-item-2 bg_img bg_contain" data-background="{% static 'images/schedule/thursday.png' %}">
-                    <ul>
-                        <li>
-                            <h6 class="title painting">Painting</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title">English</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title fitness">Power Fitnes</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-                <div class="schedule-item-2 bg_img bg_contain" data-background="{% static 'images/schedule/friday.png' %}">
-                    <ul>
-                        <li>
-                            <h6 class="title">English</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title painting">Painting</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title fitness">Power Fitnes</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-                <div class="schedule-item-2 bg_img bg_contain" data-background="{% static 'images/schedule/saturday.png' %}">
-                    <ul>
-                        <li>
-                            <h6 class="title painting">Painting</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title fitness">Power Fitnes</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                        <li>
-                            <h6 class="title">English</h6>
-                            <span class="time">07:30am - 08:30am</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>

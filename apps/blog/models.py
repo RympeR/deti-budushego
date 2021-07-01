@@ -1,4 +1,3 @@
-from ckeditor.widgets import CKEditorWidget
 from ckeditor.fields import RichTextField
 
 from core.utils.utils import preview
@@ -95,6 +94,7 @@ class Post(models.Model):
     preview_text = models.TextField(verbose_name='Текст заставки')
     display = models.BooleanField(verbose_name='Отображать', default=True)
     full_text = RichTextField()
+
     def small_image(self):
         if self.preview and hasattr(self.preview, 'url'):
             return mark_safe('<img src="{}" width="100" /'.format(self.preview.url))

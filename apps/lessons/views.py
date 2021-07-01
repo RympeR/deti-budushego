@@ -74,6 +74,7 @@ def about(request):
 def schedule(request):
     context = {}
     context['menu'] = MenuCategory.objects.all()
+    context['schedule'] = Schedule.objects.all()
     return render(request, 'class-schedule.html', context=context)
 
 def contact(request):

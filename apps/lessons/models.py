@@ -2,6 +2,7 @@ from core.utils.utils import preview
 from django.db import models
 from django.utils.safestring import mark_safe
 from unixtimestampfield.fields import UnixTimeStampField
+from ckeditor.fields import RichTextField
 
 from apps.blog.models import Gallery, Post, Tag
 from apps.users.models import User
@@ -56,7 +57,8 @@ class Event(models.Model):
         User, related_name='organizer', verbose_name='Организатор', null=True, on_delete=models.SET_NULL)
     category = models.ForeignKey(
         EventCategory, related_name='event_category', verbose_name='Категория мероприятия', on_delete=models.CASCADE)
-    
+    full_text = RichTextField()
+
     def small_image(self):
         if self.preview and hasattr(self.preview, 'url'):
             return mark_safe('<img src="{}" width="100" /'.format(self.preview.url))
@@ -92,7 +94,7 @@ class Lesson(models.Model):
     category = models.ManyToManyField(
         LessonCategory, related_name='lesson_category', verbose_name='Возрастная категория')
     most_popular = models.BooleanField('Отобразить на главной', default=False)
-
+    full_text = RichTextField()
     def small_image(self):
         if self.preview and hasattr(self.preview, 'url'):
             return mark_safe('<img src="{}" width="100" /'.format(self.preview.url))

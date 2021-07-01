@@ -172,6 +172,8 @@ CKEDITOR_CONFIGS = {
             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
             {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
             {'name': 'about', 'items': ['About']},
+            {'name': 'templatequote', 'items': ['Templatequote']},
+            {'name': 'templatevideo', 'items': ['Templatevideo']},
             '/',  # put this to force next toolbar on new line
             {'name': 'yourcustomtools', 'items': [
                 # put the name of your editor.ui.addButton here
@@ -180,6 +182,8 @@ CKEDITOR_CONFIGS = {
 
             ]},
         ],
+        'allowedContent': True,
+        'extraAllowedContent' : 'a[!href];',
         'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
         # 'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
         # 'height': 291,
@@ -198,8 +202,9 @@ CKEDITOR_CONFIGS = {
             'embedsemantic',
             'autogrow',
             'specialchar',
-            'template_quote',
+            'templatequote',
             'codesnippet',
+            'templatevideo',
             # 'uploadwidget',
             # 'devtools',
             'widget',

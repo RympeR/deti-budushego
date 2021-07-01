@@ -15,6 +15,7 @@ class MenuCategory(MPTTModel):
     icon_class = models.CharField(
         'Класс иконки', max_length=20, null=True, blank=True)
     display = models.BooleanField('Отобразить', default=True)
+    
 
     def __str__(self):
         return f"{self.name}"
@@ -125,8 +126,15 @@ class User(AbstractUser):
 
 
 class Program(models.Model):
+    class ClassNames(models.TextChoices):
+        painting = 'painting', 'Зеленый'
+        fitness = 'fitness', 'Оранжевый'
+        english = 'english', 'Фиолетовый'
+
     name = models.TextField("Название программы")
     hours = models.TextField("Чамы проведения программы")
+    class_name = models.CharField(
+        'Цвет строки', choices=ClassNames.choices, max_length=10, default='')
 
     class Meta:
         verbose_name = 'Программма'
@@ -142,6 +150,7 @@ class Schedule(models.Model):
         if self.background and hasattr(self.background, 'url'):
             return mark_safe('<img src="{}" width="100" /'.format(self.background.url))
         return None
+
     class Meta:
         verbose_name = 'Расписание'
         verbose_name_plural = 'Расписание'
