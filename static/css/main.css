@@ -3278,7 +3278,7 @@ div[class*=col]:nth-of-type(6n + 4) .counter-item.round-style::before {
   text-align: center;
 }
 .class-item .class-content .schedule-area .schedule-item {
-  padding: 25px 5px 0px;
+  padding: 25px 4px 0px;
   flex-grow: 1;
   position: relative;
 }
