@@ -5,16 +5,16 @@
 <section class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
-            <h1 class="title">{{ object.fio }}</h1>
+            <h1 class="title">{{ object.name }}</h1>
             <ul class="breadcrumb">
                 <li>
                     <a href='{% url "lessons_section:index" %}'>Главная</a>
                 </li>
                 <li>
-                    <a href='{% url "users_section:teachers_list" %}'>Наш коллектив</a>
+                    <a href='{% url "users_section:vacancy_list" %}'>Наши вакансии</a>
                 </li>
                 <li>
-                    {{ object.fio }}
+                    {{ object.name }}
                 </li>
             </ul>
         </div>
@@ -30,14 +30,12 @@
             <div class="teacher-single-top">
                 <div class="teacher-single-item d-flex flex-wrap justify-content-between">
                     <div class="teacher-single-thumb">
-                        <img src="{{ object.image.url }}" alt="teacher">
+                        <img src="{{ object.icon.url }}" alt="teacher">
                     </div>
                     <div class="teacher-single-content">
-                        <h4 class="title">{{ object.fio }}</h4>
-                        <p>{{ object.spercialization }}</p>
-                        <p class="header-p">{{ object.personal_statement }}</p>
-                        <h6 class="subtitle">О преподавателе</h6>
-                        <p class="header-p">{{ object.characteristic }}</p>
+                        <h4 class="title">{{ object.name }}</h4>
+                        <h6 class="subtitle">О вакансии</h6>
+                        <p class="header-p">{{ object.full_text|safe }}</p>
                     </div>
                 </div>
             </div>
@@ -74,22 +72,6 @@
                         </div>
                         <p>Bangla</p>
                     </div> -->
-                </div>
-                <div class="col-lg-6 pb-20 d-flex flex-wrap justify-content-lg-start justify-content-between">
-                    {% if object.sertificates %}
-                      
-                    
-                    <h6 class="w-100 subtitle">Сертификаты</h6>
-                    {% for certify in object.sertificates.all %}
-                      
-                    
-                    <div class="skill-item text-center">
-                        <div class="skill-thumb">
-                            <img src="{{ certify.attachment.url }}" alt="teacher">
-                        </div>
-                    </div>
-                    {% endfor %}
-                    {% endif %}
                 </div>
             </div>
         </div>

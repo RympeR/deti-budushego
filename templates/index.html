@@ -153,8 +153,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header">
-                    <span class="cate">Для детей от 1.5 до 7 лет</span>
-                    <h3 class="title">Наши группы</h3>
+                    <a href='{% url "lessons_section:lessons_list" %}'><span class="cate">Для детей от 1.5 до 7 лет</span></a>
+                    <h3 class="title"><a href='{% url "lessons_section:lessons_list" %}'>Наши группы</a></h3>
                 </div>
             </div>
         </div>
@@ -175,13 +175,13 @@
                         <div class="class-meta">
                             <div class="class-author">
                                 <div class="thumb">
-                                    <a href="{% url 'users_section:teacher_detail' lesson.teacher.username %}"><img
+                                    <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}"><img
                                             src="{{ lesson.teacher.image.url }}" alt="class"></a>
                                 </div>
                                 <div class="content">
                                     <h6 class="subtitle"><a
-                                            href="{% url 'users_section:teacher_detail' lesson.teacher.username %}">{{ lesson.teacher.fio }}</a></h6>
-                                    <a href="{% url 'users_section:teacher_detail' lesson.teacher.username %}"
+                                            href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}">{{ lesson.teacher.fio }}</a></h6>
+                                    <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}"
                                         class="info">Профиль</a>
                                 </div>
                             </div>
@@ -303,8 +303,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header">
-                    <span class="cate">Галерея</span>
-                    <h3 class="title">Наши фотографии</h3>
+                    <a href='{% url "blog_section:gallery" %}'><span class="cate">Галерея</span></a>
+                    <h3 class="title"><a href='{% url "blog_section:gallery" %}'>Наши фотографии</a></h3>
                 </div>
             </div>
         </div>
@@ -339,8 +339,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header">
-                    <span class="cate">Профессиональный и дружелюбный</span>
-                    <h3 class="title">Наш коллектив</h3>
+                    <a href='{% url "users_section:teachers_list" %}'><span class="cate">Профессиональный и дружелюбный</span></a>
+                    <h3 class="title"><a href='{% url "users_section:teachers_list" %}'>Наш коллектив</a></h3>
                 </div>
             </div>
         </div>
@@ -557,8 +557,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header">
-                    <span class="cate">Познавательные и интересные</span>
-                    <h3 class="title">Наши статьи</h3>
+                    <a href='{% url "blog_section:post_list" %}'><span class="cate">Познавательные и интересные</span></a>
+                    <h3 class="title"><a href='{% url "blog_section:post_list" %}'>Наши статьи</a></h3>
                 </div>
             </div>
         </div>

@@ -5,7 +5,7 @@ from django.utils.safestring import mark_safe
 from imagekit.models import ProcessedImageField
 from pilkit.processors import ResizeToFill
 from mptt.models import MPTTModel, TreeForeignKey
-
+from ckeditor.fields import RichTextField
 
 class MenuCategory(MPTTModel):
     parent = TreeForeignKey(
@@ -48,6 +48,23 @@ class Attachments(models.Model):
         verbose_name = 'Вложение'
         verbose_name_plural = 'Вложения'
 
+class Vacancy(models.Model):
+    name = models.TextField(verbose_name='Название вакансии')
+    icon = models.ImageField(verbose_name='Заставка вакансии')
+    short_description = models.TextField(verbose_name='Краткое описание', null=True, blank=True)
+    slug = models.SlugField(("Url part"), unique=True)
+    full_text = RichTextField()
+
+    def __str__(self):
+        return str(self.name)
+
+    def vacancy_photo(self):
+        if self.icon and hasattr(self.icon, 'url'):
+            return mark_safe('<img src="{}" width="100" /'.format(self.icon.url))
+        return None
+    class Meta:
+        verbose_name = 'Вакансия'
+        verbose_name_plural = 'Вакансии'
 
 class User(AbstractUser):
     username = models.CharField(
@@ -56,22 +73,21 @@ class User(AbstractUser):
         max_length=20
     )
     fio = models.CharField('ФИО', max_length=255, null=True, blank=True)
-    email = models.EmailField(verbose_name='Почта', blank=True)
     image = ProcessedImageField(
-        verbose_name='ImagePNG',
+        verbose_name='Аватар',
         processors=[ResizeToFill(600, 600)],
         options={'quality': 100},
         upload_to=user_avatar,
         null=True,
         blank=True
     )
-    slug = models.SlugField("Slug")
+    slug = models.SlugField("Url part")
     specialization = models.TextField(
         verbose_name='Специализация', null=True, blank=True)
     personal_statement = models.TextField(
-        verbose_name='Описание', null=True, blank=True)
+        verbose_name='Название программ', null=True, blank=True)
     characteristic = models.TextField(
-        verbose_name='Характеристика', null=True, blank=True)
+        verbose_name='О преподавателе', null=True, blank=True)
     teacher = models.BooleanField(verbose_name='Учитель', default=False)
     sertificates = models.ManyToManyField(
         Attachments, related_name='user_sertificates', verbose_name='Сертификаты', blank=True)
@@ -121,8 +137,8 @@ class User(AbstractUser):
         return str(self.username)
 
     class Meta:
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
+        verbose_name = 'Учитель'
+        verbose_name_plural = 'Учителя'
 
 
 class Program(models.Model):

@@ -1,53 +1,53 @@
 {% extends "base.html" %}
 {% load static %}
 {% block main_content %}
-  
 
-    <!-- ==========Banner Section Starts Here========== -->
-    <section class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
-        <div class="container">
-            <div class="page-header-content">
-                <h3 class="title">{{ object.title }}</h3>
-                <ul class="breadcrumb">
-                    <li>
-                        <a href='{% url "lessons_section:index" %}'>Главная</a>
-                    </li>
-                    <li>
-                        <a href='{% url "lessons_section:lessons_list" %}'>Наши группы</a>
-                    </li>
-                    <li>
-                        Группа
-                    </li>
-                </ul>
-            </div>
+
+<!-- ==========Banner Section Starts Here========== -->
+<section class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
+    <div class="container">
+        <div class="page-header-content">
+            <h3 class="title">{{ object.title }}</h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href='{% url "lessons_section:index" %}'>Главная</a>
+                </li>
+                <li>
+                    <a href='{% url "lessons_section:lessons_list" %}'>Наши группы</a>
+                </li>
+                <li>
+                    Группа
+                </li>
+            </ul>
         </div>
-    </section>
-    <!-- ==========Banner Section Ends Here========== -->
+    </div>
+</section>
+<!-- ==========Banner Section Ends Here========== -->
 
 
-    <!-- ==========Class Section Starts Here========== -->
-    <section class="class-single-section padding-top padding-bottom">
-        <div class="container">
-            <div class="row mb--50">
-                <div class="col-lg-8 mb-50">
-                    <div class="class-single-item">
-                        <div class="class-single-inner">
-                            <div class="class-single-thumb">
-                                <img src="{{ object.background_image.url }}" alt="class">
-                            </div>
-                            <div class="class-single-content">
-                                {{ object.full_text|safe }}
-                            </div>
-                            <div class="tags-area">
-                                <ul class="tags">
-                                    {% for cat in object.category.all %}
-                                    <li>
-                                        <a href="#">{{ cat.title }}</a>
-                                    </li>
-                                    {% endfor %}
-                                
-                                </ul>
-                                <!-- <ul class="share">
+<!-- ==========Class Section Starts Here========== -->
+<section class="class-single-section padding-top padding-bottom">
+    <div class="container">
+        <div class="row mb--50">
+            <div class="col-lg-8 mb-50">
+                <div class="class-single-item">
+                    <div class="class-single-inner">
+                        <div class="class-single-thumb">
+                            <img src="{{ object.background_image.url }}" alt="class">
+                        </div>
+                        <div class="class-single-content">
+                            {{ object.full_text|safe }}
+                        </div>
+                        <div class="tags-area">
+                            <ul class="tags">
+                                {% for cat in object.category.all %}
+                                <li>
+                                    <a href="#">{{ cat.title }}</a>
+                                </li>
+                                {% endfor %}
+
+                            </ul>
+                            <!-- <ul class="share">
                                     <li>
                                         <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
                                     </li>
@@ -61,113 +61,130 @@
                                         <a href="#" class="google"><i class="fab fa-google-plus-g"></i></a>
                                     </li>
                                 </ul> -->
-                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-50">
-                    <aside>
-                        <div class="widget widget-feature">
-                            <div class="widget-header">
-                                <h5 class="title">Информация о группе</h5>
-                            </div>
-                            <div class="widget-body">
-                                <ul>
-                                    <li>
-                                        <div class="ques cl-i-two"><i class="fas fa-user"></i>Возраст</div>
-                                        <div class="ans">{{ object.years_old }}</div>
-                                    </li>
-                                    <li>
-                                        <div class="ques cl-i-six"><i class="fas fa-clock"></i>Дни, время</div>
-                                        <div class="ans">{{ object.class_time }}</div>
-                                    </li>
-                                    <li>
-                                        <div class="ques cl-i-three"><i class="fas fa-sitemap"></i>Количество</div>
-                                        <div class="ans">{{ object.class_size }}</div>
-                                    </li>
-                                    <li>
-                                        <div class="ques cl-i-five"><i class="fas fa-address-book"></i>Абонемент</div>
-                                        <div class="ans">{{ object.class_duration }}</div>
-                                    </li>
-                                    <li>
-                                        <div class="ques cl-i-eight"><i class="fas fa-coins"></i>Стоимость</div>
-                                        <div class="ans">₴{{ object.fee }}</div>
-                                    </li>
-                                    {% if object.discount_fee %}
-                                    <li>
-                                        <div class="ques cl-i-eight"><i class="fas fa-coins"></i>Cо скидкой</div>
-                                        <div class="ans">₴{{ object.discount_fee }}</div>
-                                    </li>
-                                    {% endif %}
-                                    {% if object.date_start %}
-                                    <li>
-                                        <div class="ques cl-i-one"><i class="fas fa-bell"></i>Старт группы</div>
-                                        <div class="ans">{{ object.date_start }}</div>
-                                    </li>
-                                    {% endif %}
-                                    <li>
-                                        <div class="ques cl-i-two"><i class="fas fa-user"></i>Преподаватель</div>
-                                        <div class="ans">{{ object.teacher.fio }}</div>
-                                    </li>
-                                </ul>
-                            </div>
+            </div>
+            <div class="col-lg-4 mb-50">
+                <aside>
+                    <div class="widget widget-feature">
+                        <div class="widget-header">
+                            <h5 class="title">Информация о группе</h5>
                         </div>
-                        <div class="widget widget-post">
-                            <div class="widget-header">
-                                <h5 class="title">Статьи о программе</h5>
-                            </div>
-                            <div class="widget-body">
-                                <ul>
-                                    {% for post in object.related_posts.all %}
-                                        <li>
-                                            <div class="thumb">
-                                                <a href="{% url 'blog_section:post_detail' post.slug %}">
-                                                    <img src="{{ post.preview.url }}" alt="blog">
-                                                </a>
-                                            </div>
-                                            <div class="content">
-                                                <a href="{% url 'blog_section:post_detail' post.slug %}">{{ post.title }}</a>
-                                                <span>{{ post.created_at|date }}</span>
-                                            </div>
-                                        </li>
-                                    {% endfor %}  
-                                </ul>
-                            </div>
+                        <div class="widget-body">
+                            <ul>
+                                <li>
+                                    <div class="ques cl-i-two"><i class="fas fa-child"></i>Возраст</div>
+                                    <div class="ans">{{ object.years_old }}</div>
+                                </li>
+                                <li>
+                                    <div class="ques cl-i-six"><i class="fas fa-clock"></i>Дни, время</div>
+                                    <div class="ans">{{ object.class_time }}</div>
+                                </li>
+                                <li>
+                                    <div class="ques cl-i-three"><i class="fas fa-sitemap"></i>Количество</div>
+                                    <div class="ans">{{ object.class_size }}</div>
+                                </li>
+                                <li>
+                                    <div class="ques cl-i-five"><i class="fas fa-address-book"></i>Абонемент</div>
+                                    <div class="ans">{{ object.class_duration }}</div>
+                                </li>
+                                <li>
+                                    <div class="ques cl-i-eight"><i class="fas fa-coins"></i>Стоимость</div>
+                                    <div class="ans">₴{{ object.fee }}</div>
+                                </li>
+                                {% if object.discount_fee %}
+                                <li>
+                                    <div class="ques cl-i-eight"><i class="fas fa-percentage"></i>Cо скидкой</div>
+                                    <div class="ans">₴{{ object.discount_fee }}</div>
+                                </li>
+                                {% endif %}
+                                {% if object.date_start %}
+                                <li>
+                                    <div class="ques cl-i-one"><i class="fas fa-bell"></i>Старт группы</div>
+                                    <div class="ans">{{ object.date_start }}</div>
+                                </li>
+                                {% endif %}
+
+                                <li>
+                                    <div class="ques cl-i-one"><i class="fas 
+                                        {% if object.online %}
+                                        fa-desktop
+                                        {% else %}
+                                        fa-school
+                                        {% endif %}
+                                        "></i>Формат</div>
+                                    <div class="ans">{% if object.online %}
+                                        Онлайн
+                                        {% else %}
+                                        Оффлайн
+                                        {% endif %}
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="ques cl-i-two"><i class="fas fa-user"></i>Преподаватель</div>
+                                    <div class="ans">{{ object.teacher.fio }}</div>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="widget widget-gallery">
-                            <div class="widget-header">
-                                <h5 class="title">Галерея</h5>
-                            </div>
-                            <div class="widget-body">
-                                <ul>
-                                    {% for gallery in object.gallery.all %}
-                                        <li>
-                                            <a href="{{ gallery.image.url }}" class="img-pop">
-                                                <img src="{{ gallery.image.url }}" alt="gallery">
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
+                    </div>
+                    <div class="widget widget-post">
+                        <div class="widget-header">
+                            <h5 class="title">Статьи о программе</h5>
                         </div>
-                        <div class="widget widget-tags">
-                            <div class="widget-header">
-                                <h5 class="title">Тематические теги</h5>
-                            </div>
-                            <div class="widget-body">
-                                <ul class="tags">
-                                    {% for tag in object.tags.all %}
-                                        <li>
-                                            <a href="#">{{ tag.title }}</a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
+                        <div class="widget-body">
+                            <ul>
+                                {% for post in object.related_posts.all %}
+                                <li>
+                                    <div class="thumb">
+                                        <a href="{% url 'blog_section:post_detail' post.slug %}">
+                                            <img src="{{ post.preview.url }}" alt="blog">
+                                        </a>
+                                    </div>
+                                    <div class="content">
+                                        <a href="{% url 'blog_section:post_detail' post.slug %}">{{ post.title }}</a>
+                                        <span>{{ post.created_at|date }}</span>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
                         </div>
-                    </aside>
-                </div>
+                    </div>
+                    <div class="widget widget-gallery">
+                        <div class="widget-header">
+                            <h5 class="title">Галерея</h5>
+                        </div>
+                        <div class="widget-body">
+                            <ul>
+                                {% for gallery in object.gallery.all %}
+                                <li>
+                                    <a href="{{ gallery.image.url }}" class="img-pop">
+                                        <img src="{{ gallery.image.url }}" alt="gallery">
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="widget widget-tags">
+                        <div class="widget-header">
+                            <h5 class="title">Тематические теги</h5>
+                        </div>
+                        <div class="widget-body">
+                            <ul class="tags">
+                                {% for tag in object.tags.all %}
+                                <li>
+                                    <a href="#">{{ tag.title }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
             </div>
         </div>
-    </section>
-    <!-- ==========Class Section Ends Here========== -->
-    {% endblock main_content %}
+    </div>
+</section>
+<!-- ==========Class Section Ends Here========== -->
+{% endblock main_content %}

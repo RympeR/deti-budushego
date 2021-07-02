@@ -5,13 +5,13 @@
 <section class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
-            <h1 class="title">Наш коллектив</h1>
+            <h1 class="title">Наш вакансии</h1>
             <ul class="breadcrumb">
                 <li>
                     <a href='{% url "lessons_section:index" %}'>Главная</a>
                 </li>
                 <li>
-                    Наш коллектив
+                    Наши вакансии
                 </li>
             </ul>
         </div>
@@ -29,24 +29,24 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header">
-                    <span class="cate">Профессиональный и дружелюбный</span>
-                    <h3 class="title">Наш коллектив</h3>
+                    <!-- <span class="cate">Профессиональный и дружелюбный</span> -->
+                    <h3 class="title">Наши вакансии</h3>
                 </div>
             </div>
         </div>
         <div class="row justify-content-center mb-30-none">
-            {% for teacher in teachers %}
+            {% for vacancy in vacancys %}
                 <div class="col-lg-3 col-sm-6">
                     <div class="teacher-item-2">
                         <div class="teacher-thumb">
                             <div class="thumb">
-                                <a href="{% url 'users_section:teacher_detail' teacher.slug %}">
-                                    <img src="{{ teacher.image.url }}" alt="teacher">
+                                <a href="{% url 'users_section:vacancy_detail' vacancy.slug %}">
+                                    <img src="{{ vacancy.icon.url }}" alt="teacher">
                                 </a>
                             </div>
                             <div class="content">
-                                <h5 class="title"><a href="{% url 'users_section:teacher_detail' teacher.slug %}">{{ teacher.fio }}</a></h5>
-                                <span>{{ teacher.specialization }}</span>
+                                <h5 class="title"><a href="{% url 'users_section:vacancy_detail' vacancy.slug %}">{{ vacancy.name }}</a></h5>
+                                <span>{{ vacancy.short_description }}</span>
                             </div>
                         </div>
                     </div>
@@ -75,40 +75,4 @@
 </section>
 <!-- ==========Call-In-Section Ends Here========== -->
 
-
-<!-- ==========Teacher Section Starts Here========== -->
-<section class="teacher-section padding-bottom padding-top bg_img"
-    data-background="./assets/images/teacher/teacher-bg.jpg">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="section-header">
-                    <!-- <span class="cate">Meet Our Stuffy</span> -->
-                    <h3 class="title"><a href='{% url "users_section:vacancy_list" %}'>Наши вакансии</a></h3>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-30-none justify-content-center">
-            {% for vacancy in vacancys %}
-            <div class="col-lg-6">
-                <div class="teacher-item">
-                    <div class="teacher-inner">
-                        <div class="teacher-thumb">
-                            <div class="thumb-inner">
-                                <a href="{% url 'users_section:vacancy_detail' vacancy.slug %}"><img src="{{ vacancy.icon.url }}"
-                                        alt="teacher"></a>
-                            </div>
-                        </div>
-                        <div class="teacher-content">
-                            <h6 class="title"><a href="{% url 'users_section:vacancy_detail' vacancy.slug %}">{{ vacancy.name }}</a></h6>
-                            <p>{{ vacncy.short_description }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-<!-- ==========Teacher Section Ends Here========== -->
 {% endblock main_content %}

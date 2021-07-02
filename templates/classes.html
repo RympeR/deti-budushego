@@ -51,13 +51,13 @@
                         <div class="class-meta">
                             <div class="class-author">
                                 <div class="thumb">
-                                    <a href="{% url 'users_section:teacher_detail' lesson.teacher.username %}"><img
+                                    <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}"><img
                                             src="{{ lesson.teacher.image.url }}" alt="class"></a>
                                 </div>
                                 <div class="content">
                                     <h6 class="subtitle"><a
-                                            href="{% url 'users_section:teacher_detail' lesson.teacher.username %}">{{ lesson.teacher.fio }}</a></h6>
-                                    <a href="{% url 'users_section:teacher_detail' lesson.teacher.username %}"
+                                            href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}">{{ lesson.teacher.fio }}</a></h6>
+                                    <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}"
                                         class="info">Профиль</a>
                                 </div>
                             </div>

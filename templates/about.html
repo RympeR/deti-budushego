@@ -242,11 +242,11 @@
                 <div class="teacher-item-2">
                     <div class="teacher-thumb">
                         <div class="thumb">
-                            <a href="{% url 'users_section:teacher_detail' teacher.username %}"><img src="{{ teacher.image.url }}"
+                            <a href="{% url 'users_section:teacher_detail' teacher.slug %}"><img src="{{ teacher.image.url }}"
                                 alt="teacher"></a>
                         </div>
                         <div class="content">
-                            <h6 class="title"><a href="{% url 'users_section:teacher_detail' teacher.username %}">{{ teacher.fio }}</a></h6>
+                            <h6 class="title"><a href="{% url 'users_section:teacher_detail' teacher.slug %}">{{ teacher.fio }}</a></h6>
                             <span>{{ teacher.specialization }}</span>
                         </div>
                     </div>

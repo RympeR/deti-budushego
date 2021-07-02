@@ -95,6 +95,7 @@ class Lesson(models.Model):
     category = models.ManyToManyField(
         LessonCategory, related_name='lesson_category', verbose_name='Возрастная категория')
     most_popular = models.BooleanField('Отобразить на главной', default=False)
+    online = models.BooleanField('Онлайн формат', default=False)
     full_text = RichTextField()
     def small_image(self):
         if self.preview and hasattr(self.preview, 'url'):

@@ -8,13 +8,16 @@
             <h1 class="title">{{ object.title }}</h1>
             <ul class="breadcrumb">
                 <li>
-                    <a href='{% url "lessons_section:index" %}'>Home</a>
+                    <a href='{% url "lessons_section:index" %}'>Главная</a>
                 </li>
                 <li>
-                    <a href='{% url "lessons_section:events_list" %}'>Events</a>
+                    <a href='{% url "lessons_section:about" %}'>О нас</a>
                 </li>
                 <li>
-                    Events Single
+                    <a href='{% url "lessons_section:events_list" %}'>Мероприятия</a>
+                </li>
+                <li>
+                    {{ object.title }}
                 </li>
             </ul>
         </div>
@@ -60,7 +63,7 @@
                                 </ul>
                             </div>
                             {{ object.full_text }}
-                            <p>
+                            <!-- <p>
                                 Serenity hassr taken posseson of my entire soung like these sweet mornngs sprng whch
                                 enjoy with
                                 my whole heart I am alonesi and feel the charm of exstenceths spot whch was the blis of
@@ -114,7 +117,7 @@
                                 bye ncapable of drawng and singe wonderful serenty has taken possesison of my entrei
                                 souing like
                                 these sweet present moment and yet feel that never was greater artst
-                            </p>
+                            </p> -->
                         </div>
                         <div class="tags-area">
                             <ul class="tags">
@@ -122,7 +125,7 @@
                                     <a href="#">{{ object.category.title }}</a>
                                 </li>
                             </ul>
-                            <ul class="share">
+                            <!-- <ul class="share">
                                 
                                 <li>
                                     <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
@@ -136,7 +139,7 @@
                                 <li>
                                     <a href="#" class="google"><i class="fab fa-google-plus-g"></i></a>
                                 </li>
-                            </ul>
+                            </ul> -->
                         </div>
                     </div>
                 </div>
@@ -145,20 +148,20 @@
                 <aside>
                     <div class="widget widget-feature">
                         <div class="widget-header">
-                            <h5 class="title">Course Features</h5>
+                            <h5 class="title">Информация о мероприятии</h5>
                         </div>
                         <div class="widget-body">
                             <ul>
                                 <li>
-                                    <div class="ques cl-i-one"><i class="fas fa-calendar"></i>Start Date</div>
+                                    <div class="ques cl-i-one"><i class="fas fa-calendar"></i>Дата начала</div>
                                     <div class="ans">{{ object.date_start|date}}</div>
                                 </li>
                                 <li>
-                                    <div class="ques cl-i-two"><i class="fas fa-clock"></i>Years old</div>
+                                    <div class="ques cl-i-two"><i class="fas fa-clock"></i>Возраст</div>
                                     <div class="ans">{{ object.years_old }}</div>
                                 </li>
                                 <li>
-                                    <div class="ques cl-i-three"><i class="fas fa-calendar"></i>End Date</div>
+                                    <div class="ques cl-i-three"><i class="fas fa-calendar"></i>Дата конца</div>
                                     <div class="ans">{{ object.date_end|date }}</div>
                                 </li>
                                 <!-- <li>
@@ -166,16 +169,16 @@
                                     <div class="ans">{{ object.date_end|date }}</div>
                                 </li> -->
                                 <li>
-                                    <div class="ques cl-i-five"><i class="fas fa-home"></i>Location</div>
+                                    <div class="ques cl-i-five"><i class="fas fa-home"></i>Местоположение</div>
                                     <div class="ans">{{ object.location }}</div>
                                 </li>
                                 <li>
-                                    <div class="ques cl-i-six"><i class="fas fa-user"></i>Event Organizer</div>
+                                    <div class="ques cl-i-six"><i class="fas fa-user"></i>Организатор</div>
                                     <div class="ans">{{ object.organizer.fio }}</div>
                                 </li>
 
                                 <li>
-                                    <div class="ques cl-i-eight"><i class="fas fa-coins"></i>Event Ticket</div>
+                                    <div class="ques cl-i-eight"><i class="fas fa-coins"></i>Стоимость</div>
                                     <div class="ans">₴{{ object.fee }}</div>
                                 </li>
                             </ul>
@@ -183,7 +186,7 @@
                     </div>
                     <div class="widget widget-post">
                         <div class="widget-header">
-                            <h5 class="title">Most Popular Post</h5>
+                            <h5 class="title">Статьи по теме</h5>
                         </div>
                         <div class="widget-body">
                             <ul>
@@ -205,7 +208,7 @@
                     </div>
                     <div class="widget widget-gallery">
                         <div class="widget-header">
-                            <h5 class="title">Gallery Photos</h5>
+                            <h5 class="title">Галерея</h5>
                         </div>
                         <div class="widget-body">
                             <ul>
@@ -222,7 +225,7 @@
                     </div>
                     <div class="widget widget-tags">
                         <div class="widget-header">
-                            <h5 class="title">Popular Tags</h5>
+                            <h5 class="title">Тематические теги</h5>
                         </div>
                         <div class="widget-body">
                             <ul class="tags">

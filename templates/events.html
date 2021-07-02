@@ -6,16 +6,16 @@
     <section class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
         <div class="container">
             <div class="page-header-content">
-                <h1 class="title">Our Events Page</h1>
+                <h1 class="title">Наши мероприятия</h1>
                 <ul class="breadcrumb">
                     <li>
-                        <a href='{% url "lessons_section:index" %}'>Home</a>
+                        <a href='{% url "lessons_section:index" %}'>Главная</a>
                     </li>
                     <li>
-                        <a href="#">Pages</a>
+                        <a href='{% url "lessons_section:about" %}'>О нас</a>
                     </li>
                     <li>
-                        Events
+                        Мероприятия
                     </li>
                 </ul>
             </div>
@@ -34,7 +34,7 @@
         </div>
         <div class="container">
             <ul class="filter">
-                <li data-filter="*">Show All</li>
+                <li data-filter="*">Все</li>
                 {% for category in request|events_categories %}
                     <li data-filter=".{{category.slug}}">{{category.title}}</li>
                 {% endfor %}
