@@ -153,15 +153,19 @@
                         <div class="widget-body">
                             <ul>
                                 <li>
-                                    <div class="ques cl-i-one"><i class="fas fa-calendar"></i>Дата начала</div>
-                                    <div class="ans">{{ object.date_start|date}}</div>
-                                </li>
-                                <li>
                                     <div class="ques cl-i-two"><i class="fas fa-child"></i>Возраст</div>
                                     <div class="ans">{{ object.years_old }}</div>
                                 </li>
                                 <li>
-                                    <div class="ques cl-i-three"><i class="fas fa-calendar"></i>Дата конца</div>
+                                    <div class="ques cl-i-one"><i class="fas fa-calendar"></i>Дата начала</div>
+                                    <div class="ans">{{ object.date_start|date}}</div>
+                                </li>
+                                <li>
+                                    <div class="ques cl-i-one"><i class="fas fa-clock"></i>Время начала</div>
+                                    <div class="ans">{{ object.timer_time|time}}</div>
+                                </li>
+                                <li>
+                                    <div class="ques cl-i-three"><i class="fas fa-calendar"></i>Окончание</div>
                                     <div class="ans">{{ object.date_end|date }}</div>
                                 </li>
                                 <!-- <li>
