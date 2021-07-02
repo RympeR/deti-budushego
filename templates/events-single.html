@@ -42,7 +42,7 @@
                         </div>
                         <div class="class-single-content">
                             <div class="countdown-area">
-                                <h4 class="counts-title">The event will start in :</h4>
+                                <h4 class="counts-title">Начало мероприятия через:</h4>
                                 <ul class="countdown">
                                     <li>
                                         <h4 class="count-title"><span class="days">00</span></h4>
@@ -62,7 +62,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            {{ object.full_text }}
+                            {{ object.full_text|safe }}
                             <!-- <p>
                                 Serenity hassr taken posseson of my entire soung like these sweet mornngs sprng whch
                                 enjoy with
@@ -157,7 +157,7 @@
                                     <div class="ans">{{ object.date_start|date}}</div>
                                 </li>
                                 <li>
-                                    <div class="ques cl-i-two"><i class="fas fa-clock"></i>Возраст</div>
+                                    <div class="ques cl-i-two"><i class="fas fa-child"></i>Возраст</div>
                                     <div class="ans">{{ object.years_old }}</div>
                                 </li>
                                 <li>
@@ -169,18 +169,33 @@
                                     <div class="ans">{{ object.date_end|date }}</div>
                                 </li> -->
                                 <li>
-                                    <div class="ques cl-i-five"><i class="fas fa-home"></i>Местоположение</div>
+                                    <div class="ques cl-i-five"><i class="fas fa-home"></i>Место</div>
                                     <div class="ans">{{ object.location }}</div>
+                                </li>
+                                <li>
+                                    <div class="ques cl-i-eight"><i class="fas fa-coins"></i>Стоимость</div>
+                                    <div class="ans">₴{{ object.fee }}</div>
+                                </li>
+                                <li>
+                                    <div class="ques cl-i-one"><i class="fas 
+                                        {% if object.online %}
+                                        fa-desktop
+                                        {% else %}
+                                        fa-school
+                                        {% endif %}
+                                        "></i>Формат</div>
+                                    <div class="ans">{% if object.online %}
+                                        Онлайн
+                                        {% else %}
+                                        Оффлайн
+                                        {% endif %}
+                                    </div>
                                 </li>
                                 <li>
                                     <div class="ques cl-i-six"><i class="fas fa-user"></i>Организатор</div>
                                     <div class="ans">{{ object.organizer.fio }}</div>
                                 </li>
 
-                                <li>
-                                    <div class="ques cl-i-eight"><i class="fas fa-coins"></i>Стоимость</div>
-                                    <div class="ans">₴{{ object.fee }}</div>
-                                </li>
                             </ul>
                         </div>
                     </div>
@@ -255,7 +270,7 @@
             days: 'Days'
         },
             function () {
-                alert('Done!');
+                
             });
     });
 </script>

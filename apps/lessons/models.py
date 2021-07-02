@@ -55,8 +55,9 @@ class Event(models.Model):
         Tag, related_name='event_related_tags', blank=True, verbose_name='Тэги мероприятия')
     organizer = models.ForeignKey(
         User, related_name='organizer', verbose_name='Организатор', null=True, on_delete=models.SET_NULL)
-    category = models.ForeignKey(
-        EventCategory, related_name='event_category', verbose_name='Категория мероприятия', on_delete=models.CASCADE)
+    category = models.ManyToManyField(
+        EventCategory, related_name='event_category', verbose_name='Категория мероприятия')
+    online = models.BooleanField('Онлайн формат', default=False)
     full_text = RichTextField()
 
     def small_image(self):

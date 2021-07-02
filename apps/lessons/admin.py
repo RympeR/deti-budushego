@@ -30,6 +30,7 @@ class EventAdmin(admin.ModelAdmin):
         'related_posts',
         'gallery',
         'tags',
+        'category',
     )
 
 
