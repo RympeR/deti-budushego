@@ -168,9 +168,9 @@
                     </div>
                     <div class="counter-content">
                         <div class="counter-header">
-                            <h2 class="title odometer" data-odometer-final="830">0</h2>
+                            <h2 class="title odometer" data-odometer-final="15">0</h2>
                         </div>
-                        <span class="cate">Age 03 - 04</span>
+                        <span class="cate">обучающих программ</span>
                     </div>
                 </div>
             </div>
@@ -181,10 +181,10 @@
                     </div>
                     <div class="counter-content">
                         <div class="counter-header">
-                            <h2 class="title odometer" data-odometer-final="26">0</h2>
+                            <h2 class="title odometer" data-odometer-final="1000">0</h2>
                             <h2 class="title">+</h2>
                         </div>
-                        <span class="cate">Age 10 - 12</span>
+                        <span class="cate">игр и пособий</span>
                     </div>
                 </div>
             </div>
@@ -195,33 +195,33 @@
                     </div>
                     <div class="counter-content">
                         <div class="counter-header">
-                            <h2 class="title odometer" data-odometer-final="100">0</h2>
-                            <h2 class="title">%</h2>
+                            <h2 class="title odometer" data-odometer-final="17700">0</h2>
+                            <h2 class="title">+</h2>
                         </div>
-                        <span class="cate">Total Boys</span>
+                        <span class="cate">Facebook подписчиков</span>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-md-6 col-sm-6">
+            <!-- <div class="col-xl-3 col-md-6 col-sm-6">
                 <div class="counter-item round-style">
                     <div class="counter-thumb">
                         <img src="{% static 'images/counter/counter7.png' %}" alt="counter">
                     </div>
                     <div class="counter-content">
                         <div class="counter-header">
-                            <h2 class="title odometer" data-odometer-final="100">0</h2>
-                            <h2 class="title">%</h2>
+                            <h2 class="title odometer" data-odometer-final="7700">0</h2>
+                            <h2 class="title">+</h2>
                         </div>
-                        <span class="cate">Total Girls</span>
+                        <span class="cate">подписчиков на Facebook</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
 <!-- ==========Counter Section Ends Here========== -->
 
-
+{% comment %}
 <!-- ==========Teacher Section Starts Here========== -->
 <section class="teacher-section padding-top padding-bottom pos-rel">
     <div class="top-shape-center">
@@ -260,7 +260,7 @@
     </div>
 </section>
 <!-- ==========Teacher Section Ends Here========== -->
-
+{% endcomment %}
 
 <!-- ==========Map Section Starts Here========== -->
 <div class="map-section pos-rel">
@@ -319,4 +319,46 @@
         </div>
     </div>
 </div>
+<!-- ==========Blog Section Starts Here========== -->
+<section class="blog-section padding-top padding-bottom pos-rel">
+    <div class="top-shape-center">
+        <img src="{% static 'css/img/gallery1.png' %}" alt="css">
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="section-header">
+                    <a href='{% url "blog_section:post_list" %}'><span class="cate">Познавательные и интересные</span></a>
+                    <h3 class="title"><a href='{% url "blog_section:post_list" %}'>Наши статьи</a></h3>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-30-none justify-content-center">
+            {% for post in posts %}
+            <div class="col-xl-4 col-md-6">
+                <div class="post-item">
+                    <div class="post-thumb">
+                        <a href="{% url 'blog_section:post_detail' post.slug %}"><img src="{{ post.preview.url }}" alt="blog"></a>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-top">
+                            <h5 class="title"><a href="{% url 'blog_section:post_detail' post.slug %}">{{ post.title }}</a>
+                            </h5>
+                            <div class="post-meta cate">
+                                <a href="#"><i class="far fa-calendar"></i> {{ post.created_at|date }} </a>
+                                <a href="#"><i class="fas fa-user"></i> {{ post.author.fio }} </a>
+                            </div>
+                            <p>{{ post.preview_text }}</p>
+                        </div>
+                        <div class="post-bottom">
+                            <a href="{% url 'blog_section:post_detail' post.slug %}" class="read">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- ==========Blog Section Ends Here========== -->
 {% endblock main_content %}

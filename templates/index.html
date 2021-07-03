@@ -145,7 +145,7 @@
 
 
 <!-- ==========Class Section Starts Here========== -->
-<section class="class-section padding-top padding-bottom pos-rel">
+<section class="class-section padding-top  pos-rel">
     <div class="top-shape-center">
         <img src="{% static 'css/img/gallery1.png' %}" alt="css">
     </div>
@@ -217,7 +217,47 @@
     </div>
 </section>
 <!-- ==========Class Section Ends Here========== -->
-
+<!-- ==========Blog Section Starts Here========== -->
+<section class="blog-section padding-top pos-rel">
+    <div class="top-shape-center">
+        <img src="{% static 'css/img/gallery1.png' %}" alt="css">
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="section-header">
+                    <a href='{% url "lessons_section:events_list" %}'><span class="cate"></span></a>
+                    <h3 class="title"><a href='{% url "lessons_section:events_list" %}'>Наши мероприятия</a></h3>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-30-none justify-content-center">
+            {% for event in events %}
+            <div class="col-xl-4 col-md-6">
+                <div class="event-item">
+                    <div class="event-thumb">
+                        <a href="{% url 'lessons_section:event_detail' event.slug %}"><img src="{{ event.preview.url }}" alt="events"></a>
+                        <div class="date-tag">
+                            <h3 class="title">{{ event.date_start|date:"d" }}</h3>
+                            <span class="mon">{{ event.date_start|date:"M Y" }}</span>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <h5 class="title">
+                            <a href="{% url 'lessons_section:event_detail' event.slug %}">{{ event.title }}</a>
+                        </h5>
+                        <ul class="events-info">
+                            <li><i class="fas fa-clock"></i> {{ event.date_start|date }} - {{ event.date_end|date }} </li>
+                            <li><i class="fas fa-home"></i> {{ event.location }}. </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- ==========Blog Section Ends Here========== -->
 
 <!-- ==========Facilities Section Starts Here========== -->
 <!-- <section class="facilities-section">
@@ -407,7 +447,7 @@
     </div>
 </section>
 <!-- ==========Schedule Section Ends Here========== -->
-
+{% endcomment %}
 
 <!-- ==========Client Section Starts Here========== -->
 <section class="client-section padding-top padding-bottom bg_img" data-background="{% static 'images/client/client-bg.jpg' %}">
@@ -440,7 +480,10 @@
                     <p>Rapidiously buildcollaboration anden deas sharing viaing bleeding and
                         edge nterfaces Energstcally plagiarize team anbuilding and paradgmis
                         whereas goingi forward process mproveents and monetze fully tested
-                        ergstcally plariarize team whereas goingi forward process an services
+                        ergstcally plariarize team whereas go
+                        цауцуацуацуацуац
+                        уацуацуацацау
+                        цуацуацуацауцуingi forward process an services
                         whereas going forward process</p>
                         <div class="ratings">
                             <span><i class="far fa-star"></i></span>
@@ -546,48 +589,7 @@
 </section>
 <!--==========Client Section Ends Here==========-->
 
-{% endcomment %}
 
-<!-- ==========Blog Section Starts Here========== -->
-<section class="blog-section padding-top padding-bottom pos-rel">
-    <div class="top-shape-center">
-        <img src="{% static 'css/img/gallery1.png' %}" alt="css">
-    </div>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="section-header">
-                    <a href='{% url "blog_section:post_list" %}'><span class="cate">Познавательные и интересные</span></a>
-                    <h3 class="title"><a href='{% url "blog_section:post_list" %}'>Наши статьи</a></h3>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-30-none justify-content-center">
-            {% for post in posts %}
-            <div class="col-xl-4 col-md-6">
-                <div class="post-item">
-                    <div class="post-thumb">
-                        <a href="{% url 'blog_section:post_detail' post.slug %}"><img src="{{ post.preview.url }}" alt="blog"></a>
-                    </div>
-                    <div class="post-content">
-                        <div class="post-top">
-                            <h5 class="title"><a href="{% url 'blog_section:post_detail' post.slug %}">{{ post.title }}</a>
-                            </h5>
-                            <div class="post-meta cate">
-                                <a href="#"><i class="far fa-calendar"></i> {{ post.created_at|date }} </a>
-                                <a href="#"><i class="fas fa-user"></i> {{ post.author.fio }} </a>
-                            </div>
-                            <p>{{ post.preview_text }}</p>
-                        </div>
-                        <div class="post-bottom">
-                            <a href="{% url 'blog_section:post_detail' post.slug %}" class="read">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-<!-- ==========Blog Section Ends Here========== -->
+
+
 {% endblock main_content %}

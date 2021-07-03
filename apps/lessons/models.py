@@ -3,7 +3,7 @@ from django.db import models
 from django.utils.safestring import mark_safe
 from unixtimestampfield.fields import UnixTimeStampField
 from ckeditor.fields import RichTextField
-
+from django.template.defaultfilters import truncatechars
 from apps.blog.models import Gallery, Post, Tag
 from apps.users.models import User
 
@@ -59,7 +59,7 @@ class Event(models.Model):
         EventCategory, related_name='event_category', verbose_name='Категория мероприятия')
     online = models.BooleanField('Онлайн формат', default=False)
     full_text = RichTextField()
-
+    most_popular = models.BooleanField('Отобразить на главной', default=False)
     def small_image(self):
         if self.preview and hasattr(self.preview, 'url'):
             return mark_safe('<img src="{}" width="100" /'.format(self.preview.url))
@@ -110,3 +110,18 @@ class Lesson(models.Model):
     def __str__(self):
         return self.title
  
+class Faq(models.Model):
+    question = models.CharField(max_length=150, verbose_name='Заголовок вопроса')
+    answer = models.TextField('Ответ')
+    right = models.BooleanField(verbose_name='Отобразить в правой колонке?',default=False)
+    
+    @property
+    def short_description(self):
+        return truncatechars(self.answer, 20)
+
+    class Meta:
+        verbose_name = 'FAQ'
+        verbose_name_plural = 'FAQs'
+
+    def __str__(self):
+        return self.question

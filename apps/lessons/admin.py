@@ -5,6 +5,7 @@ from .models import (
     EventCategory,
     Event,
     Lesson,
+    Faq,
 )
 
 
@@ -14,6 +15,12 @@ class TemplateLessonAdmin(admin.ModelAdmin):
     list_display_links = 'title',
     search_fields = 'title',
 
+@admin.register(Faq)
+class FaqAdmin(admin.ModelAdmin):
+    list_display = 'question', 'short_description', 'right'
+    list_display_links = 'question',
+    search_fields = 'question',
+    list_filter = 'right',
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):

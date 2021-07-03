@@ -5,16 +5,16 @@
 <section class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
-            <h1 class="title">Frequiently Ask Question</h1>
+            <h1 class="title">Правила посещения</h1>
             <ul class="breadcrumb">
                 <li>
-                    <a href="{% url "lessons_section:index" %}">Home</a>
+                    <a href='{% url "lessons_section:index" %}'>Главная</a>
                 </li>
                 <li>
-                    <a href="#">Pages</a>
+                    <a href='{% url "lessons_section:about" %}'>О нас</a>
                 </li>
                 <li>
-                    Faqs
+                    Правила посещения
                 </li>
             </ul>
         </div>
@@ -29,117 +29,41 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header">
-                    <span class="cate">Don’t Miss The Day</span>
-                    <h3 class="title">Frequiently Ask Question</h3>
+                    <span class="cate">FAQ</span>
+                    <h3 class="title">Правила посещения детского центра</h3>
                 </div>
             </div>
         </div>
         <div class="row mb--10">
             <div class="col-lg-6">
                 <div class="faq-wrapper">
+                    {% for left_faq in left %}
                     <div class="faq-item">
+                          
                         <div class="faq-title">
                             <span class="right-icon"></span>
-                            <h5 class="title">Can i Attend a Class for Free?</h5>
+                            <h5 class="title">{{ left_faq.question }}</h5>
                         </div>
                         <div class="faq-content">
-                            <p>Global underwhels client-centric mindshare for proactive infomediary Uniquely leverage
-                                existing standardized web-readiness before end to Distinctively conceptualize worldwide
-                                schemas client-centered wasin end models readiness.</p>
+                            <p>{{ left_faq.answer }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="faq-item active open">
-                        <div class="faq-title">
-                            <span class="right-icon"></span>
-                            <h5 class="title">Do I need to take the courses in a specific order?</h5>
-                        </div>
-                        <div class="faq-content">
-                            <p>Global underwhels client-centric mindshare for proactive infomediary Uniquely leverage
-                                existing standardized web-readiness before end to Distinctively conceptualize worldwide
-                                schemas client-centered wasin end models readiness.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-title">
-                            <span class="right-icon"></span>
-                            <h5 class="title">Can i complete my admission process by online?</h5>
-                        </div>
-                        <div class="faq-content">
-                            <p>Global underwhels client-centric mindshare for proactive infomediary Uniquely leverage
-                                existing standardized web-readiness before end to Distinctively conceptualize worldwide
-                                schemas client-centered wasin end models readiness.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-title">
-                            <span class="right-icon"></span>
-                            <h5 class="title">What is your Admission Process?</h5>
-                        </div>
-                        <div class="faq-content">
-                            <p>Global underwhels client-centric mindshare for proactive infomediary Uniquely leverage
-                                existing standardized web-readiness before end to Distinctively conceptualize worldwide
-                                schemas client-centered wasin end models readiness.</p>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="faq-wrapper">
+                    {% for right_faq in right %}
                     <div class="faq-item">
                         <div class="faq-title">
                             <span class="right-icon"></span>
-                            <h5 class="title">Do I need to take the courses in a specific order?</h5>
+                            <h5 class="title">{{ right_faq.question }}</h5>
                         </div>
                         <div class="faq-content">
-                            <p>Global underwhels client-centric mindshare for proactive infomediary Uniquely leverage
-                                existing standardized web-readiness before end to Distinctively conceptualize worldwide
-                                schemas client-centered wasin end models readiness.</p>
+                            <p>{{ right_faq.answer }}</p>
                         </div>
                     </div>
-                    <div class="faq-item">
-                        <div class="faq-title">
-                            <span class="right-icon"></span>
-                            <h5 class="title">Can i Attend a Class for Free</h5>
-                        </div>
-                        <div class="faq-content">
-                            <p>Global underwhels client-centric mindshare for proactive infomediary Uniquely leverage
-                                existing standardized web-readiness before end to Distinctively conceptualize worldwide
-                                schemas client-centered wasin end models readiness.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-title">
-                            <span class="right-icon"></span>
-                            <h5 class="title">Can i complete my admission process by online?</h5>
-                        </div>
-                        <div class="faq-content">
-                            <p>Global underwhels client-centric mindshare for proactive infomediary Uniquely leverage
-                                existing standardized web-readiness before end to Distinctively conceptualize worldwide
-                                schemas client-centered wasin end models readiness.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-title">
-                            <span class="right-icon"></span>
-                            <h5 class="title">What is your Admission Process?</h5>
-                        </div>
-                        <div class="faq-content">
-                            <p>Global underwhels client-centric mindshare for proactive infomediary Uniquely leverage
-                                existing standardized web-readiness before end to Distinctively conceptualize worldwide
-                                schemas client-centered wasin end models readiness.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-title">
-                            <span class="right-icon"></span>
-                            <h5 class="title">How can i become a instructor?</h5>
-                        </div>
-                        <div class="faq-content">
-                            <p>Global underwhels client-centric mindshare for proactive infomediary Uniquely leverage
-                                existing standardized web-readiness before end to Distinctively conceptualize worldwide
-                                schemas client-centered wasin end models readiness.</p>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

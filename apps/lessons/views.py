@@ -2,6 +2,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.shortcuts import render
 from .models import (
+    Faq,
     LessonCategory,
     EventCategory,
     Event,
@@ -66,7 +67,7 @@ def index(request):
     context['classes'] = Lesson.objects.filter(most_popular=True)
     context['gallery'] = Gallery.objects.filter(most_popular=True)
     context['teachers'] = User.objects.filter(most_popular=True)
-    context['posts'] = Post.objects.filter(most_popular=True)
+    context['events'] = Event.objects.filter(most_popular=True)
     context['schedule'] = Schedule.objects.all()
     context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
 
@@ -76,6 +77,7 @@ def about(request):
     context = {}
     context['menu'] = MenuCategory.objects.all()
     context['teachers'] = User.objects.filter(most_popular=True)
+    context['posts'] = Post.objects.filter(most_popular=True)
     context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
     return render(request, 'about.html', context=context)
 
@@ -95,6 +97,8 @@ def contact(request):
 def faq(request):
     context = {}
     context['menu'] = MenuCategory.objects.all()
+    context['left'] = Faq.objects.filter(right=False)
+    context['right'] = Faq.objects.filter(right=True)
     context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
     return render(request, 'faqs.html', context=context)
 
