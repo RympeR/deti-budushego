@@ -2,16 +2,16 @@
 {% load static %}
 {% block main_content %}
 <!-- ==========Banner Section Starts Here========== -->
-<section class="page-header bg_img" data-background="./assets/images/banner/page-header.jpg">
+<section class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
-            <h1 class="title">Contact Us</h1>
+            <h1 class="title">Свяжитесь с нами</h1>
             <ul class="breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href='{% url "lessons_section:index" %}'>Главная</a>
                 </li>
                 <li>
-                    Contact Us
+                    Наши контакты
                 </li>
             </ul>
         </div>
@@ -19,88 +19,70 @@
 </section>
 <!-- ==========Banner Section Ends Here========== -->
 
-
-<!-- ==========Contact Section Starts Here========== -->
-<section class="contact-section padding-top padding-bottom">
-    <div class="container">
-        <div class="contact-form-area">
-            <h4 class="title">Leave A Message</h4>
-            <form class="contact-form" id="contact_form_submit">
-                <div class="form-group">
-                    <input type="text" placeholder="Your Name" id="name" name="name">
-                </div>
-                <div class="form-group">
-                    <input type="text" placeholder="Your Email" id="email" name="email">
-                </div>
-                <div class="form-group">
-                    <input type="text" placeholder="Phone" id="phone" name="phone">
-                </div>
-                <div class="form-group">
-                    <input type="text" placeholder="Subject" id="subject" name="subject">
-                </div>
-                <div class="form-group w-100">
-                    <textarea name="message" id="message" id="message" placeholder="Your Message"></textarea>
-                </div>
-                <div class="form-group w-100 text-center">
-                    <button class="custom-button"><span>Send Message</span></button>
-                </div>
-            </form>
-        </div>
-    </div>
+<section>
+    
 </section>
-<!-- ==========Contact Section Ends Here========== -->
-
-
 <!-- ==========Map Section Starts Here========== -->
 <div class="map-section pos-rel">
-    <div class="maps"></div>
-    <div class="contact-area padding-bottom padding-top pt-lg-0 pb-lg-0">
+    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1vb70xg7vMZ6v3EWPbtPEXD8s8vC0gf4g" width="100%" height="600"></iframe>
+    <div class="contact-area padding-bottom  pt-lg-0 pb-lg-0">
         <div class="container">
             <div class="contact-wrapper">
                 <div class="contact-item">
                     <div class="contact-thumb">
-                        <img src="./assets/images/contact/01.png" alt="contact">
+                        <img src="{% static 'images/contact/01.png' %}" alt="contact">
                     </div>
                     <div class="contact-content">
-                        <h6 class="title">Class Sessions</h6>
+                        <h6 class="title">Занятия в центре</h6>
                         <ul>
-                            <li>Sunday - Monday</li>
-                            <li>08:00 am – 11:00 am (Fri Closed)</li>
+                            <li>Групповые и индивидуальные,</li>
+                            <li>в центре и онлайн.</li>
+                            <li>Для детей от 1,5 до 7 лет</li>
                         </ul>
                     </div>
                 </div>
                 <div class="contact-item">
                     <div class="contact-thumb">
-                        <img src="./assets/images/contact/02.png" alt="contact">
+                        <img src="{% static 'images/contact/02.png' %}" alt="contact">
                     </div>
                     <div class="contact-content">
-                        <h6 class="title">kittons Address</h6>
+                        <h6 class="title">Адрес детского центра</h6>
                         <ul>
-                            <li>123 White Amphitheatre Kinway, Mountain, CA 12345, USA</li>
+                            <li>Фонтанская дорога 49/1, Одесса, 65009, Украина</li>
+                            <li><strong>КАК ДОЕХАТЬ:</strong></li>
+                            <li>трамвай № 17, 18, 19;</li>
+                            <li>маршрутки № 127, 146, 185. </li>
+                            <li>Остановка: Петрашевского</li>
                         </ul>
                     </div>
                 </div>
                 <div class="contact-item">
                     <div class="contact-thumb">
-                        <img src="./assets/images/contact/03.png" alt="contact">
+                        <img src="{% static 'images/contact/03.png' %}" alt="contact">
                     </div>
                     <div class="contact-content">
-                        <h6 class="title">Openning Hours</h6>
+                        <h6 class="title">Дни и часы работы</h6>
                         <ul>
-                            <li>Sunday - Monday</li>
-                            <li>08.00 am – 05.00 pm</li>
+                            <li>Пн-Пт (Сб, Вс выходной)</li>
+                            <li>В летний период уточняйте время работы</li>
+                            
                         </ul>
                     </div>
                 </div>
                 <div class="contact-item">
                     <div class="contact-thumb">
-                        <img src="./assets/images/contact/04.png" alt="contact">
+                        <img src="{% static 'images/contact/04.png' %}" alt="contact">
                     </div>
                     <div class="contact-content">
-                        <h6 class="title">Phone & E-mail</h6>
+                        <h6 class="title">Контакты</h6>
                         <ul>
-                            <li><a href="Tel:05210021020">+123 456 78910, 0265478</a></li>
-                            <li><a href="Mailto:sfkljsdfsj@gmail.com">enroll@kittons.com</a></li>
+                            <li><a href="Tel:+38 095 082-99-89">+38 095 082-99-89</a></li>
+                            <li><a href="tel:+38 098 842-39-19">+38 098 842-39-19</a></li>
+                            
+                            <li>
+                                <a href="viber://chat?number=%2B380988423919"><i class="fab fa-viber"></i> Viber</a>
+                            </li>
+                            
                         </ul>
                     </div>
                 </div>
