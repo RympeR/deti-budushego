@@ -24,7 +24,7 @@ class MenuCategory(MPTTModel):
         level_attr = 'mеnu_cat'
 
     class Meta:
-        ordering = 'order',
+        ordering = 'order', 'pk'
         verbose_name = 'Элемент меню'
         verbose_name_plural = 'Элементы меню'
 
