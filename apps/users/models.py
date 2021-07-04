@@ -15,8 +15,7 @@ class MenuCategory(MPTTModel):
     icon_class = models.CharField(
         'Класс иконки', max_length=20, null=True, blank=True)
     display = models.BooleanField('Отобразить', default=True)
-    order = models.IntegerField(verbose_name='Порядковый номер', null=True)
-
+    
     def __str__(self):
         return f"{self.name}"
 
@@ -24,7 +23,6 @@ class MenuCategory(MPTTModel):
         level_attr = 'mеnu_cat'
 
     class Meta:
-        ordering = 'order', 'pk'
         verbose_name = 'Элемент меню'
         verbose_name_plural = 'Элементы меню'
 
