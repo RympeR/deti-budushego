@@ -108,7 +108,8 @@ class Lesson(models.Model):
         verbose_name_plural = 'Группы'
 
     def __str__(self):
-        return self.title
+        return f'{self.title} -- {self.years_old}'
+ 
  
 class Faq(models.Model):
     question = models.CharField(max_length=150, verbose_name='Заголовок вопроса')

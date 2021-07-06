@@ -165,7 +165,7 @@
                                             </a>
                                         </div>
                                         <div class="content">
-                                            <a href="{% url 'lessons_section:lesson_detail' rel_lesson.slug %}">{{ rel_lesson.title }}</a>
+                                            <a href="{% url 'lessons_section:lesson_detail' rel_lesson.slug %}">{{ rel_lesson.title }} - {{ rel_lesson.years_old }}</a>
                                             <span>{{ rel_lesson.class_time }}</span>
                                         </div>
                                     </li>
