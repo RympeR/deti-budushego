@@ -7,7 +7,8 @@
         <div class="banner-content cl-white">
             <h3 class="cate">Детский центр</h3>
             <h1 class="title">Дети будущего</h1>
-            <p>Партнер института одаренного ребенка НАПН Украины. Занятия для детей от 1,5 до 7 лет - групповые и индивидуальные. Онлайн занятия для детей от 5 лет. </p>
+            <p>Партнер института одаренного ребенка НАПН Украины. Занятия для детей от 1,5 до 7 лет - групповые и
+                индивидуальные. Онлайн занятия для детей от 5 лет. </p>
             <a href='{% url "lessons_section:lessons_list" %}' class="custom-button"><span>Выбрать занятие</span></a>
         </div>
     </div>
@@ -26,63 +27,49 @@
                             class="flaticon-play"></i></a>
                 </div>
             </div>
+
             <div class="col-lg-6">
                 <div class="about-content">
-                    <div class="section-header left-style">
-                        <span class="cate mt-0">About Our kittons</span>
-                        <h3 class="title">A Friendly School Having Proud of Their Students</h3>
-                        <p>Dolor ame consectetur elite eusmod tempor dunt aliqua utas enim veniam
-                            tempore quis ipsum nostrud ipsume amet consectetur adpisicing elit sedo
-                            eiusmod tempo incdidunt labore dolore magna aliquat enim minim veniam
-                            nostrud abori nisut alquip exea commodo consequat duis aute irure aliqua
-                            enim minim veniam quis nostrud ullamco laboris nisiut aliquip</p>
+                    <div class="section-header left-style mb-olpo">
+                        <span class="cate">About Our kitton</span>
+                        <h3 class="title">Special Attention For Every Child</h3>
+                        <p>Dolor sit amet consectetur elitery eiusmod tempor dunt aliqua utas enim veniam
+                            tempore quis sed psum nostrud ipsume amet consectetur adipisicing elit sedom
+                            eiusmod tempor incididunt ut labore</p>
                     </div>
-                    <ul class="nulla-list">
-                        <li>
-                            <div class="thumb">
-                                <img src="{% static 'images/about/icon01.png' %}" alt="about">
+                    <div class="faq-wrapper mb--10">
+                        <div class="faq-item">
+                            <div class="faq-title">
+                                <span class="right-icon"></span>
+                                <h5 class="title">Learning Environment</h5>
                             </div>
-                            <div class="content">
-                                Learning Environment
-                            </div>
-                        </li>
-                        <li>
-                            <div class="thumb">
-                                <img src="{% static 'images/about/icon02.png' %}" alt="about">
-                            </div>
-                            <div class="content">
-                                Professional Teachers
-                            </div>
-                        </li>
-                        <li>
-                            <div class="thumb">
-                                <img src="{% static 'images/about/icon03.png' %}" alt="about">
-                            </div>
-                            <div class="content">
-                                Programs For Everyone
-                            </div>
-                        </li>
-                        <li>
-                            <div class="thumb">
-                                <img src="{% static 'images/about/icon04.png' %}" alt="about">
-                            </div>
-                            <div class="content">
-                                Professional Teaching
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="about-contact">
-                        <div class="call-item">
-                            <div class="thumb">
-                                <img src="{% static 'images/about/call.png' %}" alt="about">
-                            </div>
-                            <div class="content">
-                                <span class="info">Call to ask any question</span>
-                                <h5 class="subtitle"><a href="Tel:25451245452315">+0123-4056-7890</a></h5>
+                            <div class="faq-content">
+                                <p>Since 2007 we have been visionary and areliable software enginering
+                                    partner for worldclass brands what are bouque digital transformation
+                                    are awesome theme consultancy.</p>
                             </div>
                         </div>
-                        <div class="sign">
-                            <img src="{% static 'images/about/sign.png' %}" alt="about">
+                        <div class="faq-item active open">
+                            <div class="faq-title">
+                                <span class="right-icon"></span>
+                                <h5 class="title">Professional Teachers</h5>
+                            </div>
+                            <div class="faq-content">
+                                <p>Since 2007 we have been visionary and areliable software enginering
+                                    partner for worldclass brands what are bouque digital transformation
+                                    are awesome theme consultancy.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-title">
+                                <span class="right-icon"></span>
+                                <h5 class="title">Programs for Everyone</h5>
+                            </div>
+                            <div class="faq-content">
+                                <p>Since 2007 we have been visionary and areliable software enginering
+                                    partner for worldclass brands what are bouque digital transformation
+                                    are awesome theme consultancy.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -94,50 +81,28 @@
 
 
 <!-- ==========Counter Section Starts Here========== -->
-<div class="counter-section padding-top padding-bottom bg_img" data-background="{% static 'images/counter/counter-bg.jpg' %}">
+<div class="counter-section padding-top padding-bottom bg_img"
+    data-background="{% static 'images/counter/counter-bg.jpg' %}">
     <div class="container">
         <div class="row justify-content-center mb-30-none">
+            {% for counter in counters %}
             <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="counter-item">
                     <div class="counter-thumb">
-                        <img src="{% static 'images/counter/counter1.png' %}" alt="counter">
+                        <img src="{{ counter.image.url }}" alt="counter">
                     </div>
                     <div class="counter-content">
                         <div class="counter-header">
-                            <h2 class="title odometer" data-odometer-final="13">0</h2>
+                            <h2 class="title odometer" data-odometer-final="{{ counter.amount }}">0</h2>
+                            <h2 class="title">{{ counter.symbol }}</h2>
                         </div>
-                        <span class="cate">лет работы</span>
+                        <span class="cate">{{ counter.description }}</span>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-10">
-                <div class="counter-item">
-                    <div class="counter-thumb">
-                        <img src="{% static 'images/counter/counter2.png' %}" alt="counter">
-                    </div>
-                    <div class="counter-content">
-                        <div class="counter-header">
-                            <h2 class="title odometer" data-odometer-final="1000">0</h2>
-                            <h2 class="title">+</h2>
-                        </div>
-                        <span class="cate">учеников</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-10">
-                <div class="counter-item">
-                    <div class="counter-thumb">
-                        <img src="{% static 'images/counter/counter3.png' %}" alt="counter">
-                    </div>
-                    <div class="counter-content">
-                        <div class="counter-header">
-                            <h2 class="title odometer" data-odometer-final="100">0</h2>
-                            <h2 class="title">%</h2>
-                        </div>
-                        <span class="cate">успехи учеников</span>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
+
+
         </div>
     </div>
 </div>
@@ -153,15 +118,16 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header">
-                    <a href='{% url "lessons_section:lessons_list" %}'><span class="cate">Занятия для детей от 1,5 до 7 лет</span></a>
+                    <a href='{% url "lessons_section:lessons_list" %}'><span class="cate">Занятия для детей от 1,5 до 7
+                            лет</span></a>
                     <h3 class="title"><a href='{% url "lessons_section:lessons_list" %}'>Группы дошкольников</a></h3>
                 </div>
             </div>
         </div>
         <div class="row justify-content-center mb-30-none">
             {% for lesson in classes %}
-              
-            
+
+
             <div class="col-xl-4 col-md-6">
                 <div class="class-item">
                     <div class="class-thumb">
@@ -180,7 +146,8 @@
                                 </div>
                                 <div class="content">
                                     <h6 class="subtitle"><a
-                                            href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}">{{ lesson.teacher.fio }}</a></h6>
+                                            href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}">{{ lesson.teacher.fio }}</a>
+                                    </h6>
                                     <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}"
                                         class="info">Профиль</a>
                                 </div>
@@ -188,7 +155,7 @@
                             <div class="cost-area">
                                 <h6 class="subtitle">₴{{ lesson.fee }}{% if lesson.discount_fee %}
                                     /₴ {{ lesson.discount_fee }}
-                                  {% endif %}</h6>
+                                    {% endif %}</h6>
                                 <span class="info">{{ lesson.class_duration }}</span>
                             </div>
                         </div>
@@ -236,7 +203,8 @@
             <div class="col-xl-4 col-md-6">
                 <div class="event-item">
                     <div class="event-thumb">
-                        <a href="{% url 'lessons_section:event_detail' event.slug %}"><img src="{{ event.preview.url }}" alt="events"></a>
+                        <a href="{% url 'lessons_section:event_detail' event.slug %}"><img src="{{ event.preview.url }}"
+                                alt="events"></a>
                         <div class="date-tag">
                             <h3 class="title">{{ event.date_start|date:"d" }}</h3>
                             <span class="mon">{{ event.date_start|date:"M Y" }}</span>
@@ -247,7 +215,8 @@
                             <a href="{% url 'lessons_section:event_detail' event.slug %}">{{ event.title }}</a>
                         </h5>
                         <ul class="events-info">
-                            <li><i class="fas fa-clock"></i> {{ event.date_start|date }} - {{ event.date_end|date }} </li>
+                            <li><i class="fas fa-clock"></i> {{ event.date_start|date }} - {{ event.date_end|date }}
+                            </li>
                             <li><i class="fas fa-home"></i> {{ event.location }}. </li>
                         </ul>
                     </div>
@@ -350,17 +319,17 @@
         </div>
         <div class="row justify-content-center mb--40--50">
             {% for obj in gallery %}
-              
+
             <div class="col-xl-4 col-md-6 col-sm-10">
                 <div class="gallery-item">
                     <div class="gallery-inner">
                         <div class="gallery-thumb">
-                            <a class="img-pop" href="{{ obj.image.url }}"><img
-                                src="{{ obj.image.url }}" alt="gallery"></a>
+                            <a class="img-pop" href="{{ obj.image.url }}"><img src="{{ obj.image.url }}"
+                                    alt="gallery"></a>
                             </a>
                         </div>
                         <div class="gallery-content">
-                            <h6 class="title">{{ obj.title }}   </h6>
+                            <h6 class="title">{{ obj.title }} </h6>
                         </div>
                     </div>
                 </div>
@@ -379,26 +348,29 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header">
-                    <a href='{% url "users_section:teachers_list" %}'><span class="cate">Профессиональный и дружелюбный</span></a>
+                    <a href='{% url "users_section:teachers_list" %}'><span class="cate">Профессиональный и
+                            дружелюбный</span></a>
                     <h3 class="title"><a href='{% url "users_section:teachers_list" %}'>Наш коллектив</a></h3>
                 </div>
             </div>
         </div>
         <div class="row mb-30-none justify-content-center">
             {% for teacher in teachers %}
-              
-            
+
+
             <div class="col-lg-6">
                 <div class="teacher-item">
                     <div class="teacher-inner">
                         <div class="teacher-thumb">
                             <div class="thumb-inner">
-                                <a href="{% url 'users_section:teacher_detail' teacher.slug %}"><img src="{{ teacher.image.url }}"
-                                        alt="teacher"></a>
+                                <a href="{% url 'users_section:teacher_detail' teacher.slug %}"><img
+                                        src="{{ teacher.image.url }}" alt="teacher"></a>
                             </div>
                         </div>
                         <div class="teacher-content">
-                            <h6 class="title"><a href="{% url 'users_section:teacher_detail' teacher.slug %}">{{ teacher.fio }}</a></h6>
+                            <h6 class="title"><a
+                                    href="{% url 'users_section:teacher_detail' teacher.slug %}">{{ teacher.fio }}</a>
+                            </h6>
                             <span class="info">{{ teacher.specialization }}</span>
                             <p>{{ teacher.characteristic }}</p>
                         </div>
@@ -412,7 +384,7 @@
 <!-- ==========Teacher Section Ends Here========== -->
 
 {% comment %}
-  
+
 <!-- ==========Schedule Section Starts Here========== -->
 <section class="schedule-section padding-top padding-bottom">
     <div class="top-shape-center">
@@ -429,7 +401,7 @@
         </div>
         <div class="row mb--20--50 justify-content-center">
             {% for day in schedule %}
-            
+
             <div class="col-xl-4 col-md-6">
                 <div class="schedule-item-2 bg_img bg_contain" data-background="{{ day.background.url }}">
                     <ul>
@@ -450,140 +422,38 @@
 {% endcomment %}
 
 <!-- ==========Client Section Starts Here========== -->
-<section class="client-section padding-top padding-bottom bg_img" data-background="{% static 'images/client/client-bg.jpg' %}">
+<section class="client-section padding-top padding-bottom bg_img"
+    data-background="{% static 'images/client/client-bg.jpg' %}">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header cl-white">
-                    <span class="cate">Parents Say</span>
-                    <h3 class="title">What Students Parents Say</h3>
+                    <span class="cate">Отзывы родителей</span>
+                    <h3 class="title">Что говорят наши родители</h3>
                 </div>
             </div>
         </div>
         <div class="client-slider oh">
+            {% for comment in comments %}
+              
+            
             <div class="client-item">
                 <div class="client-header">
                     <div class="author">
                         <div class="thumb">
-                            <img src="{% static 'images/client/client1.png' %}" alt="client">
+                            <img src="{{ comment.parent_image.url }}" alt="client">
                         </div>
                         <div class="content">
-                            <h6 class="title">Angel Witicker</h6>
-                            <span>UX Designer</span>
+                            <h6 class="title">{{ comment.parent_name }}</h6>
+                            <span>{{ comment.profession }}</span>
                         </div>
-                    </div>
-                    <div class="company">
-                        <img src="{% static 'images/client/logo2.png' %}" alt="client">
                     </div>
                 </div>
                 <div class="client-body">
-                    <p>Rapidiously buildcollaboration anden deas sharing viaing bleeding and
-                        edge nterfaces Energstcally plagiarize team anbuilding and paradgmis
-                        whereas goingi forward process mproveents and monetze fully tested
-                        ergstcally plariarize team whereas go
-                        цауцуацуацуацуац
-                        уацуацуацацау
-                        цуацуацуацауцуingi forward process an services
-                        whereas going forward process</p>
-                        <div class="ratings">
-                            <span><i class="far fa-star"></i></span>
-                            <span><i class="far fa-star"></i></span>
-                            <span><i class="far fa-star"></i></span>
-                            <span><i class="far fa-star"></i></span>
-                            <span><i class="far fa-star"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="client-item">
-                    <div class="client-header">
-                        <div class="author">
-                        <div class="thumb">
-                            <img src="{% static 'images/client/client2.png' %}" alt="client">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">Witicker Alex</h6>
-                            <span>Founder & CEO</span>
-                        </div>
-                    </div>
-                    <div class="company">
-                        <img src="{% static 'images/client/logo1.png' %}" alt="client">
-                    </div>
-                </div>
-                <div class="client-body">
-                    <p>Rapidiously buildcollaboration anden deas sharing viaing bleeding and
-                        edge nterfaces Energstcally plagiarize team anbuilding and paradgmis
-                        whereas goingi forward process mproveents and monetze fully tested
-                        ergstcally plariarize team whereas goingi forward process an services
-                        whereas going forward process</p>
-                        <div class="ratings">
-                            <span><i class="far fa-star"></i></span>
-                            <span><i class="far fa-star"></i></span>
-                            <span><i class="far fa-star"></i></span>
-                            <span><i class="far fa-star"></i></span>
-                            <span><i class="far fa-star"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="client-item">
-                    <div class="client-header">
-                        <div class="author">
-                        <div class="thumb">
-                            <img src="{% static 'images/client/client1.png' %}" alt="client">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">Angel Witicker</h6>
-                            <span>UX Designer</span>
-                        </div>
-                    </div>
-                    <div class="company">
-                        <img src="{% static 'images/client/logo2.png' %}" alt="client">
-                    </div>
-                </div>
-                <div class="client-body">
-                    <p>Rapidiously buildcollaboration anden deas sharing viaing bleeding and
-                        edge nterfaces Energstcally plagiarize team anbuilding and paradgmis
-                        whereas goingi forward process mproveents and monetze fully tested
-                        ergstcally plariarize team whereas goingi forward process an services
-                        whereas going forward process</p>
-                        <div class="ratings">
-                            <span><i class="far fa-star"></i></span>
-                            <span><i class="far fa-star"></i></span>
-                            <span><i class="far fa-star"></i></span>
-                            <span><i class="far fa-star"></i></span>
-                            <span><i class="far fa-star"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="client-item">
-                <div class="client-header">
-                    <div class="author">
-                        <div class="thumb">
-                            <img src="{% static 'images/client/client2.png' %}" alt="client">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">Witicker Alex</h6>
-                            <span>Founder & CEO</span>
-                        </div>
-                    </div>
-                    <div class="company">
-                        <img src="{% static 'images/client/logo1.png' %}" alt="client">
-                    </div>
-                </div>
-                <div class="client-body">
-                    <p>Rapidiously buildcollaboration anden deas sharing viaing bleeding and
-                        edge nterfaces Energstcally plagiarize team anbuilding and paradgmis
-                        whereas goingi forward process mproveents and monetze fully tested
-                        ergstcally plariarize team whereas goingi forward process an services
-                        whereas going forward process</p>
-                        <div class="ratings">
-                            <span><i class="far fa-star"></i></span>
-                            <span><i class="far fa-star"></i></span>
-                        <span><i class="far fa-star"></i></span>
-                        <span><i class="far fa-star"></i></span>
-                        <span><i class="far fa-star"></i></span>
-                    </div>
+                    <p>{{ comment.comment }}</p>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 </section>

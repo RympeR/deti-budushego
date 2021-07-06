@@ -6,6 +6,7 @@ from imagekit.models import ProcessedImageField
 from pilkit.processors import ResizeToFill
 from mptt.models import MPTTModel, TreeForeignKey
 from ckeditor.fields import RichTextField
+from django.template.defaultfilters import truncatechars
 
 class MenuCategory(MPTTModel):
     parent = TreeForeignKey(
@@ -101,12 +102,6 @@ class User(AbstractUser):
             return mark_safe('<img src="{}" width="100" /'.format(self.image.url))
         return None
 
-    def get_contacts(self):
-        return ' || '.join(self.contacts.all())
-
-    def get_blocked_users(self):
-        return ' || '.join(self.blocked_users.all())
-
     @staticmethod
     def _create_user(password, **extra_fields):
         user = User.objects.create(
@@ -169,3 +164,48 @@ class Schedule(models.Model):
     class Meta:
         verbose_name = 'Расписание'
         verbose_name_plural = 'Расписание'
+
+
+class ParentComment(models.Model):
+    parent_name = models.CharField(max_length=100, verbose_name='ФИО родителя')
+    profession = models.CharField('Профессия', max_length=50)
+    comment = models.TextField(verbose_name='Отзыв')
+    parent_image = ProcessedImageField(
+        verbose_name='Аватарка родителя',
+        processors=[ResizeToFill(60, 60)],
+        options={'quality': 100},
+        upload_to=user_avatar,
+        null=True,
+        blank=True
+    )
+
+    def short_comment(self):
+        return truncatechars(self.comment, 20)
+
+    def __str__(self):
+        return self.parent_name
+
+    class Meta:
+        verbose_name = 'Комментарий родителя'
+        verbose_name_plural = 'Комментарии родителей'
+
+
+class MainCounters(models.Model):
+    amount = models.IntegerField('Значение счетчика')
+    symbol = models.CharField(verbose_name='Символ после числа', max_length=1, blank=True, null=True)
+    description = models.CharField(verbose_name='Описание счетчика', max_length=50)
+    image = ProcessedImageField(
+        verbose_name='Заставка описания',
+        processors=[ResizeToFill(91, 86)],
+        options={'quality': 100},
+        upload_to=user_avatar,
+        null=True,
+        blank=True
+    )
+
+    def __str__(self):
+        return f'{self.description} -> {self.amount}'
+
+    class Meta:
+        verbose_name = 'Счетчик на главной'
+        verbose_name_plural = 'Счетчики на главной'

@@ -151,6 +151,30 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="widget widget-post">
+                        <div class="widget-header">
+                            <h5 class="title">Дополнительные программы</h5>
+                        </div>
+                        <div class="widget-body">
+                            <ul>
+                                {% for rel_lesson in object.related_lessons.all %}
+                                    <li>
+                                        <div class="thumb">
+                                            <a href="{% url 'lessons_section:lesson_detail' rel_lesson.slug %}">
+                                                <img src="{{ rel_lesson.preview.url }}" alt="blog">
+                                            </a>
+                                        </div>
+                                        <div class="content">
+                                            <a href="{% url 'lessons_section:lesson_detail' rel_lesson.slug %}">{{ rel_lesson.title }}</a>
+                                            <span>{{ rel_lesson.class_time }}</span>
+                                        </div>
+                                    </li>
+                                  
+                                {% endfor %}
+                                
+                            </ul>
+                        </div>
+                    </div>
                     <div class="widget widget-gallery">
                         <div class="widget-header">
                             <h5 class="title">Галерея</h5>

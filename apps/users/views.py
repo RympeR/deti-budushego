@@ -18,7 +18,7 @@ class UserList(ListView):
         context = super().get_context_data(**kwargs)
         context['teachers'] = User.objects.filter(teacher=True)
         context['vacancys'] = Vacancy.objects.all()
-        context['menu'] = MenuCategory.objects.all()
+        context['menu'] = MenuCategory.objects.filter(display=True)
         context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context
 
@@ -29,7 +29,7 @@ class UserDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['menu'] = MenuCategory.objects.all()
+        context['menu'] = MenuCategory.objects.filter(display=True)
         context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context
 
@@ -41,7 +41,7 @@ class VacancyList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['menu'] = MenuCategory.objects.all()
+        context['menu'] = MenuCategory.objects.filter(display=True)
         context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context
 
@@ -52,6 +52,6 @@ class VacancyDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['menu'] = MenuCategory.objects.all()
+        context['menu'] = MenuCategory.objects.filter(display=True)
         context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context

@@ -10,8 +10,11 @@ from .models import (
     User,
     Program,
     Schedule,
-    Vacancy
+    Vacancy,
+    ParentComment,
+    MainCounters,
 )
+
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
@@ -32,17 +35,20 @@ class UserAdmin(admin.ModelAdmin):
 
     )
 
+
 @admin.register(Attachments)
 class AttachemntsAdmin(admin.ModelAdmin):
     list_display = 'pk', 'attachment_type', 'attachment'
     list_display_links = 'pk',
     filter_fields ='attachment_type',
 
+
 @admin.register(Vacancy)
 class VacancyAdmin(admin.ModelAdmin):
     list_display = 'name', 'vacancy_photo'
     list_display_links = 'name',
     search_fields ='name',
+
 
 @admin.register(MenuCategory)
 class MenuCategoryAdmin(DraggableMPTTAdmin):
@@ -54,11 +60,13 @@ class MenuCategoryAdmin(DraggableMPTTAdmin):
         ('parent', TreeRelatedFieldListFilter),
     )
 
+
 @admin.register(Program)
 class ProgramAdmin(admin.ModelAdmin):
     list_display = 'name', 'hours'
     list_display_links = 'name',
     search_fields = 'name',
+
 
 @admin.register(Schedule)
 class ScheduleAdmin(admin.ModelAdmin):
@@ -66,3 +74,15 @@ class ScheduleAdmin(admin.ModelAdmin):
     list_display_links = 'pk',
     filter_horizontal = 'programs',
 
+
+@admin.register(ParentComment)
+class ParentCommentAdmin(admin.ModelAdmin):
+    list_display = 'parent_name', 'short_comment'
+    list_display_links = 'parent_name',
+    search_fields = 'parent_name',
+
+
+@admin.register(MainCounters)
+class MainCountersAdmin(admin.ModelAdmin):
+    list_display = 'amount', 'description'
+    list_display_links = 'description',

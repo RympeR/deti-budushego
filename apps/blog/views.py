@@ -19,7 +19,7 @@ class PostList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['menu'] = MenuCategory.objects.all()
+        context['menu'] = MenuCategory.objects.filter(display=True)
         context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context
 
@@ -31,7 +31,7 @@ class PostDetail(DetailView):
         context = super().get_context_data(**kwargs)
         context['categories'] = PostCategory.objects.all()
         context['tags'] = Tag.objects.all()
-        context['menu'] = MenuCategory.objects.all()
+        context['menu'] = MenuCategory.objects.filter(display=True)
         context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context
 
@@ -46,6 +46,6 @@ class GalleryList(ListView):
         context = super().get_context_data(**kwargs)
         context['categories'] = GalleryCategory.objects.all()
         context['tags'] = Tag.objects.all()
-        context['menu'] = MenuCategory.objects.all()
+        context['menu'] = MenuCategory.objects.filter(display=True)
         context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context

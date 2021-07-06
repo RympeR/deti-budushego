@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main_content %}
+
+    <!-- ==========Error Section Starts Here========== -->
+    <section class="error-section min-height-section bg_img" data-background="{% static 'assets/images/error/error-bg.jpg'%}">
+        <div class="container">
+            <div class="error-wrapper">
+                <div class="inner-logo">
+                    <a href='{% url "lessons_section:index" %}'><img src="{% static 'images/error/logo.png' %}" alt="error"></a>
+                </div>
+                <div class="main-thumb">
+                    <img src="{% static 'images/error/404.png' %}" alt="error">
+                </div>
+                <div class="error-content">
+                    <h3 class="title">Извините, страница не найдена. </h3>
+                    <p>Проверьте, пожалуйста, адрес в адресной строке</p>
+                    <a href='{% url "lessons_section:index" %}' class="custom-button"><span>На главную</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ==========Error Section Ends Here========== -->
+    {% endblock main_content %}
