@@ -44,7 +44,7 @@ class Event(models.Model):
     years_old = models.TextField(verbose_name='Возраст')
     fee = models.TextField(verbose_name='Цена мероприятия')
     date_start = models.DateField(verbose_name="Дата начала мероприятия")
-    date_end = models.DateField(verbose_name="Дата конца мероприятия")
+    date_end = models.DateField(verbose_name="Дата конца мероприятия", blank=True, null=True)
     time = models.TextField(verbose_name='Время проведения')
     timer_time = models.DateTimeField(verbose_name='Время начала мероприятия')
     related_posts = models.ManyToManyField(
