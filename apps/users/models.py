@@ -42,7 +42,7 @@ class Attachments(models.Model):
         verbose_name='Вложение', upload_to=attachment)
 
     def __str__(self):
-        return str(self.pk)
+        return str(self.attachment)
 
     class Meta:
         verbose_name = 'Вложение'
@@ -62,17 +62,26 @@ class Vacancy(models.Model):
         if self.icon and hasattr(self.icon, 'url'):
             return mark_safe('<img src="{}" width="100" /'.format(self.icon.url))
         return None
+
     class Meta:
         verbose_name = 'Вакансия'
         verbose_name_plural = 'Вакансии'
 
 class User(AbstractUser):
     username = models.CharField(
-        'Телефон',
+        'Логин',
         unique=True,
         max_length=20
     )
     fio = models.CharField('ФИО', max_length=255, null=True, blank=True)
+    preview_avatar = ProcessedImageField(
+        verbose_name='Картинка в маленьком блоке',
+        processors=[ResizeToFill(312, 312)],
+        options={'quality': 100},
+        upload_to=user_avatar,
+        null=True,
+        blank=True
+    )
     image = ProcessedImageField(
         verbose_name='Аватар',
         processors=[ResizeToFill(600, 600)],

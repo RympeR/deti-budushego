@@ -344,7 +344,7 @@
 </section>
 <!-- ==========Gallery Section Ends Here========== -->
 
-
+{% comment %}
 <!-- ==========Teacher Section Starts Here========== -->
 <section class="teacher-section padding-bottom padding-top bg_img"
     data-background="{% static 'images/teacher/teacher-bg.jpg' %}">
@@ -367,8 +367,15 @@
                     <div class="teacher-inner">
                         <div class="teacher-thumb">
                             <div class="thumb-inner">
+                                {% if teacher.preview_avatar %}
                                 <a href="{% url 'users_section:teacher_detail' teacher.slug %}"><img
-                                        src="{{ teacher.image.url }}" alt="teacher"></a>
+                                    src="{{ teacher.preview_avatar.url }}" alt="teacher"></a>
+                                {% else %}
+                                <a href="{% url 'users_section:teacher_detail' teacher.slug %}"><img
+                                    src="{{ teacher.image.url }}" alt="teacher"></a>
+                                {% endif %}
+                                
+                                
                             </div>
                         </div>
                         <div class="teacher-content">
@@ -387,7 +394,7 @@
 </section>
 <!-- ==========Teacher Section Ends Here========== -->
 
-{% comment %}
+
 
 <!-- ==========Schedule Section Starts Here========== -->
 <section class="schedule-section padding-top padding-bottom">
