@@ -13,6 +13,7 @@ from .models import (
     Vacancy,
     ParentComment,
     MainCounters,
+    AboutCounters,
 )
 
 
@@ -82,7 +83,7 @@ class ParentCommentAdmin(admin.ModelAdmin):
     search_fields = 'parent_name',
 
 
-@admin.register(MainCounters)
+@admin.register(MainCounters, AboutCounters)
 class MainCountersAdmin(admin.ModelAdmin):
     list_display = 'amount', 'description'
     list_display_links = 'description',

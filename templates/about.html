@@ -161,61 +161,22 @@
 <div class="counter-section padding-top padding-bottom bg_img" data-background="{% static 'images/counter/counter-bg.jpg' %}">
     <div class="container">
         <div class="row justify-content-center mb-30-none">
+            {% for counter in counters %}
             <div class="col-xl-3 col-md-6 col-sm-6">
                 <div class="counter-item round-style">
                     <div class="counter-thumb">
-                        <img src="{% static 'images/counter/counter4.png' %}" alt="counter">
+                        <img src="{{ counter.image.url }}" alt="counter">
                     </div>
                     <div class="counter-content">
                         <div class="counter-header">
-                            <h2 class="title odometer" data-odometer-final="15">0</h2>
+                            <h2 class="title odometer" data-odometer-final="{{ counter.amount }}">0</h2>
+                            <h2 class="title">{{ counter.symbol }}</h2>
                         </div>
-                        <span class="cate">обучающих программ</span>
+                        <span class="cate">{{ counter.description }}</span>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-md-6 col-sm-6">
-                <div class="counter-item round-style">
-                    <div class="counter-thumb">
-                        <img src="{% static 'images/counter/counter5.png' %}" alt="counter">
-                    </div>
-                    <div class="counter-content">
-                        <div class="counter-header">
-                            <h2 class="title odometer" data-odometer-final="1000">0</h2>
-                            <h2 class="title">+</h2>
-                        </div>
-                        <span class="cate">игр и пособий</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6 col-sm-6">
-                <div class="counter-item round-style">
-                    <div class="counter-thumb">
-                        <img src="{% static 'images/counter/counter6.png' %}" alt="counter">
-                    </div>
-                    <div class="counter-content">
-                        <div class="counter-header">
-                            <h2 class="title odometer" data-odometer-final="17700">0</h2>
-                            <h2 class="title">+</h2>
-                        </div>
-                        <span class="cate">Facebook подписчиков</span>
-                    </div>
-                </div>
-            </div>
-            <!-- <div class="col-xl-3 col-md-6 col-sm-6">
-                <div class="counter-item round-style">
-                    <div class="counter-thumb">
-                        <img src="{% static 'images/counter/counter7.png' %}" alt="counter">
-                    </div>
-                    <div class="counter-content">
-                        <div class="counter-header">
-                            <h2 class="title odometer" data-odometer-final="7700">0</h2>
-                            <h2 class="title">+</h2>
-                        </div>
-                        <span class="cate">подписчиков на Facebook</span>
-                    </div>
-                </div>
-            </div> -->
+            {% endfor %}
         </div>
     </div>
 </div>

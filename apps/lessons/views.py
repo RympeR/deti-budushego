@@ -13,7 +13,8 @@ from apps.users.models import (
     User,
     Schedule,
     ParentComment,
-    MainCounters
+    MainCounters,
+    AboutCounters,
 )
 from apps.blog.models import Gallery, Post
 
@@ -89,6 +90,7 @@ def about(request):
     context['teachers'] = User.objects.filter(most_popular=True)
     context['posts'] = Post.objects.filter(most_popular=True)
     context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
+    context['counters'] = AboutCounters.objects.all()
     return render(request, 'about.html', context=context)
 
 

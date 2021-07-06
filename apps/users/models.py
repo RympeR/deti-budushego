@@ -209,3 +209,23 @@ class MainCounters(models.Model):
     class Meta:
         verbose_name = 'Счетчик на главной'
         verbose_name_plural = 'Счетчики на главной'
+
+class AboutCounters(models.Model):
+    amount = models.IntegerField('Значение счетчика')
+    symbol = models.CharField(verbose_name='Символ после числа', max_length=1, blank=True, null=True)
+    description = models.CharField(verbose_name='Описание счетчика', max_length=50)
+    image = ProcessedImageField(
+        verbose_name='Заставка описания',
+        processors=[ResizeToFill(91, 86)],
+        options={'quality': 100},
+        upload_to=user_avatar,
+        null=True,
+        blank=True
+    )
+
+    def __str__(self):
+        return f'{self.description} -> {self.amount}'
+
+    class Meta:
+        verbose_name = 'Счетчик на странице о нас'
+        verbose_name_plural = 'Счетчики на странице о нас'
