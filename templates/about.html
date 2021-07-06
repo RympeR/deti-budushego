@@ -165,12 +165,16 @@
             <div class="col-xl-3 col-md-6 col-sm-6">
                 <div class="counter-item round-style">
                     <div class="counter-thumb">
-                        <img src="{{ counter.image.url }}" alt="counter">
+                        {% if counter.image %}
+                            <img src="{{ counter.image.url }}" alt="counter">
+                        {% endif %}
                     </div>
                     <div class="counter-content">
                         <div class="counter-header">
                             <h2 class="title odometer" data-odometer-final="{{ counter.amount }}">0</h2>
-                            <h2 class="title">{{ counter.symbol }}</h2>
+                            {% if counter.symbol %}
+                                <h2 class="title">{{ counter.symbol }}</h2>
+                            {% endif %}
                         </div>
                         <span class="cate">{{ counter.description }}</span>
                     </div>
