@@ -26,7 +26,7 @@
                     <!-- <img id="youtube_img" src="{% static 'images/about/about01.jpg' %}" alt="about">
                     <a id="youtube_link" class="video-button popup flaticon-play" ><i
                            ></i></a> -->
-                    <iframe id="youtube_player" width="550" height="600"  src="https://www.youtube.com/embed/QJEI0D2EqyY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe id="youtube_player" src="https://www.youtube.com/embed/QJEI0D2EqyY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
             
@@ -462,14 +462,4 @@
 {% endblock main_content %}
 
 {% block custom_scripts %}
-<script>
-    $(document).ready(()=>{
-        $('#youtube_player').css('z-index', '999');
-    });
-    function play() {
-        $('#youtube_player').css('display', 'block');
-        $('#youtube_img').css('display', 'none');
-        $('#youtube_link').css('display', 'none');
-    }
-</script>
 {% endblock custom_scripts %}

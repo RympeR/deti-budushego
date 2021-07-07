@@ -7272,3 +7272,15 @@ div[class*=col]:nth-of-type(6n + 6) .shop-item .product-thumb, div[class*=col]:n
 }
 
 /*# sourceMappingURL=main.css.map */
+#youtube_player{
+  width: 550px;
+  height: 600px;
+}
+
+@media (max-width: 450px) {
+  #youtube_player{
+    width: 350px;
+    height: 260px;
+    padding-bottom: 20px;
+  }
+}
