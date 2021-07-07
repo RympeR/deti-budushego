@@ -4,7 +4,7 @@ from apps.lessons.models import Event
 from .models import (
     User,
     MenuCategory,
-    Vacancy
+    Vacancy,
 )
 
 

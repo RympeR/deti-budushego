@@ -60,7 +60,7 @@
                                 <a href="{% url 'lessons_section:event_detail' event.slug %}">{{ event.title }}</a>
                             </h5>
                             <ul class="events-info">
-                                <li><i class="fas fa-clock"></i> {{ event.date_start|date }} - {{ event.date_end|date }} </li>
+                                <li><i class="fas fa-clock"></i> {{ event.date_start|date }}&nbsp;&nbsp; {{ event.timer_time|time}} - {{ event.time }} </li>
                                 <li><i class="fas fa-home"></i> {{ event.location }}. </li>
                             </ul>
                         </div>

@@ -15,6 +15,7 @@ from apps.users.models import (
     ParentComment,
     MainCounters,
     AboutCounters,
+    DropDownPoint,
 )
 from apps.blog.models import Gallery, Post
 
@@ -76,6 +77,7 @@ def index(request):
     context['gallery'] = Gallery.objects.filter(most_popular=True)
     context['teachers'] = User.objects.filter(most_popular=True)
     context['events'] = Event.objects.filter(most_popular=True)
+    context['drop_down'] = DropDownPoint.objects.filter(main_page=True)
     context['schedule'] = Schedule.objects.all()
     context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
     context['comments'] = ParentComment.objects.all()
@@ -89,6 +91,7 @@ def about(request):
     context['menu'] = MenuCategory.objects.filter(display=True)
     context['teachers'] = User.objects.filter(most_popular=True)
     context['posts'] = Post.objects.filter(most_popular=True)
+    context['drop_down'] = DropDownPoint.objects.filter(main_page=False)
     context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
     context['counters'] = AboutCounters.objects.all()
     return render(request, 'about.html', context=context)
