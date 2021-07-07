@@ -14,7 +14,15 @@ from .models import (
     ParentComment,
     MainCounters,
     AboutCounters,
+    DropDownPoint,
 )
+
+@admin.register(DropDownPoint)
+class DropDownPointAdmin(admin.ModelAdmin):
+    list_display = 'title', 'short_description', 'main_page'
+    list_display_links = 'title',
+    list_filter = 'main_page', 'opened'
+    search_fields = 'title',
 
 
 @admin.register(User)

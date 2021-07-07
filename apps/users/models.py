@@ -28,6 +28,23 @@ class MenuCategory(MPTTModel):
         verbose_name_plural = 'Элементы меню'
 
 
+class DropDownPoint(models.Model):
+    title = models.TextField('Заголовок')
+    description = models.TextField('Описание')
+    main_page = models.BooleanField('Отобразить на главной?', default=True)
+    opened = models.BooleanField('Развернут', default=False)
+
+    def short_description(self):
+        return truncatechars(self.description, 20)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Раскрывающийся пункт'
+        verbose_name_plural = 'Раскрывающиеся пункты'
+
+
 class Attachments(models.Model):
 
     class AttachmentType(models.TextChoices):
@@ -177,7 +194,7 @@ class Schedule(models.Model):
 
 class ParentComment(models.Model):
     parent_name = models.CharField(max_length=100, verbose_name='ФИО родителя')
-    profession = models.CharField('Профессия', max_length=50)
+    profession = models.CharField('Профессия', max_length=50, blank=True, null=True)
     comment = models.TextField(verbose_name='Отзыв')
     parent_image = ProcessedImageField(
         verbose_name='Аватарка родителя',

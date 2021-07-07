@@ -38,39 +38,17 @@
                             eiusmod tempor incididunt ut labore</p>
                     </div>
                     <div class="faq-wrapper mb--10">
-                        <div class="faq-item">
+                        {% for dropdown in  drop_down%}
+                        <div class="faq-item {% if dropdown.opened %}active open{% endif %} ">
                             <div class="faq-title">
                                 <span class="right-icon"></span>
-                                <h5 class="title">Learning Environment</h5>
+                                <h5 class="title">{{ dropdown.title }}</h5>
                             </div>
                             <div class="faq-content">
-                                <p>Since 2007 we have been visionary and areliable software enginering
-                                    partner for worldclass brands what are bouque digital transformation
-                                    are awesome theme consultancy.</p>
+                                <p>{{ dropdown.description }}</p>
                             </div>
                         </div>
-                        <div class="faq-item active open">
-                            <div class="faq-title">
-                                <span class="right-icon"></span>
-                                <h5 class="title">Professional Teachers</h5>
-                            </div>
-                            <div class="faq-content">
-                                <p>Since 2007 we have been visionary and areliable software enginering
-                                    partner for worldclass brands what are bouque digital transformation
-                                    are awesome theme consultancy.</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                <span class="right-icon"></span>
-                                <h5 class="title">Programs for Everyone</h5>
-                            </div>
-                            <div class="faq-content">
-                                <p>Since 2007 we have been visionary and areliable software enginering
-                                    partner for worldclass brands what are bouque digital transformation
-                                    are awesome theme consultancy.</p>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -439,7 +417,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header cl-white">
-                    <span class="cate">Отзывы родителей</span>
+                    <span class="cate">Отзывы о нашем центре</span>
                     <h3 class="title">Что говорят наши родители</h3>
                 </div>
             </div>
@@ -456,7 +434,9 @@
                         </div>
                         <div class="content">
                             <h6 class="title">{{ comment.parent_name }}</h6>
-                            <span>{{ comment.profession }}</span>
+                            {% if comment.profession %}
+                                <span>{{ comment.profession }}</span>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

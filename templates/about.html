@@ -31,7 +31,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header">
-                    <span class="cate">Детский центр "Дети будущего", г. Одесса</span>
+                    <span class="cate">Программы для каждого возраста</span>
                     <h3 class="title">Обучение дошкольников</h3>
                 </div>
             </div>
@@ -114,39 +114,17 @@
                                 eiusmod tempor incididunt ut labore</p>
                         </div>
                         <div class="faq-wrapper mb--10">
-                            <div class="faq-item">
+                            {% for dropdown in  drop_down%}
+                            <div class="faq-item {% if dropdown.opened %}active open{% endif %} ">
                                 <div class="faq-title">
                                     <span class="right-icon"></span>
-                                    <h5 class="title">Learning Environment</h5>
+                                    <h5 class="title">{{ dropdown.title }}</h5>
                                 </div>
                                 <div class="faq-content">
-                                    <p>Since 2007 we have been visionary and areliable software enginering
-                                        partner for worldclass brands what are bouque digital transformation
-                                        are awesome theme consultancy.</p>
+                                    <p>{{ dropdown.description }}</p>
                                 </div>
                             </div>
-                            <div class="faq-item active open">
-                                <div class="faq-title">
-                                    <span class="right-icon"></span>
-                                    <h5 class="title">Professional Teachers</h5>
-                                </div>
-                                <div class="faq-content">
-                                    <p>Since 2007 we have been visionary and areliable software enginering
-                                        partner for worldclass brands what are bouque digital transformation
-                                        are awesome theme consultancy.</p>
-                                </div>
-                            </div>
-                            <div class="faq-item">
-                                <div class="faq-title">
-                                    <span class="right-icon"></span>
-                                    <h5 class="title">Programs for Everyone</h5>
-                                </div>
-                                <div class="faq-content">
-                                    <p>Since 2007 we have been visionary and areliable software enginering
-                                        partner for worldclass brands what are bouque digital transformation
-                                        are awesome theme consultancy.</p>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
