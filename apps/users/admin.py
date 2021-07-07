@@ -18,12 +18,12 @@ from .models import (
 )
 
 @admin.register(DropDownPoint)
-class DropDownPointAdmin(admin.ModelAdmin):
-    list_display = 'title', 'short_description', 'main_page'
+class DropDownPointAdmin(DraggableMPTTAdmin):
+    list_display = 'tree_actions', 'title', 'short_description', 'main_page'
     list_display_links = 'title',
     list_filter = 'main_page', 'opened'
     search_fields = 'title',
-
+    fields = 'title', 'description', 'main_page', 'opened'
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):

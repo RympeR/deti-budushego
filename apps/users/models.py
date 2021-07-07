@@ -28,11 +28,15 @@ class MenuCategory(MPTTModel):
         verbose_name_plural = 'Элементы меню'
 
 
-class DropDownPoint(models.Model):
+class DropDownPoint(MPTTModel):
+    parent = TreeForeignKey(
+        'self', verbose_name='Родительская категория', blank=True, null=True, related_name='parent_category', on_delete=models.CASCADE)
     title = models.TextField('Заголовок')
     description = models.TextField('Описание')
     main_page = models.BooleanField('Отобразить на главной?', default=True)
     opened = models.BooleanField('Развернут', default=False)
+    class MPTTMeta:
+        level_attr = 'mеnu_cat'
 
     def short_description(self):
         return truncatechars(self.description, 20)
