@@ -7,8 +7,6 @@ from django.template.defaultfilters import truncatechars
 from apps.blog.models import Gallery, Post, Tag
 from apps.users.models import User
 
-# Create your models here.
-
 
 class LessonCategory(models.Model):
     title = models.CharField(
@@ -45,7 +43,7 @@ class Event(models.Model):
     fee = models.TextField(verbose_name='Цена мероприятия')
     date_start = models.DateField(verbose_name="Дата начала мероприятия")
     date_end = models.DateField(verbose_name="Дата конца мероприятия", blank=True, null=True)
-    time = models.TextField(verbose_name='Время проведения')
+    time = models.TextField(verbose_name='Окончание')
     timer_time = models.DateTimeField(verbose_name='Время начала мероприятия')
     related_posts = models.ManyToManyField(
         Post, related_name='event_related_posts', blank=True, verbose_name='Схожие посты')
