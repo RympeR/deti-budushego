@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block main_content %}
+
 <!-- ==========Banner Section Starts Here========== -->
 <section class="banner-section bg_img" data-background="{% static 'images/banner/banner01.png' %}">
     <div class="container">
@@ -21,21 +22,26 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <div class="about-video mr-lg-4">
-                    <img src="{% static 'images/about/about01.jpg' %}" alt="about">
-                    <a href="https://www.youtube.com/embed/6E9J8biF8RE" class="video-button popup"><i
-                            class="flaticon-play"></i></a>
+                <div class="mr-lg-4">
+                    <!-- <img id="youtube_img" src="{% static 'images/about/about01.jpg' %}" alt="about">
+                    <a id="youtube_link" class="video-button popup flaticon-play" ><i
+                           ></i></a> -->
+                    <iframe id="youtube_player" width="550" height="600"  src="https://www.youtube.com/embed/QJEI0D2EqyY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
-
+            
             <div class="col-lg-6">
                 <div class="about-content">
                     <div class="section-header left-style mb-olpo">
-                        <span class="cate">About Our kitton</span>
-                        <h3 class="title">Special Attention For Every Child</h3>
-                        <p>Dolor sit amet consectetur elitery eiusmod tempor dunt aliqua utas enim veniam
-                            tempore quis sed psum nostrud ipsume amet consectetur adipisicing elit sedom
-                            eiusmod tempor incididunt ut labore</p>
+                        <span class="cate">О наших преимуществах</span>
+                        <h3 class="title">Почему родители выбирают "Дети будущего"?</h3>
+                        <p>Почему к нам часто возят детей из других районов, хотя рядом с домом есть детский центр? 
+                            Вопрос в наших инновационных методиках обучения. В адаптивном обучении. В нашей 
+                            нацеленности на развитие высоких способностей детей, умении построить занятие 
+                            так, чтобы детям было и сложно и очень интересно одновременно, чтобы 
+                            они получали удовольствие от умственной деятельности. </p>
+                            <br>
+                        <p>Почему это так важно вы можете узнать, прочитав статьи об одаренности на нашем сайте. А ниже вы найдете информацию о том, что мы делаем в центре для развития высоких способностей у детей. </p>
                     </div>
                     <div class="faq-wrapper mb--10">
                         {% for dropdown in  drop_down%}
@@ -454,3 +460,16 @@
 
 
 {% endblock main_content %}
+
+{% block custom_scripts %}
+<script>
+    $(document).ready(()=>{
+        $('#youtube_player').css('z-index', '999');
+    });
+    function play() {
+        $('#youtube_player').css('display', 'block');
+        $('#youtube_img').css('display', 'none');
+        $('#youtube_link').css('display', 'none');
+    }
+</script>
+{% endblock custom_scripts %}
