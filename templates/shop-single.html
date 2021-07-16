@@ -67,9 +67,7 @@
 								<p class="info">
 									{{ object.description }}
 								</p>
-								<form class="size-form">
-									<button type="submit" class="custom-button"><span>Add To Cart</span></button>
-								</form>
+									<a href='{{ object.get_add_to_cart_url }}' class="custom-button"><span>Добавить в корзину</span></a>
 							</div>
 						</div>
 					</div>

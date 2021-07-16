@@ -61,18 +61,18 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
-    def get_absolute_url(self):
-        return reverse("cart:product-detail", kwargs={'slug': self.slug})
-
-    def get_update_url(self):
-        return reverse("staff:product-update", kwargs={'pk': self.pk})
-
-    def get_delete_url(self):
-        return reverse("staff:product-delete", kwargs={'pk': self.pk})
-
     def get_price(self):
         return "{:.2f}".format(self.price / 100)
+        
+    def get_add_to_cart_url(self):
+        return reverse("shop_section:add-to-cart", kwargs={
+            'slug': self.slug
+        })
 
+    def get_remove_from_cart_url(self):
+        return reverse("shop_section:remove-from-cart", kwargs={
+            'slug': self.slug
+        })
 
 class Order(models.Model):
     user = models.ForeignKey(

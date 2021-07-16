@@ -1,6 +1,6 @@
 from apps.ecommerce.models import *
 from django import template
-
+from django.db.models import Q
 
 register = template.Library()
 
@@ -22,10 +22,21 @@ def latest_products(request):
 def cart_item_count(request):
     if request.user.is_authenticated:
         user = request.user
-        qs = Order.objects.filter(finished=False, user=user)
-        if qs.exists():
+        qs = Order.objects.get(Q(finished=False) & Q(user=user))
+        if qs:
             try:
-                return qs[0].items_order.count()
+                return qs.items_order.count()
             except:
                 return 0
+    return 0
+    
+@register.filter
+def cart_products(request):
+    if request.user.is_authenticated:
+        user = request.user
+        qs = Order.objects.get(Q(finished=False) & Q(user=user))
+        if qs:
+            order_items = qs.items_order.all()
+            products = [ item.product for item in order_items ]
+            return products
     return 0

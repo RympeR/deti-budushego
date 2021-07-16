@@ -182,7 +182,7 @@
       $('.cart-sidebar-area').toggleClass('active');
     })
     $('.remove-cart').on('click', function (e) {
-      e.preventDefault();
+
       $(this).parent().parent().hide(300);
   });
     //Header Bar

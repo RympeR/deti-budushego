@@ -42,7 +42,7 @@
 									<div class="product-action-link">
 										<a class="view-modal" data-target="#{{ product.slug }}"><i class="far fa-eye"></i></a>
 										<!-- <a href="#"><i class="far fa-heart"></i></a> -->
-										<a href="#"><i class="fas fa-cart-plus"></i></a>
+										<a href="{{ product.get_add_to_cart_url }}"><i class="fas fa-cart-plus"></i></a>
 									</div>
 								</div>
 								<div class="product-content">
@@ -60,7 +60,7 @@
 									<div class="product-action-link">
 										<a class="view-modal" data-target="#{{ product.slug }}"><i class="far fa-eye"></i></a>
 										<!-- <a href="#"><i class="far fa-heart"></i></a> -->
-										<a href="#"><i class="fas fa-cart-plus"></i></a>
+										<a href="{{ product.get_add_to_cart_url }}"><i class="fas fa-cart-plus"></i></a>
 									</div>
 								</div>
 								<div class="product-content">

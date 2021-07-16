@@ -2,7 +2,7 @@ import json
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
