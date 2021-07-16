@@ -1,36 +1,31 @@
-from apps.blog.models import *
-from apps.lessons.models import *
-from apps.users.models import *
+from apps.ecommerce.models import *
 from django import template
-
 
 
 register = template.Library()
 
 @register.filter
-def post_categories(request):
-    qs = PostCategory.objects.all()
+def shop_categories(request):
+    qs = Category.objects.all()
     if qs.exists():
         return qs
     return 0
 
 @register.filter
-def gallery_categories(request):
-    qs = GalleryCategory.objects.all()
+def latest_products(request):
+    qs = Product.objects.all().order_by('-pk')[:3]
     if qs.exists():
         return qs
     return 0
-
+    
 @register.filter
-def lesson_categories(request):
-    qs = LessonCategory.objects.all()
-    if qs.exists():
-        return qs
-    return 0
-
-@register.filter
-def events_categories(request):
-    qs = EventCategory.objects.all()
-    if qs.exists():
-        return qs
+def cart_item_count(request):
+    if request.user.is_authenticated:
+        user = request.user
+        qs = Order.objects.filter(finished=False, user=user)
+        if qs.exists():
+            try:
+                return qs[0].items_order.count()
+            except:
+                return 0
     return 0

@@ -1,20 +1,18 @@
 {% extends "base.html" %}
 {% load static %}
+{% load cart_template_tags %}
 {% block main_content %}
     <!-- ==========Banner Section Starts Here========== -->
-    <section class="page-header bg_img" data-background="./assets/images/banner/page-header.jpg">
+    <section class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
         <div class="container">
             <div class="page-header-content">
-                <h1 class="title">Our Product Page</h1>
+                <h1 class="title">Магазин</h1>
                 <ul class="breadcrumb">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href='{% url "lessons_section:index" %}'>Главная</a>
                     </li>
                     <li>
-                        <a href="#">Pages</a>
-                    </li>
-                    <li>
-                        Shop
+                        Магазин
                     </li>
                 </ul>
             </div>
@@ -29,523 +27,127 @@
 			<div class="row mb--50">
 				<div class="col-lg-8 col-xl-9 mb-50">
 					<div class="shop-title d-flex flex-wrap justify-content-between">
-						<p>Showing 01 - 12 of 139 Results</p>
+						<p></p>
 						<div class="product-view-mode">
 							<a class="active" data-target="grid"><i class="fas fa-th"></i></a>
 							<a data-target="list"><i class="fas fa-list"></i></a>
 						</div>
 					</div>
 					<div class="shop-product-wrap grid row mb-30-none">
+						{% for product in products %}
 						<div class="col-xl-4 col-md-6">
 							<div class="shop-item">
 								<div class="product-thumb">
-									<img src="assets/images/shop/01.png" alt="shop">
+									<img src="{{ product.preview.url }}" alt="shop">
 									<div class="product-action-link">
-										<a class="view-modal" data-target="#quick_view"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
+										<a class="view-modal" data-target="#{{ product.slug }}"><i class="far fa-eye"></i></a>
+										<!-- <a href="#"><i class="far fa-heart"></i></a> -->
 										<a href="#"><i class="fas fa-cart-plus"></i></a>
-										<a href="#"><i class="fas fa-sync-alt"></i></a>
 									</div>
 								</div>
 								<div class="product-content">
-									<h5 class="title"><a href="shop-single.html">Baby Bags</a></h5>
-									<p>
-										<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-									</p>
-									<h6 class="subtitle">$200</h6>
+									<h5 class="title"><a href="{% url 'shop_section:single_shop' product.slug %}">{{ product.title }}</a></h5>
+									{% if product.discount_price %}
+										<h6 class="subtitle">₴{{ product.discount_price }}</h6>
+									{% else %}
+										<h6 class="subtitle">₴{{ product.price }}</h6>
+									{% endif %}
 								</div>
 							</div>
 							<div class="product-list-item">
 								<div class="product-thumb">
-									<img src="assets/images/shop/01.png" alt="shop">
+									<img src="{{ product.preview.url }}" alt="shop">
 									<div class="product-action-link">
-										<a class="view-modal" data-target="#quick_view"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
+										<a class="view-modal" data-target="#{{ product.slug }}"><i class="far fa-eye"></i></a>
+										<!-- <a href="#"><i class="far fa-heart"></i></a> -->
 										<a href="#"><i class="fas fa-cart-plus"></i></a>
-										<a href="#"><i class="fas fa-sync-alt"></i></a>
 									</div>
 								</div>
 								<div class="product-content">
-									<h5 class="title"><a href="shop-single.html">Baby Bags</a></h5>
+									<h5 class="title"><a href="{% url 'shop_section:single_shop' product.slug %}">{{ product.title }}</a></h5>
+									{% if product.discount_price %}
+										<h6 class="subtitle">₴{{ product.discount_price }}</h6>
+									{% else %}
+										<h6 class="subtitle">₴{{ product.price }}</h6>
+									{% endif %}
 									<p>
-										<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-									</p>
-									<h6 class="subtitle">$200</h6>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+										{{ product.description }}
 									</p>
 								</div>
 							</div>
 						</div>
-						<div class="col-xl-4 col-md-6">
-							<div class="shop-item">
-								<div class="product-thumb">
-									<img src="assets/images/shop/02.png" alt="shop">
-									<div class="product-action-link">
-										<a class="view-modal" data-target="#quick_view"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
-										<a href="#"><i class="fas fa-cart-plus"></i></a>
-										<a href="#"><i class="fas fa-sync-alt"></i></a>
-									</div>
-								</div>
-								<div class="product-content">
-									<h5 class="title"><a href="shop-single.html">Baby Bags</a></h5>
-									<p>
-										<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-									</p>
-									<h6 class="subtitle">$200</h6>
-								</div>
-							</div>
-							<div class="product-list-item">
-								<div class="product-thumb">
-									<img src="assets/images/shop/02.png" alt="shop">
-									<div class="product-action-link">
-										<a class="view-modal" data-target="#quick_view"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
-										<a href="#"><i class="fas fa-cart-plus"></i></a>
-										<a href="#"><i class="fas fa-sync-alt"></i></a>
-									</div>
-								</div>
-								<div class="product-content">
-									<h5 class="title"><a href="shop-single.html">Baby Bags</a></h5>
-									<p>
-										<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-									</p>
-									<h6 class="subtitle">$200</h6>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-4 col-md-6">
-							<div class="shop-item">
-								<div class="product-thumb">
-									<img src="assets/images/shop/03.png" alt="shop">
-									<div class="product-action-link">
-										<a class="view-modal" data-target="#quick_view"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
-										<a href="#"><i class="fas fa-cart-plus"></i></a>
-										<a href="#"><i class="fas fa-sync-alt"></i></a>
-									</div>
-								</div>
-								<div class="product-content">
-									<h5 class="title"><a href="shop-single.html">Baby Bags</a></h5>
-									<p>
-										<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-									</p>
-									<h6 class="subtitle">$200</h6>
-								</div>
-							</div>
-							<div class="product-list-item">
-								<div class="product-thumb">
-									<img src="assets/images/shop/03.png" alt="shop">
-									<div class="product-action-link">
-										<a class="view-modal" data-target="#quick_view"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
-										<a href="#"><i class="fas fa-cart-plus"></i></a>
-										<a href="#"><i class="fas fa-sync-alt"></i></a>
-									</div>
-								</div>
-								<div class="product-content">
-									<h5 class="title"><a href="shop-single.html">Baby Bags</a></h5>
-									<p>
-										<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-									</p>
-									<h6 class="subtitle">$200</h6>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-4 col-md-6">
-							<div class="shop-item">
-								<div class="product-thumb">
-									<img src="assets/images/shop/04.png" alt="shop">
-									<div class="product-action-link">
-										<a class="view-modal" data-target="#quick_view"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
-										<a href="#"><i class="fas fa-cart-plus"></i></a>
-										<a href="#"><i class="fas fa-sync-alt"></i></a>
-									</div>
-								</div>
-								<div class="product-content">
-									<h5 class="title"><a href="shop-single.html">Baby Bags</a></h5>
-									<p>
-										<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-									</p>
-									<h6 class="subtitle">$200</h6>
-								</div>
-							</div>
-							<div class="product-list-item">
-								<div class="product-thumb">
-									<img src="assets/images/shop/04.png" alt="shop">
-									<div class="product-action-link">
-										<a class="view-modal" data-target="#quick_view"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
-										<a href="#"><i class="fas fa-cart-plus"></i></a>
-										<a href="#"><i class="fas fa-sync-alt"></i></a>
-									</div>
-								</div>
-								<div class="product-content">
-									<h5 class="title"><a href="shop-single.html">Baby Bags</a></h5>
-									<p>
-										<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-									</p>
-									<h6 class="subtitle">$200</h6>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-4 col-md-6">
-							<div class="shop-item">
-								<div class="product-thumb">
-									<img src="assets/images/shop/05.png" alt="shop">
-									<div class="product-action-link">
-										<a class="view-modal" data-target="#quick_view"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
-										<a href="#"><i class="fas fa-cart-plus"></i></a>
-										<a href="#"><i class="fas fa-sync-alt"></i></a>
-									</div>
-								</div>
-								<div class="product-content">
-									<h5 class="title"><a href="shop-single.html">Baby Bags</a></h5>
-									<p>
-										<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-									</p>
-									<h6 class="subtitle">$200</h6>
-								</div>
-							</div>
-							<div class="product-list-item">
-								<div class="product-thumb">
-									<img src="assets/images/shop/05.png" alt="shop">
-									<div class="product-action-link">
-										<a class="view-modal" data-target="#quick_view"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
-										<a href="#"><i class="fas fa-cart-plus"></i></a>
-										<a href="#"><i class="fas fa-sync-alt"></i></a>
-									</div>
-								</div>
-								<div class="product-content">
-									<h5 class="title"><a href="shop-single.html">Baby Bags</a></h5>
-									<p>
-										<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-									</p>
-									<h6 class="subtitle">$200</h6>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-4 col-md-6">
-							<div class="shop-item">
-								<div class="product-thumb">
-									<img src="assets/images/shop/06.png" alt="shop">
-									<div class="product-action-link">
-										<a class="view-modal" data-target="#quick_view"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
-										<a href="#"><i class="fas fa-cart-plus"></i></a>
-										<a href="#"><i class="fas fa-sync-alt"></i></a>
-									</div>
-								</div>
-								<div class="product-content">
-									<h5 class="title"><a href="shop-single.html">Baby Bags</a></h5>
-									<p>
-										<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-									</p>
-									<h6 class="subtitle">$200</h6>
-								</div>
-							</div>
-							<div class="product-list-item">
-								<div class="product-thumb">
-									<img src="assets/images/shop/06.png" alt="shop">
-									<div class="product-action-link">
-										<a class="view-modal" data-target="#quick_view"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
-										<a href="#"><i class="fas fa-cart-plus"></i></a>
-										<a href="#"><i class="fas fa-sync-alt"></i></a>
-									</div>
-								</div>
-								<div class="product-content">
-									<h5 class="title"><a href="shop-single.html">Baby Bags</a></h5>
-									<p>
-										<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-									</p>
-									<h6 class="subtitle">$200</h6>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-4 col-md-6">
-							<div class="shop-item">
-								<div class="product-thumb">
-									<img src="assets/images/shop/07.png" alt="shop">
-									<div class="product-action-link">
-										<a class="view-modal" data-target="#quick_view"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
-										<a href="#"><i class="fas fa-cart-plus"></i></a>
-										<a href="#"><i class="fas fa-sync-alt"></i></a>
-									</div>
-								</div>
-								<div class="product-content">
-									<h5 class="title"><a href="shop-single.html">Baby Bags</a></h5>
-									<p>
-										<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-									</p>
-									<h6 class="subtitle">$200</h6>
-								</div>
-							</div>
-							<div class="product-list-item">
-								<div class="product-thumb">
-									<img src="assets/images/shop/07.png" alt="shop">
-									<div class="product-action-link">
-										<a class="view-modal" data-target="#quick_view"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
-										<a href="#"><i class="fas fa-cart-plus"></i></a>
-										<a href="#"><i class="fas fa-sync-alt"></i></a>
-									</div>
-								</div>
-								<div class="product-content">
-									<h5 class="title"><a href="shop-single.html">Baby Bags</a></h5>
-									<p>
-										<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-									</p>
-									<h6 class="subtitle">$200</h6>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-4 col-md-6">
-							<div class="shop-item">
-								<div class="product-thumb">
-									<img src="assets/images/shop/08.png" alt="shop">
-									<div class="product-action-link">
-										<a class="view-modal" data-target="#quick_view"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
-										<a href="#"><i class="fas fa-cart-plus"></i></a>
-										<a href="#"><i class="fas fa-sync-alt"></i></a>
-									</div>
-								</div>
-								<div class="product-content">
-									<h5 class="title"><a href="shop-single.html">Baby Bags</a></h5>
-									<p>
-										<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-									</p>
-									<h6 class="subtitle">$200</h6>
-								</div>
-							</div>
-							<div class="product-list-item">
-								<div class="product-thumb">
-									<img src="assets/images/shop/08.png" alt="shop">
-									<div class="product-action-link">
-										<a class="view-modal" data-target="#quick_view"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
-										<a href="#"><i class="fas fa-cart-plus"></i></a>
-										<a href="#"><i class="fas fa-sync-alt"></i></a>
-									</div>
-								</div>
-								<div class="product-content">
-									<h5 class="title"><a href="shop-single.html">Baby Bags</a></h5>
-									<p>
-										<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-									</p>
-									<h6 class="subtitle">$200</h6>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-4 col-md-6">
-							<div class="shop-item">
-								<div class="product-thumb">
-									<img src="assets/images/shop/09.png" alt="shop">
-									<div class="product-action-link">
-										<a class="view-modal" data-target="#quick_view"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
-										<a href="#"><i class="fas fa-cart-plus"></i></a>
-										<a href="#"><i class="fas fa-sync-alt"></i></a>
-									</div>
-								</div>
-								<div class="product-content">
-									<h5 class="title"><a href="shop-single.html">Baby Bags</a></h5>
-									<p>
-										<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-									</p>
-									<h6 class="subtitle">$200</h6>
-								</div>
-							</div>
-							<div class="product-list-item">
-								<div class="product-thumb">
-									<img src="assets/images/shop/09.png" alt="shop">
-									<div class="product-action-link">
-										<a class="view-modal" data-target="#quick_view"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
-										<a href="#"><i class="fas fa-cart-plus"></i></a>
-										<a href="#"><i class="fas fa-sync-alt"></i></a>
-									</div>
-								</div>
-								<div class="product-content">
-									<h5 class="title"><a href="shop-single.html">Baby Bags</a></h5>
-									<p>
-										<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-									</p>
-									<h6 class="subtitle">$200</h6>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-									</p>
-								</div>
-							</div>
-						</div>
+						{% endfor %}
 					</div>
 					<ul class="default-pagination">
+						{% if page_obj.has_previous %}
 						<li>
 							<a href="#"><i class="fas fa-angle-left"></i></a>
 						</li>
 						<li>
-							<a href="#">01</a>
+							<a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
 						</li>
+						{% endif %}
 						<li>
-							<a href="#" class="active">02</a>
+							<a href="#" class="active">{{ page_obj.number }} </a>
 						</li>
+						{% if page_obj.has_next %}
 						<li>
-							<a href="#">03</a>
+							<a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
 						</li>
 						<li>
 							<a href="#"><i class="fas fa-angle-right"></i></a>
 						</li>
+						{% endif %}
 					</ul>
 				</div>
 				<div class="col-lg-4 col-xl-3 mb-50">
 					<div class="single-sidebar">
-						<div class="widget widget-search">
-                            <div class="widget-body">
-                                <form class="search-form">
-                                    <input type="text" placeholder="Search Here">
-                                    <button type="submit"><i class="fas fa-search"></i></button>
-                                </form>
-                            </div>
-                        </div>
 						<div class="widget widget-category">
                             <div class="widget-header">
-                                <h5 class="title">Post Category</h5>
+                                <h5 class="title">Категории</h5>
                             </div>
                             <div class="widget-body">
                                 <ul>
-                                    <li>
-                                        <a href="#"><span><i class="fas fa-angle-double-right"></i>Themeforest</span><span>05</span></a>
+									<li>
+                                        <a href="{% url 'shop_section:shop' %}"><span><i class="fas fa-angle-double-right"></i>Все</span></a>
                                     </li>
-                                    <li>
-                                        <a href="#"><span><i class="fas fa-angle-double-right"></i>Codecanyon</span><span>06</span></a>
+									{% for category in request|shop_categories %}
+									<li>
+                                        <a href="{% url 'shop_section:filtered_shop' category.slug %}"><span><i class="fas fa-angle-double-right"></i>{{ category.name }}</span></a>
                                     </li>
-                                    <li>
-                                        <a href="#"><span><i class="fas fa-angle-double-right"></i>Graphicriver</span><span>05</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><span><i class="fas fa-angle-double-right"></i>Photodune</span><span>04</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><span><i class="fas fa-angle-double-right"></i>Videohive</span><span>27</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><span><i class="fas fa-angle-double-right"></i>3docean</span><span>13</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><span><i class="fas fa-angle-double-right"></i>WordPress</span><span>22</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><span><i class="fas fa-angle-double-right"></i>Joomla</span><span>17</span></a>
-                                    </li>
+									{% endfor %}
                                 </ul>
                             </div>
                         </div>
 						<div class="widget widget-product">
                             <div class="widget-header">
-                                <h5 class="title">latest products</h5>
+                                <h5 class="title">Последние товары</h5>
                             </div>
 							<div class="widget-body">
 								<ul>
+									{% for latest_product in request|latest_products %}
 									<li>
 										<div class="product-thumb">
-											<a href="#"><img src="assets/images/shop/01.jpg" alt="shop"></a>
+											<a href="#"><img src="{{ latest_product.preview.url }}" alt="shop"></a>
 										</div>
 										<div class="product-content">
-											<h6><a href="shop-single.html">Baby Bags</a></h6>
-											<p>
-												<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-											</p>
-											<h6 class="subtitle">$200</h6>
+											<h6><a href="{% url 'shop_section:single_shop' latest_product.slug %}">{{ latest_product.title }}</a></h6>
+											{% if latest_product.discount_price %}
+												<h6 class="subtitle">₴{{ latest_product.discount_price }}</h6>
+											{% else %}
+												<h6 class="subtitle">₴{{ latest_product.price }}</h6>
+											{% endif %}
 										</div>
 									</li>
-									<li>
-										<div class="product-thumb">
-											<a href="#"><img src="assets/images/shop/02.jpg" alt="shop"></a>
-										</div>
-										<div class="product-content">
-											<h6><a href="shop-single.html">Baby Bags</a></h6>
-											<p>
-												<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-											</p>
-											<h6 class="subtitle">$200</h6>
-										</div>
-									</li>
-									<li>
-										<div class="product-thumb">
-											<a href="#"><img src="assets/images/shop/03.jpg" alt="shop"></a>
-										</div>
-										<div class="product-content">
-											<h6><a href="shop-single.html">Baby Bags</a></h6>
-											<p>
-												<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-											</p>
-											<h6 class="subtitle">$200</h6>
-										</div>
-									</li>
-									<li>
-										<div class="product-thumb">
-											<a href="#"><img src="assets/images/shop/04.jpg" alt="shop"></a>
-										</div>
-										<div class="product-content">
-											<h6><a href="shop-single.html">Baby Bags</a></h6>
-											<p>
-												<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-											</p>
-											<h6 class="subtitle">$200</h6>
-										</div>
-									</li>
+									{% endfor %}
 								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="modal" id="quick_view">
+			{% for product in products %}
+			<div class="modal" id="{{ product.slug }}">
 		        <div class="modal-dialog modal-lg modal-dialog-centered">
 		            <div class="modal-content">
 	                    <button type="button" class="close" data-dismiss="modal"><i class="fas fa-window-close"></i></button>
@@ -555,85 +157,33 @@
 		                  			<div class="col-lg-5 col-12">
 		                  				<div class="popup-slide">
 		                  					<div class="slider-for">
-	                  							<div class="thumb">
-	                  								<img src="assets/images/shop/01.jpg" alt="shop">
-	                  							</div>
-	                  							<div class="thumb">
-	                  								<img src="assets/images/shop/02.jpg" alt="shop">
-	                  							</div>
-	                  							<div class="thumb">
-	                  								<img src="assets/images/shop/03.jpg" alt="shop">
-	                  							</div>
-	                  							<div class="thumb">
-	                  								<img src="assets/images/shop/04.jpg" alt="shop">
-	                  							</div>
-	                  							<div class="thumb">
-	                  								<img src="assets/images/shop/05.jpg" alt="shop">
-	                  							</div>
-	                  							<div class="thumb">
-	                  								<img src="assets/images/shop/06.jpg" alt="shop">
-	                  							</div>
-	                  							<div class="thumb">
-	                  								<img src="assets/images/shop/07.jpg" alt="shop">
-	                  							</div>
-	                  							<div class="thumb">
-	                  								<img src="assets/images/shop/08.jpg" alt="shop">
-	                  							</div>
-	                  							<div class="thumb">
-	                  								<img src="assets/images/shop/09.jpg" alt="shop">
-	                  							</div>
+												{% for attachment in product.attachments.all %}
+												<div class="thumb">
+													<img src="{{ attachment.attachment.url }}" alt="shop">
+												</div>
+												{% endfor %}
 		                  					</div>
 	                  						<div class="slider-nav">
-	                  							<div class="thumb">
-	                  								<img src="assets/images/shop/01.png" alt="shop">
-	                  							</div>
-	                  							<div class="thumb">
-	                  								<img src="assets/images/shop/02.png" alt="shop">
-	                  							</div>
-	                  							<div class="thumb">
-	                  								<img src="assets/images/shop/03.png" alt="shop">
-	                  							</div>
-	                  							<div class="thumb">
-	                  								<img src="assets/images/shop/04.png" alt="shop">
-	                  							</div>
-	                  							<div class="thumb">
-	                  								<img src="assets/images/shop/05.png" alt="shop">
-	                  							</div>
-	                  							<div class="thumb">
-	                  								<img src="assets/images/shop/06.png" alt="shop">
-	                  							</div>
-	                  							<div class="thumb">
-	                  								<img src="assets/images/shop/07.png" alt="shop">
-	                  							</div>
-	                  							<div class="thumb">
-	                  								<img src="assets/images/shop/08.png" alt="shop">
-	                  							</div>
-	                  							<div class="thumb">
-	                  								<img src="assets/images/shop/09.png" alt="shop">
-	                  							</div>
-	                  						</div>
+												{% for attachment in product.attachments.all %}
+												<div class="thumb">
+													<img src="{{ attachment.attachment.url }}" alt="shop">
+												</div>
+												{% endfor %}
 		                  				</div>
 		                  			</div>
 		                            <div class="col-lg-7">
 		                                <div class="product-content">
-											<h5 class="title"><a href="shop-single.html">Baby Bags</a></h5>
+											<h5 class="title"><a href="{% url 'shop_section:single_shop' product.slug %}">{{ product.title }}</a></h5>
+											{% if product.discount_price %}
+												<h6>₴{{ product.discount_price }}</h6>
+											{% else %}
+												<h6>₴{{ product.price }}</h6>
+											{% endif %}
+											
 											<p>
-												<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> <span>(3 review)</span>
-											</p>
-											<h6>
-												$200
-											</h6>
-											<p>
-												Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-												tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-												quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+												{{ product.description }}
 											</p>
 											<div class="cart-button-2">
-												<div class="cart-plus-minus">
-													<div class="dec qtybutton">-</div>
-													<input class="cart-plus-minus-box" type="text" name="qtybutton" value="2">
-													<div class="inc qtybutton">+</div>
-												</div>
 												<button type="submit">
 													<i class="fas fa-shopping-cart"></i>
 												</button>
@@ -647,6 +197,7 @@
 		        </div>
 		    </div>
 		</div>
+		{% endfor %}
 	</div>
     <!-- ==========Shop Section Ends Here========== -->
 

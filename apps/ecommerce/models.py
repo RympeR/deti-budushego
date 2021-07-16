@@ -3,41 +3,7 @@ from django.db import models
 from django.shortcuts import reverse
 from apps.users.models import Attachments, User
 from ckeditor.fields import RichTextField
-
-
-class Product(models.Model):
-    title = models.CharField(verbose_name='Заголовок события', max_length=100)
-    slug = models.SlugField("Slug", unique=True)
-    preview = models.ImageField(
-        verbose_name='Картинка в блоке', upload_to=preview)
-    price = models.FloatField(verbose_name='Цена')
-    discount_price = models.FloatField(
-        verbose_name='Цена со скидкой', null=True, blank=True)
-    description = models.TextField(verbose_name='Описание')
-    attachments = models.ManyToManyField(
-        Attachments, related_name='attachments_shop', verbose_name='Вложеия товара')
-    created_at = models.DateField('Дата создания', auto_now_add=True)
-    full_text = RichTextField()
-
-    class Meta:
-        verbose_name = 'Товар'
-        verbose_name_plural = 'Товары'
-        ordering = ['-created_at']
-
-    def __str__(self):
-        return self.title
-
-    def get_absolute_url(self):
-        return reverse("cart:product-detail", kwargs={'slug': self.slug})
-
-    def get_update_url(self):
-        return reverse("staff:product-update", kwargs={'pk': self.pk})
-
-    def get_delete_url(self):
-        return reverse("staff:product-delete", kwargs={'pk': self.pk})
-
-    def get_price(self):
-        return "{:.2f}".format(self.price / 100)
+from django.utils.safestring import mark_safe
 
 
 class Category(models.Model):
@@ -67,19 +33,61 @@ class Category(models.Model):
         })
 
 
+class Product(models.Model):
+    title = models.CharField(verbose_name='Заголовок товара', max_length=100)
+    slug = models.SlugField("Url part", unique=True)
+    preview = models.ImageField(
+        verbose_name='Картинка в блоке', upload_to=preview)
+    price = models.FloatField(verbose_name='Цена')
+    discount_price = models.FloatField(
+        verbose_name='Цена со скидкой', null=True, blank=True)
+    description = models.TextField(verbose_name='Описание')
+    attachments = models.ManyToManyField(
+        Attachments, related_name='attachments_shop', verbose_name='Вложеия товара')
+    created_at = models.DateField('Дата создания', auto_now_add=True)
+    full_text = RichTextField()
+    category = models.ForeignKey(Category, related_name='product_category', verbose_name='Категория', null=True, on_delete=models.SET_NULL,)
+    
+    class Meta:
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товары'
+        ordering = ['-created_at']
+
+    def admin_preview(self):
+        if self.preview and hasattr(self.preview, 'url'):
+            return mark_safe('<img src="{}" width="100" /'.format(self.preview.url))
+        return None
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse("cart:product-detail", kwargs={'slug': self.slug})
+
+    def get_update_url(self):
+        return reverse("staff:product-update", kwargs={'pk': self.pk})
+
+    def get_delete_url(self):
+        return reverse("staff:product-delete", kwargs={'pk': self.pk})
+
+    def get_price(self):
+        return "{:.2f}".format(self.price / 100)
+
+
 class Order(models.Model):
     user = models.ForeignKey(
-        User, blank=True, null=True, on_delete=models.CASCADE)
+        User, blank=True, null=True, on_delete=models.CASCADE, related_name='user_order')
     start_date = models.DateTimeField(auto_now_add=True)
     coupon = models.ForeignKey(
         'Coupon', on_delete=models.SET_NULL, blank=True, null=True)
+    finished = models.BooleanField('Завершен', default=False)
 
     class Meta:
         verbose_name = 'Заказ'
         verbose_name_plural = 'Заказы'
 
     def __str__(self):
-        return str(self.sessionOrder)
+        return str(self.pk) + '--' + str(self.user)
 
     def get_total(self):
         total = 0
@@ -101,6 +109,10 @@ class OrderItem(models.Model):
 
     def get_raw_total_item_price(self):
         return self.product.discount_price if self.product.discount_price else self.product.price
+
+    class Meta:
+        verbose_name = 'Товар в заказе'
+        verbose_name_plural = 'Товары в заказах'
 
 
 class Payment(models.Model):

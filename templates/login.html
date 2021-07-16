@@ -28,11 +28,9 @@
             <form method="POST" class="account-form" action='{% url "users_section:login" %}'>
                 {% csrf_token %}
                 <div class="form-group">
-                    <!-- <input type="text" placeholder="User Name" name="username"> -->
                     {{ form.username }}
                 </div>
                 <div class="form-group">
-                    <!-- <input type="password" placeholder="Password" name="password"> -->
                     {{ form.password }}
                 </div>
                 <div class="form-group">

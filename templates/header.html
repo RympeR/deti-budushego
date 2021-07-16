@@ -1,5 +1,6 @@
 {% load static %}
 {% load mptt_tags %}
+{% load cart_template_tags %}
 <header>
     <div class="header-top">
         <div class="container">
@@ -131,13 +132,13 @@
                         <a href="#">
                             <i class="fas fa-search"></i>
                         </a>
-                    </div>
+                    </div>-->
                     <div class="cart-button">
                         <a href="#">
-                            <span class="cart-amount">05</span>
+                            <span class="cart-amount">{{ request|cart_item_count }}</span>
                             <i class="fas fa-shopping-basket"></i>
                         </a>
-                    </div> -->
+                    </div> 
                     <div class="header-bar d-lg-none">
                         <span></span>
                         <span></span>
