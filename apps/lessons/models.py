@@ -1,7 +1,6 @@
 from core.utils.utils import preview
 from django.db import models
 from django.utils.safestring import mark_safe
-from unixtimestampfield.fields import UnixTimeStampField
 from ckeditor.fields import RichTextField
 from django.template.defaultfilters import truncatechars
 from apps.blog.models import Gallery, Post, Tag
