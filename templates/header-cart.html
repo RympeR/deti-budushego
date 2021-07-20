@@ -11,8 +11,10 @@
     <div class="bottom-content">
         <div class="cart-products">
             <h4 class="title">Корзина</h4>
-            {% for product in request|cart_products %}
+            {% comment %}
               
+            {% for product in request|cart_products %}
+            
             
             <div class="single-product-item">
                 <div class="thumb">
@@ -21,15 +23,16 @@
                 <div class="content">
                     <h4 class="title">{{ product.title }}</h4>
                     {% if product.discount_price %}
-                        <div class="price"><span class="pprice">₴{{ product.discount_price }}</span> <del class="dprice">₴{{ product.price }}</del></div>
+                    <div class="price"><span class="pprice">₴{{ product.discount_price }}</span> <del class="dprice">₴{{ product.price }}</del></div>
                     {% else %}
-                        <div class="price"><span class="pprice">₴{{ product.price }}</span></div>
+                    <div class="price"><span class="pprice">₴{{ product.price }}</span></div>
                     {% endif %}
                     
                     <a href="{{ product.get_remove_from_cart_url }}" class="remove-cart">Убрать</a>
                 </div>
             </div>
             {% endfor %}
+            {% endcomment %}
             <div class="btn-wrapper text-center">
                 <a href="#" class="custom-button"><span>Корзина</span></a>
             </div>
