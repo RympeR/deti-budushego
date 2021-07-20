@@ -26,7 +26,6 @@ class FaqAdmin(admin.ModelAdmin):
 class EventAdmin(admin.ModelAdmin):
     list_display = 'title', 'small_image', 'organizer', 'timer_time', 'date_end', 'date_start'
     list_display_links = 'title',
-    filter_fields = 'timer_time', 'date_end', 'date_start'
     search_fields = 'name',
     list_filter = (
         ('timer_time', DateFieldListFilter),
@@ -45,7 +44,6 @@ class EventAdmin(admin.ModelAdmin):
 class LessonAdmin(admin.ModelAdmin):
     list_display = 'title', 'small_image', 'teacher', 'class_duration', 'date_start'
     list_display_links = 'title',
-    filter_fields = 'class_duration', 'date_start'
     search_fields = 'name',
     list_filter = (
         ('class_duration', DateFieldListFilter),

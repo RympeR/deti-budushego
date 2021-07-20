@@ -35,11 +35,12 @@ class OrderItemAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = 'pk', 'user', 'start_date', 'coupon'
+    list_display = 'pk', 'user', 'start_date', 'coupon', 'finished'
     list_display_links = 'pk',
     search_fields = 'user__fio',
     list_filter = (
         ('start_date', DateFieldListFilter),
+        'finished',
     )
 
 
@@ -56,7 +57,8 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = 'title', 'admin_preview', 'created_at'
     list_display_links = 'title',
     search_fields = 'title', 
-    filter_fields = 'category',
     list_filter = (
         ('created_at', DateFieldListFilter),
+        'category',
     )
+    filter_horizontal = 'attachments',

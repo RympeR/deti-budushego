@@ -1,3 +1,4 @@
+from django.http import request
 from core.utils.utils import preview
 from django.db import models
 from django.shortcuts import reverse
@@ -5,6 +6,7 @@ from apps.users.models import Attachments, User
 from ckeditor.fields import RichTextField
 from django.utils.safestring import mark_safe
 
+exposed_request = ''
 
 class Category(models.Model):
     name = models.CharField(verbose_name='Название', max_length=255)
@@ -47,7 +49,8 @@ class Product(models.Model):
     created_at = models.DateField('Дата создания', auto_now_add=True)
     full_text = RichTextField()
     category = models.ForeignKey(Category, related_name='product_category', verbose_name='Категория', null=True, on_delete=models.SET_NULL,)
-    
+    download_archive = models.FileField('Загружаемый файл', null=True, blank=True)
+
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
@@ -61,6 +64,17 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+    def check_bought(self):
+        if exposed_request.user.is_authenticated:
+            user =  exposed_request.user
+            orders = user.user_order.filter(finished=True)
+            # orders = orders.objects.filter(finished=True)
+            for order in orders:
+                items = order.items_order.all()
+                for item in items:
+                    if self == item.product:
+                        return True
+        return False
     def get_price(self):
         return "{:.2f}".format(self.price / 100)
         
@@ -92,7 +106,7 @@ class Order(models.Model):
     def get_total(self):
         total = 0
         for order_item in self.items_order.all():
-            total += order_item.get_final_price()
+            total += order_item.get_raw_total_item_price()
         if self.coupon:
             total -= total*(self.coupon.discount_percent / 100)
         return total

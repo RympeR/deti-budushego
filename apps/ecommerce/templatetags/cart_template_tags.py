@@ -12,20 +12,23 @@ def shop_categories(request):
     qs = Category.objects.all()
     if qs.exists():
         return qs
-    return 0
+    return []
 
 @register.filter
 def latest_products(request):
     qs = Product.objects.all().order_by('-pk')[:3]
     if qs.exists():
         return qs
-    return 0
+    return []
     
 @register.filter
 def cart_item_count(request):
     if request.user.is_authenticated:
         user = request.user
-        qs = Order.objects.get(Q(finished=False) & Q(user=user))
+        try:
+            qs = Order.objects.get(Q(finished=False) & Q(user=user))
+        except Exception:
+            return 0
         if qs:
             try:
                 return qs.items_order.count()
@@ -37,37 +40,40 @@ def cart_item_count(request):
 def cart_products(request):
     if request.user.is_authenticated:
         user = request.user
-        qs = Order.objects.get(Q(finished=False) & Q(user=user))
+        try:
+            qs = Order.objects.get(Q(finished=False) & Q(user=user))
+        except Exception:
+            return []
         if qs:
             order_items = qs.items_order.all()
             products = [ item.product for item in order_items ]
             return products
-    return 0
+    return []
 
 @register.filter
 def post_categories(request):
     qs = PostCategory.objects.all()
     if qs.exists():
         return qs
-    return 0
+    return []
 
 @register.filter
 def gallery_categories(request):
     qs = GalleryCategory.objects.all()
     if qs.exists():
         return qs
-    return 0
+    return []
 
 @register.filter
 def lesson_categories(request):
     qs = LessonCategory.objects.all()
     if qs.exists():
         return qs
-    return 0
+    return []
 
 @register.filter
 def events_categories(request):
     qs = EventCategory.objects.all()
     if qs.exists():
         return qs
-    return 0
+    return []

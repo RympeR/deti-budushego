@@ -23,6 +23,24 @@ class ShopList(ListView):
         return context
 
 
+def cart_view(request):
+    if request.user.is_authenticated:
+        user = request.user
+        try:
+            qs = Order.objects.get(Q(finished=False) & Q(user=user))
+        except Exception:
+            return redirect('shop_section:shop')
+        context = {}
+        context['order'] = qs
+        context['menu'] = MenuCategory.objects.filter(display=True)
+        context['footer_events'] = Event.objects.all().order_by(
+            '-date_start')[:2]
+        items = qs.items_order.all()
+        products = [ item.product for item in items ]
+        context['products'] = products
+        return render(request, 'cart.html', context=context)
+    return redirect('shop_section:shop')
+
 class ShopListFiltered(ListView):
     model = Product
     context_object_name = 'products'
@@ -37,6 +55,10 @@ class ShopListFiltered(ListView):
         context['menu'] = MenuCategory.objects.filter(display=True)
         context['footer_events'] = Event.objects.all().order_by(
             '-date_start')[:2]
+        if self.request.user.is_authenticated:
+            user = self.request.user
+            for product in context['products']:
+                context['products']
         return context
 
 
@@ -56,7 +78,10 @@ def add_to_cart(request, slug):
     product = get_object_or_404(Product, slug=slug)
     if request.user.is_authenticated:
         user = request.user
-        qs = Order.objects.get(Q(finished=False) & Q(user=user))
+        try:
+            qs = Order.objects.get(Q(finished=False) & Q(user=user))
+        except Exception:
+            qs = None
         if not qs:
             qs = Order.objects.create(user=request.user)
         order_item, created = OrderItem.objects.get_or_create(
@@ -65,11 +90,15 @@ def add_to_cart(request, slug):
         )
         return redirect("shop_section:shop")
 
+
 def remove_from_cart(request, slug):
     product = get_object_or_404(Product, slug=slug)
     if request.user.is_authenticated:
         user = request.user
-        qs = Order.objects.get(Q(finished=False) & Q(user=user))
+        try:
+            qs = Order.objects.get(Q(finished=False) & Q(user=user))
+        except Exception:
+            qs = None
         if not qs:
             return redirect("shop_section:shop")
         order_item = OrderItem.objects.get(

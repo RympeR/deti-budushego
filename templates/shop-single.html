@@ -34,9 +34,6 @@
 						<div class="col-md-6 col-12">
 							<div class="product-single-thumb o">
 								<div class="slider-for">
-									<div class="thumb">
-										<img id="myimage" src="assets/images/shop/10.png" alt="shop">
-									</div>
 									{% for attachment in object.attachments.all %}
 									<div class="thumb">
 										<img src="{{ attachment.attachment.url }}" alt="shop">
@@ -67,7 +64,11 @@
 								<p class="info">
 									{{ object.description }}
 								</p>
+								{% if product.check_bought %}
+											<a href="{{ product.download_archive.url }}" class="custom-button" download><span>Скачать</span></a>
+								{% else %}
 									<a href='{{ object.get_add_to_cart_url }}' class="custom-button"><span>Добавить в корзину</span></a>
+								{% endif %}
 							</div>
 						</div>
 					</div>

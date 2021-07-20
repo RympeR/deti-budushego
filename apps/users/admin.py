@@ -49,7 +49,7 @@ class UserAdmin(admin.ModelAdmin):
 class AttachemntsAdmin(admin.ModelAdmin):
     list_display = 'pk', 'attachment_type', 'attachment'
     list_display_links = 'pk',
-    filter_fields ='attachment_type',
+    list_filter ='attachment_type',
 
 
 @admin.register(Vacancy)

@@ -11,11 +11,7 @@
     <div class="bottom-content">
         <div class="cart-products">
             <h4 class="title">Корзина</h4>
-            {% comment %}
-              
             {% for product in request|cart_products %}
-            
-            
             <div class="single-product-item">
                 <div class="thumb">
                     <img src="{{ product.preview.url }}" alt="shop">
@@ -32,9 +28,8 @@
                 </div>
             </div>
             {% endfor %}
-            {% endcomment %}
             <div class="btn-wrapper text-center">
-                <a href="#" class="custom-button"><span>Корзина</span></a>
+                <a href="{% url 'shop_section:cart' %}" class="custom-button"><span>Корзина</span></a>
             </div>
         </div>
     </div>
