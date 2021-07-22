@@ -111,6 +111,12 @@ class Order(models.Model):
             total -= total*(self.coupon.discount_percent / 100)
         return total
 
+    def get_raw_total(self):
+        total = 0
+        for order_item in self.items_order.all():
+            total += order_item.get_raw_total_item_price()
+        return total
+
 
 class OrderItem(models.Model):
     order = models.ForeignKey(

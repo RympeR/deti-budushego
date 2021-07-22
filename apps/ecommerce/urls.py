@@ -6,6 +6,7 @@ from .views import (
     add_to_cart,
     remove_from_cart,
     cart_view,
+    AddCouponView,
 )
 
 app_name = 'shop_section'
@@ -17,4 +18,5 @@ urlpatterns = [
     path('remove-from-cart/<slug:slug>', remove_from_cart, name='remove-from-cart'),
     path('shop/', ShopList.as_view(), name='shop'),
     path('shop/<slug:slug>', ShopListFiltered.as_view(), name='filtered_shop'),
+    path('add-coupon/', AddCouponView.as_view(), name='add_coupon'),
 ]

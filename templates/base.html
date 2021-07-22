@@ -51,5 +51,23 @@
 {% block custom_scripts %}
 {% endblock custom_scripts %}
 </body>
+<script>
+    function add_coupon() {
+        $.ajax({
+            url: '{% url "shop_section:add_coupon" %}',
+            type: "post",
+            data: {
+                coupon: $("#coupon").val(),
+                csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
+            },
 
+            success: function (result) {
+                location.reload();
+            },
+            error: function (result) {
+                console.log(result, "location is bad");
+            },
+        });
+    }
+</script>
 </html>

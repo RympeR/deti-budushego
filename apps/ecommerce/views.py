@@ -2,12 +2,25 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-
+from django.core.exceptions import ObjectDoesNotExist
+from django.views.generic import View
 from apps.lessons.models import Event
 from apps.users.models import MenuCategory
 
-from .models import OrderItem, Product, Order
+from .models import OrderItem, Product, Order, Coupon
 
+
+def get_coupon(request, code):
+    try:
+        coupon = Coupon.objects.get(code=code)
+        if coupon.amount > 0:
+            coupon.amount -= 1
+            coupon.save()
+            return coupon
+        else:
+            return 0
+    except ObjectDoesNotExist:
+        return redirect("core:checkout")
 
 class ShopList(ListView):
     model = Product
@@ -107,3 +120,20 @@ def remove_from_cart(request, slug):
         )
         order_item.delete()
         return redirect("shop_section:shop")
+
+class AddCouponView(View):
+    def post(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            user = self.request.user
+        self.coupon_code = self.request.POST['coupon']
+        print(self.coupon_code)
+        try:
+            order = Order.objects.get(Q(finished=False) & Q(user=user))
+            try:
+                order.coupon = get_coupon(self.request, self.coupon_code)
+            except ValueError:
+                return redirect("shop_section:cart")
+            order.save()
+            return redirect("shop_section:cart")
+        except ObjectDoesNotExist:
+            return redirect("shop_section:cart")

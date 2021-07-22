@@ -60,8 +60,9 @@
         </div>
         <div class="cart-checkout-box mb-widget">
             <div class="coupon-area">
-                <form class="coupon">
-                    <input type="text" name="coupon" placeholder="Код..." class="cart-page-input-text">
+                <form class="coupon" method="post" action="{% url 'shop_section:add_coupon' %}">
+                    {% csrf_token %}
+                    <input type="text" name="coupon" id="coupon" placeholder="Код купона" class="cart-page-input-text">
                     <input type="submit" value="Применить купон">
                 </form>
             </div>
@@ -74,8 +75,18 @@
                         <ul>
                             <li>
                                 <span class="pull-left">Сумма заказа</span>
+                                <p class="pull-right">₴ {{ order.get_raw_total }}</p>
+                            </li>
+                            {% if order.coupon %}
+                            <li>
+                                <span class="pull-left">Сумма со скидкой</span>
                                 <p class="pull-right">₴ {{ order.get_total }}</p>
                             </li>
+                            <li>
+                                <span class="pull-left">Процент скидки</span>
+                                <p class="pull-right">{{ order.coupon.discount_percent }} %</p>
+                            </li> 
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
