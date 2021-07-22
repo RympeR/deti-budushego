@@ -37,6 +37,16 @@ class UserDetail(DetailView):
         context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context
 
+class CustomerDetail(DetailView):
+    model = User
+    template_name = 'profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = MenuCategory.objects.filter(display=True)
+        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
+        return context
+
 class VacancyList(ListView):
     model = Vacancy
     context_object_name = 'vacancys'
