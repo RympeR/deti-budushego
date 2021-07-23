@@ -1,7 +1,10 @@
+from apps.ecommerce.models import Product
 import json
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
@@ -23,7 +26,8 @@ class UserList(ListView):
         context['teachers'] = User.objects.filter(teacher=True)
         context['vacancys'] = Vacancy.objects.all()
         context['menu'] = MenuCategory.objects.filter(display=True)
-        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
+        context['footer_events'] = Event.objects.all().order_by(
+            '-date_start')[:2]
         return context
 
 
@@ -34,17 +38,24 @@ class UserDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['menu'] = MenuCategory.objects.filter(display=True)
-        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
+        context['footer_events'] = Event.objects.all().order_by(
+            '-date_start')[:2]
         return context
 
-class CustomerDetail(DetailView):
+
+# @login_required(login_url='/login/')
+class CustomerDetail(LoginRequiredMixin, DetailView):
     model = User
     template_name = 'profile.html'
+    login_url = '/login/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['menu'] = MenuCategory.objects.filter(display=True)
-        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
+        context['footer_events'] = Event.objects.all().order_by(
+            '-date_start')[:2]
+        products = Product.objects.filter(check_bought=True)
+        context['products'] = products
         return context
 
 class VacancyList(ListView):
@@ -56,7 +67,8 @@ class VacancyList(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['menu'] = MenuCategory.objects.filter(display=True)
-        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
+        context['footer_events'] = Event.objects.all().order_by(
+            '-date_start')[:2]
         return context
 
 
@@ -67,8 +79,10 @@ class VacancyDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['menu'] = MenuCategory.objects.filter(display=True)
-        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
+        context['footer_events'] = Event.objects.all().order_by(
+            '-date_start')[:2]
         return context
+
 
 def register(request):
     if request.user.is_authenticated:
@@ -81,12 +95,13 @@ def register(request):
                                     password=form.cleaned_data['password1'],
                                     )
             login(request, new_user)
-            return redirect('lessons_section:index')    
+            return redirect('lessons_section:index')
     context = {}
     context['menu'] = MenuCategory.objects.filter(display=True)
     context['form'] = RegisterForm()
     context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
-    return render(request,'registration.html', context)
+    return render(request, 'registration.html', context)
+
 
 def loginView(request):
     if request.user.is_authenticated:
@@ -113,7 +128,8 @@ def loginView(request):
     context['menu'] = MenuCategory.objects.filter(display=True)
     context['form'] = UserLoginForm()
     context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
-    return render(request,'login.html', context)
+    return render(request, 'login.html', context)
+
 
 def logoutView(request):
     if request.user.is_authenticated:
