@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+{% load static %}
+{% load cart_template_tags %}
+{% block main_content %}
+    <!-- ==========Banner Section Starts Here========== -->
+    <section class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
+        <div class="container">
+            <div class="page-header-content">
+                <h1 class="title">Магазин</h1>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href='{% url "lessons_section:index" %}'>Главная</a>
+                    </li>
+                    <li>
+                        Магазин
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- ==========Banner Section Ends Here========== -->
+
+
+    <!-- ==========Shop Section Starts Here========== -->            
+	<div class="shop-page padding-top padding-bottom">
+		<div class="container">
+			<div class="row mb--50">
+				<div class="col-lg-8 col-xl-9 mb-50">
+					<div class="shop-title d-flex flex-wrap justify-content-between">
+						<p></p>
+						<div class="product-view-mode">
+							<a class="active" data-target="grid"><i class="fas fa-th"></i></a>
+							<a data-target="list"><i class="fas fa-list"></i></a>
+						</div>
+					</div>
+					<div class="shop-product-wrap grid row mb-30-none">
+						{% for product in products %}
+						<div class="col-xl-4 col-md-6">
+							<div class="shop-item">
+								<div class="product-thumb">
+									<img src="{{ product.preview.url }}" alt="shop">
+									<div class="product-action-link">
+										<a class="view-modal" data-target="#{{ product.slug }}"><i class="far fa-eye"></i></a>
+										<!-- <a href="#"><i class="far fa-heart"></i></a> -->
+										{% if product.check_bought %}
+											<a href="{{ product.download_archive.url }}" download><i class="fas fa-download"></i></a>
+										{% else %}
+											<a href="{{ product.get_add_to_cart_url }}"><i class="fas fa-cart-plus"></i></a>
+										{% endif %}
+										
+									</div>
+								</div>
+								<div class="product-content">
+									<h5 class="title"><a href="{% url 'shop_section:single_shop' product.slug %}">{{ product.title }}</a></h5>
+									{% if product.discount_price %}
+										<h6 class="subtitle">₴{{ product.discount_price }}</h6>
+									{% else %}
+										<h6 class="subtitle">₴{{ product.price }}</h6>
+									{% endif %}
+								</div>
+							</div>
+							<div class="product-list-item">
+								<div class="product-thumb">
+									<img src="{{ product.preview.url }}" alt="shop">
+									<div class="product-action-link">
+										<a class="view-modal" data-target="#{{ product.slug }}"><i class="far fa-eye"></i></a>
+										<!-- <a href="#"><i class="far fa-heart"></i></a> -->
+										<a href="{{ product.get_add_to_cart_url }}"><i class="fas fa-cart-plus"></i></a>
+									</div>
+								</div>
+								<div class="product-content">
+									<h5 class="title"><a href="{% url 'shop_section:single_shop' product.slug %}">{{ product.title }}</a></h5>
+									{% if product.discount_price %}
+										<h6 class="subtitle">₴{{ product.discount_price }}</h6>
+									{% else %}
+										<h6 class="subtitle">₴{{ product.price }}</h6>
+									{% endif %}
+									<p>
+										{{ product.description }}
+									</p>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+					<ul class="default-pagination">
+						{% if page_obj.has_previous %}
+						<li>
+							<a href="#"><i class="fas fa-angle-left"></i></a>
+						</li>
+						<li>
+							<a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+						</li>
+						{% endif %}
+						<li>
+							<a href="#" class="active">{{ page_obj.number }} </a>
+						</li>
+						{% if page_obj.has_next %}
+						<li>
+							<a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+						</li>
+						<li>
+							<a href="#"><i class="fas fa-angle-right"></i></a>
+						</li>
+						{% endif %}
+					</ul>
+				</div>
+				<div class="col-lg-4 col-xl-3 mb-50">
+					<div class="single-sidebar">
+						<div class="widget widget-category">
+                            <div class="widget-header">
+                                <h5 class="title">Категории</h5>
+                            </div>
+                            <div class="widget-body">
+                                <ul>
+									<li>
+                                        <a href="{% url 'shop_section:shop' %}"><span><i class="fas fa-angle-double-right"></i>Все</span></a>
+                                    </li>
+									{% for category in request|shop_categories %}
+									<li>
+                                        <a href="{% url 'shop_section:filtered_shop' category.slug %}"><span><i class="fas fa-angle-double-right"></i>{{ category.name }}</span></a>
+                                    </li>
+									{% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+						<div class="widget widget-product">
+                            <div class="widget-header">
+                                <h5 class="title">Последние товары</h5>
+                            </div>
+							<div class="widget-body">
+								<ul>
+									{% for latest_product in request|latest_products %}
+									<li>
+										<div class="product-thumb">
+											<a href="#"><img src="{{ latest_product.preview.url }}" alt="shop"></a>
+										</div>
+										<div class="product-content">
+											<h6><a href="{% url 'shop_section:single_shop' latest_product.slug %}">{{ latest_product.title }}</a></h6>
+											{% if latest_product.discount_price %}
+												<h6 class="subtitle">₴{{ latest_product.discount_price }}</h6>
+											{% else %}
+												<h6 class="subtitle">₴{{ latest_product.price }}</h6>
+											{% endif %}
+										</div>
+									</li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% for product in products %}
+			<div class="modal" id="{{ product.slug }}">
+		        <div class="modal-dialog modal-lg modal-dialog-centered">
+		            <div class="modal-content">
+	                    <button type="button" class="close" data-dismiss="modal"><i class="fas fa-window-close"></i></button>
+		                <div class="modal-body">
+		                    <div class="product-details-inner">
+		                        <div class="row">
+		                  			<div class="col-lg-5 col-12">
+		                  				<div class="popup-slide">
+		                  					<div class="slider-for">
+												{% for attachment in product.attachments.all %}
+												<div class="thumb">
+													<img src="{{ attachment.attachment.url }}" alt="shop">
+												</div>
+												{% endfor %}
+		                  					</div>
+	                  						<div class="slider-nav">
+												{% for attachment in product.attachments.all %}
+												<div class="thumb">
+													<img src="{{ attachment.attachment.url }}" alt="shop">
+												</div>
+												{% endfor %}
+		                  				</div>
+		                  			</div>
+		                            <div class="col-lg-7">
+		                                <div class="product-content">
+											<h5 class="title"><a href="{% url 'shop_section:single_shop' product.slug %}">{{ product.title }}</a></h5>
+											{% if product.discount_price %}
+												<h6>₴{{ product.discount_price }}</h6>
+											{% else %}
+												<h6>₴{{ product.price }}</h6>
+											{% endif %}
+											
+											<p>
+												{{ product.description }}
+											</p>
+											<div class="cart-button-2">
+												<button type="submit">
+													<i class="fas fa-shopping-cart"></i>
+												</button>
+											</div>
+										</div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		{% endfor %}
+	</div>
+    <!-- ==========Shop Section Ends Here========== -->
+
+	{% endblock main_content %}
