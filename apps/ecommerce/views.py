@@ -102,6 +102,8 @@ def add_to_cart(request, slug):
             product=product
         )
         return redirect("shop_section:shop")
+    return redirect("lessons_section:login")
+    
 
 
 def remove_from_cart(request, slug):
@@ -120,7 +122,7 @@ def remove_from_cart(request, slug):
         )
         order_item.delete()
         return redirect("shop_section:shop")
-
+    return redirect("lessons_section:login")
 class AddCouponView(View):
     def post(self, *args, **kwargs):
         if self.request.user.is_authenticated:

@@ -1,4 +1,3 @@
-from apps.ecommerce.models import Product
 import json
 
 from django.contrib import messages
@@ -9,6 +8,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
+from apps.ecommerce.models import Product
 from apps.lessons.models import Event
 
 from .forms import RegisterForm, UserLoginForm
@@ -44,19 +44,24 @@ class UserDetail(DetailView):
 
 
 # @login_required(login_url='/login/')
-class CustomerDetail(LoginRequiredMixin, DetailView):
-    model = User
+class CustomerDetail(LoginRequiredMixin, ListView):
+    model = Product
     template_name = 'profile.html'
+    context_object_name = 'products'
     login_url = '/login/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['user'] = self.request.user
         context['menu'] = MenuCategory.objects.filter(display=True)
         context['footer_events'] = Event.objects.all().order_by(
             '-date_start')[:2]
-        products = Product.objects.filter(check_bought=True)
+        products = Product.objects.all()
+        products = [product for product in products if product.check_bought()==True]
+
         context['products'] = products
         return context
+
 
 class VacancyList(ListView):
     model = Vacancy
