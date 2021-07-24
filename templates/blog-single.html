@@ -145,7 +145,7 @@
                             <ul class="tags">
                                 {% for tag in object.related_tags.all %}
                                     <li>
-                                        <a href="#">{{ tag.title }}</a>
+                                        <a href="{% url 'blog_section:post_detail_filtered' tag.slug %}">{{ tag.title }}</a>
                                     </li>
                                 {% endfor %}
                             </ul>

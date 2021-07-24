@@ -17,7 +17,7 @@ from apps.users.models import (
     AboutCounters,
     DropDownPoint,
 )
-from apps.blog.models import Gallery, Post
+from apps.blog.models import Gallery, Post, Tag
 
 
 class LessonList(ListView):
@@ -33,6 +33,23 @@ class LessonList(ListView):
         context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context
 
+
+class LessonListFiltered(ListView):
+    model = Lesson
+    context_object_name = 'lessons'
+    template_name = 'classes.html'
+    paginate_by = 9
+
+    def get_queryset(self):
+        tag = Tag.objects.get(slug=self.kwargs['slug'])
+        return Lesson.objects.filter(tags__in=[tag])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = MenuCategory.objects.filter(display=True)
+        context['footer_events'] = Event.objects.all().order_by(
+            '-date_start')[:2]
+        return context
 
 class LessonDetail(DetailView):
     model = Lesson
@@ -58,6 +75,22 @@ class EventsList(ListView):
         context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context
 
+class EventsListFiltered(ListView):
+    model = Event
+    context_object_name = 'events'
+    template_name = 'events.html'
+    paginate_by = 9
+
+    def get_queryset(self):
+        tag = Tag.objects.get(slug=self.kwargs['slug'])
+        return Event.objects.filter(tags__in=[tag])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = MenuCategory.objects.filter(display=True)
+        context['footer_events'] = Event.objects.all().order_by(
+            '-date_start')[:2]
+        return context
 
 class EventDetail(DetailView):
     model = Event

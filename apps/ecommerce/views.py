@@ -67,10 +67,6 @@ class ShopListFiltered(ListView):
         context['menu'] = MenuCategory.objects.filter(display=True)
         context['footer_events'] = Event.objects.all().order_by(
             '-date_start')[:2]
-        if self.request.user.is_authenticated:
-            user = self.request.user
-            for product in context['products']:
-                context['products']
         return context
 
 

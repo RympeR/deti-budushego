@@ -23,6 +23,23 @@ class PostList(ListView):
         context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context
 
+class PostListFiltered(ListView):
+    model = Post
+    context_object_name = 'posts'
+    template_name = 'blog-grid.html'
+    paginate_by = 9
+
+    def get_queryset(self):
+        tag = Tag.objects.get(slug=self.kwargs['slug'])
+        return Post.objects.filter(related_tags__in=[tag])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = MenuCategory.objects.filter(display=True)
+        context['footer_events'] = Event.objects.all().order_by(
+            '-date_start')[:2]
+        return context
+        
 class PostDetail(DetailView):
     model = Post
     template_name = 'blog-single.html'

@@ -256,7 +256,7 @@
                             <ul class="tags">
                                 {% for tag in object.tags.all %}
                                 <li>
-                                    <a href="#">{{ tag.title }}</a>
+                                    <a href="{% url 'lessons_section:events_list_filtered' tag.slug %}">{{ tag.title }}</a>
                                 </li>
                                 {% endfor %}
                             </ul>
