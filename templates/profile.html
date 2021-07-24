@@ -65,6 +65,32 @@
 						{% endfor %}
 					</div>
 				</div>
+				<div class="col-lg-4 col-xl-3 mb-50">
+					<div class="single-sidebar">
+						<div class="widget widget-category">
+                            <div class="widget-header">
+                                <h5 class="title">Информация</h5>
+                            </div>
+                            <div class="widget-body">
+                                <ul>
+									<li>
+                                        <span><strong>Логин:</strong> {{ user.username }}</span></a>
+                                    </li>
+									<li>
+                                        <span><strong>ФИО</strong>: {{ user.fio }}</span></a>
+                                    </li>
+									<li>
+										<form action="/logout">
+											<button class="widget-btn-custom" type="submit">
+												<span style="color:white">Выйти</span>
+											</button>
+										</form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+					</div>
+				</div>
 			</div>
 			{% for product in products %}
 			<div class="modal" id="{{ product.slug }}">

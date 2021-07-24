@@ -76,6 +76,9 @@ class Product(models.Model):
                         return True
         return False
 
+    def final_price(self):
+        return self.discount_price if self.discount_price else self.price
+        
     def get_price(self):
         return "{:.2f}".format(self.price / 100)
         

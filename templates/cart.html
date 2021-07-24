@@ -63,7 +63,11 @@
                 <form class="coupon" method="post" action="{% url 'shop_section:add_coupon' %}">
                     {% csrf_token %}
                     <input type="text" name="coupon" id="coupon" placeholder="Код купона" class="cart-page-input-text">
-                    <input type="submit" value="Применить купон">
+                    <input type="submit" value="Промокод">
+                </form>
+                <form >
+                    {% csrf_token %}
+                    <button onclick="send_order_data()" class="widget-btn-custom" value="Оплата"><span style="color:white">Оплата</span></button>
                 </form>
             </div>
         </div>
@@ -94,6 +98,8 @@
         </div>
     </div>
 </div>
+<script id='widget-wfp-script' language='javascript' type='text/javascript' src='https://secure.wayforpay.com/server/pay-widget.js'></script>
+{{ widget|safe }}
 <!-- ==========Shop Section Ends Here========== -->
 
 {% endblock main_content %}

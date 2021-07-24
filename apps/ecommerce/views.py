@@ -1,13 +1,16 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
+from django.utils import timezone
+from django.views.generic import View
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from django.core.exceptions import ObjectDoesNotExist
-from django.views.generic import View
+
 from apps.lessons.models import Event
 from apps.users.models import MenuCategory
-from django.utils import timezone
-from .models import OrderItem, Product, Order, Coupon
+
+from .models import Coupon, Order, OrderItem, Product
+from .wayforpaymodule import WayForPayAPI
 
 
 def get_coupon(request, code):
@@ -39,15 +42,46 @@ def cart_view(request):
     if request.user.is_authenticated:
         user = request.user
         try:
-            qs = Order.objects.get(Q(finished=False) & Q(user=user))
+            order = Order.objects.get(Q(finished=False) & Q(user=user))
         except Exception:
             return redirect('shop_section:shop')
-        context = {}
-        context['order'] = qs
+        order_items = order.items_order.all()
+        wpay = WayForPayAPI(
+            'detibudushego_club',
+            '93500448ed437cb41a1639ed67e374457b65e935',
+            'detibudushego.club',
+        )
+        names = []
+        cost = []
+        amount = []
+        for item in order_items:
+            names.append(item.product.title)
+        for item in order_items:
+            cost.append(item.product.final_price())
+        for item in order_items:
+            amount.append(1)
+        import calendar
+        import time
+        ts = calendar.timegm(time.gmtime())
+        data = {
+            'orderReference': order.pk,
+            'orderDate': ts,
+            'amount': order.get_total(),
+            'currency': 'UAH',
+            'productName': names,
+            'productPrice': cost,
+            'productCount': list(map(int, amount)),
+        }
+        print(data)
+        widget = wpay.generate_payment_form(data)
+        context = {
+            'widget': widget
+        }
+        context['order'] = order
         context['menu'] = MenuCategory.objects.filter(display=True)
         context['footer_events'] = Event.objects.all().order_by(
             '-date_start')[:2]
-        items = qs.items_order.all()
+        items = order.items_order.all()
         products = [ item.product for item in items ]
         context['products'] = products
         return render(request, 'cart.html', context=context)
@@ -135,3 +169,53 @@ class AddCouponView(View):
             return redirect("shop_section:cart")
         except ObjectDoesNotExist:
             return redirect("shop_section:cart")
+
+class CheckoutView(View):
+    def post(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            user = self.request.user
+        try:
+            order = Order.objects.get(Q(finished=False) & Q(user=user))
+            order_items = order.items_order.all()
+            wpay = WayForPayAPI(
+                'detibudushego_club',
+                '93500448ed437cb41a1639ed67e374457b65e935',
+                'detibudushego.club',
+            )
+            names = []
+            cost = []
+            amount = []
+            for item in order_items:
+                names.append(item.product.title)
+            for item in order_items:
+                cost.append(item.product.final_price())
+            for item in order_items:
+                amount.append(1)
+            import calendar
+            import time
+            ts = calendar.timegm(time.gmtime())
+            data = {
+                'orderReference': order.pk,
+                'orderDate': ts,
+                'amount': order.get_total(),
+                'currency': 'UAH',
+                'productName': names,
+                'productPrice': cost,
+                'productCount': list(map(int, amount)),
+            }
+            print(data)
+            widget = wpay.generate_payment_form(data)
+            context = {
+                'widget': widget
+            }
+            context['order'] = order
+            context['menu'] = MenuCategory.objects.filter(display=True)
+            context['footer_events'] = Event.objects.all().order_by(
+                '-date_start')[:2]
+            items = order.items_order.all()
+            products = [ item.product for item in items ]
+            context['products'] = products
+            print(widget)
+            return render(self.request, "cart.html", context)
+        except ObjectDoesNotExist:
+            return redirect("shop_section:shop")

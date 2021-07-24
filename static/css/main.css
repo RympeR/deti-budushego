@@ -7298,3 +7298,16 @@ div[class*=col]:nth-of-type(6n + 6) .shop-item .product-thumb, div[class*=col]:n
     height: 234px;
   }
 } 
+.widget-btn-custom {
+  content: "";
+  border-radius: 4px;
+  bottom: 0;
+  left: 0;
+  background: #92278f;
+  z-index: 3;
+}
+.cart-checkout{
+  content: "";
+  background: #92278f;
+  border-radius: 4px;
+}
