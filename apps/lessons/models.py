@@ -10,6 +10,8 @@ from apps.users.models import User
 class LessonCategory(models.Model):
     title = models.CharField(
         verbose_name='Заголовок категории', max_length=100)
+    title_ukr = models.CharField(
+        verbose_name='Заголовок категории ukr',null=True, help_text='Украинская версия', max_length=100)
     slug = models.SlugField(verbose_name='Класс фильтра категории')
 
     class Meta:
@@ -22,6 +24,8 @@ class LessonCategory(models.Model):
 class EventCategory(models.Model):
     title = models.CharField(
         verbose_name='Заголовок категории', max_length=100)
+    title_ukr = models.CharField(
+        verbose_name='Заголовок категории ukr', null=True, help_text='Украинская версия', max_length=100)
     slug = models.SlugField(verbose_name='Класс фильтра категории')
 
     class Meta:
@@ -34,6 +38,7 @@ class EventCategory(models.Model):
 
 class Event(models.Model):
     title = models.CharField(verbose_name='Заголовок события', max_length=100)
+    title_ukr = models.CharField(verbose_name='Заголовок события ukr', null=True, help_text='Украинская версия', max_length=100)
     slug = models.SlugField("Slug")
     preview = models.ImageField(verbose_name='Картинка в блоке', upload_to=preview)
     background_image = models.ImageField(verbose_name='Картинка на странице', upload_to=preview)
@@ -56,7 +61,9 @@ class Event(models.Model):
         EventCategory, related_name='event_category', verbose_name='Категория мероприятия')
     online = models.BooleanField('Онлайн формат', default=False)
     full_text = RichTextField()
+    full_text_ukr = RichTextField()
     most_popular = models.BooleanField('Отобразить на главной', default=False)
+
     def small_image(self):
         if self.preview and hasattr(self.preview, 'url'):
             return mark_safe('<img src="{}" width="100" /'.format(self.preview.url))
@@ -72,6 +79,7 @@ class Event(models.Model):
 
 class Lesson(models.Model):
     title = models.CharField(verbose_name='Заголовок группы', max_length=100)
+    title_ukr = models.CharField(verbose_name='Заголовок группы ukr', null=True, help_text='Украинская версия', max_length=100)
     slug = models.SlugField("Url part")
     preview = models.ImageField(verbose_name='Картинка в блоке', upload_to=preview)
     background_image = models.ImageField(verbose_name='Картинка на странице', upload_to=preview)
@@ -82,6 +90,7 @@ class Lesson(models.Model):
     discount_fee = models.TextField(verbose_name='Цена абонемента со скидкой', null=True, blank=True)
     class_duration = models.TextField(verbose_name="Длительность абонемента")
     class_time = models.TextField(verbose_name='Расписание')
+    class_time_ukr = models.TextField(verbose_name='Расписание ukr', null=True, help_text='Украинская версия',)
     tags = models.ManyToManyField(
         Tag, related_name='lesson_related_tags', blank=True, verbose_name='Тэги группы')
     related_lessons = models.ManyToManyField('self', related_name='related_lessons', verbose_name='Связанные занятия', blank=True)
@@ -95,6 +104,7 @@ class Lesson(models.Model):
     most_popular = models.BooleanField('Отобразить на главной', default=False)
     online = models.BooleanField('Онлайн формат', default=False)
     full_text = RichTextField()
+
     def small_image(self):
         if self.preview and hasattr(self.preview, 'url'):
             return mark_safe('<img src="{}" width="100" /'.format(self.preview.url))
@@ -110,7 +120,9 @@ class Lesson(models.Model):
 
 class Faq(models.Model):
     question = models.CharField(max_length=150, verbose_name='Заголовок вопроса')
+    question_ukr = models.CharField(max_length=150, verbose_name='Заголовок вопроса', null=True, help_text='Украинская версия',)
     answer = models.TextField('Ответ')
+    answer_ukr = models.TextField('Ответ ukr', null=True, help_text='Украинская версия',)
     right = models.BooleanField(verbose_name='Отобразить в правой колонке?',default=False)
     
     @property

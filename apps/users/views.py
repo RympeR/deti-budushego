@@ -1,9 +1,8 @@
-import json
-
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
@@ -13,6 +12,16 @@ from apps.lessons.models import Event
 
 from .forms import RegisterForm, UserLoginForm
 from .models import MenuCategory, User, Vacancy
+
+
+def switch_to_Russian_link(request):
+    request.session['lang'] = 'ru'
+    return HttpResponse('switched to russian')
+
+
+def switch_to_Ukraiunian_link(request):
+    request.session['lang'] = 'uk'
+    return HttpResponse('switched to ukrainian ')
 
 
 class UserList(ListView):
@@ -57,7 +66,8 @@ class CustomerDetail(LoginRequiredMixin, ListView):
         context['footer_events'] = Event.objects.all().order_by(
             '-date_start')[:2]
         products = Product.objects.all()
-        products = [product for product in products if product.check_bought()==True]
+        products = [
+            product for product in products if product.check_bought() == True]
 
         context['products'] = products
         return context

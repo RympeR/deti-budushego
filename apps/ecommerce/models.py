@@ -10,6 +10,7 @@ exposed_request = ''
 
 class Category(models.Model):
     name = models.CharField(verbose_name='Название', max_length=255)
+    name_ukr = models.CharField(null=True, help_text='Украинская версия',verbose_name='Название', max_length=255)
     slug = models.SlugField(verbose_name='Slug')
 
     class Meta:
@@ -37,6 +38,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     title = models.CharField(verbose_name='Заголовок товара', max_length=100)
+    title_ukr = models.CharField(verbose_name='Заголовок товара', null=True, help_text='Украинская версия', max_length=100)
     slug = models.SlugField("Url part", unique=True)
     preview = models.ImageField(
         verbose_name='Картинка в блоке', upload_to=preview)
@@ -44,10 +46,12 @@ class Product(models.Model):
     discount_price = models.FloatField(
         verbose_name='Цена со скидкой', null=True, blank=True)
     description = models.TextField(verbose_name='Описание')
+    description_ukr = models.TextField(null=True, help_text='Украинская версия',verbose_name='Описание')
     attachments = models.ManyToManyField(
         Attachments, related_name='attachments_shop', verbose_name='Вложеия товара')
     created_at = models.DateField('Дата создания', auto_now_add=True)
     full_text = RichTextField()
+    full_text_ukr = RichTextField()
     category = models.ForeignKey(Category, related_name='product_category', verbose_name='Категория', null=True, on_delete=models.SET_NULL,)
     download_archive = models.FileField('Загружаемый файл', null=True, blank=True)
 

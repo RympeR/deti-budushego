@@ -12,6 +12,7 @@ class MenuCategory(MPTTModel):
     parent = TreeForeignKey(
         'self', verbose_name='Родительская категория', blank=True, null=True, related_name='parent_category', on_delete=models.CASCADE)
     name = models.CharField('Название', max_length=100)
+    name_ukr = models.CharField('Название ukr', null=True, help_text='Украинская версия', max_length=100)
     link = models.URLField('Ссылка')
     icon_class = models.CharField(
         'Класс иконки', max_length=20, null=True, blank=True)
@@ -32,7 +33,9 @@ class DropDownPoint(MPTTModel):
     parent = TreeForeignKey(
         'self', verbose_name='Родительская категория', blank=True, null=True, related_name='parent_category', on_delete=models.CASCADE)
     title = models.TextField('Заголовок')
+    title_ukr = models.TextField('Заголовок ukr', null=True, help_text='Украинская версия',)
     description = models.TextField('Описание')
+    description_ukr = models.TextField('Описание ukr', null=True, help_text='Украинская версия',)
     main_page = models.BooleanField('Отобразить на главной?', default=True)
     opened = models.BooleanField('Развернут', default=False)
     class MPTTMeta:
@@ -71,10 +74,13 @@ class Attachments(models.Model):
 
 class Vacancy(models.Model):
     name = models.TextField(verbose_name='Название вакансии')
+    name_ukr = models.TextField(verbose_name='Название вакансии ukr', null=True, help_text='Украинская версия',)
     icon = models.ImageField(verbose_name='Заставка вакансии')
     short_description = models.TextField(verbose_name='Краткое описание', null=True, blank=True)
+    short_description_ukr = models.TextField(verbose_name='Краткое описание', null=True, help_text='Украинская версия', blank=True)
     slug = models.SlugField(("Url part"), unique=True)
     full_text = RichTextField()
+    full_text_ukr = RichTextField()
 
     def __str__(self):
         return str(self.name)
@@ -173,7 +179,8 @@ class Program(models.Model):
         english = 'english', 'Фиолетовый'
 
     name = models.TextField("Название программы")
-    hours = models.TextField("Чамы проведения программы")
+    name_ukr = models.TextField("Название программы ukr", null=True, help_text='Украинская версия',)
+    hours = models.TextField("Часы проведения программы")
     class_name = models.CharField(
         'Цвет строки', choices=ClassNames.choices, max_length=10, default='')
 
@@ -225,6 +232,7 @@ class MainCounters(models.Model):
     amount = models.IntegerField('Значение счетчика')
     symbol = models.CharField(verbose_name='Символ после числа', max_length=1, blank=True, null=True)
     description = models.CharField(verbose_name='Описание счетчика', max_length=50)
+    description_ukr = models.CharField(verbose_name='Описание счетчика ukr', null=True, help_text='Украинская версия',max_length=50)
     image = ProcessedImageField(
         verbose_name='Заставка описания',
         processors=[ResizeToFill(91, 86)],
@@ -245,6 +253,7 @@ class AboutCounters(models.Model):
     amount = models.IntegerField('Значение счетчика')
     symbol = models.CharField(verbose_name='Символ после числа', max_length=1, blank=True, null=True)
     description = models.CharField(verbose_name='Описание счетчика', max_length=50)
+    description_ukr = models.CharField(verbose_name='Описание счетчика ukr', null=True, help_text='Украинская версия', max_length=50)
     image = ProcessedImageField(
         verbose_name='Заставка описания',
         processors=[ResizeToFill(91, 86)],
