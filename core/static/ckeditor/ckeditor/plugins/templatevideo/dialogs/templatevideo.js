@@ -5,30 +5,20 @@ CKEDITOR.dialog.add( 'templatevideoDialog', function( editor ) {
         minHeight: 200,
         contents: [{
             id: 'tab-basic',
-            label: 'Basic Settings',
-            elements: [{
-                    type: 'text',
-                    id: 'videolink',
-                    label: 'Video link',
-                    validate: CKEDITOR.dialog.validate.notEmpty("video link field cannot be empty.")
-                },
+            label: 'Настройки видео',
+            elements: [
                 {
                     type: 'text',
                     id: 'imagelink',
-                    label: 'Image link',
+                    label: 'Ссылка на видео',
                     validate: CKEDITOR.dialog.validate.notEmpty("image link field cannot be empty.")
                 },
             ]
         }],
-
-
         onOk: function () {
             var dialog = this;
             editor.insertHtml(
-                `<div class="video-area">
-                <img src="${dialog.getValueOf( 'tab-basic', 'imagelink' )}" alt="class">
-                <div class="${dialog.getValueOf( 'tab-basic', 'videolink' )}" class="video-button popup"><i class="flaticon-play"></i></div>
-                </div>`
+                `<iframe class="iframe-single-page video-area"  src="${dialog.getValueOf( 'tab-basic', 'imagelink' )}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
             );
         }
     }
