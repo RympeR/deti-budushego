@@ -153,7 +153,8 @@ class Payment(models.Model):
 class Coupon(models.Model):
     code = models.CharField('Код', max_length=15)
     discount_percent = models.IntegerField('Процент скидки')
-    amount = models.IntegerField('Количество использований')
+    datetime_start = models.DateTimeField('Дата начала', null=True, help_text='Дата начала дейстивя купона')
+    datetime_end = models.DateTimeField('Дата окончания', null=True, help_text='Дата окончания дейстивя купона')
 
     class Meta:
         verbose_name = 'Купон'

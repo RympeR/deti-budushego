@@ -35,6 +35,17 @@
                     <li>
                         <a href="https://www.youtube.com/user/detibudushego/featured"><i class="fab fa-youtube"></i></a>
                     </li>
+                    {% if request.user.is_authenticated %}
+                    <li>
+                        <a href="/profile"><i class="fas fa-user-check"></i></a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="/profile"><i class="fas fa-sign-in-alt"></i></a>
+                    </li>  
+                    {% endif %}
+                    
+                    
                 </ul>
             </div>
         </div>
@@ -44,7 +55,7 @@
             <div class="header-wrapper">
                 <div class="logo">
                     <a href='{% url "lessons_section:index" %}'>
-                        <img src="{% static 'images/logo/logo.png' %}" height="80" width="180" alt="logo">
+                        <img src="{% static 'images/logo/logo_svg.svg' %}" height="80" width="180" alt="logo">
                     </a>
                 </div>
                 <div class="menu-area">
@@ -134,10 +145,10 @@
                         </a>
                     </div>-->
                     <div class="cart-button">
-                        <a href="#">
+                        <!-- <a href="#">
                             <span class="cart-amount">{{ request|cart_item_count }}</span>
                             <i class="fas fa-shopping-basket"></i>
-                        </a>
+                        </a> -->
                     </div>
                     <div class="header-bar d-lg-none">
                         <span></span>

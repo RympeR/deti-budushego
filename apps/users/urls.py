@@ -19,7 +19,7 @@ urlpatterns = [
     path('logout/', logoutView, name='logout'),
     path('login/', loginView, name='login'),
     path('teachers/<slug:slug>', UserDetail.as_view(), name='teacher_detail'),
-    path('profile/<slug:slug>', CustomerDetail.as_view(), name='profile_detail'),
+    path('profile', CustomerDetail.as_view(), name='profile_detail'),
     path('vacancys/', VacancyList.as_view(), name='vacancy_list'),
     path('vacancys/<slug:slug>', VacancyDetail.as_view(), name='vacancy_detail'),
 ]

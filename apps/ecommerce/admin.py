@@ -12,10 +12,14 @@ from .models import (
 
 @admin.register(Coupon)
 class CouponAdmin(admin.ModelAdmin):
-    list_display = 'code', 'discount_percent', 'amount'
+    list_display = 'code', 'discount_percent', 'datetime_start', 'datetime_end'
     list_display_links = 'code',
     search_fields = 'code',
-
+    list_filter = (
+        ('datetime_start', DateFieldListFilter),
+        ('datetime_end', DateFieldListFilter),
+    )
+    
 
 @admin.register(Payment)
 class PaymentAdmin(admin.ModelAdmin):
