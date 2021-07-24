@@ -65,10 +65,7 @@
                     <input type="text" name="coupon" id="coupon" placeholder="Код купона" class="cart-page-input-text">
                     <input type="submit" value="Промокод">
                 </form>
-                <form >
-                    {% csrf_token %}
-                    <button onclick="send_order_data()" class="widget-btn-custom" value="Оплата"><span style="color:white">Оплата</span></button>
-                </form>
+                <button onclick="pay()" style="max-width:100px;" class="widget-btn-custom" value="Оплата"><span style="color:white">Оплата</span></button>
             </div>
         </div>
         <div class="shiping-box mb-widget">

@@ -41,7 +41,9 @@ class WayForPayAPI:
 
     def generate_widget(self, data, return_url=""):
         self.merchantSignature = self.get_request_signature({**self.options, **data})
-        request_form = r"""function pay(){
+        request_form = r"""
+            <script type="text/javascript"> 
+            function pay(){
                 var payment = new Wayforpay();
                     payment.run({""" + f"""
                         merchantAccount: '{self.merchant_account}',
@@ -53,26 +55,32 @@ class WayForPayAPI:
                         amount: '{data["amount"]}',
                         authorizationType: 'SimpleSignature',
                         currency: 'UAH',
-                        productName:   {data['productName']} ,
-                        productPrice:  {data['productPrice']},
-                        productCount:  {data['productCount']},		
+                        productName:   {list(map(str,data['productName']))},
+                        productPrice:  {list(map(str,data['productPrice']))},
+                        productCount:  {list(map(str,data['productCount']))},		
                         merchantSignature: '{self.merchantSignature}',
                         language: 'RU',
                         straightWidget: true
                     """ + r"""},
                     function (response) {
-                        console.log('dude');			
-                        window.location.href='';		
+                        window.location.href='"""+data["returnUrl"]+r"""';				
                     } , 			
                     function (response) {
-                        console.log('dude');			
+                        console.log('dude1');			
+                        window.reload()
                     },
                     function (response) {
-                        console.log(response)
-                        window.location.href='';		
+                        window.reload()
                     } 
                 );
             }
+            window.addEventListener("message", function () {
+                if (event.data == 'WfpWidgetEventClose') {
+                    
+                    location.reload()
+                }
+            }, false);
+            </script>
             
         """
         return request_form
@@ -89,6 +97,8 @@ class WayForPayAPI:
                 <input name="orderReference" value="{data['orderReference']}">
                 <input name="orderDate" value="{data['orderDate']}">
                 <input name="amount" value="{data["amount"]}">
+                <input name="serviceUrl" value="{data["serviceUrl"]}">
+                <input name="returnUrl" value="{data["returnUrl"]}">
                 <input name="currency" value="UAH">
                 <input name="orderTimeout" value="49000">"""
         for item in data['productName']:

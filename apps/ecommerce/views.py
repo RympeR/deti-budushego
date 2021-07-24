@@ -64,16 +64,18 @@ def cart_view(request):
         import time
         ts = calendar.timegm(time.gmtime())
         data = {
-            'orderReference': order.pk,
+            'orderReference': ts,
             'orderDate': ts,
             'amount': order.get_total(),
             'currency': 'UAH',
-            'productName': names,
-            'productPrice': cost,
-            'productCount': list(map(int, amount)),
+            'productName': list(names),
+            'productPrice': list(cost),
+            'serviceUrl': 'http://127.0.0.1:8000/finish-order/',
+            'returnUrl': 'http://127.0.0.1:8000/finish-order/',
+            'productCount': list(amount),
         }
         print(data)
-        widget = wpay.generate_payment_form(data)
+        widget = wpay.generate_widget(data)
         context = {
             'widget': widget
         }
@@ -169,6 +171,19 @@ class AddCouponView(View):
             return redirect("shop_section:cart")
         except ObjectDoesNotExist:
             return redirect("shop_section:cart")
+class FinishOrder(View):
+    def get(self, *args, **kwargs):
+        
+        user = self.request.user
+        print(user)
+        try:
+            order = Order.objects.get(Q(finished=False) & Q(user=user))
+            order.finished = True
+            order.save()
+            return redirect("users_section:profile_detail")
+        except ObjectDoesNotExist:
+            return redirect("shop_section:shop")
+        
 
 class CheckoutView(View):
     def post(self, *args, **kwargs):
@@ -195,7 +210,7 @@ class CheckoutView(View):
             import time
             ts = calendar.timegm(time.gmtime())
             data = {
-                'orderReference': order.pk,
+                'orderReference': ts,
                 'orderDate': ts,
                 'amount': order.get_total(),
                 'currency': 'UAH',
@@ -204,7 +219,7 @@ class CheckoutView(View):
                 'productCount': list(map(int, amount)),
             }
             print(data)
-            widget = wpay.generate_payment_form(data)
+            widget = wpay.generate_widget(data)
             context = {
                 'widget': widget
             }
