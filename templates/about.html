@@ -3,7 +3,7 @@
 {% block main_content %}
 
 <!-- ==========Banner Section Starts Here========== -->
-<section class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
+<section itemscope class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
             <h1 class="title">
@@ -32,7 +32,7 @@
 </section>
 <!-- ==========Banner Section Ends Here========== -->
 <!-- ==========About Section Starts Here========== -->
-<section class="about-section pos-rel padding-bottom padding-top oh">
+<section itemscope class="about-section pos-rel padding-bottom padding-top oh">
     <div class="top-shape-center">
         <img src="{% static 'css/img/gallery1.png' %}" alt="css">
     </div>
@@ -154,7 +154,7 @@
 
 
 <!-- ==========Counter Section Starts Here========== -->
-<div class="counter-section padding-top padding-bottom bg_img" data-background="{% static 'images/counter/counter-bg.jpg' %}">
+<div itemscope  class="counter-section padding-top padding-bottom bg_img" data-background="{% static 'images/counter/counter-bg.jpg' %}">
     <div class="container">
         <div class="row justify-content-center mb-30-none">
             {% for counter in counters %}
@@ -184,7 +184,7 @@
 
 {% comment %}
 <!-- ==========Teacher Section Starts Here========== -->
-<section class="teacher-section padding-top padding-bottom pos-rel">
+<section  class="teacher-section padding-top padding-bottom pos-rel">
     <div class="top-shape-center">
         <img src="{% static 'css/img/gallery1.png' %}" alt="css">
     </div>
@@ -224,7 +224,7 @@
 {% endcomment %}
 
 <!-- ==========Blog Section Starts Here========== -->
-<section class="blog-section padding-top padding-bottom pos-rel">
+<section itemscope  class="blog-section padding-top padding-bottom pos-rel">
     <div class="top-shape-center">
         <img src="{% static 'css/img/gallery1.png' %}" alt="css">
     </div>

@@ -2,6 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta property="og:title" content="Дети будущего">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://detibudushego.club" />
+    <meta property="og:image" content="{% static 'images/logo/logo_svg.svg' %}" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -47,30 +51,9 @@
 <script src="{% static 'js/slick.min.js' %}"></script>
 <script src="{% static 'js/map.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
 <script src="https://maps.google.com/maps/api/js?key=AIzaSyCo_pcAdFNbTDCAvMwAD19oRTuEmb9M50c"></script>
 {% block custom_scripts %}
 {% endblock custom_scripts %}
 </body>
-<script>
-    function add_coupon() {
-        $.ajax({
-            url: '{% url "shop_section:add_coupon" %}',
-            type: "post",
-            data: {
-                coupon: $("#coupon").val(),
-                csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
-            },
-
-            success: function (result) {
-                location.reload();
-            },
-            error: function (result) {
-                console.log(result, "location is bad");
-            },
-        });
-    }
-    function send_order_data() {
-            $(document).ready(()=>{$('#subm').click();});
-    }
-</script>
 </html>

@@ -2,7 +2,7 @@
 {% load static %}
 {% block main_content %}
 <!-- ==========Banner Section Starts Here========== -->
-<section class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
+<section itemscope  class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
             <h3 class="title">{{ object.title }}</h3>
@@ -21,7 +21,7 @@
 
 
 <!-- ==========Blog Section Starts Here========== -->
-<div class="blog-section padding-top padding-bottom">
+<div itemscope  class="blog-section padding-top padding-bottom">
     <div class="container">
         <div class="row mb--50">
             <div class="col-lg-8 mb-50">

@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /mdedia/
+Disallow: /static/
+Sitemap: https://detibudushego.club/sitemap.xml

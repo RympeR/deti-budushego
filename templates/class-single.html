@@ -4,16 +4,16 @@
 
 
 <!-- ==========Banner Section Starts Here========== -->
-<section class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
+<section itemscope  class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
-            <h3 class="title">{{ object.title }}</h3>
+            <h3  itemprop="title" class="title">{{ object.title }}</h3>
             <ul class="breadcrumb">
                 <li>
-                    <a href='{% url "lessons_section:index" %}'>Главная</a>
+                    <a itemprop="url" href='{% url "lessons_section:index" %}'>Главная</a>
                 </li>
                 <li>
-                    <a href='{% url "lessons_section:lessons_list" %}'>Наши группы</a>
+                    <a itemprop="url" href='{% url "lessons_section:lessons_list" %}'>Наши группы</a>
                 </li>
                 <li>
                     Группа
@@ -26,7 +26,7 @@
 
 
 <!-- ==========Class Section Starts Here========== -->
-<section class="class-single-section padding-top padding-bottom">
+<section itemscope  class="class-single-section padding-top padding-bottom">
     <div class="container">
         <div class="row mb--50">
             <div class="col-lg-8 mb-50">
@@ -35,7 +35,7 @@
                         <div class="class-single-thumb">
                             <img src="{{ object.background_image.url }}" alt="class">
                         </div>
-                        <div class="class-single-content">
+                        <div  itemprop="description" class="class-single-content">
                             {{ object.full_text|safe }}
                         </div>
                         <div class="tags-area">
@@ -68,29 +68,29 @@
                 <aside>
                     <div class="widget widget-feature">
                         <div class="widget-header">
-                            <h5 class="title">Информация о группе</h5>
+                            <h5  class="title">Информация о группе</h5>
                         </div>
                         <div class="widget-body">
                             <ul>
                                 <li>
                                     <div class="ques cl-i-two"><i class="fas fa-child"></i>Возраст</div>
-                                    <div class="ans">{{ object.years_old }}</div>
+                                    <div  itemprop="age" class="ans">{{ object.years_old }}</div>
                                 </li>
                                 <li>
                                     <div class="ques cl-i-six"><i class="fas fa-clock"></i>Дни, время</div>
-                                    <div class="ans">{{ object.class_time }}</div>
+                                    <div  itemprop="class-time" class="ans">{{ object.class_time }}</div>
                                 </li>
                                 <li>
                                     <div class="ques cl-i-three"><i class="fas fa-sitemap"></i>Количество</div>
-                                    <div class="ans">{{ object.class_size }}</div>
+                                    <div  itemprop="class-size" class="ans">{{ object.class_size }}</div>
                                 </li>
                                 <li>
                                     <div class="ques cl-i-five"><i class="fas fa-address-book"></i>Абонемент</div>
-                                    <div class="ans">{{ object.class_duration }}</div>
+                                    <div  itemprop="class-duration" class="ans">{{ object.class_duration }}</div>
                                 </li>
                                 <li>
                                     <div class="ques cl-i-eight"><i class="fas fa-coins"></i>Стоимость</div>
-                                    <div class="ans">₴{{ object.fee }}</div>
+                                    <div  itemprop="fee" class="ans">₴{{ object.fee }}</div>
                                 </li>
                                 {% if object.discount_fee %}
                                 <li>
@@ -101,7 +101,7 @@
                                 {% if object.date_start %}
                                 <li>
                                     <div class="ques cl-i-one"><i class="fas fa-bell"></i>Старт группы</div>
-                                    <div class="ans">{{ object.date_start }}</div>
+                                    <div  itemprop="date-start" class="ans">{{ object.date_start }}</div>
                                 </li>
                                 {% endif %}
 
@@ -123,7 +123,7 @@
 
                                 <li>
                                     <div class="ques cl-i-two"><i class="fas fa-user"></i>Преподаватель</div>
-                                    <div class="ans">{{ object.teacher.fio }}</div>
+                                    <div itemprop="teacher-name" class="ans">{{ object.teacher.fio }}</div>
                                 </li>
                             </ul>
                         </div>
@@ -211,7 +211,7 @@
 </section>
 <!-- ==========Class Section Ends Here========== -->
 <!-- ==========Call In Action Section Starts Here========== -->
-<section class="call-in-action padding-top padding-bottom theme-overlay bg_img"
+<section itemscope  class="call-in-action padding-top padding-bottom theme-overlay bg_img"
     data-background="./assets/images/bg/call-bg.jpg">
     <div class="container">
         <div class="row align-items-center">

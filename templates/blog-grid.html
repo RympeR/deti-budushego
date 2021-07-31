@@ -2,7 +2,7 @@
 {% load static %}
 {% block main_content %}
 <!-- ==========Banner Section Starts Here========== -->
-<section class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
+<section itemscope  class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
             <h1 class="title">Статьи об обучении детей</h1>
@@ -19,7 +19,7 @@
 </section>
 <!-- ==========Banner Section Ends Here========== -->
 <!-- ==========Blog Section Starts Here========== -->
-<div class="blog-section padding-top padding-bottom">
+<div itemscope  class="blog-section padding-top padding-bottom">
     <div class="container">
         <div class="row mb-30-none justify-content-center">
             {% for post in posts %}

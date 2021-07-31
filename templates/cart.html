@@ -2,13 +2,13 @@
 {% load static %}
 {% block main_content %}
 <!-- ==========Banner Section Starts Here========== -->
-<section class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
+<section itemscope  class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
-            <h1 class="title">Корзина</h1>
+            <h1 itemprop="title" class="title">Корзина</h1>
             <ul class="breadcrumb">
                 <li>
-                    <a href='{% url "lessons_section:index" %}'>Главная</a>
+                    <a itemprop="url" href='{% url "lessons_section:index" %}'>Главная</a>
                 </li>
                 <li>
                     Корзина
@@ -21,7 +21,7 @@
 
 
 <!-- ==========Shop Section Starts Here========== -->
-<div class="shop-cart padding-top padding-bottom">
+<div itemscope  class="shop-cart padding-top padding-bottom">
     <div class="container">
         <div class="cart-top mb-widget">
             <table>
@@ -41,13 +41,13 @@
                                 <a href="#"><img src="{{ product.preview.url }}" alt="product"></a>
                             </div>
                             <div class="p-content">
-                                <a href="#">{{ product.title }}</a>
+                                <a itemprop="name" href="#">{{ product.title }}</a>
                             </div>
                         </td>
                         {% if product.discount_price %}
-                        <td>₴{{ product.discount_price }}</td>
+                        <td itemprop="price">₴{{ product.discount_price }}</td>
                         {% else %}
-                        <td>₴{{ product.price }}</td>
+                        <td itemprop="price">₴{{ product.price }}</td>
                         {% endif %}
                         <td>
                             <a href="{{ product.get_remove_from_cart_url }}"><img src="{% static 'images/cart/del.png' %}" alt="product"></a>

@@ -2,16 +2,16 @@
 {% load static %}
 {% block main_content %}
 <!-- ==========Banner Section Starts Here========== -->
-<section class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
+<section itemscope  class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
-            <h1 class="title"></h1>
+            <h1 itemprop="title" class="title"></h1>
             <ul class="breadcrumb">
                 <li>
-                    <a href='{% url "lessons_section:index" %}'>Home</a>
+                    <a itemprop="url" href='{% url "lessons_section:index" %}'>Home</a>
                 </li>
                 <li>
-                    <a href='{% url "lessons_section:lessons_list" %}'>Classes</a>
+                    <a itemprop="url" href='{% url "lessons_section:lessons_list" %}'>Classes</a>
                 </li>
                 <li>
                     Class Schedule
@@ -24,7 +24,7 @@
 
 
 <!-- ==========Schedule Section Starts Here========== -->
-<div class="schedule-section padding-top padding-bottom">
+<div itemscope  class="schedule-section padding-top padding-bottom">
     <div class="container">
         <div class="row mb--20--50 justify-content-center">
             {% for day in schedule %}
@@ -34,8 +34,8 @@
                     <ul>
                         {% for program in day.programs.all %}
                         <li>
-                            <h6 class="title {{ program.class_name }}">{{ program.name }}</h6>
-                            <span class="time">{{ program.hours }}</span>
+                            <h6 itemprop="name" class="title {{ program.class_name }}">{{ program.name }}</h6>
+                            <span itemprop="hours" class="time">{{ program.hours }}</span>
                         </li>
                         {% endfor %}
                     </ul>
