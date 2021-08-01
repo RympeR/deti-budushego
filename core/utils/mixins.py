@@ -1,7 +1,7 @@
 from apps.users.models import (
     MenuCategory,
 )
-from .models import (
+from apps.lessons.models import (
     Event,
 )
 from django.views.generic.base import ContextMixin

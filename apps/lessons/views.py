@@ -19,7 +19,7 @@ from apps.users.models import (
     DropDownPoint,
 )
 from apps.blog.models import Gallery, Post, Tag
-from .mixins import (
+from core.utils.mixins import (
     FooterContentMixin,
 )
 

@@ -12,6 +12,9 @@ from apps.lessons.models import Event
 
 from .forms import RegisterForm, UserLoginForm
 from .models import MenuCategory, User, Vacancy
+from core.utils.mixins import (
+    FooterContentMixin,
+)
 
 
 def switch_to_Russian_link(request):
@@ -24,32 +27,20 @@ def switch_to_Ukraiunian_link(request):
     return HttpResponse('switched to ukrainian ')
 
 
-class UserList(ListView):
+class UserList(FooterContentMixin, ListView):
     model = User
     context_object_name = 'teachers'
     template_name = 'teacher.html'
     paginate_by = 9
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['teachers'] = User.objects.filter(teacher=True)
-        context['vacancys'] = Vacancy.objects.all()
-        context['menu'] = MenuCategory.objects.filter(display=True)
-        context['footer_events'] = Event.objects.all().order_by(
-            '-date_start')[:2]
-        return context
+    base_context =  {
+        'teachers': User.objects.filter(teacher=True),
+        'vacancys': Vacancy.objects.all(),
+    }
 
 
-class UserDetail(DetailView):
+class UserDetail(FooterContentMixin, DetailView):
     model = User
     template_name = 'teacher-single.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['menu'] = MenuCategory.objects.filter(display=True)
-        context['footer_events'] = Event.objects.all().order_by(
-            '-date_start')[:2]
-        return context
 
 
 # @login_required(login_url='/login/')
@@ -73,30 +64,16 @@ class CustomerDetail(LoginRequiredMixin, ListView):
         return context
 
 
-class VacancyList(ListView):
+class VacancyList(FooterContentMixin, ListView):
     model = Vacancy
     context_object_name = 'vacancys'
     template_name = 'vacancys.html'
     paginate_by = 9
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['menu'] = MenuCategory.objects.filter(display=True)
-        context['footer_events'] = Event.objects.all().order_by(
-            '-date_start')[:2]
-        return context
 
-
-class VacancyDetail(DetailView):
+class VacancyDetail(FooterContentMixin, DetailView):
     model = Vacancy
     template_name = 'vacancy-single.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['menu'] = MenuCategory.objects.filter(display=True)
-        context['footer_events'] = Event.objects.all().order_by(
-            '-date_start')[:2]
-        return context
 
 
 def register(request):
