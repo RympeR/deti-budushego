@@ -1,4 +1,5 @@
 from django.views.generic.list import ListView
+from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.shortcuts import render
 from .models import (
@@ -18,23 +19,20 @@ from apps.users.models import (
     DropDownPoint,
 )
 from apps.blog.models import Gallery, Post, Tag
+from .mixins import (
+    FooterContentMixin,
+)
 
 
-class LessonList(ListView):
+class LessonList(FooterContentMixin, ListView):
     model = Lesson
     context_object_name = 'lessons'
     template_name = 'classes.html'
     paginate_by = 9
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['categories'] = LessonCategory.objects.all()
-        context['menu'] = MenuCategory.objects.filter(display=True)
-        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
-        return context
+    base_context = {'categories': LessonCategory.objects.all()}
 
 
-class LessonListFiltered(ListView):
+class LessonListFiltered(FooterContentMixin, ListView):
     model = Lesson
     context_object_name = 'lessons'
     template_name = 'classes.html'
@@ -44,38 +42,21 @@ class LessonListFiltered(ListView):
         tag = Tag.objects.get(slug=self.kwargs['slug'])
         return Lesson.objects.filter(tags__in=[tag])
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['menu'] = MenuCategory.objects.filter(display=True)
-        context['footer_events'] = Event.objects.all().order_by(
-            '-date_start')[:2]
-        return context
 
-class LessonDetail(DetailView):
+class LessonDetail(FooterContentMixin, DetailView):
     model = Lesson
     template_name = 'class-single.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['menu'] = MenuCategory.objects.filter(display=True)
-        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
-        return context
 
-
-class EventsList(ListView):
+class EventsList(FooterContentMixin, ListView):
     model = Event
     context_object_name = 'events'
     template_name = 'events.html'
     paginate_by = 9
+    base_context = {'categories': EventCategory.objects.all()}
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['categories'] = EventCategory.objects.all()
-        context['menu'] = MenuCategory.objects.filter(display=True)
-        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
-        return context
 
-class EventsListFiltered(ListView):
+class EventsListFiltered(FooterContentMixin, ListView):
     model = Event
     context_object_name = 'events'
     template_name = 'events.html'
@@ -85,91 +66,61 @@ class EventsListFiltered(ListView):
         tag = Tag.objects.get(slug=self.kwargs['slug'])
         return Event.objects.filter(tags__in=[tag])
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['menu'] = MenuCategory.objects.filter(display=True)
-        context['footer_events'] = Event.objects.all().order_by(
-            '-date_start')[:2]
-        return context
 
-class EventDetail(DetailView):
+class EventDetail(FooterContentMixin, DetailView):
     model = Event
     template_name = 'events-single.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['menu'] = MenuCategory.objects.filter(display=True)
-        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
-        return context
+
+class Index(FooterContentMixin, TemplateView):
+    template_name = 'index.html'
+    base_context = {
+        'classes': Lesson.objects.filter(most_popular=True),
+        'gallery': Gallery.objects.filter(most_popular=True),
+        'teachers': User.objects.filter(most_popular=True),
+        'events': Event.objects.filter(most_popular=True),
+        'drop_down': DropDownPoint.objects.filter(main_page=True),
+        'schedule': Schedule.objects.all(),
+        'comments': ParentComment.objects.all(),
+        'counters': MainCounters.objects.all(),
+    }
 
 
-def index(request):
-    context = dict()
-    context['menu'] = MenuCategory.objects.filter(display=True)
-    context['classes'] = Lesson.objects.filter(most_popular=True)
-    context['gallery'] = Gallery.objects.filter(most_popular=True)
-    context['teachers'] = User.objects.filter(most_popular=True)
-    context['events'] = Event.objects.filter(most_popular=True)
-    context['drop_down'] = DropDownPoint.objects.filter(main_page=True)
-    context['schedule'] = Schedule.objects.all()
-    context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
-    context['comments'] = ParentComment.objects.all()
-    context['counters'] = MainCounters.objects.all()
-
-    return render(request, 'index.html', context=context)
+class About(FooterContentMixin, TemplateView):
+    template_name = 'about.html'
+    base_context = {
+        'teachers': User.objects.filter(most_popular=True),
+        'posts': Post.objects.filter(most_popular=True),
+        'teachers': User.objects.filter(most_popular=True),
+        'drop_down': DropDownPoint.objects.filter(main_page=False),
+        'counters': AboutCounters.objects.all(),
+    }
 
 
-def about(request):
-    context = dict()
-    context['menu'] = MenuCategory.objects.filter(display=True)
-    context['teachers'] = User.objects.filter(most_popular=True)
-    context['posts'] = Post.objects.filter(most_popular=True)
-    context['drop_down'] = DropDownPoint.objects.filter(main_page=False)
-    context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
-    context['counters'] = AboutCounters.objects.all()
-    return render(request, 'about.html', context=context)
+class Schedule(FooterContentMixin, TemplateView):
+    template_name = 'class-schedule.html'
+    base_context = {'schedule': Schedule.objects.all()}
 
 
-def schedule(request):
-    context = dict()
-    context['menu'] = MenuCategory.objects.filter(display=True)
-    context['schedule'] = Schedule.objects.all()
-    context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
-    return render(request, 'class-schedule.html', context=context)
+class Contact(FooterContentMixin, TemplateView):
+    template_name = 'contact.html'
 
 
-def contact(request):
-    context = dict()
-    context['menu'] = MenuCategory.objects.filter(display=True)
-    context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
-    return render(request, 'contact.html', context=context)
+class ComingSoon(FooterContentMixin, TemplateView):
+    template_name = 'coming-soon.html'
 
 
-def coming_soon(request):
-    context = dict()
-    context['menu'] = MenuCategory.objects.filter(display=True)
-    context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
-    return render(request, 'coming-soon.html', context=context)
+class FAQ(FooterContentMixin, TemplateView):
+    template_name = 'faqs.html'
+    base_context = {
+        'left': Faq.objects.filter(right=False),
+        'right': Faq.objects.filter(right=True),
+    }
 
 
-def faq(request):
-    context = dict()
-    context['menu'] = MenuCategory.objects.filter(display=True)
-    context['left'] = Faq.objects.filter(right=False)
-    context['right'] = Faq.objects.filter(right=True)
-    context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
-    return render(request, 'faqs.html', context=context)
+class Login(FooterContentMixin, TemplateView):
+    template_name = 'login.html'
 
 
-def login(request):
-    context = dict()
-    context['menu'] = MenuCategory.objects.filter(display=True)
-    context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
-    return render(request, 'login.html', context=context)
-
-
-def registration(request):
-    context = dict()
-    context['menu'] = MenuCategory.objects.filter(display=True)
-    context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
-    return render(request, 'registration.html', context=context)
+class Registration(FooterContentMixin, TemplateView):
+    template_name = 'registration.html'
