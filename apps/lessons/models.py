@@ -96,7 +96,7 @@ class Lesson(models.Model):
     related_lessons = models.ManyToManyField('self', related_name='related_lessons', verbose_name='Связанные занятия', blank=True)
     teacher = models.ForeignKey(
         User, related_name='teacher_set', verbose_name='Преподаватель', null=True, on_delete=models.SET_NULL)
-    try_lesson = models.IntegerField(verbose_name='Пробное занятие', null=True)
+    try_lesson = models.IntegerField(verbose_name='Пробное занятие', null=True, blank=True)
     related_posts = models.ManyToManyField(Post, related_name='related_lessons_posts', verbose_name='Связанные публикации', blank=True)
     gallery = models.ManyToManyField(
         Gallery, related_name='lesson_related_gallery', blank=True, verbose_name='Выбрать фото из галереи')
