@@ -98,6 +98,11 @@
                                     <div class="ans">₴{{ object.discount_fee }}</div>
                                 </li>
                                 {% endif %}
+                                {% if object.try_lesson %}
+                                <li>
+                                    <div class="ques cl-i-one"><i class="fas fa-bell">Есть пробное занятие</i></div>
+                                </li>
+                                {% endif %}
                                 {% if object.date_start %}
                                 <li>
                                     <div class="ques cl-i-one"><i class="fas fa-bell"></i>Старт группы</div>

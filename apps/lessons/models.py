@@ -87,7 +87,7 @@ class Lesson(models.Model):
     class_size = models.TextField(verbose_name='Размер группы')
     date_start = models.TextField(verbose_name="Дата начала занятий группы", null=True, blank=True)
     fee = models.TextField(verbose_name='Цена абонемента')
-    discount_fee = models.TextField(verbose_name='Цена абонемента со скидкой', null=True, blank=True)
+    discount_fee = models.TextField(verbose_name='Цен9*+-а абонемента со скидкой', null=True, blank=True)
     class_duration = models.TextField(verbose_name="Длительность абонемента")
     class_time = models.TextField(verbose_name='Расписание')
     class_time_ukr = models.TextField(verbose_name='Расписание ukr', null=True, help_text='Украинская версия',)
@@ -96,6 +96,7 @@ class Lesson(models.Model):
     related_lessons = models.ManyToManyField('self', related_name='related_lessons', verbose_name='Связанные занятия', blank=True)
     teacher = models.ForeignKey(
         User, related_name='teacher_set', verbose_name='Преподаватель', null=True, on_delete=models.SET_NULL)
+    try_lesson = models.BooleanField(verbose_name='Пробное занятие', null=True, default=False)
     related_posts = models.ManyToManyField(Post, related_name='related_lessons_posts', verbose_name='Связанные публикации', blank=True)
     gallery = models.ManyToManyField(
         Gallery, related_name='lesson_related_gallery', blank=True, verbose_name='Выбрать фото из галереи')
