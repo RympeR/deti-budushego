@@ -79,7 +79,7 @@ class Event(models.Model):
 
 class Lesson(models.Model):
     title = models.CharField(verbose_name='Заголовок группы', max_length=100)
-    title_ukr = models.CharField(verbose_name='Заголовок группы ukr', null=True, help_text='Украинская версия', max_length=100)
+    # title_ukr = models.CharField(verbose_name='Заголовок группы ukr', null=True, help_text='Украинская версия', max_length=100, null=True, blank=True)
     slug = models.SlugField("Url part")
     preview = models.ImageField(verbose_name='Картинка в блоке', upload_to=preview)
     background_image = models.ImageField(verbose_name='Картинка на странице', upload_to=preview)
