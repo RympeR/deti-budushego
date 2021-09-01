@@ -29,7 +29,9 @@ class LessonList(FooterContentMixin, ListView):
     template_name = 'classes.html'
     paginate_by = 9
     base_context = {'categories': LessonCategory.objects.all()}
-
+    
+    def get_queryset(self):
+        return Lesson.objects.filter(display=True)
 
 class LessonListFiltered(FooterContentMixin, ListView):
     model = Lesson
@@ -74,7 +76,7 @@ class EventDetail(FooterContentMixin, DetailView):
 class Index(FooterContentMixin, TemplateView):
     template_name = 'index.html'
     base_context = {
-        'classes': Lesson.objects.filter(most_popular=True),
+        'classes': Lesson.objects.filter(most_popular=True, display=True),
         'gallery': Gallery.objects.filter(most_popular=True),
         'teachers': User.objects.filter(most_popular=True),
         'events': Event.objects.filter(most_popular=True),
