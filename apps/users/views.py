@@ -27,23 +27,35 @@ def switch_to_Ukraiunian_link(request):
     return HttpResponse('switched to ukrainian ')
 
 
-class UserList(FooterContentMixin, ListView):
+class UserList(ListView):
     model = User
     context_object_name = 'teachers'
     template_name = 'teacher.html'
     paginate_by = 9
-    base_context =  {
-        'teachers': User.objects.filter(teacher=True),
-        'vacancys': Vacancy.objects.all(),
-    }
+
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        base_context = {
+            'teachers': User.objects.filter(teacher=True),
+            'vacancys': Vacancy.objects.all(),
+        }
+        context = {**context, **base_context, **
+                   FooterContentMixin.footer_context}
+        return context
 
 
-class UserDetail(FooterContentMixin, DetailView):
+class UserDetail(DetailView):
     model = User
     template_name = 'teacher-single.html'
 
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        context = {**context, ** FooterContentMixin.footer_context}
+        return context
 
 # @login_required(login_url='/login/')
+
+
 class CustomerDetail(LoginRequiredMixin, ListView):
     model = Product
     template_name = 'profile.html'
@@ -64,14 +76,19 @@ class CustomerDetail(LoginRequiredMixin, ListView):
         return context
 
 
-class VacancyList(FooterContentMixin, ListView):
+class VacancyList(ListView):
     model = Vacancy
     context_object_name = 'vacancys'
     template_name = 'vacancys.html'
     paginate_by = 9
 
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        context = {**context, ** FooterContentMixin.footer_context}
+        return context
 
-class VacancyDetail(FooterContentMixin, DetailView):
+
+class VacancyDetail(DetailView):
     model = Vacancy
     template_name = 'vacancy-single.html'
 
@@ -92,6 +109,7 @@ def register(request):
     context['menu'] = MenuCategory.objects.filter(display=True)
     context['form'] = RegisterForm()
     context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
+    context = {**context, ** FooterContentMixin.footer_context}
     return render(request, 'registration.html', context)
 
 

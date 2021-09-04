@@ -26,12 +26,16 @@ def get_coupon(request, code):
     except ObjectDoesNotExist:
         return redirect("core:checkout")
 
-class ShopList(FooterContentMixin, ListView):
+class ShopList(ListView):
     model = Product
     context_object_name = 'products'
     template_name = 'shop.html'
     paginate_by = 9
 
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        context = {**context, ** FooterContentMixin.footer_context}
+        return context
 
 def cart_view(request):
     if request.user.is_authenticated:
@@ -84,7 +88,7 @@ def cart_view(request):
         return render(request, 'cart.html', context=context)
     return redirect('shop_section:shop')
 
-class ShopListFiltered(FooterContentMixin, ListView):
+class ShopListFiltered(ListView):
     model = Product
     context_object_name = 'products'
     template_name = 'shop.html'
@@ -93,11 +97,19 @@ class ShopListFiltered(FooterContentMixin, ListView):
     def get_queryset(self):
         return Product.objects.filter(category__slug=self.kwargs['slug'])
 
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        context = {**context, ** FooterContentMixin.footer_context}
+        return context
 
-class ShopDetail(FooterContentMixin, DetailView):
+class ShopDetail(DetailView):
     model = Product
     template_name = 'shop-single.html'
 
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        context = {**context, ** FooterContentMixin.footer_context}
+        return context
 
 def add_to_cart(request, slug):
     product = get_object_or_404(Product, slug=slug)

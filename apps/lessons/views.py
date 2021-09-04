@@ -19,21 +19,28 @@ from apps.users.models import (
 )
 from apps.blog.models import Gallery, Post, Tag
 from core.utils.mixins import (
-    FooterContentMixin,
+    FooterContentMixin
 )
 
 
-class LessonList(FooterContentMixin, ListView):
+class LessonList(ListView):
     model = Lesson
     context_object_name = 'lessons'
     template_name = 'classes.html'
     paginate_by = 9
-    base_context = {'categories': LessonCategory.objects.all()}
-    
+
     def get_queryset(self):
         return Lesson.objects.filter(display=True)
 
-class LessonListFiltered(FooterContentMixin, ListView):
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        base_context = {'categories': LessonCategory.objects.all()}
+        context = {**context, **base_context, **
+                   FooterContentMixin.footer_context}
+        return context
+
+
+class LessonListFiltered(ListView):
     model = Lesson
     context_object_name = 'lessons'
     template_name = 'classes.html'
@@ -43,21 +50,38 @@ class LessonListFiltered(FooterContentMixin, ListView):
         tag = Tag.objects.get(slug=self.kwargs['slug'])
         return Lesson.objects.filter(tags__in=[tag])
 
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        context = {**context, ** FooterContentMixin.footer_context}
+        return context
 
-class LessonDetail(FooterContentMixin, DetailView):
+
+class LessonDetail(DetailView):
     model = Lesson
     template_name = 'class-single.html'
 
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        context = {**context, ** FooterContentMixin.footer_context}
+        return context
 
-class EventsList(FooterContentMixin, ListView):
+
+class EventsList(ListView, FooterContentMixin):
     model = Event
     context_object_name = 'events'
     template_name = 'events.html'
     paginate_by = 9
     base_context = {'categories': EventCategory.objects.all()}
 
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        base_context = {'categories': EventCategory.objects.all()}
+        context = {**context, **base_context, **
+                   FooterContentMixin.footer_context}
+        return context
 
-class EventsListFiltered(FooterContentMixin, ListView):
+
+class EventsListFiltered(ListView):
     model = Event
     context_object_name = 'events'
     template_name = 'events.html'
@@ -67,61 +91,116 @@ class EventsListFiltered(FooterContentMixin, ListView):
         tag = Tag.objects.get(slug=self.kwargs['slug'])
         return Event.objects.filter(tags__in=[tag])
 
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        context = {**context, ** FooterContentMixin.footer_context}
+        return context
 
-class EventDetail(FooterContentMixin, DetailView):
+
+class EventDetail(DetailView):
     model = Event
     template_name = 'events-single.html'
 
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        context = {**context, ** FooterContentMixin.footer_context}
+        return context
 
-class Index(FooterContentMixin, TemplateView):
+
+class Index(TemplateView):
     template_name = 'index.html'
-    base_context = {
-        'classes': Lesson.objects.filter(most_popular=True, display=True),
-        'gallery': Gallery.objects.filter(most_popular=True),
-        'teachers': User.objects.filter(most_popular=True),
-        'events': Event.objects.filter(most_popular=True),
-        'drop_down': DropDownPoint.objects.filter(main_page=True),
-        'schedule': Schedule.objects.all(),
-        'comments': ParentComment.objects.all(),
-        'counters': MainCounters.objects.all(),
-    }
+
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        context['menu'] = MenuCategory.objects.filter(display=True)
+        context['classes'] = Lesson.objects.filter(
+            most_popular=True, display=True)
+        context['gallery'] = Gallery.objects.filter(most_popular=True)
+        context['teachers'] = User.objects.filter(most_popular=True)
+        context['events'] = Event.objects.filter(most_popular=True)
+        context['drop_down'] = DropDownPoint.objects.filter(main_page=True)
+        context['schedule'] = Schedule.objects.all()
+        context['comments'] = ParentComment.objects.all()
+        context['counters'] = MainCounters.objects.all()
+        context['footer_events'] = Event.objects.all().order_by(
+            '-date_start')[:2]
+        context = {**context}
+        return context
 
 
-class About(FooterContentMixin, TemplateView):
+class About(TemplateView):
     template_name = 'about.html'
-    base_context = {
-        'teachers': User.objects.filter(most_popular=True),
-        'posts': Post.objects.filter(most_popular=True),
-        'teachers': User.objects.filter(most_popular=True),
-        'drop_down': DropDownPoint.objects.filter(main_page=False),
-        'counters': AboutCounters.objects.all(),
-    }
+
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        base_context = {
+            'teachers': User.objects.filter(most_popular=True),
+            'posts': Post.objects.filter(most_popular=True),
+            'teachers': User.objects.filter(most_popular=True),
+            'drop_down': DropDownPoint.objects.filter(main_page=False),
+            'counters': AboutCounters.objects.all(),
+        }
+        context = {**context, **base_context, **
+                   FooterContentMixin.footer_context}
+        return context
 
 
-class Schedule(FooterContentMixin, TemplateView):
+class ScheduleView(TemplateView):
     template_name = 'class-schedule.html'
-    base_context = {'schedule': Schedule.objects.all()}
+
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        base_context = {'schedule': Schedule.objects.all()}
+        context = {**context, **base_context, **
+                   FooterContentMixin.footer_context}
+        return context
 
 
 class Contact(FooterContentMixin, TemplateView):
     template_name = 'contact.html'
 
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        context = {**context, **FooterContentMixin.footer_context}
+        return context
+
 
 class ComingSoon(FooterContentMixin, TemplateView):
     template_name = 'coming-soon.html'
 
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        context = {**context, ** FooterContentMixin.footer_context}
+        return context
 
-class FAQ(FooterContentMixin, TemplateView):
+
+class FAQ(TemplateView):
     template_name = 'faqs.html'
-    base_context = {
-        'left': Faq.objects.filter(right=False),
-        'right': Faq.objects.filter(right=True),
-    }
+
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        base_context = {
+            'left': Faq.objects.filter(right=False),
+            'right': Faq.objects.filter(right=True),
+        }
+        context = {**context, **base_context, **
+                   FooterContentMixin.footer_context}
+        return context
 
 
-class Login(FooterContentMixin, TemplateView):
+class Login(TemplateView):
     template_name = 'login.html'
 
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        context = {**context, ** FooterContentMixin.footer_context}
+        return context
 
-class Registration(FooterContentMixin, TemplateView):
+
+class Registration(TemplateView):
     template_name = 'registration.html'
+
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        context = {**context, ** FooterContentMixin.footer_context}
+        return context

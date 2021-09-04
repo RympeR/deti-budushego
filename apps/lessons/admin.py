@@ -42,12 +42,13 @@ class EventAdmin(admin.ModelAdmin):
 
 @admin.register(Lesson)
 class LessonAdmin(admin.ModelAdmin):
-    list_display = 'title', 'small_image', 'teacher', 'class_duration', 'date_start'
+    list_display = 'title', 'small_image', 'teacher', 'class_duration', 'date_start', 'display'
     list_display_links = 'title',
     search_fields = 'name',
     list_filter = (
         ('class_duration', DateFieldListFilter),
         ('date_start', DateFieldListFilter),
+        'display',
     )
     filter_horizontal = (
         'tags',
