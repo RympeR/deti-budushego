@@ -34,6 +34,7 @@ class ShopList(ListView):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
+        context['title'] = 'Товары'
         context = {**context, ** FooterContentMixin.footer_context}
         return context
 
@@ -69,11 +70,10 @@ def cart_view(request):
             'currency': 'UAH',
             'productName': list(names),
             'productPrice': list(cost),
-            'serviceUrl': 'http://127.0.0.1:8000/finish-order/',
-            'returnUrl': 'http://127.0.0.1:8000/finish-order/',
+            'serviceUrl': 'https://detibudushego.club/finish-order/',
+            'returnUrl': 'https://detibudushego.club/finish-order/',
             'productCount': list(amount),
         }
-        print(data)
         widget = wpay.generate_widget(data)
         context = {
             'widget': widget
@@ -99,6 +99,7 @@ class ShopListFiltered(ListView):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
+        context['title'] = 'Товары'
         context = {**context, ** FooterContentMixin.footer_context}
         return context
 

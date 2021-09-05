@@ -34,6 +34,7 @@ class LessonList(ListView):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
+        context['title'] = 'Группы'
         base_context = {'categories': LessonCategory.objects.all()}
         context = {**context, **base_context, **
                    FooterContentMixin.footer_context}
@@ -52,6 +53,7 @@ class LessonListFiltered(ListView):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
+        context['title'] = 'Группы'
         context = {**context, ** FooterContentMixin.footer_context}
         return context
 
@@ -62,6 +64,8 @@ class LessonDetail(DetailView):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
+        context['title'] = context['object'].title
+
         context = {**context, ** FooterContentMixin.footer_context}
         return context
 
@@ -75,6 +79,8 @@ class EventsList(ListView, FooterContentMixin):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
+        context['title'] = 'Мероприятия'
+        
         base_context = {'categories': EventCategory.objects.all()}
         context = {**context, **base_context, **
                    FooterContentMixin.footer_context}
@@ -93,6 +99,8 @@ class EventsListFiltered(ListView):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
+        context['title'] = 'Мероприятия'
+        
         context = {**context, ** FooterContentMixin.footer_context}
         return context
 
@@ -103,6 +111,7 @@ class EventDetail(DetailView):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
+        context['title'] = context['object'].title
         context = {**context, ** FooterContentMixin.footer_context}
         return context
 
@@ -140,6 +149,7 @@ class About(TemplateView):
             'drop_down': DropDownPoint.objects.filter(main_page=False),
             'counters': AboutCounters.objects.all(),
         }
+        context['title'] = "О нас"
         context = {**context, **base_context, **
                    FooterContentMixin.footer_context}
         return context
@@ -150,6 +160,8 @@ class ScheduleView(TemplateView):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
+        context['title'] = "Расписание"
+
         base_context = {'schedule': Schedule.objects.all()}
         context = {**context, **base_context, **
                    FooterContentMixin.footer_context}
@@ -161,6 +173,8 @@ class Contact(FooterContentMixin, TemplateView):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
+        context['title'] = "Контакты"
+
         context = {**context, **FooterContentMixin.footer_context}
         return context
 
@@ -170,6 +184,8 @@ class ComingSoon(FooterContentMixin, TemplateView):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
+        context['title'] = "Скоро"
+
         context = {**context, ** FooterContentMixin.footer_context}
         return context
 
@@ -183,6 +199,8 @@ class FAQ(TemplateView):
             'left': Faq.objects.filter(right=False),
             'right': Faq.objects.filter(right=True),
         }
+        context['title'] = "Частые вопросы"
+
         context = {**context, **base_context, **
                    FooterContentMixin.footer_context}
         return context
@@ -193,6 +211,8 @@ class Login(TemplateView):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
+        context['title'] = "Вход"
+
         context = {**context, ** FooterContentMixin.footer_context}
         return context
 
@@ -202,5 +222,7 @@ class Registration(TemplateView):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
+        context['title'] = "Регистрация"
+
         context = {**context, ** FooterContentMixin.footer_context}
         return context
