@@ -51,7 +51,7 @@ class UserDetail(DetailView):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Преподаватель'
+        context['title'] = context['object'].fio
         context = {**context, ** FooterContentMixin.footer_context}
         return context
 
