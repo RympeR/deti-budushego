@@ -35,7 +35,12 @@ class ShopList(ListView):
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
         context['title'] = 'Товары'
-        context = {**context, ** FooterContentMixin.footer_context}
+        footer_context = {
+            'menu' : MenuCategory.objects.filter(display=True),
+            'footer_events' : Event.objects.all().order_by(
+                '-date_start')[:2]
+        }
+        context = {**context,**footer_context}
         return context
 
 def cart_view(request):
@@ -100,7 +105,12 @@ class ShopListFiltered(ListView):
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
         context['title'] = 'Товары'
-        context = {**context, ** FooterContentMixin.footer_context}
+        footer_context = {
+            'menu' : MenuCategory.objects.filter(display=True),
+            'footer_events' : Event.objects.all().order_by(
+                '-date_start')[:2]
+        }
+        context = {**context,**footer_context}
         return context
 
 class ShopDetail(DetailView):
@@ -109,7 +119,12 @@ class ShopDetail(DetailView):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
-        context = {**context, ** FooterContentMixin.footer_context}
+        footer_context = {
+            'menu' : MenuCategory.objects.filter(display=True),
+            'footer_events' : Event.objects.all().order_by(
+                '-date_start')[:2]
+        }
+        context = {**context,**footer_context}
         return context
 
 def add_to_cart(request, slug):

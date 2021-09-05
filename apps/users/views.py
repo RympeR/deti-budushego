@@ -40,8 +40,13 @@ class UserList(ListView):
             'vacancys': Vacancy.objects.all(),
         }
         context['title'] = 'Преподаватели'
+        footer_context = {
+            'menu' : MenuCategory.objects.filter(display=True),
+            'footer_events' : Event.objects.all().order_by(
+                '-date_start')[:2]
+        }
         context = {**context, **base_context, **
-                   FooterContentMixin.footer_context}
+                   footer_context}
         return context
 
 
@@ -52,7 +57,12 @@ class UserDetail(DetailView):
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
         context['title'] = context['object'].fio
-        context = {**context, ** FooterContentMixin.footer_context}
+        footer_context = {
+            'menu' : MenuCategory.objects.filter(display=True),
+            'footer_events' : Event.objects.all().order_by(
+                '-date_start')[:2]
+        }
+        context = {**context, **footer_context}
         return context
 
 # @login_required(login_url='/login/')
@@ -87,7 +97,12 @@ class VacancyList(ListView):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
-        context = {**context, ** FooterContentMixin.footer_context}
+        footer_context = {
+            'menu' : MenuCategory.objects.filter(display=True),
+            'footer_events' : Event.objects.all().order_by(
+                '-date_start')[:2]
+        }
+        context = {**context, **footer_context}
         context['title'] = 'Список вакансий'
         return context
 
@@ -119,7 +134,12 @@ def register(request):
     context['form'] = RegisterForm()
     context['title'] = 'Регистрация'
     context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
-    context = {**context, ** FooterContentMixin.footer_context}
+    footer_context = {
+            'menu' : MenuCategory.objects.filter(display=True),
+            'footer_events' : Event.objects.all().order_by(
+                '-date_start')[:2]
+        }
+    context = {**context,**footer_context}
     return render(request, 'registration.html', context)
 
 
