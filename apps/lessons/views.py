@@ -58,7 +58,12 @@ class LessonListFiltered(ListView):
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
         context['title'] = 'Группы'
-        context = {**context, ** FooterContentMixin.footer_context}
+        footer_context = {
+        'menu' : MenuCategory.objects.filter(display=True),
+        'footer_events' : Event.objects.all().order_by(
+            '-date_start')[:2]
+        }
+        context = {**context, ** footer_context}
         return context
 
 
@@ -69,8 +74,11 @@ class LessonDetail(DetailView):
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
         context['title'] = context['object'].title
-
-        context = {**context, ** FooterContentMixin.footer_context}
+        footer_context = {
+            'menu' : MenuCategory.objects.filter(display=True),
+            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+        }
+        context = {**context, ** footer_context}
         return context
 
 
@@ -84,10 +92,13 @@ class EventsList(ListView, FooterContentMixin):
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
         context['title'] = 'Мероприятия'
-        
+        footer_context = {
+            'menu' : MenuCategory.objects.filter(display=True),
+            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+        }
         base_context = {'categories': EventCategory.objects.all()}
         context = {**context, **base_context, **
-                   FooterContentMixin.footer_context}
+                   footer_context}
         return context
 
 
@@ -104,8 +115,11 @@ class EventsListFiltered(ListView):
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
         context['title'] = 'Мероприятия'
-        
-        context = {**context, ** FooterContentMixin.footer_context}
+        footer_context = {
+            'menu' : MenuCategory.objects.filter(display=True),
+            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+        }
+        context = {**context, ** footer_context}
         return context
 
 
@@ -116,7 +130,11 @@ class EventDetail(DetailView):
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
         context['title'] = context['object'].title
-        context = {**context, ** FooterContentMixin.footer_context}
+        footer_context = {
+            'menu' : MenuCategory.objects.filter(display=True),
+            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+        }
+        context = {**context, ** footer_context}
         return context
 
 
@@ -154,8 +172,12 @@ class About(TemplateView):
             'counters': AboutCounters.objects.all(),
         }
         context['title'] = "О нас"
+        footer_context = {
+            'menu' : MenuCategory.objects.filter(display=True),
+            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+        }
         context = {**context, **base_context, **
-                   FooterContentMixin.footer_context}
+                   footer_context}
         return context
 
 
@@ -165,10 +187,13 @@ class ScheduleView(TemplateView):
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
         context['title'] = "Расписание"
-
+        footer_context = {
+            'menu' : MenuCategory.objects.filter(display=True),
+            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+        }
         base_context = {'schedule': Schedule.objects.all()}
         context = {**context, **base_context, **
-                   FooterContentMixin.footer_context}
+                   footer_context}
         return context
 
 
@@ -178,8 +203,11 @@ class Contact(FooterContentMixin, TemplateView):
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
         context['title'] = "Контакты"
-
-        context = {**context, **FooterContentMixin.footer_context}
+        footer_context = {
+            'menu' : MenuCategory.objects.filter(display=True),
+            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+        }
+        context = {**context, **footer_context}
         return context
 
 
@@ -189,8 +217,11 @@ class ComingSoon(FooterContentMixin, TemplateView):
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
         context['title'] = "Скоро"
-
-        context = {**context, ** FooterContentMixin.footer_context}
+        footer_context = {
+            'menu' : MenuCategory.objects.filter(display=True),
+            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+        }
+        context = {**context, ** footer_context}
         return context
 
 
@@ -204,9 +235,12 @@ class FAQ(TemplateView):
             'right': Faq.objects.filter(right=True),
         }
         context['title'] = "Частые вопросы"
-
+        footer_context = {
+            'menu' : MenuCategory.objects.filter(display=True),
+            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+        }
         context = {**context, **base_context, **
-                   FooterContentMixin.footer_context}
+                   footer_context}
         return context
 
 
@@ -216,8 +250,11 @@ class Login(TemplateView):
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
         context['title'] = "Вход"
-
-        context = {**context, ** FooterContentMixin.footer_context}
+        footer_context = {
+            'menu' : MenuCategory.objects.filter(display=True),
+            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+        }
+        context = {**context, ** footer_context}
         return context
 
 
@@ -227,6 +264,9 @@ class Registration(TemplateView):
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
         context['title'] = "Регистрация"
-
-        context = {**context, ** FooterContentMixin.footer_context}
+        footer_context = {
+            'menu' : MenuCategory.objects.filter(display=True),
+            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+        }
+        context = {**context, ** footer_context}
         return context
