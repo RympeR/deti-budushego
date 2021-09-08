@@ -21,7 +21,16 @@ from apps.blog.models import Gallery, Post, Tag
 from core.utils.mixins import (
     FooterContentMixin
 )
+from django.shortcuts import  render
+from django.template import RequestContext
 
+
+def handler404(request, *args):
+    return render(request, '404.html')
+
+
+def handler500(request, *args):
+    return render(request, '404.html')
 
 class LessonList(ListView):
     model = Lesson

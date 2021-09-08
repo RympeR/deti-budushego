@@ -1,9 +1,53 @@
-{% extends "base.html" %}
 {% load static %}
-{% block main_content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GRB95LJ5QL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-GRB95LJ5QL');
+    </script>
+    
+    <meta property="og:site_name" content="detibudushego">
+    <meta property="og:title" content="{{title}}">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://detibudushego.club" />
+    <meta property="og:image" content="https://detibudushego.club/static/images/logo/logo.png" />
+    <meta property="og:image:width" content="480">
+    <meta property="og:image:height" content="360">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <title>{{title}}</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nice-select.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/slick-theme.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/odometer.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/flaticon.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+</head>
+<body>
 
     <!-- ==========Error Section Starts Here========== -->
-    <section itemscope class="error-section min-height-section bg_img" data-background="{% static 'assets/images/error/error-bg.jpg'%}">
+    <section itemscope class="error-section min-height-section bg_img" data-background="{% static 'images/error/error-bg.jpg'%}">
         <div class="container">
             <div class="error-wrapper">
                 <div class="inner-logo">
@@ -20,5 +64,21 @@
             </div>
         </div>
     </section>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/modernizr-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/progress.js' %}"></script>
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script src="{% static 'js/viewport.jquery.js' %}"></script>
+    <script src="{% static 'js/odometer.min.js' %}"></script>
+    <script src="{% static 'js/nice-select.js' %}"></script>
+    <script src="{% static 'js/slick.min.js' %}"></script>
+    <script src="{% static 'js/map.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyCo_pcAdFNbTDCAvMwAD19oRTuEmb9M50c"></script>
     <!-- ==========Error Section Ends Here========== -->
-    {% endblock main_content %}
+</body>
