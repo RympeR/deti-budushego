@@ -2,7 +2,7 @@
 {% load static %}
 {% block main_content %}
 <!-- ==========Banner Section Starts Here========== -->
-<section itemscope  class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
+<section itemscope class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
             <h1 class="title">{{ object.fio }}</h1>
@@ -24,7 +24,7 @@
 
 
 <!-- ==========Teacher Single Section Starts Here========== -->
-<section itemscope  class="speaker-single-section padding-top padding-bottom">
+<section itemscope class="speaker-single-section padding-top padding-bottom">
     <div class="container">
         <div class="teacher-wrapper">
             <div class="teacher-single-top">
@@ -34,10 +34,10 @@
                     </div>
                     <div class="teacher-single-content">
                         <h4 class="title">{{ object.fio }}</h4>
-                        <p>{{ object.specialization }}</p>
+                        <pre>{{ object.specialization }}</pre>
                         <pre class="header-p">{{ object.personal_statement }}</pre>
                         <h6 class="subtitle">О преподавателе</h6>
-                        <p class="header-p">{{ object.characteristic }}</p>
+                        <pre class="header-p">{{ object.characteristic }}</pre>
                     </div>
                 </div>
             </div>
@@ -77,15 +77,17 @@
                 </div>
                 <div class="col-lg-6 pb-20 d-flex flex-wrap justify-content-lg-start justify-content-between">
                     {% if object.sertificates %}
-                      
-                    
+
+
                     <h6 class="w-100 subtitle">Сертификаты</h6>
                     {% for certify in object.sertificates.all %}
-                      
-                    
+
+
                     <div class="skill-item text-center">
                         <div class="skill-thumb">
-                            <img src="{{ certify.attachment.url }}" alt="teacher">
+                            <a class="img-pop" href="{{ certify.attachment.url }}">
+                                <img src="{{ certify.attachment.url }}" width="40" height="40" alt="teacher">
+                            </a>
                         </div>
                     </div>
                     {% endfor %}

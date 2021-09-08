@@ -12,9 +12,7 @@ from apps.lessons.models import Event
 
 from .forms import RegisterForm, UserLoginForm
 from .models import MenuCategory, User, Vacancy
-from core.utils.mixins import (
-    FooterContentMixin,
-)
+
 
 
 def switch_to_Russian_link(request):

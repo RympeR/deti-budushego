@@ -34,12 +34,12 @@
     </div>
     <div class="container">
         <ul class="filter-2">
-            <li data-filter="*" class="active"><span class="category">Show All</span><span class="amount">09</span></li>
+            <li data-filter="*" class="active"><span class="category">Все фотографии</span></li>
             {% for category in request|gallery_categories %}
-            <li data-filter=".{{category.slug}}"><span class="category">{{category.title}}</span><span class="amount">05</span></li>
+            <li data-filter=".{{category.slug}}"><span class="category">{{category.title}}</span></li>
             {% endfor %}
         </ul>
-        <div class="masonary-wrapper lg-three-items">
+        <div class="masonary-wrapper">
             {% for obj in gallery %}
               
             <div class="masonary-item {% for cat in obj.category.all %}
