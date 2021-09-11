@@ -50,8 +50,8 @@ class Product(models.Model):
     attachments = models.ManyToManyField(
         Attachments, related_name='attachments_shop', verbose_name='Вложеия товара')
     created_at = models.DateField('Дата создания', auto_now_add=True)
-    full_text = RichTextField()
-    full_text_ukr = RichTextField()
+    full_text = RichTextField(verbose_name='О товаре')
+    full_text_ukr = RichTextField(verbose_name='О товаре Укр')
     category = models.ForeignKey(Category, related_name='product_category', verbose_name='Категория', null=True, on_delete=models.SET_NULL,)
     download_archive = models.FileField('Загружаемый файл', null=True, blank=True)
 

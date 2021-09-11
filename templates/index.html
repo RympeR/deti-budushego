@@ -211,6 +211,9 @@
             </div>
             {% endfor %}
         </div>
+        <div class="load-more">
+            <a href='{% url "lessons_section:events_list" %}' class="custom-button"><span>Посмотреть еще</span></a>
+        </div>
     </div>
 </section>
 <!-- ==========Blog Section Ends Here========== -->
@@ -321,6 +324,9 @@
                 </div>
             </div>
             {% endfor %}
+        </div>
+        <div class="load-more">
+            <a href='{% url "blog_section:gallery" %}' class="custom-button"><span>Посмотреть еще</span></a>
         </div>
     </div>
 </section>

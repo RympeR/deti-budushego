@@ -31,7 +31,7 @@
         <ul class="filter">
             <li data-filter="*">Все</li>
             {% for category in request|lesson_categories %}
-            <li data-filter=".{{category.slug}}">{{category.title}}</li>
+            <li data-filter=".{{category.slug}}"><a href="{% url 'lessons_section:lesson_list_filtered_ages' category.slug %}">{{category.title}}</a></li>
             {% endfor %}
         </ul>
         <div class="class-wrapper">

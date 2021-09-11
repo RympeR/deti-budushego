@@ -3,7 +3,7 @@
 {% load cart_template_tags %}
 {% block main_content %}
 <!-- ==========Banner Section Starts Here========== -->
-<section itemscope  class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
+<section itemscope class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
             <h1 class="title">Наши фотографии</h1>
@@ -25,7 +25,7 @@
 
 
 <!-- ==========Gallery Section Starts Here========== -->
-<div itemscope  class="gallery-section padding-top padding-bottom pos-rel">
+<div itemscope class="gallery-section padding-top padding-bottom pos-rel">
     <div class="top-shape-center">
         <img src="{% static 'css/img/gallery1.png' %}" alt="css">
     </div>
@@ -41,23 +41,21 @@
         </ul>
         <div class="masonary-wrapper">
             {% for obj in gallery %}
-              
+
             <div class="masonary-item {% for cat in obj.category.all %}
                 {{cat.slug}} 
             {% endfor %}">
-                <div class="gallery-item-3">
-                    <div class="gallery-thumb">
-                        <a class="img-pop" href="{{ obj.image.url }}"><img
-                            src="{{ obj.image.url }}" alt="gallery"></a>
-                        </div>
-                        <div class="gallery-content">
-                            <h5 class="title">{{ obj.title }}</h5>
-                            <span>{{ obj.description }}</span>
-                        </div>
-                    </div>
+                <div class="masonary-thumb">
+                    <a class="img-pop" href="{{ obj.image.url }}"><i class="fas fa-expand"></i></a>
+                    <img src="{{ obj.image.url }}" alt="gallery">
                 </div>
+                <div class="gallery-content">
+                    <h5 class="title">{{ obj.title }}</h5>
+                    <span>{{ obj.description }}</span>
+                </div>
+            </div>
             {% endfor %}
-                
+
         </div>
         <div class="load-more">
             <a href='{% url "lessons_section:lessons_list" %}' class="custom-button"><span>Выбрать занятие</span></a>

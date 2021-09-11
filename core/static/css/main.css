@@ -2874,6 +2874,7 @@ div[class*=col]:nth-of-type(6n + 6) .gallery-item .gallery-content .title {
   -moz-border-radius: 8px 8px 0 0;
   border-radius: 8px 8px 0 0;
 }
+
 .gallery-item-3 .gallery-thumb img {
   width: 100%;
 }
@@ -2892,6 +2893,24 @@ div[class*=col]:nth-of-type(6n + 6) .gallery-item .gallery-content .title {
   margin-bottom: 5px;
 }
 .gallery-item-3 .gallery-content .title a {
+  display: block;
+}
+.masonary-item .gallery-content {
+  background: #fff;
+  -webkit-border-radius: 0 0 8px 8px;
+  -moz-border-radius: 0 0 8px 8px;
+  border-radius: 0 0 8px 8px;
+  padding: 35px 15px 28px;
+}
+.masonary-item .gallery-content .title {
+  font-size: 20px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+.gallery-content{
+  text-align: center;
+}
+.masonary-item .gallery-content .title a {
   display: block;
 }
 

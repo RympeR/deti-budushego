@@ -21,7 +21,7 @@ from apps.blog.models import Gallery, Post, Tag
 from core.utils.mixins import (
     FooterContentMixin
 )
-from django.shortcuts import  render
+from django.shortcuts import render
 from django.template import RequestContext
 
 
@@ -31,6 +31,7 @@ def handler404(request, *args):
 
 def handler500(request, *args):
     return render(request, '404.html')
+
 
 class LessonList(ListView):
     model = Lesson
@@ -46,11 +47,11 @@ class LessonList(ListView):
         context['title'] = 'Группы'
         base_context = {'categories': LessonCategory.objects.all()}
         footer_context = {
-            'menu' : MenuCategory.objects.filter(display=True),
-            'footer_events' : Event.objects.all().order_by(
+            'menu': MenuCategory.objects.filter(display=True),
+            'footer_events': Event.objects.all().order_by(
                 '-date_start')[:2]
         }
-        context = {**context,**footer_context}
+        context = {**context, **footer_context}
         return context
 
 
@@ -68,9 +69,31 @@ class LessonListFiltered(ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Группы'
         footer_context = {
-        'menu' : MenuCategory.objects.filter(display=True),
-        'footer_events' : Event.objects.all().order_by(
-            '-date_start')[:2]
+            'menu': MenuCategory.objects.filter(display=True),
+            'footer_events': Event.objects.all().order_by(
+                '-date_start')[:2]
+        }
+        context = {**context, ** footer_context}
+        return context
+
+
+class LessonListFilteredByTag(ListView):
+    model = Lesson
+    context_object_name = 'lessons'
+    template_name = 'classes.html'
+    paginate_by = 9
+
+    def get_queryset(self):
+        lessonCategory = LessonCategory.objects.get(slug=self.kwargs['slug'])
+        return Lesson.objects.filter(category__in=[lessonCategory])
+
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Группы'
+        footer_context = {
+            'menu': MenuCategory.objects.filter(display=True),
+            'footer_events': Event.objects.all().order_by(
+                '-date_start')[:2]
         }
         context = {**context, ** footer_context}
         return context
@@ -84,8 +107,8 @@ class LessonDetail(DetailView):
         context = super().get_context_data(**kwargs)
         context['title'] = context['object'].title
         footer_context = {
-            'menu' : MenuCategory.objects.filter(display=True),
-            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+            'menu': MenuCategory.objects.filter(display=True),
+            'footer_events': Event.objects.all().order_by('-date_start')[:2]
         }
         context = {**context, ** footer_context}
         return context
@@ -102,8 +125,8 @@ class EventsList(ListView, FooterContentMixin):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Мероприятия'
         footer_context = {
-            'menu' : MenuCategory.objects.filter(display=True),
-            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+            'menu': MenuCategory.objects.filter(display=True),
+            'footer_events': Event.objects.all().order_by('-date_start')[:2]
         }
         base_context = {'categories': EventCategory.objects.all()}
         context = {**context, **base_context, **
@@ -125,8 +148,8 @@ class EventsListFiltered(ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Мероприятия'
         footer_context = {
-            'menu' : MenuCategory.objects.filter(display=True),
-            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+            'menu': MenuCategory.objects.filter(display=True),
+            'footer_events': Event.objects.all().order_by('-date_start')[:2]
         }
         context = {**context, ** footer_context}
         return context
@@ -140,8 +163,8 @@ class EventDetail(DetailView):
         context = super().get_context_data(**kwargs)
         context['title'] = context['object'].title
         footer_context = {
-            'menu' : MenuCategory.objects.filter(display=True),
-            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+            'menu': MenuCategory.objects.filter(display=True),
+            'footer_events': Event.objects.all().order_by('-date_start')[:2]
         }
         context = {**context, ** footer_context}
         return context
@@ -182,8 +205,8 @@ class About(TemplateView):
         }
         context['title'] = "О нас"
         footer_context = {
-            'menu' : MenuCategory.objects.filter(display=True),
-            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+            'menu': MenuCategory.objects.filter(display=True),
+            'footer_events': Event.objects.all().order_by('-date_start')[:2]
         }
         context = {**context, **base_context, **
                    footer_context}
@@ -197,8 +220,8 @@ class ScheduleView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['title'] = "Расписание"
         footer_context = {
-            'menu' : MenuCategory.objects.filter(display=True),
-            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+            'menu': MenuCategory.objects.filter(display=True),
+            'footer_events': Event.objects.all().order_by('-date_start')[:2]
         }
         base_context = {'schedule': Schedule.objects.all()}
         context = {**context, **base_context, **
@@ -213,8 +236,8 @@ class Contact(FooterContentMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['title'] = "Контакты"
         footer_context = {
-            'menu' : MenuCategory.objects.filter(display=True),
-            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+            'menu': MenuCategory.objects.filter(display=True),
+            'footer_events': Event.objects.all().order_by('-date_start')[:2]
         }
         context = {**context, **footer_context}
         return context
@@ -227,8 +250,8 @@ class ComingSoon(FooterContentMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['title'] = "Скоро"
         footer_context = {
-            'menu' : MenuCategory.objects.filter(display=True),
-            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+            'menu': MenuCategory.objects.filter(display=True),
+            'footer_events': Event.objects.all().order_by('-date_start')[:2]
         }
         context = {**context, ** footer_context}
         return context
@@ -245,8 +268,8 @@ class FAQ(TemplateView):
         }
         context['title'] = "Частые вопросы"
         footer_context = {
-            'menu' : MenuCategory.objects.filter(display=True),
-            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+            'menu': MenuCategory.objects.filter(display=True),
+            'footer_events': Event.objects.all().order_by('-date_start')[:2]
         }
         context = {**context, **base_context, **
                    footer_context}
@@ -260,8 +283,8 @@ class Login(TemplateView):
         context = super().get_context_data(**kwargs)
         context['title'] = "Вход"
         footer_context = {
-            'menu' : MenuCategory.objects.filter(display=True),
-            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+            'menu': MenuCategory.objects.filter(display=True),
+            'footer_events': Event.objects.all().order_by('-date_start')[:2]
         }
         context = {**context, ** footer_context}
         return context
@@ -274,8 +297,8 @@ class Registration(TemplateView):
         context = super().get_context_data(**kwargs)
         context['title'] = "Регистрация"
         footer_context = {
-            'menu' : MenuCategory.objects.filter(display=True),
-            'footer_events' : Event.objects.all().order_by('-date_start')[:2]
+            'menu': MenuCategory.objects.filter(display=True),
+            'footer_events': Event.objects.all().order_by('-date_start')[:2]
         }
         context = {**context, ** footer_context}
         return context
