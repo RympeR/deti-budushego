@@ -2000,18 +2000,21 @@ header.header-fixed {
   .menu li {
     width: 100%;
     padding: 0;
+    border-top: 1px solid #e5e5e5;
   }
   .menu li a {
-    display: block;
+    display: inline-block;
     padding: 10px 25px;
     font-size: 15px;
     font-weight: 700;
     /* text-transform: capitalize; */
-    border-top: 1px solid #e5e5e5;
     color: #0e2c53;
   }
   .menu li a:hover {
     background: #fff8eb;
+  }
+  .menu li:hover .submenu {
+    display: block;
   }
   .menu li .submenu {
     padding-left: 20px;

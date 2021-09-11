@@ -306,9 +306,13 @@ hr {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 pre {
-  font-family: monospace, monospace;
-  /* 1 */
-  font-size: 1em;
+  /* font-family: monospace, monospace; */
+  font-size: 16px;
+  color: #707070;
+  line-height: 28px;
+  overflow-x: hidden;
+  font-family: "Roboto", sans-serif;
+
   /* 2 */
 }
 
@@ -1996,18 +2000,21 @@ header.header-fixed {
   .menu li {
     width: 100%;
     padding: 0;
+    border-top: 1px solid #e5e5e5;
   }
   .menu li a {
-    display: block;
+    display: inline-block;
     padding: 10px 25px;
     font-size: 15px;
     font-weight: 700;
     /* text-transform: capitalize; */
-    border-top: 1px solid #e5e5e5;
     color: #0e2c53;
   }
   .menu li a:hover {
     background: #fff8eb;
+  }
+  .menu li:hover .submenu {
+    display: block;
   }
   .menu li .submenu {
     padding-left: 20px;
@@ -3278,7 +3285,7 @@ div[class*=col]:nth-of-type(6n + 4) .counter-item.round-style::before {
   text-align: center;
 }
 .class-item .class-content .schedule-area .schedule-item {
-  padding: 25px 5px 0px;
+  padding: 25px 4px 0px;
   flex-grow: 1;
   position: relative;
 }
@@ -7284,6 +7291,20 @@ div[class*=col]:nth-of-type(6n + 6) .shop-item .product-thumb, div[class*=col]:n
     padding-bottom: 20px;
   }
 }
+.iframe-single-page{
+  height: 370px;
+  width: 100%;
+}
+@media (max-width: 1250px) {
+  .iframe-single-page{
+    height: 286px;
+  }
+}
+@media (max-width: 1250px) {
+  .iframe-single-page{
+    height: 234px;
+  }
+} 
 .widget-btn-custom {
   content: "";
   border-radius: 4px;
