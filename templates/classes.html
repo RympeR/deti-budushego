@@ -29,9 +29,17 @@
     </div>
     <div class="container">
         <ul class="filter">
-            <li data-filter="*">Все</li>
+            {% if active_tag == 'all' %}
+            <li data-filter="all" class="active"><a
+                    href="{% url 'lessons_section:lesson_list_filtered_ages' 'all' %}">Все</a></li>
+            {% else %}
+            <li data-filter="all"><a href="{% url 'lessons_section:lesson_list_filtered_ages' 'all' %}">Все</a></li>
+            {% endif %}
+
             {% for category in request|lesson_categories %}
-            <li data-filter=".{{category.slug}}"><a href="{% url 'lessons_section:lesson_list_filtered_ages' category.slug %}">{{category.title}}</a></li>
+            <li data-filter=".{{category.slug}}" class="{% if active_tag == category.slug %}active{% endif %}">
+                <a href="{% url 'lessons_section:lesson_list_filtered_ages' category.slug %}">{{category.title}}</a>
+            </li>
             {% endfor %}
         </ul>
         <div class="class-wrapper">

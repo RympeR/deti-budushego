@@ -3605,7 +3605,7 @@ div[class*=col]:nth-of-type(6n + 4) .counter-item.round-style::before {
     padding-right: 50px;
   }
 }
-.filter li {
+.filter li, .filter li a {
   list-style: none;
   font-size: 14px;
   font-weight: 700;
@@ -3618,22 +3618,22 @@ div[class*=col]:nth-of-type(6n + 4) .counter-item.round-style::before {
   flex-grow: 1;
   cursor: pointer;
 }
-.filter li:nth-of-type(6n + 2) {
+.filter li:nth-of-type(6n + 2), .filter li:nth-of-type(6n + 2) a {
   color: #92278f;
 }
-.filter li:nth-of-type(6n + 3) {
+.filter li:nth-of-type(6n + 3), .filter li:nth-of-type(6n + 3) a {
   color: #ff5200;
 }
-.filter li:nth-of-type(6n + 4) {
+.filter li:nth-of-type(6n + 4), .filter li:nth-of-type(6n + 4) a {
   color: #00bfff;
 }
-.filter li:nth-of-type(6n + 5) {
+.filter li:nth-of-type(6n + 5), .filter li:nth-of-type(6n + 5) a {
   color: #e11a1f;
 }
-.filter li:nth-of-type(6n + 6) {
+.filter li:nth-of-type(6n + 6), .filter li:nth-of-type(6n + 6) a {
   color: #002c9d;
 }
-.filter li.active {
+.filter li.active, .filter li.active a {
   color: #8dc63f;
 }
 @media (max-width: 575px) {

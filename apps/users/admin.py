@@ -41,8 +41,8 @@ class UserAdmin(admin.ModelAdmin):
         ('Информация для сайта', {
             'fields': ('slug','most_popular', 'teacher')
         }),
-
     )
+    filter_horizontal = 'sertificates',
 
 
 @admin.register(Attachments)

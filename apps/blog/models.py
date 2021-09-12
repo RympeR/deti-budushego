@@ -55,10 +55,10 @@ class PostCategory(models.Model):
 
 
 class Gallery(models.Model):
-    title = models.CharField(verbose_name='Заголовок', max_length=100)
-    title_ukr = models.CharField(verbose_name='Заголовок укр', null=True, help_text='Украинская версия', max_length=100)
-    description = models.CharField(verbose_name='Описание', max_length=100)
-    description_ukr = models.CharField(verbose_name='Описание укр', null=True, max_length=100, help_text='Украинская версия')
+    # title = models.CharField(verbose_name='Заголовок', max_length=100)
+    # title_ukr = models.CharField(verbose_name='Заголовок укр', null=True, help_text='Украинская версия', max_length=100)
+    # description = models.CharField(verbose_name='Описание', max_length=100)
+    # description_ukr = models.CharField(verbose_name='Описание укр', null=True, max_length=100, help_text='Украинская версия')
     image = ProcessedImageField(
         verbose_name='Вложение галереи',
         processors=[ResizeToFill(600, 600)],

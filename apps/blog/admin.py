@@ -22,9 +22,8 @@ class TemplateAdmin(admin.ModelAdmin):
 
 @admin.register(Gallery,)
 class GalleryAdmin(admin.ModelAdmin):
-    list_display = 'title', 'preview',
-    list_display_links = 'title',
-    search_fields = 'title',
+    list_display = 'pk', 'preview',
+    list_display_links = 'pk',
 
 
 @admin.register(Post)

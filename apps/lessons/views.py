@@ -84,12 +84,15 @@ class LessonListFilteredByTag(ListView):
     paginate_by = 9
 
     def get_queryset(self):
+        if self.kwargs['slug'] == 'all':
+            return Lesson.objects.all()
         lessonCategory = LessonCategory.objects.get(slug=self.kwargs['slug'])
         return Lesson.objects.filter(category__in=[lessonCategory])
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
         context['title'] = 'Группы'
+        context['active_tag'] = self.kwargs['slug']
         footer_context = {
             'menu': MenuCategory.objects.filter(display=True),
             'footer_events': Event.objects.all().order_by(
