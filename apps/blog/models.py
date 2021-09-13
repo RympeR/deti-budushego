@@ -71,7 +71,7 @@ class Gallery(models.Model):
     most_popular = models.BooleanField('Отобразить на главной', default=False)
 
     def __str__(self):
-        return self.title
+        return self.image
     
     class Meta:
         verbose_name = 'Галерея'
