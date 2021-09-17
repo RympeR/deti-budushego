@@ -307,6 +307,10 @@ hr {
  */
 pre {
   /* font-family: monospace, monospace; */
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
   font-size: 16px;
   color: #707070;
   line-height: 28px;
