@@ -61,7 +61,7 @@ class Gallery(models.Model):
     # description_ukr = models.CharField(verbose_name='Описание укр', null=True, max_length=100, help_text='Украинская версия')
     image = ProcessedImageField(
         verbose_name='Вложение галереи',
-        processors=[ResizeToFill(600, 600)],
+        processors=[ResizeToFill(570, 380)],
         options={'quality': 100},
         upload_to=preview,
         null=True,
