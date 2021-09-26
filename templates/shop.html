@@ -159,8 +159,8 @@
 		                <div class="modal-body">
 		                    <div class="product-details-inner">
 		                        <div class="row">
-		                  			<div class="col-lg-5 col-12">
-		                  				<div class="popup-slide">
+		                  			<div class="col-lg-12 col-12">
+		                  				<div class="popup-slide col-lg-5">
 		                  					<div class="slider-for">
 												{% for attachment in product.attachments.all %}
 												<div class="thumb">
@@ -176,7 +176,7 @@
 												{% endfor %}
 		                  				</div>
 		                  			</div>
-		                            <div class="col-lg-7">
+		                            <div class="col-lg-12">
 		                                <div class="product-content">
 											<h5 class="title"><a href="{% url 'shop_section:single_shop' product.slug %}">{{ product.title }}</a></h5>
 											{% if product.discount_price %}

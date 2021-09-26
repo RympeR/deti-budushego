@@ -13,7 +13,7 @@ SECRET_KEY = 'xwe@5(%6r34w+ofnvie)8fkeur$53i0$3bp+b!pxs9b3da7*-6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-DATA_UPLOAD_MAX_MEMORY_SIZE = 524288000000
+DATA_UPLOAD_MAX_MEMORY_SIZE = 524288000000000
 
 ALLOWED_HOSTS = [
     '*'
