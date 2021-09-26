@@ -22,7 +22,7 @@
 
 
 <!-- ==========Shop Section Starts Here========== -->
-<div itemscope class="shop-page padding-top padding-bottom">
+<div itemscope class="shop-page padding-bottom">
 	<div class="container">
 		<div class="row mb--50">
 			<div class="col-lg-8 col-xl-9 mb-50">
@@ -195,15 +195,15 @@
 													href="{% url 'shop_section:single_shop' product.slug %}">{{ product.title }}</a>
 											</h5>
 											{% if product.discount_price %}
-											<h6  class="mb-3">₴{{ product.discount_price }}</h6>
+											<h6  class="mb-3">₴{{ product.discount_price }} грн</h6>
 											{% else %}
-											<h6>₴{{ product.price }}</h6>
+											<h6>₴{{ product.price }} грн</h6>
 											{% endif %}
 
 											<p>
 												{{ product.description }}
 											</p>
-											<div class="cart-button-2">
+											<div class="cart-button-2 mt-4">
 												<button type="submit">
 													<i class="fas fa-shopping-cart"></i>
 												</button>

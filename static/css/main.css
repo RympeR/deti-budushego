@@ -5985,7 +5985,7 @@ div[class*=col]:nth-of-type(6n + 6) .shop-item .product-thumb, div[class*=col]:n
 }
 .product-details .product-single-thumb .slider-for .thumb {
   outline: none;
-  padding: 50px 30px;
+  padding: 30px 30px;
 }
 .product-details .product-single-thumb .slider-for .thumb img {
   max-height: 100%;
