@@ -23,7 +23,7 @@ from core.utils.mixins import (
 )
 from django.shortcuts import render
 from django.template import RequestContext
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def handler404(request, *args):
@@ -117,6 +117,10 @@ class LessonDetail(DetailView):
         context = {**context, ** footer_context}
         return context
 
+def filter_date(date_obj):
+    if date_obj.date_start > datetime.now().date():
+        return date_obj.date_start - datetime.now().date()
+    return  date_obj.date_start - datetime.now().date() + timedelta(365)
 
 class EventsList(ListView, FooterContentMixin):
     model = Event
@@ -126,7 +130,7 @@ class EventsList(ListView, FooterContentMixin):
     base_context = {'categories': EventCategory.objects.all()}
 
     def get_queryset(self):
-        return sorted(Event.objects.all(), key=lambda x: datetime.now().date() - x.date_start)
+        return sorted(Event.objects.all(), key=filter_date)
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
@@ -149,7 +153,7 @@ class EventsListFiltered(ListView):
 
     def get_queryset(self):
         tag = Tag.objects.get(slug=self.kwargs['slug'])
-        return sorted(Event.objects.filter(tags__in=[tag]),key=lambda x: datetime.now().date() - x.date_start)
+        return sorted(Event.objects.filter(tags__in=[tag]),key=filter_date)
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)

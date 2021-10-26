@@ -57,7 +57,6 @@ class GalleryList(ListView):
     model = Gallery
     context_object_name = 'gallery'
     template_name = 'gallery-3.html'
-    paginate_by = 9
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
