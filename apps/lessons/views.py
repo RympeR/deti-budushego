@@ -23,6 +23,7 @@ from core.utils.mixins import (
 )
 from django.shortcuts import render
 from django.template import RequestContext
+from datetime import datetime
 
 
 def handler404(request, *args):
@@ -124,6 +125,9 @@ class EventsList(ListView, FooterContentMixin):
     paginate_by = 9
     base_context = {'categories': EventCategory.objects.all()}
 
+    def get_queryset(self):
+        return sorted(Event.objects.all(), key=lambda x: datetime.now().date() - x.date_start, reverse=True)
+
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
         context['title'] = 'Мероприятия'
@@ -145,7 +149,7 @@ class EventsListFiltered(ListView):
 
     def get_queryset(self):
         tag = Tag.objects.get(slug=self.kwargs['slug'])
-        return Event.objects.filter(tags__in=[tag])
+        return sorted(Event.objects.filter(tags__in=[tag]),key=lambda x: datetime.now().date() - x.date_start, reverse=True)
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
