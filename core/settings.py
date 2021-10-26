@@ -90,6 +90,9 @@ DATABASES = {
         'PASSWORD': 'deti_budushego',
         'HOST': 'localhost',
         'PORT': '5432',
+        'TEST': {
+            'NAME': 'test_deti_budushego',
+        },
     }
 }
 
@@ -132,6 +135,9 @@ USE_L10N = True
 
 USE_TZ = False
 
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
