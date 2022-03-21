@@ -182,7 +182,7 @@
       $('.cart-sidebar-area').toggleClass('active');
     })
     $('.remove-cart').on('click', function (e) {
-      e.preventDefault();
+
       $(this).parent().parent().hide(300);
   });
     //Header Bar
@@ -311,13 +311,14 @@
         $(this).addClass('active');
         shopProductWrap.removeClass('grid list').addClass(viewMode);
     });
-
+    var target;
     // model option start here
     $('.view-modal').on('click', function () {
-        $('.modal').addClass('show');
+        target = $(this).attr('data-target');
+        $(target).addClass('show');
     });
     $('.close').on('click', function () {
-        $('.modal').removeClass('show');
+        $(target).removeClass('show');
     });
     //Slick Slider
     $('.slider-for').slick({
