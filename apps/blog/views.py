@@ -31,7 +31,7 @@ class PostListFiltered(ListView):
 
     def get_queryset(self):
         tag = Tag.objects.get(slug=self.kwargs['slug'])
-        return Post.objects.filter(related_tags__in=[tag])
+        return Post.objects.filter(related_tags__in=[tag], display=True)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

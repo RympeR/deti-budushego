@@ -46,8 +46,8 @@ class LessonList(ListView):
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
         context['title'] = 'Группы'
-        base_context = {'categories': LessonCategory.objects.all()}
         footer_context = {
+            'categories': LessonCategory.objects.all(),
             'menu': MenuCategory.objects.filter(display=True),
             'footer_events': Event.objects.all().order_by(
                 '-date_start')[:2]
