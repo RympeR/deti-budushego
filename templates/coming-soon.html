@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
+
 {% block main_content %}
 
     <!-- ==========Coming Soon Section Starts Here========== -->
@@ -12,22 +14,22 @@
                 <ul class="coming-countdown">
                     <li>
                         <h4 class="count-title"><span class="days">00</span></h4>
-                        <p class="days_text">Дней</p>
+                        <p class="days_text">{% trans "Дней" %}</p>
                     </li>
                     <li>
                         <h4 class="count-title"><span class="hours">00</span></h4>
-                        <p class="hours_text">Часов</p>
+                        <p class="hours_text">{% trans "Часов" %}</p>
                     </li>
                     <li>
                         <h4 class="count-title"><span class="minutes">00</span></h4>
-                        <p class="minu_text">Минут</p>
+                        <p class="minu_text">{% trans "Минут" %}</p>
                     </li>
                     <li>
                         <h4 class="count-title"><span class="seconds">00</span></h4>
-                        <p class="seco_text">Секунд</p>
+                        <p class="seco_text">{% trans "Секунд" %}</p>
                     </li>
                 </ul>
-                <h1 class="coming-soon-title">Скоро стартуем</h1>
+                <h1 class="coming-soon-title">{% trans "Скоро стартуем" %}</h1>
             </div>
         </div>
     </section>

@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 {% block main_content %}
 
 <!-- ==========Banner Section Starts Here========== -->
 <section itemscope  class="banner-section bg_img" data-background="{% static 'images/banner/banner01.png' %}">
     <div class="container">
         <div class="banner-content cl-white">
-            <h3 class="cate">Детский центр</h3>
-            <h1 class="title">Дети будущего</h1>
-            <p>Партнер института одаренного ребенка НАПН Украины. Занятия для детей от 1,5 до 7 лет - групповые и
-                индивидуальные. Онлайн занятия для детей от 5 лет. </p>
-            <a href='{% url "lessons_section:lessons_list" %}' class="custom-button"><span>Выбрать занятие</span></a>
+            <h3 class="cate">{% trans "Детский центр" %}</h3>
+            <h1 class="title">{% trans "Дети будущего" %}</h1>
+            <p>{% trans "Партнер института одаренного ребенка НАПН Украины. Занятия для детей от 1,5 до 8 лет - групповые и индивидуальные. Онлайн занятия для детей от 4-х до 8 лет." %}</p>
+            <a href='{% url "lessons_section:lessons_list" %}' class="custom-button"><span>{% trans "Выбрать занятие" %}</span></a>
         </div>
     </div>
 </section>
@@ -32,25 +32,34 @@
             <div class="col-lg-6">
                 <div class="about-content">
                     <div class="section-header left-style mb-olpo">
-                        <span class="cate">Нашему центру 13 лет</span>
-                        <h3 class="title">Почему родители выбирают "Дети будущего"?</h3>
-                        <p>Почему к нам часто возят детей из других районов, хотя рядом с домом есть детский центр? 
-                            Вопрос в наших инновационных методиках обучения. В адаптивном обучении. В нашей 
-                            нацеленности на развитие высоких способностей детей, умении построить занятие 
-                            так, чтобы детям было и сложно и очень интересно одновременно, чтобы 
-                            они получали удовольствие от умственной деятельности. </p>
+                        <span class="cate">{% trans "Мы работаем в военное время" %}</span>
+                        <h3 class="title">{% trans 'Продолжаем обучать наших детей онлайн' %}</h3>
+                        <p>{% trans "Мы разработали онлайн-формат, который больше похож на увлекательную игру, в которой дети выполняют задания на экранах своих устройств, используя инструменты Zoom. " %}
+                            {% trans "Мы начали работать уже на 10-ый день войны, и за два месяца провели около 200 бесплатных онлайн-занятий для детей 4-8 лет. Это более 4000 посещений за этот период! В мае мы объявили набор новых групп, при этом снизили наши цены на обучение на 30% и предоставили возможность оплачивать обучение частями. Сейчас работают около 20 онлайн-групп – это 9 программ различных направлений для детей от 4-х до 8-ми лет. И мы продолжаем развиваться. Потому что с нами всегда комфортно и интересно! " %}
+                            {% trans "Хотите попробовать? Выбирайте группу на странице «Занятия», после напишите нам в Телеграм или Viber (кнопки перехода вверху страницы) – и мы ответим на все ваши вопросы. " %}
+                            {% trans "А ниже вы найдете информацию о том, как проходит обучение в нашем центре." %}</p>
                             <br>
-                        <p>Почему это так важно вы можете узнать, прочитав статьи об одаренности на нашем сайте. А ниже вы найдете информацию о том, что мы делаем в центре для развития высоких способностей у детей. </p>
+                        {% comment %} <p>{% trans "Почему это так важно вы можете узнать, прочитав статьи об одаренности на нашем сайте. А ниже вы найдете информацию о том, что мы делаем в центре для развития высоких способностей у детей. " %}</p> {% endcomment %}
                     </div>
                     <div class="faq-wrapper mb--10">
                         {% for dropdown in  drop_down%}
                         <div class="faq-item {% if dropdown.opened %}active open{% endif %} ">
                             <div class="faq-title">
                                 <span class="right-icon"></span>
+                                {% if request.session.lang == 'uk' %}
+                                <h5 class="title">{{ dropdown.title_ukr }}</h5>
+                                {% else %}
                                 <h5 class="title">{{ dropdown.title }}</h5>
+                                {% endif %}
+                    
                             </div>
                             <div class="faq-content">
+                                {% if request.session.lang == 'uk' %}
+                                <p>{{ dropdown.description_ukr }}</p>
+                                {% else %}
                                 <p>{{ dropdown.description }}</p>
+                                {% endif %}
+                    
                             </div>
                         </div>
                         {% endfor %}
@@ -83,7 +92,12 @@
                                 <h2 class="title">{{ counter.symbol }}</h2>
                             {% endif %}
                         </div>
+                        {% if request.session.lang == 'uk' %}
+                        <span class="cate">{{ counter.description_ukr }}</span>
+                        {% else %}
                         <span class="cate">{{ counter.description }}</span>
+                        {% endif %}
+            
                     </div>
                 </div>
             </div>
@@ -105,9 +119,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header">
-                    <a href='{% url "lessons_section:lessons_list" %}'><span class="cate">Занятия для детей от 1,5 до 7
-                            лет</span></a>
-                    <h3 class="title"><a href='{% url "lessons_section:lessons_list" %}'>Группы дошкольников</a></h3>
+                    <a href='{% url "lessons_section:lessons_list" %}'><span class="cate">{% trans "Наше расписание" %}</span></a>
+                    <h3 class="title"><a href='{% url "lessons_section:lessons_list" %}'>{% trans "Группы дошкольников" %}</a></h3>
                 </div>
             </div>
         </div>
@@ -123,7 +136,12 @@
                     </div>
                     <div class="class-content">
                         <h5 class="title">
+                            {% if request.session.lang == 'uk' %}
+                            <a href="{% url 'lessons_section:lesson_detail' lesson.slug %}">{{ lesson.title_ukr }}</a>
+                            {% else %}
                             <a href="{% url 'lessons_section:lesson_detail' lesson.slug %}">{{ lesson.title }}</a>
+                            {% endif %}
+                
                         </h5>
                         <div class="class-meta">
                             <div class="class-author">
@@ -136,28 +154,43 @@
                                             href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}">{{ lesson.teacher.fio }}</a>
                                     </h6>
                                     <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}"
-                                        class="info">Профиль</a>
+                                        class="info">{% trans "Профиль" %}</a>
                                 </div>
                             </div>
                             <div class="cost-area">
                                 <h6 class="subtitle">₴{{ lesson.fee }}{% if lesson.discount_fee %}
                                     /₴ {{ lesson.discount_fee }}
                                     {% endif %}</h6>
-                                <span class="info">{{ lesson.class_duration }}</span>
+                                    {% if request.session.lang == 'uk' %}
+                                    <span class="info">{{ lesson.class_duration_ukr }}</span>
+                                    {% else %}
+                                    <span class="info">{{ lesson.class_duration }}</span>
+                                    {% endif %}
+                        
                             </div>
                         </div>
                         <div class="schedule-area">
                             <div class="schedule-item">
+                                {% if request.session.lang == 'uk' %}
+                                <h6 class="sub-title">{{ lesson.class_size_ukr }}</h6>
+                                {% else %}
                                 <h6 class="sub-title">{{ lesson.class_size }}</h6>
-                                <span class="info">Количество</span>
+                                {% endif %}
+                    
+                                <span class="info">{% trans "Количество" %}</span>
                             </div>
                             <div class="schedule-item">
                                 <h6 class="sub-title">{{ lesson.class_time }}</h6>
-                                <span class="info">Расписание</span>
+                                <span class="info">{% trans "Расписание" %}</span>
                             </div>
                             <div class="schedule-item"  style="flex-basis: 100%">
+                                {% if request.session.lang == 'uk' %}
+                                <h6 class="sub-title">{{ lesson.years_old_ukr }}</h6>
+                                {% else %}
                                 <h6 class="sub-title">{{ lesson.years_old }}</h6>
-                                <span class="info">Возраст</span>
+                                {% endif %}
+                    
+                                <span class="info">{% trans "Возраст" %}</span>
                             </div>
                         </div>
                     </div>
@@ -166,7 +199,7 @@
             {% endfor %}
         </div>
         <div class="load-more">
-            <a href='{% url "lessons_section:lessons_list" %}' class="custom-button"><span>Посмотреть еще</span></a>
+            <a href='{% url "lessons_section:lessons_list" %}' class="custom-button"><span>{% trans "Посмотреть еще" %}</span></a>
         </div>
     </div>
 </section>
@@ -181,7 +214,7 @@
             <div class="col-lg-8">
                 <div class="section-header">
                     <a href='{% url "lessons_section:events_list" %}'><span class="cate"></span></a>
-                    <h3 class="title"><a href='{% url "lessons_section:events_list" %}'>Наши мероприятия</a></h3>
+                    <h3 class="title"><a href='{% url "lessons_section:events_list" %}'>{% trans "Наши мероприятия" %}</a></h3>
                 </div>
             </div>
         </div>
@@ -199,12 +232,22 @@
                     </div>
                     <div class="event-content">
                         <h5 class="title">
+                            {% if request.session.lang == 'uk' %}
+                            <a href="{% url 'lessons_section:event_detail' event.slug %}">{{ event.title_ukr }}</a>
+                            {% else %}
                             <a href="{% url 'lessons_section:event_detail' event.slug %}">{{ event.title }}</a>
+                            {% endif %}
+                
                         </h5>
                         <ul class="events-info">
                             <li><i class="fas fa-clock"></i> {{ event.date_start|date }}&nbsp;&nbsp; {{ event.timer_time|time}} - {{ event.time }} 
                             </li>
+                            {% if request.session.lang == 'uk' %}
+                            <li><i class="fas fa-home"></i> {{ event.location_ukr }}. </li>
+                            {% else %}
                             <li><i class="fas fa-home"></i> {{ event.location }}. </li>
+                            {% endif %}
+                
                         </ul>
                     </div>
                 </div>
@@ -212,7 +255,7 @@
             {% endfor %}
         </div>
         <div class="load-more">
-            <a href='{% url "lessons_section:events_list" %}' class="custom-button"><span>Посмотреть еще</span></a>
+            <a href='{% url "lessons_section:events_list" %}' class="custom-button"><span>{% trans "Посмотреть еще" %}</span></a>
         </div>
     </div>
 </section>
@@ -302,8 +345,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header">
-                    <a href='{% url "blog_section:gallery" %}'><span class="cate">Галерея</span></a>
-                    <h3 class="title"><a href='{% url "blog_section:gallery" %}'>Наши фотографии</a></h3>
+                    <a href='{% url "blog_section:gallery" %}'><span class="cate">{% trans "Галерея" %}</span></a>
+                    <h3 class="title"><a href='{% url "blog_section:gallery" %}'>{% trans "Наши фотографии" %}</a></h3>
                 </div>
             </div>
         </div>
@@ -326,7 +369,7 @@
             {% endfor %}
         </div>
         <div class="load-more">
-            <a href='{% url "blog_section:gallery" %}' class="custom-button"><span>Посмотреть еще</span></a>
+            <a href='{% url "blog_section:gallery" %}' class="custom-button"><span>{% trans "Посмотреть еще" %}</span></a>
         </div>
     </div>
 </section>
@@ -427,8 +470,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header cl-white">
-                    <span class="cate">Отзывы о нашем центре</span>
-                    <h3 class="title">Что говорят наши родители</h3>
+                    <span class="cate">{% trans "Отзывы о нашем центре" %}</span>
+                    <h3 class="title">{% trans "Что говорят наши родители" %}</h3>
                 </div>
             </div>
         </div>

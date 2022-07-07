@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
+
 {% block main_content %}
 <!-- ==========Banner Section Starts Here========== -->
 <section itemscope  class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
@@ -8,10 +10,10 @@
             <h3 class="title">{{ object.title }}</h3>
             <ul class="breadcrumb">
                 <li>
-                    <a href='{% url "lessons_section:index" %}'>Главная</a>
+                    <a href='{% url "lessons_section:index" %}'>{% trans "Главная" %}</a>
                 </li>
                 <li>
-                    Статья
+                    {% trans "Статья" %}
                 </li>
             </ul>
         </div>
@@ -37,8 +39,15 @@
                                     <a href="#"><i class="far fa-user"></i> {{ object.author.fio }}</a>
                                 </li>
                             </ul>
-                            <p>{{ object.preview_text }}</p>
-                            {{ object.full_text|safe }}
+                            {% if request.session.lang == 'uk' %}
+                                <p>{{ object.preview_text_ukr }}</p>
+                                {{ object.full_text_ukr|safe }}
+                            {% else %}
+                                <p>{{ object.preview_text }}</p>
+                                {{ object.full_text|safe }}
+                            {% endif %}
+
+                            
                         </div>
                         <div class="tags-area">
                             <ul class="tags">
@@ -98,7 +107,7 @@
                     </div> -->
                     <div class="widget widget-post">
                         <div class="widget-header">
-                            <h5 class="title">Похожие статьи</h5>
+                            <h5 class="title">{% trans "Похожие статьи" %}</h5>
                         </div>
                         <div class="widget-body">
                             <ul>
@@ -110,7 +119,14 @@
                                             </a>
                                         </div>
                                         <div class="content">
-                                            <a href="{% url 'blog_section:post_detail' rel_post.slug %}">{{ rel_post.title }}</a>
+                                            <a href="{% url 'blog_section:post_detail' rel_post.slug %}">
+                                                {% if request.session.lang == 'uk' %}
+                                                    {{ rel_post.title_ukr }}
+                                                {% else %}
+                                                    {{ rel_post.title }}
+                                                {% endif %}
+                    
+                                            </a>
                                             <span>{{ rel_post.created_at|date }}</span>
                                         </div>
                                     </li>
@@ -123,7 +139,7 @@
 
                     <div class="widget widget-gallery">
                         <div class="widget-header">
-                            <h5 class="title">Галерея</h5>
+                            <h5 class="title">{% trans "Галерея" %}</h5>
                         </div>
                         <div class="widget-body">
                             <ul>
@@ -139,7 +155,7 @@
                     </div>
                     <div class="widget widget-tags">
                         <div class="widget-header">
-                            <h5 class="title">Теги статьи</h5>
+                            <h5 class="title">{% trans "Теги статьи" %}</h5>
                         </div>
                         <div class="widget-body">
                             <ul class="tags">

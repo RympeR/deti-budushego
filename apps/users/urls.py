@@ -8,12 +8,16 @@ from .views import (
     loginView,
     logoutView,
     CustomerDetail,
+    switch_to_Russian_link,
+    switch_to_Ukraiunian_link,
 )
 
 from django.conf import settings
 app_name = 'users_section'
 
 urlpatterns = [
+    path('uk/', switch_to_Ukraiunian_link, name='uk'),
+    path('ru/', switch_to_Russian_link, name='ru'),
     path('teachers/', UserList.as_view(), name='teachers_list'),
     path('register/', register, name='register'),
     path('logout/', logoutView, name='logout'),

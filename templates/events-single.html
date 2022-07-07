@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
+
 {% block main_content %}
 <!-- ==========Banner Section Starts Here========== -->
 <section itemscope  class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
@@ -8,16 +10,20 @@
             <h1 class="title">{{ object.title }}</h1>
             <ul class="breadcrumb">
                 <li>
-                    <a href='{% url "lessons_section:index" %}'>Главная</a>
+                    <a href='{% url "lessons_section:index" %}'>{% trans "Главная" %}</a>
                 </li>
                 <li>
-                    <a href='{% url "lessons_section:about" %}'>О нас</a>
+                    <a href='{% url "lessons_section:about" %}'>{% trans "О нас" %}</a>
                 </li>
                 <li>
-                    <a href='{% url "lessons_section:events_list" %}'>Мероприятия</a>
+                    <a href='{% url "lessons_section:events_list" %}'>{% trans "Мероприятия" %}</a>
                 </li>
                 <li>
+                    {% if request.session.lang == 'uk' %}
+                    {{ object.title_ukr }}
+                    {% else %}
                     {{ object.title }}
+                    {% endif %}
                 </li>
             </ul>
         </div>
@@ -42,82 +48,32 @@
                         </div>
                         <div class="class-single-content">
                             <div class="countdown-area">
-                                <h4 class="counts-title">Начало мероприятия через:</h4>
+                                <h4 class="counts-title">{% trans "Начало мероприятия через:" %}</h4>
                                 <ul class="countdown">
                                     <li>
                                         <h4 class="count-title"><span class="days">00</span></h4>
-                                        <p class="days_text">Дней</p>
+                                        <p class="days_text">{% trans "Дней" %}</p>
                                     </li>
                                     <li>
                                         <h4 class="count-title"><span class="hours">00</span></h4>
-                                        <p class="hours_text">Часов</p>
+                                        <p class="hours_text">{% trans "Часов" %}</p>
                                     </li>
                                     <li>
                                         <h4 class="count-title"><span class="minutes">00</span></h4>
-                                        <p class="minu_text">Минут</p>
+                                        <p class="minu_text">{% trans "Минут" %}</p>
                                     </li>
                                     <li>
                                         <h4 class="count-title"><span class="seconds">00</span></h4>
-                                        <p class="seco_text">Секунд</p>
+                                        <p class="seco_text">{% trans "Секунд" %}</p>
                                     </li>
                                 </ul>
                             </div>
+                            {% if request.session.lang == 'uk' %}
+                            {{ object.full_text_ukr|safe }}
+                            {% else %}
                             {{ object.full_text|safe }}
-                            <!-- <p>
-                                Serenity hassr taken posseson of my entire soung like these sweet mornngs sprng whch
-                                enjoy with
-                                my whole heart I am alonesi and feel the charm of exstenceths spot whch was the blis of
-                                souls like
-                                mineing am soo happy my dear frend absoribed the exquste sense enjoy with my whole heart
-                                in am
-                                alone and feel the charm of exstenceths spot whch was the blis of souls like mineing am
-                                so happyr
-                                my dear frend so absoribed the exqust sense tranquil existence that neglect my talentsr
-                                Ins should
-                                bye ncapable of drawng and singe wonderful serenty has taken possesison of my entrei
-                                souing like
-                                these sweet present moment and yet feel that never was greater artst
-                            </p>
-                            <blockquote class="single-quote">
-                                <div class="quotes">
-                                    Steal into The nering Sanc How Mysef Down Amon The Hal Gras Buz
-                                    Lttle World Amon The Stak And Grow Fama With Couns And Fesingri
-                                    Steal intoing Thene Sanc Hrow Myse Down Amon The Hall Gras Biss
-                                    The Almighty Among The Staks
-                                    <span>...Melissa Hunter</span>
-                                </div>
-                            </blockquote>
-                            <p>
-                                Serenity hassr taken posseson of my entire soung like these sweet mornngs sprng whch
-                                enjoy with
-                                my whole heart I am alonesi and feel the charm of exstenceths spot whch was the blis of
-                                souls like
-                                mineing am soo happy my dear frend absoribed the exquste sense enjoy with my whole heart
-                                in am
-                                alone and feel the charm of exstenceths spot whch was the blis of souls like mineing am
-                                so happyr
-                                my dear frend so absoribed the exqust sense tranquil existence that neglect my talentsr
-                                Ins should
-                                bye ncapable of drawng and singe wonderful serenty has taken possesison of my entrei
-                                souing like
-                                these sweet present moment and yet feel that never was greater artst
-                            </p>
-                            <div class="maps single-page-maps"></div>
-                            <p>
-                                Serenity hassr taken posseson of my entire soung like these sweet mornngs sprng whch
-                                enjoy with
-                                my whole heart I am alonesi and feel the charm of exstenceths spot whch was the blis of
-                                souls like
-                                mineing am soo happy my dear frend absoribed the exquste sense enjoy with my whole heart
-                                in am
-                                alone and feel the charm of exstenceths spot whch was the blis of souls like mineing am
-                                so happyr
-                                my dear frend so absoribed the exqust sense tranquil existence that neglect my talentsr
-                                Ins should
-                                bye ncapable of drawng and singe wonderful serenty has taken possesison of my entrei
-                                souing like
-                                these sweet present moment and yet feel that never was greater artst
-                            </p> -->
+                            {% endif %}
+        
                         </div>
                         <div class="tags-area">
                             <ul class="tags">
@@ -148,30 +104,31 @@
                 <aside>
                     <div class="widget widget-feature">
                         <div class="widget-header">
-                            <h5 class="title">Информация о мероприятии</h5>
+                            <h5 class="title">{% trans "Информация о мероприятии" %}</h5>
                         </div>
+                        {% if request.session.lang == 'uk' %}
                         <div class="widget-body">
                             <ul>
                                 <li>
-                                    <div class="ques cl-i-two"><i class="fas fa-child"></i>Возраст</div>
-                                    <div class="ans">{{ object.years_old }}</div>
+                                    <div class="ques cl-i-two"><i class="fas fa-child"></i>{% trans "Возраст" %}</div>
+                                    <div class="ans">{{ object.years_old_ukr }}</div>
                                 </li>
                                 <li>
-                                    <div class="ques cl-i-one"><i class="fas fa-calendar"></i>Дата начала</div>
+                                    <div class="ques cl-i-one"><i class="fas fa-calendar"></i>{% trans "Дата начала" %}</div>
                                     <div class="ans">{{ object.date_start|date}}</div>
                                 </li>
                                 {% if date_end %}
                                 <li>
-                                    <div class="ques cl-i-three"><i class="fas fa-calendar"></i>Окончание</div>
+                                    <div class="ques cl-i-three"><i class="fas fa-calendar"></i>{% trans "Окончание" %}</div>
                                     <div class="ans">{{ object.date_end|date }}</div>
                                 </li>
                                 {% endif %}
                                 <li>
-                                    <div class="ques cl-i-one"><i class="fas fa-clock"></i>Начало</div>
+                                    <div class="ques cl-i-one"><i class="fas fa-clock"></i>{% trans "Начало" %}</div>
                                     <div class="ans">{{ object.timer_time|time}}</div>
                                 </li>
                                 <li>
-                                    <div class="ques cl-i-three"><i class="fas fa-clock"></i>Окончание</div>
+                                    <div class="ques cl-i-three"><i class="fas fa-clock"></i>{% trans "Окончание" %}</div>
                                     <div class="ans">{{ object.time }}</div>
                                 </li>
                                 <!-- <li>
@@ -179,11 +136,11 @@
                                     <div class="ans">{{ object.date_end|date }}</div>
                                 </li> -->
                                 <li>
-                                    <div class="ques cl-i-five"><i class="fas fa-home"></i>Место</div>
-                                    <div class="ans">{{ object.location }}</div>
+                                    <div class="ques cl-i-five"><i class="fas fa-home"></i>{% trans "Место" %}</div>
+                                    <div class="ans">{{ object.location_ukr }}</div>
                                 </li>
                                 <li>
-                                    <div class="ques cl-i-eight"><i class="fas fa-coins"></i>Стоимость</div>
+                                    <div class="ques cl-i-eight"><i class="fas fa-coins"></i>{% trans "Стоимость" %}</div>
                                     <div class="ans">₴{{ object.fee }}</div>
                                 </li>
                                 <li>
@@ -193,25 +150,87 @@
                                         {% else %}
                                         fa-school
                                         {% endif %}
-                                        "></i>Формат</div>
+                                        "></i>{% trans "Формат" %}</div>
                                     <div class="ans">{% if object.online %}
-                                        Онлайн
+                                        {% trans "Онлайн" %}
                                         {% else %}
-                                        Офлайн
+                                        {% trans "Офлайн" %}
                                         {% endif %}
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="ques cl-i-six"><i class="fas fa-user"></i>Организатор</div>
+                                    <div class="ques cl-i-six"><i class="fas fa-user"></i>{% trans "Организатор" %}</div>
                                     <div class="ans">{{ object.organizer.fio }}</div>
                                 </li>
 
                             </ul>
                         </div>
+                        {% else %}
+                        <div class="widget-body">
+                            <ul>
+                                <li>
+                                    <div class="ques cl-i-two"><i class="fas fa-child"></i>{% trans "Возраст" %}</div>
+                                    <div class="ans">{{ object.years_old }}</div>
+                                </li>
+                                <li>
+                                    <div class="ques cl-i-one"><i class="fas fa-calendar"></i>{% trans "Дата начала" %}</div>
+                                    <div class="ans">{{ object.date_start|date}}</div>
+                                </li>
+                                {% if date_end %}
+                                <li>
+                                    <div class="ques cl-i-three"><i class="fas fa-calendar"></i>{% trans "Окончание" %}</div>
+                                    <div class="ans">{{ object.date_end|date }}</div>
+                                </li>
+                                {% endif %}
+                                <li>
+                                    <div class="ques cl-i-one"><i class="fas fa-clock"></i>{% trans "Начало" %}</div>
+                                    <div class="ans">{{ object.timer_time|time}}</div>
+                                </li>
+                                <li>
+                                    <div class="ques cl-i-three"><i class="fas fa-clock"></i>{% trans "Окончание" %}</div>
+                                    <div class="ans">{{ object.time }}</div>
+                                </li>
+                                <!-- <li>
+                                    <div class="ques cl-i-four"><i class="fas fa-clock"></i>End Time</div>
+                                    <div class="ans">{{ object.date_end|date }}</div>
+                                </li> -->
+                                <li>
+                                    <div class="ques cl-i-five"><i class="fas fa-home"></i>{% trans "Место" %}</div>
+                                    <div class="ans">{{ object.location }}</div>
+                                </li>
+                                <li>
+                                    <div class="ques cl-i-eight"><i class="fas fa-coins"></i>{% trans "Стоимость" %}</div>
+                                    <div class="ans">₴{{ object.fee }}</div>
+                                </li>
+                                <li>
+                                    <div class="ques cl-i-one"><i class="fas 
+                                        {% if object.online %}
+                                        fa-desktop
+                                        {% else %}
+                                        fa-school
+                                        {% endif %}
+                                        "></i>{% trans "Формат" %}</div>
+                                    <div class="ans">{% if object.online %}
+                                        {% trans "Онлайн" %}
+                                        {% else %}
+                                        {% trans "Офлайн" %}
+                                        {% endif %}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="ques cl-i-six"><i class="fas fa-user"></i>{% trans "Организатор" %}</div>
+                                    <div class="ans">{{ object.organizer.fio }}</div>
+                                </li>
+
+                            </ul>
+                        </div>
+                        {% endif %}
+    
+                        
                     </div>
                     <div class="widget widget-post">
                         <div class="widget-header">
-                            <h5 class="title">Статьи по теме</h5>
+                            <h5 class="title">{% trans "Статьи по теме" %}</h5>
                         </div>
                         <div class="widget-body">
                             <ul>
@@ -223,7 +242,13 @@
                                         </a>
                                     </div>
                                     <div class="content">
-                                        <a href="{% url 'blog_section:post_detail' post.slug %}">{{ post.title }}</a>
+                                        <a href="{% url 'blog_section:post_detail' post.slug %}">
+                                            {% if request.session.lang == 'uk' %}
+                                            {{ post.title_ukr }}
+                                            {% else %}
+                                            {{ post.title }}
+                                            {% endif %}
+                                        </a>
                                         <span>{{ post.created_at|date }}</span>
                                     </div>
                                 </li>
@@ -233,7 +258,7 @@
                     </div>
                     <div class="widget widget-gallery">
                         <div class="widget-header">
-                            <h5 class="title">Галерея</h5>
+                            <h5 class="title">{% trans "Галерея" %}</h5>
                         </div>
                         <div class="widget-body">
                             <ul>
@@ -250,13 +275,20 @@
                     </div>
                     <div class="widget widget-tags">
                         <div class="widget-header">
-                            <h5 class="title">Тематические теги</h5>
+                            <h5 class="title">{% trans "Тематические теги" %}</h5>
                         </div>
                         <div class="widget-body">
                             <ul class="tags">
                                 {% for tag in object.tags.all %}
                                 <li>
-                                    <a href="{% url 'lessons_section:events_list_filtered' tag.slug %}">{{ tag.title }}</a>
+                                    <a href="{% url 'lessons_section:events_list_filtered' tag.slug %}">
+                                        {% if request.session.lang == 'uk' %}
+                                        {{ tag.title_ukr }}
+                                        {% else %}
+                                        {{ tag.title }}
+                                        {% endif %}
+
+                                    </a>
                                 </li>
                                 {% endfor %}
                             </ul>

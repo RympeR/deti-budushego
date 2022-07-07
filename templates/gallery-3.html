@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load static %}
 {% load cart_template_tags %}
 {% block main_content %}
@@ -6,16 +7,16 @@
 <section itemscope class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
-            <h1 class="title">Наши фотографии</h1>
+            <h1 class="title">{% trans "Наши фотографии" %}</h1>
             <ul class="breadcrumb">
                 <li>
-                    <a href='{% url "lessons_section:index" %}'>Главная</a>
+                    <a href='{% url "lessons_section:index" %}'>{% trans "Главная" %}</a>
                 </li>
                 <li>
-                    <a href='{% url "lessons_section:about" %}'>О нас</a>
+                    <a href='{% url "lessons_section:about" %}'>{% trans "О нас" %}</a>
                 </li>
                 <li>
-                    Галерея
+                    {% trans "Галерея" %}
                 </li>
             </ul>
         </div>
@@ -34,9 +35,14 @@
     </div>
     <div class="container">
         <ul class="filter-2">
-            <li data-filter="*" class="active"><span class="category">Все фотографии</span></li>
+            <li data-filter="*" class="active"><span class="category">{% trans "Все фотографии" %}</span></li>
             {% for category in request|gallery_categories %}
+            {% if request.session.lang == 'uk' %}
+            <li data-filter=".{{category.slug}}"><span class="category">{{category.title_ukr}}</span></li>
+            {% else %}
             <li data-filter=".{{category.slug}}"><span class="category">{{category.title}}</span></li>
+            {% endif %}
+
             {% endfor %}
         </ul>
         <div class="masonary-wrapper">
@@ -54,7 +60,7 @@
 
         </div>
         <div class="load-more">
-            <a href='{% url "lessons_section:lessons_list" %}' class="custom-button"><span>Выбрать занятие</span></a>
+            <a href='{% url "lessons_section:lessons_list" %}' class="custom-button"><span>{% trans "Выбрать занятие" %}</span></a>
         </div>
     </div>
 </div>

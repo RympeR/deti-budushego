@@ -1,17 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
+
 {% block main_content %}
 <!-- ==========Banner Section Starts Here========== -->
 <section itemscope  class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
-            <h1 class="title">Свяжитесь с нами</h1>
+            <h1 class="title">{% trans "Свяжитесь с нами" %}</h1>
             <ul class="breadcrumb">
                 <li>
-                    <a href='{% url "lessons_section:index" %}'>Главная</a>
+                    <a href='{% url "lessons_section:index" %}'>{% trans "Главная" %}</a>
                 </li>
                 <li>
-                    Наши контакты
+                    {% trans "Наши контакты" %}
                 </li>
             </ul>
         </div>
@@ -29,11 +31,11 @@
                         <img src="{% static 'images/contact/01.png' %}" alt="contact">
                     </div>
                     <div class="contact-content">
-                        <h6 class="title">Занятия для детей</h6>
+                        <h6 class="title">{% trans "Занятия для детей" %}</h6>
                         <ul>
-                            <li>Групповые и индивидуальные,</li>
-                            <li>в центре и онлайн.</li>
-                            <li>Для детей от 1,5 до 7 лет</li>
+                            <li>{% trans "Групповые и индивидуальные," %}</li>
+                            <li>{% trans "офлайн и онлайн." %}</li>
+                            <li>{% trans "Для детей от 1,5 до 8 лет" %}</li>
                         </ul>
                     </div>
                 </div>
@@ -42,13 +44,13 @@
                         <img src="{% static 'images/contact/02.png' %}" alt="contact">
                     </div>
                     <div class="contact-content">
-                        <h6 class="title">Адрес детского центра</h6>
+                        <h6 class="title">{% trans "Адрес детского центра" %}</h6>
                         <ul>
-                            <li>Фонтанская дорога 49/1, Одесса, 65009, Украина</li>
-                            <li><strong>КАК ДОЕХАТЬ:</strong></li>
-                            <li>трамвай № 17, 18, 19;</li>
-                            <li>маршрутки № 127, 146, 185. </li>
-                            <li>Остановка: Петрашевского</li>
+                            <li>{% trans "Фонтанская дорога 49/1, Одесса, 65009, Украина" %}</li>
+                            <li><strong>{% trans "КАК ДОЕХАТЬ:" %}</strong></li>
+                            <li>{% trans "трамвай № 17, 18, 19;" %}</li>
+                            <li>{% trans "маршрутки № 127, 146, 185." %} </li>
+                            <li>{% trans "Остановка: Петрашевского" %}</li>
                         </ul>
                     </div>
                 </div>
@@ -57,10 +59,10 @@
                         <img src="{% static 'images/contact/03.png' %}" alt="contact">
                     </div>
                     <div class="contact-content">
-                        <h6 class="title">Дни и часы работы</h6>
+                        <h6 class="title">{% trans "Дни и часы работы" %}</h6>
                         <ul>
-                            <li>Пн-Пт (Сб, Вс выходной)</li>
-                            <li>В летний период уточняйте время работы</li>
+                            <li>{% trans "Пн-Пт (Сб, Вс выходные)" %}</li>
+                            <li>{% trans "Время работы уточняйте" %}</li>
                             
                         </ul>
                     </div>
@@ -70,7 +72,7 @@
                         <img src="{% static 'images/contact/04.png' %}" alt="contact">
                     </div>
                     <div class="contact-content">
-                        <h6 class="title">Контакты</h6>
+                        <h6 class="title">{% trans "Контакты" %}</h6>
                         <ul>
                             <li><a href="Tel:+38(095)082-99-89">+38 095 082-99-89</a></li>
                             <li><a href="tel:+38(098)842-39-19">+38 098 842-39-19</a></li>

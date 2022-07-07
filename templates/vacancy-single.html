@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load static %}
 {% block main_content %}
 <!-- ==========Banner Section Starts Here========== -->
@@ -8,10 +9,10 @@
             <h1 class="title">{{ object.name }}</h1>
             <ul class="breadcrumb">
                 <li>
-                    <a href='{% url "lessons_section:index" %}'>Главная</a>
+                    <a href='{% url "lessons_section:index" %}'>{% trans "Главная" %}</a>
                 </li>
                 <li>
-                    <a href='{% url "users_section:vacancy_list" %}'>Наши вакансии</a>
+                    <a href='{% url "users_section:vacancy_list" %}'>{% trans "Наши вакансии" %}</a>
                 </li>
                 <li>
                     {{ object.name }}
@@ -32,11 +33,20 @@
                     <div class="teacher-single-thumb">
                         <img src="{{ object.icon.url }}" alt="teacher">
                     </div>
+                    {% if request.session.lang == 'uk' %}
+                    <div class="teacher-single-content">
+                        <h4 class="title">{{ object.name_ukr }}</h4>
+                        <h6 class="subtitle">{% trans "О вакансии" %}</h6>
+                        <p class="header-p">{{ object.full_text_ukr|safe }}</p>
+                    </div>
+                    {% else %}
                     <div class="teacher-single-content">
                         <h4 class="title">{{ object.name }}</h4>
-                        <h6 class="subtitle">О вакансии</h6>
+                        <h6 class="subtitle">{% trans "О вакансии" %}</h6>
                         <p class="header-p">{{ object.full_text|safe }}</p>
                     </div>
+                    {% endif %}
+
                 </div>
             </div>
             <div class="row teacher-single-bottom mb--50">

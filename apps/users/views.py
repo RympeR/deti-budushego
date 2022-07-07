@@ -6,7 +6,8 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-
+from django.conf import settings
+from django.utils import translation
 from apps.ecommerce.models import Product
 from apps.lessons.models import Event
 
@@ -14,15 +15,22 @@ from .forms import RegisterForm, UserLoginForm
 from .models import MenuCategory, User, Vacancy
 
 
-
 def switch_to_Russian_link(request):
     request.session['lang'] = 'ru'
+    user_language = 'ru'
+    translation.activate(user_language)
+    response = HttpResponse(...)
+    response.set_cookie(settings.LANGUAGE_COOKIE_NAME, user_language)
     return HttpResponse('switched to russian')
 
 
 def switch_to_Ukraiunian_link(request):
     request.session['lang'] = 'uk'
-    return HttpResponse('switched to ukrainian ')
+    user_language = 'uk'
+    translation.activate(user_language)
+    response = HttpResponse(...)
+    response.set_cookie(settings.LANGUAGE_COOKIE_NAME, user_language)
+    return HttpResponse('switched to ukrainian')
 
 
 class UserList(ListView):
@@ -39,8 +47,8 @@ class UserList(ListView):
         }
         context['title'] = 'Преподаватели'
         footer_context = {
-            'menu' : MenuCategory.objects.filter(display=True),
-            'footer_events' : Event.objects.all().order_by(
+            'menu': MenuCategory.objects.filter(display=True),
+            'footer_events': Event.objects.all().order_by(
                 '-date_start')[:2]
         }
         context = {**context, **base_context, **
@@ -56,8 +64,8 @@ class UserDetail(DetailView):
         context = super().get_context_data(**kwargs)
         context['title'] = context['object'].fio
         footer_context = {
-            'menu' : MenuCategory.objects.filter(display=True),
-            'footer_events' : Event.objects.all().order_by(
+            'menu': MenuCategory.objects.filter(display=True),
+            'footer_events': Event.objects.all().order_by(
                 '-date_start')[:2]
         }
         context = {**context, **footer_context}
@@ -96,8 +104,8 @@ class VacancyList(ListView):
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
         footer_context = {
-            'menu' : MenuCategory.objects.filter(display=True),
-            'footer_events' : Event.objects.all().order_by(
+            'menu': MenuCategory.objects.filter(display=True),
+            'footer_events': Event.objects.all().order_by(
                 '-date_start')[:2]
         }
         context = {**context, **footer_context}
@@ -108,7 +116,7 @@ class VacancyList(ListView):
 class VacancyDetail(DetailView):
     model = Vacancy
     template_name = 'vacancy-single.html'
-    
+
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
         context['title'] = 'Вакансия'
@@ -133,11 +141,11 @@ def register(request):
     context['title'] = 'Регистрация'
     context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
     footer_context = {
-            'menu' : MenuCategory.objects.filter(display=True),
-            'footer_events' : Event.objects.all().order_by(
-                '-date_start')[:2]
-        }
-    context = {**context,**footer_context}
+        'menu': MenuCategory.objects.filter(display=True),
+        'footer_events': Event.objects.all().order_by(
+            '-date_start')[:2]
+    }
+    context = {**context, **footer_context}
     return render(request, 'registration.html', context)
 
 

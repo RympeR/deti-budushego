@@ -79,8 +79,8 @@ class Vacancy(models.Model):
     short_description = models.TextField(verbose_name='Краткое описание', null=True, blank=True)
     short_description_ukr = models.TextField(verbose_name='Краткое описание', null=True, help_text='Украинская версия', blank=True)
     slug = models.SlugField(("Url part"), unique=True)
-    full_text = RichTextField()
-    full_text_ukr = RichTextField()
+    full_text = RichTextField(verbose_name='Полное описание русский')
+    full_text_ukr = RichTextField(verbose_name='Полное описание украинский')
 
     def __str__(self):
         return str(self.name)
@@ -181,6 +181,7 @@ class Program(models.Model):
     name = models.TextField("Название программы")
     name_ukr = models.TextField("Название программы ukr", null=True, help_text='Украинская версия',)
     hours = models.TextField("Часы проведения программы")
+    hours_ukr = models.TextField("Часы проведения программы ukr")
     class_name = models.CharField(
         'Цвет строки', choices=ClassNames.choices, max_length=10, default='')
 

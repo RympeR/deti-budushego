@@ -1,8 +1,9 @@
+from ckeditor.fields import RichTextField
 from core.utils.utils import preview
 from django.db import models
-from django.utils.safestring import mark_safe
-from ckeditor.fields import RichTextField
 from django.template.defaultfilters import truncatechars
+from django.utils.safestring import mark_safe
+
 from apps.blog.models import Gallery, Post, Tag
 from apps.users.models import User
 
@@ -47,12 +48,16 @@ class Event(models.Model):
     background_image = models.ImageField(
         verbose_name='Картинка на странице', upload_to=preview)
     location = models.TextField(verbose_name='Место проведения')
+    location_ukr = models.TextField(verbose_name='Место проведения ukr')
     years_old = models.TextField(verbose_name='Возраст')
+    years_old_ukr = models.TextField(verbose_name='Возраст ukr')
     fee = models.TextField(verbose_name='Цена мероприятия')
+    fee_ukr = models.TextField(verbose_name='Цена мероприятия ukr')
     date_start = models.DateField(verbose_name="Дата начала мероприятия")
     date_end = models.DateField(
         verbose_name="Дата конца мероприятия", blank=True, null=True)
     time = models.TextField(verbose_name='Окончание')
+    time_ukr = models.TextField(verbose_name='Окончание ukr')
     timer_time = models.DateTimeField(verbose_name='Время начала мероприятия')
     related_posts = models.ManyToManyField(
         Post, related_name='event_related_posts', blank=True, verbose_name='Схожие посты')
@@ -65,8 +70,8 @@ class Event(models.Model):
     category = models.ManyToManyField(
         EventCategory, related_name='event_category', verbose_name='Категория мероприятия')
     online = models.BooleanField('Онлайн формат', default=False)
-    full_text = RichTextField()
-    full_text_ukr = RichTextField()
+    full_text = RichTextField(verbose_name='Полное описание русский')
+    full_text_ukr = RichTextField(verbose_name='Полное описание украинский')
     most_popular = models.BooleanField('Отобразить на главной', default=False)
 
     def small_image(self):
@@ -84,20 +89,30 @@ class Event(models.Model):
 
 class Lesson(models.Model):
     title = models.CharField(verbose_name='Заголовок группы', max_length=100)
-    # title_ukr = models.CharField(verbose_name='Заголовок группы ukr', null=True, help_text='Украинская версия', max_length=100, null=True, blank=True)
+    title_ukr = models.CharField(verbose_name='Заголовок группы ukr',
+                                 null=True, help_text='Украинская версия', max_length=100)
     slug = models.SlugField("Url part")
     preview = models.ImageField(
         verbose_name='Картинка в блоке', upload_to=preview)
     background_image = models.ImageField(
         verbose_name='Картинка на странице', upload_to=preview)
     years_old = models.TextField(verbose_name='Возраст')
+    years_old_ukr = models.TextField(verbose_name='Возраст')
     class_size = models.TextField(verbose_name='Размер группы')
+    class_size_ukr = models.TextField(verbose_name='Размер группы')
     date_start = models.TextField(
         verbose_name="Дата начала занятий группы", null=True, blank=True)
+    date_start_ukr = models.TextField(
+        verbose_name="Дата начала занятий группы", null=True, blank=True)
     fee = models.TextField(verbose_name='Цена абонемента')
+    fee_ukr = models.TextField(verbose_name='Цена абонемента')
     discount_fee = models.TextField(
         verbose_name='Цена абонемента со скидкой', null=True, blank=True)
+    discount_fee_ukr = models.TextField(
+        verbose_name='Цена абонемента со скидкой', null=True, blank=True)
     class_duration = models.TextField(verbose_name="Длительность абонемента")
+    class_duration_ukr = models.TextField(
+        verbose_name="Длительность абонемента")
     class_time = models.TextField(verbose_name='Расписание')
     class_time_ukr = models.TextField(
         verbose_name='Расписание ukr', null=True, help_text='Украинская версия',)
@@ -118,7 +133,8 @@ class Lesson(models.Model):
     most_popular = models.BooleanField('Отобразить на главной', default=False)
     online = models.BooleanField('Онлайн формат', default=False)
     display = models.BooleanField('Отображать', default=True)
-    full_text = RichTextField()
+    full_text = RichTextField(verbose_name='Полное описание русский')
+    full_text_ukr = RichTextField(verbose_name='Полное описание украинский')
 
     def small_image(self):
         if self.preview and hasattr(self.preview, 'url'):

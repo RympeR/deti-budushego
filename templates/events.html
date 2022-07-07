@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load static %}
 {% load cart_template_tags %}
 {% block main_content %}
@@ -6,16 +7,16 @@
     <section itemscope  class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
         <div class="container">
             <div class="page-header-content">
-                <h1 class="title">Наши мероприятия</h1>
+                <h1 class="title">{% trans "Наши мероприятия" %}</h1>
                 <ul class="breadcrumb">
                     <li>
-                        <a href='{% url "lessons_section:index" %}'>Главная</a>
+                        <a href='{% url "lessons_section:index" %}'>{% trans "Главная" %}</a>
                     </li>
                     <li>
-                        <a href='{% url "lessons_section:about" %}'>О нас</a>
+                        <a href='{% url "lessons_section:about" %}'>{% trans "О нас" %}</a>
                     </li>
                     <li>
-                        Мероприятия
+                        {% trans "Мероприятия" %}
                     </li>
                 </ul>
             </div>
@@ -34,9 +35,15 @@
         </div>
         <div class="container">
             <ul class="filter">
-                <li data-filter="*">Все</li>
+                <li data-filter="*">{% trans "Все" %}</li>
                 {% for category in request|events_categories %}
-                    <li data-filter=".{{category.slug}}">{{category.title}}</li>
+                    <li data-filter=".{{category.slug}}">
+                        {% if request.session.lang == 'uk' %}
+                        {{category.title_ukr}}
+                        {% else %}
+                        {{category.title}}
+                        {% endif %}
+                    </li>
                 {% endfor %}
                 
             </ul>
@@ -57,11 +64,25 @@
                         </div>
                         <div class="event-content">
                             <h5 class="title">
-                                <a href="{% url 'lessons_section:event_detail' event.slug %}">{{ event.title }}</a>
+                                <a href="{% url 'lessons_section:event_detail' event.slug %}">
+                                    {% if request.session.lang == 'uk' %}
+                                    {{ event.title_ukr }}
+                                    {% else %}
+                                    {{ event.title }}
+                                    {% endif %}
+                        
+                                </a>
                             </h5>
                             <ul class="events-info">
                                 <li><i class="fas fa-clock"></i> {{ event.date_start|date }}&nbsp;&nbsp; {{ event.timer_time|time}} - {{ event.time }} </li>
-                                <li><i class="fas fa-home"></i> {{ event.location }}. </li>
+                                <li><i class="fas fa-home"></i> 
+                                    {% if request.session.lang == 'uk' %}
+                                    {{ event.location_ukr }}. 
+                                    {% else %}
+                                    {{ event.location }}. 
+                                    {% endif %}
+                        
+                                </li>
                             </ul>
                         </div>
                     </div>

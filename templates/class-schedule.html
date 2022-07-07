@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
+
 {% block main_content %}
 <!-- ==========Banner Section Starts Here========== -->
 <section itemscope  class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
@@ -8,13 +10,13 @@
             <h1 itemprop="title" class="title"></h1>
             <ul class="breadcrumb">
                 <li>
-                    <a itemprop="url" href='{% url "lessons_section:index" %}'>Home</a>
+                    <a itemprop="url" href='{% url "lessons_section:index" %}'>{% trans "Home" %}</a>
                 </li>
                 <li>
-                    <a itemprop="url" href='{% url "lessons_section:lessons_list" %}'>Classes</a>
+                    <a itemprop="url" href='{% url "lessons_section:lessons_list" %}'>{% trans "Classes" %}</a>
                 </li>
                 <li>
-                    Class Schedule
+                    {% trans "Class Schedule" %}
                 </li>
             </ul>
         </div>
@@ -34,8 +36,14 @@
                     <ul>
                         {% for program in day.programs.all %}
                         <li>
+                            {% if request.session.lang == 'uk' %}
+                            <h6 itemprop="name" class="title {{ program.class_name }}">{{ program.name_ukr }}</h6>
+                            <span itemprop="hours" class="time">{{ program.hours_ukr }}</span>
+                            {% else %}
                             <h6 itemprop="name" class="title {{ program.class_name }}">{{ program.name }}</h6>
                             <span itemprop="hours" class="time">{{ program.hours }}</span>
+                            {% endif %}
+
                         </li>
                         {% endfor %}
                     </ul>

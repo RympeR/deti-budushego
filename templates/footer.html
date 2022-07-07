@@ -1,13 +1,13 @@
 {% load static %}
+{% load i18n %}
 <footer class="bg_img" data-background="{% static 'images/footer/footer-bg.jpg' %}">
     <div class="footer-top">
         <div class="container">
             <div class="row mb--50">
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-widget widget-about">
-                        <h5 class="title">Детский центр "Дети будущего" </h5>
-                        <p>Партнер института одаренного ребенка НАПН Украины. Занятия для детей от 1,5 д
-                            о 7 лет - групповые и индивидуальные. Онлайн занятия для детей от 5 лет.</p>
+                        <h5 class="title">{% trans 'Детский центр "Дети будущего" ' %}</h5>
+                        <p>{% trans "Партнер института одаренного ребенка НАПН Украины. Занятия для детей от 1,5 до 8 лет - групповые и индивидуальные. Онлайн занятия для детей от 4-х до 8 лет." %}</p>
                         <ul class="contact">
                             <li>
                                 <i class="fas fa-phone-alt"></i><a href="tel:+38(098)842-39-19"> +38 (098) 842-39-19</a>
@@ -15,7 +15,7 @@
                             <li>
                                 <i class="fas fa-phone-alt"></i><a href="tel:+38(095)082-99-89"> +38 (095) 082-99-89</a>
                             </li>
-                            <li><i class="fas fa-home"></i>Фонтанская дорога 49/1, Одесса</li>
+                            <li><i class="fas fa-home"></i>{% trans "Фонтанская дорога 49/1, Одесса" %}</li>
                             <li><i class="fas fa-globe-asia"></i><a href="detibudushego.club">detibudushego.club </a></li>
                         </ul>
                         <ul class="social-icons">
@@ -42,7 +42,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-widget widget-blog">
-                        <h5 class="title">Ближайшие мероприятия</h5>
+                        <h5 class="title">{% trans "Наши мероприятия" %}</h5>
                         <ul class="footer-blog">
                             {% for footer_event in footer_events %}
                               
@@ -53,7 +53,12 @@
                                     </a>
                                 </div>
                                 <div class="content">
+                                    {% if request.session.lang == 'uk' %}
+                                    <a href="{% url 'lessons_section:event_detail' footer_event.slug %}">{{footer_event.title_ukr}}</a>
+                                    {% else %}
                                     <a href="{% url 'lessons_section:event_detail' footer_event.slug %}">{{footer_event.title}}</a>
+                                    {% endif %}
+                        
                                     <span>{{ footer_event.date_start|date:"M d,Y" }}</span>
                                 </div>
                             </li>
@@ -65,12 +70,12 @@
                 </div>
                 <div class="col-lg-4 col-md-6 pl-xl-4">
                     <div class="footer-widget widgt-form">
-                        <h5 class="title">Хотите перейти к выбору занятий?</h5>
+                        <h5 class="title">{% trans "Хотите перейти к расписанию занятий?" %}</h5>
                         <!-- <p>Enter your email and get latest updates and offers subscribe us</p> -->
                         <form action="/classes" class="footer-form">
                                 <button type="submit">
                                     <span class="shape"></span>
-                                    <span>Выбрать занятие</span>
+                                    <span>{% trans "Выбрать занятие" %}</span>
                                 </button>
                         </form>
                     </div>
@@ -81,7 +86,7 @@
     <div class="footer-bottom">
         <div class="container">
             <p>
-                &copy; 2007 - 2021 All Rights Reserved. 
+                &copy; 2007 - 2022 All Rights Reserved. 
             </p>
         </div>
     </div>

@@ -1,0 +1,593 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-04 07:05+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\templates\404.html:63 .\templates\error-page.html:49
+msgid "Извините, страница не найдена."
+msgstr ""
+
+#: .\templates\404.html:64 .\templates\error-page.html:50
+msgid "Проверьте, пожалуйста, адрес в адресной строке"
+msgstr ""
+
+#: .\templates\404.html:65 .\templates\error-page.html:51
+msgid "На главную"
+msgstr ""
+
+#: .\templates\blog-grid.html:10
+msgid "Статьи об обучении детей"
+msgstr ""
+
+#: .\templates\blog-grid.html:13 .\templates\blog-single.html:13
+#: .\templates\cart.html:13 .\templates\class-single.html:15
+#: .\templates\classes.html:13 .\templates\contact.html:13
+#: .\templates\events-single.html:13 .\templates\events.html:13
+#: .\templates\faqs.html:12 .\templates\gallery-3.html:13
+#: .\templates\login.html:12 .\templates\profile.html:13
+#: .\templates\registration.html:12 .\templates\shop-single.html:13
+#: .\templates\shop.html:13 .\templates\teacher-single.html:12
+#: .\templates\teacher.html:12 .\templates\vacancy-single.html:12
+#: .\templates\vacancys.html:12
+msgid "Главная"
+msgstr ""
+
+#: .\templates\blog-grid.html:16
+msgid "Статьи"
+msgstr ""
+
+#: .\templates\blog-grid.html:44
+msgid "Подробнее"
+msgstr ""
+
+#: .\templates\blog-single.html:16
+msgid "Статья"
+msgstr ""
+
+#: .\templates\blog-single.html:103
+msgid "Похожие статьи"
+msgstr ""
+
+#: .\templates\blog-single.html:128 .\templates\class-single.html:187
+#: .\templates\events-single.html:183 .\templates\gallery-3.html:19
+#: .\templates\index.html:304
+msgid "Галерея"
+msgstr ""
+
+#: .\templates\blog-single.html:144
+msgid "Теги статьи"
+msgstr ""
+
+#: .\templates\cart.html:10 .\templates\cart.html:16
+#: .\templates\header-cart.html:14 .\templates\header-cart.html:33
+msgid "Корзина"
+msgstr ""
+
+#: .\templates\cart.html:32
+msgid "Товар"
+msgstr ""
+
+#: .\templates\cart.html:33
+msgid "Цена"
+msgstr ""
+
+#: .\templates\cart.html:34 .\templates\header-cart.html:28
+msgid "Убрать"
+msgstr ""
+
+#: .\templates\cart.html:70
+msgid "Оплата"
+msgstr ""
+
+#: .\templates\cart.html:77
+msgid "Итого"
+msgstr ""
+
+#: .\templates\cart.html:80
+msgid "Сумма заказа"
+msgstr ""
+
+#: .\templates\cart.html:85
+msgid "Сумма со скидкой"
+msgstr ""
+
+#: .\templates\cart.html:89
+msgid "Процент скидки"
+msgstr ""
+
+#: .\templates\class-schedule.html:13
+msgid "Home"
+msgstr ""
+
+#: .\templates\class-schedule.html:16
+msgid "Classes"
+msgstr ""
+
+#: .\templates\class-schedule.html:19
+msgid "Class Schedule"
+msgstr ""
+
+#: .\templates\class-single.html:18
+msgid "Наши группы"
+msgstr ""
+
+#: .\templates\class-single.html:21
+msgid "Группа"
+msgstr ""
+
+#: .\templates\class-single.html:73
+msgid "Информация о группе"
+msgstr ""
+
+#: .\templates\class-single.html:78 .\templates\classes.html:92
+#: .\templates\events-single.html:103 .\templates\index.html:159
+msgid "Возраст"
+msgstr ""
+
+#: .\templates\class-single.html:82
+msgid "Дни, время"
+msgstr ""
+
+#: .\templates\class-single.html:86 .\templates\classes.html:84
+#: .\templates\index.html:151
+msgid "Количество"
+msgstr ""
+
+#: .\templates\class-single.html:90
+msgid "Абонемент"
+msgstr ""
+
+#: .\templates\class-single.html:94 .\templates\events-single.html:133
+msgid "Стоимость"
+msgstr ""
+
+#: .\templates\class-single.html:99
+msgid "Cо скидкой"
+msgstr ""
+
+#: .\templates\class-single.html:105
+msgid "Пробное"
+msgstr ""
+
+#: .\templates\class-single.html:111
+msgid "Старт группы"
+msgstr ""
+
+#: .\templates\class-single.html:123 .\templates\events-single.html:143
+msgid "Формат"
+msgstr ""
+
+#: .\templates\class-single.html:125 .\templates\events-single.html:145
+msgid "Онлайн"
+msgstr ""
+
+#: .\templates\class-single.html:127 .\templates\events-single.html:147
+msgid "Офлайн"
+msgstr ""
+
+#: .\templates\class-single.html:133
+msgid "Преподаватель"
+msgstr ""
+
+#: .\templates\class-single.html:141
+msgid "Читать по теме"
+msgstr ""
+
+#: .\templates\class-single.html:163
+msgid "Посещайте занятия комплексно"
+msgstr ""
+
+#: .\templates\class-single.html:203
+msgid "Искать по тегам"
+msgstr ""
+
+#: .\templates\class-single.html:229 .\templates\classes.html:132
+msgid "Готовы записаться на пробное занятие?"
+msgstr ""
+
+#: .\templates\class-single.html:233 .\templates\classes.html:136
+#: .\templates\teacher.html:72
+msgid "Позвоните нам"
+msgstr ""
+
+#: .\templates\classes.html:10 .\templates\contact.html:34
+msgid "Занятия для детей"
+msgstr ""
+
+#: .\templates\classes.html:16
+msgid "Группы"
+msgstr ""
+
+#: .\templates\classes.html:35 .\templates\classes.html:37
+#: .\templates\events.html:38 .\templates\shop.html:126
+msgid "Все"
+msgstr ""
+
+#: .\templates\classes.html:71 .\templates\index.html:138
+#: .\templates\profile.html:16
+msgid "Профиль"
+msgstr ""
+
+#: .\templates\classes.html:88 .\templates\index.html:155
+msgid "Расписание"
+msgstr ""
+
+#: .\templates\coming-soon.html:17 .\templates\events-single.html:51
+msgid "Дней"
+msgstr ""
+
+#: .\templates\coming-soon.html:21 .\templates\events-single.html:55
+msgid "Часов"
+msgstr ""
+
+#: .\templates\coming-soon.html:25 .\templates\events-single.html:59
+msgid "Минут"
+msgstr ""
+
+#: .\templates\coming-soon.html:29 .\templates\events-single.html:63
+msgid "Секунд"
+msgstr ""
+
+#: .\templates\coming-soon.html:32
+msgid "Скоро стартуем"
+msgstr ""
+
+#: .\templates\contact.html:10
+msgid "Свяжитесь с нами"
+msgstr ""
+
+#: .\templates\contact.html:16
+msgid "Наши контакты"
+msgstr ""
+
+#: .\templates\contact.html:36
+msgid "Групповые и индивидуальные,"
+msgstr ""
+
+#: .\templates\contact.html:37
+msgid "офлайн и онлайн."
+msgstr ""
+
+#: .\templates\contact.html:38
+msgid "Для детей от 1,5 до 8 лет"
+msgstr ""
+
+#: .\templates\contact.html:47
+msgid "Адрес детского центра"
+msgstr ""
+
+#: .\templates\contact.html:49
+msgid "Фонтанская дорога 49/1, Одесса, 65009, Украина"
+msgstr ""
+
+#: .\templates\contact.html:50
+msgid "КАК ДОЕХАТЬ:"
+msgstr ""
+
+#: .\templates\contact.html:51
+msgid "трамвай № 17, 18, 19;"
+msgstr ""
+
+#: .\templates\contact.html:52
+msgid "маршрутки № 127, 146, 185."
+msgstr ""
+
+#: .\templates\contact.html:53
+msgid "Остановка: Петрашевского"
+msgstr ""
+
+#: .\templates\contact.html:62
+msgid "Дни и часы работы"
+msgstr ""
+
+#: .\templates\contact.html:64
+msgid "Пн-Пт (Сб, Вс выходные)"
+msgstr ""
+
+#: .\templates\contact.html:65
+msgid "Время работы уточняйте"
+msgstr ""
+
+#: .\templates\contact.html:75
+msgid "Контакты"
+msgstr ""
+
+#: .\templates\events-single.html:16 .\templates\events.html:16
+#: .\templates\faqs.html:15 .\templates\gallery-3.html:16
+msgid "О нас"
+msgstr ""
+
+#: .\templates\events-single.html:19 .\templates\events.html:19
+msgid "Мероприятия"
+msgstr ""
+
+#: .\templates\events-single.html:47
+msgid "Начало мероприятия через:"
+msgstr ""
+
+#: .\templates\events-single.html:98
+msgid "Информация о мероприятии"
+msgstr ""
+
+#: .\templates\events-single.html:107
+msgid "Дата начала"
+msgstr ""
+
+#: .\templates\events-single.html:112 .\templates\events-single.html:121
+msgid "Окончание"
+msgstr ""
+
+#: .\templates\events-single.html:117
+msgid "Начало"
+msgstr ""
+
+#: .\templates\events-single.html:129
+msgid "Место"
+msgstr ""
+
+#: .\templates\events-single.html:152
+msgid "Организатор"
+msgstr ""
+
+#: .\templates\events-single.html:161
+msgid "Статьи по теме"
+msgstr ""
+
+#: .\templates\events-single.html:200
+msgid "Тематические теги"
+msgstr ""
+
+#: .\templates\events.html:10 .\templates\footer.html:45
+#: .\templates\index.html:183
+msgid "Наши мероприятия"
+msgstr ""
+
+#: .\templates\faqs.html:9 .\templates\faqs.html:18
+msgid "Правила посещения"
+msgstr ""
+
+#: .\templates\faqs.html:33
+msgid "Часто задаваемые вопросы"
+msgstr ""
+
+#: .\templates\faqs.html:34
+msgid "Правила посещения детского центра"
+msgstr ""
+
+#: .\templates\footer.html:9
+msgid "Детский центр \"Дети будущего\" "
+msgstr ""
+
+#: .\templates\footer.html:10
+msgid ""
+"Партнер института одаренного ребенка НАПН Украины. Занятия для детей от 1,5 "
+"до 7 лет - групповые и индивидуальные. Онлайн занятия для детей от 5 лет."
+msgstr ""
+
+#: .\templates\footer.html:18 .\templates\header.html:17
+msgid "Фонтанская дорога 49/1, Одесса"
+msgstr ""
+
+#: .\templates\footer.html:68
+msgid "Хотите перейти к расписанию занятий?"
+msgstr ""
+
+#: .\templates\footer.html:73 .\templates\gallery-3.html:58
+#: .\templates\index.html:13
+msgid "Выбрать занятие"
+msgstr ""
+
+#: .\templates\gallery-3.html:10 .\templates\index.html:305
+msgid "Наши фотографии"
+msgstr ""
+
+#: .\templates\gallery-3.html:38
+msgid "Все фотографии"
+msgstr ""
+
+#: .\templates\index.html:10
+msgid "Детский центр"
+msgstr ""
+
+#: .\templates\index.html:11
+msgid "Дети будущего"
+msgstr ""
+
+#: .\templates\index.html:12
+msgid ""
+"Партнер института одаренного ребенка НАПН Украины. Занятия для детей от 1,5 "
+"до 7 лет - групповые и индивидуальные. Онлайн занятия для детей от 5 лет. "
+msgstr ""
+
+#: .\templates\index.html:35
+msgid "Мы работаем в военное время"
+msgstr ""
+
+#: .\templates\index.html:36
+msgid "Продолжаем обучать наших детей онлайн"
+msgstr ""
+
+#: .\templates\index.html:37
+msgid ""
+"Мы разработали онлайн-формат, который больше похож на увлекательную игру, в "
+"которой дети выполняют задания на экранах своих устройств, используя "
+"инструменты Zoom. "
+msgstr ""
+
+#: .\templates\index.html:38
+#, python-format
+msgid ""
+"Мы начали работать уже на 10-ый день войны, и за два месяца провели около "
+"200 бесплатных онлайн-занятий для детей 4-8 лет. Это более 4000 посещений за "
+"этот период! В мае мы объявили набор новых групп, при этом снизили наши цены "
+"на обучение на 30%% и предоставили возможность оплачивать обучение частями. "
+"Сейчас работают около 20 онлайн-групп – это 9 программ различных направлений "
+"для детей от 4-х до 8-ми лет. И мы продолжаем развиваться. Потому что с нами "
+"всегда комфортно и интересно! "
+msgstr ""
+
+#: .\templates\index.html:39
+msgid ""
+"Хотите попробовать? Выбирайте группу на странице «Занятия», после напишите "
+"нам в Телеграм или Viber (кнопки перехода вверху страницы) – и мы ответим на "
+"все ваши вопросы. "
+msgstr ""
+
+#: .\templates\index.html:40
+msgid ""
+"А ниже вы найдете информацию о том, как проходит обучение в нашем центре."
+msgstr ""
+
+#: .\templates\index.html:108
+msgid "Наше расписание"
+msgstr ""
+
+#: .\templates\index.html:109
+msgid "Группы дошкольников"
+msgstr ""
+
+#: .\templates\index.html:168 .\templates\index.html:214
+#: .\templates\index.html:328
+msgid "Посмотреть еще"
+msgstr ""
+
+#: .\templates\index.html:429
+msgid "Отзывы о нашем центре"
+msgstr ""
+
+#: .\templates\index.html:430
+msgid "Что говорят наши родители"
+msgstr ""
+
+#: .\templates\login.html:9 .\templates\login.html:15 .\templates\login.html:28
+msgid "Вход"
+msgstr ""
+
+#: .\templates\login.html:43
+msgid "Войти"
+msgstr ""
+
+#: .\templates\login.html:47
+msgid "Нету аккаунта?"
+msgstr ""
+
+#: .\templates\login.html:47
+msgid "Зарегестрироваться"
+msgstr ""
+
+#: .\templates\profile.html:73
+msgid "Информация"
+msgstr ""
+
+#: .\templates\profile.html:78
+msgid "Логин"
+msgstr ""
+
+#: .\templates\profile.html:81
+msgid "ФИО"
+msgstr ""
+
+#: .\templates\profile.html:86
+msgid "Выйти"
+msgstr ""
+
+#: .\templates\registration.html:9
+msgid "Регистрация"
+msgstr ""
+
+#: .\templates\registration.html:15
+msgid "Зарегистрируйтесь"
+msgstr ""
+
+#: .\templates\registration.html:28 .\templates\registration.html:45
+msgid "Зарегистрироваться"
+msgstr ""
+
+#: .\templates\registration.html:44
+msgid "Пароли не совпадают"
+msgstr ""
+
+#: .\templates\registration.html:49
+msgid "Есть ли у вас аккаунт?"
+msgstr ""
+
+#: .\templates\shop-single.html:16 .\templates\shop.html:10
+#: .\templates\shop.html:16
+msgid "Магазин"
+msgstr ""
+
+#: .\templates\shop-single.html:63
+msgid "Описание"
+msgstr ""
+
+#: .\templates\shop-single.html:69
+msgid "Скачать"
+msgstr ""
+
+#: .\templates\shop-single.html:71
+msgid "Добавить в корзину"
+msgstr ""
+
+#: .\templates\shop-single.html:127 .\templates\shop.html:120
+msgid "Категории"
+msgstr ""
+
+#: .\templates\shop-single.html:142 .\templates\shop.html:139
+msgid "Последние товары"
+msgstr ""
+
+#: .\templates\teacher-single.html:15 .\templates\teacher.html:9
+#: .\templates\teacher.html:15 .\templates\teacher.html:34
+msgid "Наш коллектив"
+msgstr ""
+
+#: .\templates\teacher-single.html:40
+msgid "О преподавателе"
+msgstr ""
+
+#: .\templates\teacher-single.html:83
+msgid "Сертификаты"
+msgstr ""
+
+#: .\templates\teacher.html:33
+msgid "Профессиональный и дружный"
+msgstr ""
+
+#: .\templates\teacher.html:68 .\templates\vacancys.html:68
+msgid "Стать преподавателем"
+msgstr ""
+
+#: .\templates\teacher.html:69 .\templates\vacancys.html:69
+msgid "Если вы хотите работать в команде профессионалов."
+msgstr ""
+
+#: .\templates\teacher.html:88 .\templates\vacancy-single.html:15
+#: .\templates\vacancys.html:9 .\templates\vacancys.html:15
+#: .\templates\vacancys.html:34
+msgid "Наши вакансии"
+msgstr ""
+
+#: .\templates\vacancy-single.html:38
+msgid "О вакансии"
+msgstr ""
+
+#: .\templates\vacancys.html:72
+msgid "Позвонить"
+msgstr ""

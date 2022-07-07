@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load static %}
 {% block main_content %}
 <!-- ==========Banner Section Starts Here========== -->
@@ -8,10 +9,10 @@
             <h1 class="title">{{ object.fio }}</h1>
             <ul class="breadcrumb">
                 <li>
-                    <a href='{% url "lessons_section:index" %}'>Главная</a>
+                    <a href='{% url "lessons_section:index" %}'>{% trans "Главная" %}</a>
                 </li>
                 <li>
-                    <a href='{% url "users_section:teachers_list" %}'>Наш коллектив</a>
+                    <a href='{% url "users_section:teachers_list" %}'>{% trans "Наш коллектив" %}</a>
                 </li>
                 <li>
                     {{ object.fio }}
@@ -36,7 +37,7 @@
                         <h4 class="title">{{ object.fio }}</h4>
                         <pre>{{ object.specialization }}</pre>
                         <pre class="header-p">{{ object.personal_statement }}</pre>
-                        <h6 class="subtitle">О преподавателе</h6>
+                        <h6 class="subtitle">{% trans "О преподавателе" %}</h6>
                         <pre class="header-p">{{ object.characteristic }}</pre>
                     </div>
                 </div>
@@ -79,7 +80,7 @@
                     {% if object.sertificates %}
 
 
-                    <h6 class="w-100 subtitle">Сертификаты</h6>
+                    <h6 class="w-100 subtitle">{% trans "Сертификаты" %}</h6>
                     {% for certify in object.sertificates.all %}
 
 

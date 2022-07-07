@@ -1,73 +1,94 @@
-{% extends "base.html" %}
-{% load static %}
-{% block main_content %}
+{% extends "base.html" %} {% load i18n %} {% load static %} {% block
+main_content %}
 <!-- ==========Banner Section Starts Here========== -->
-<section itemscope  class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
-    <div class="container">
-        <div class="page-header-content">
-            <h1 class="title">Правила посещения</h1>
-            <ul class="breadcrumb">
-                <li>
-                    <a href='{% url "lessons_section:index" %}'>Главная</a>
-                </li>
-                <li>
-                    <a href='{% url "lessons_section:about" %}'>О нас</a>
-                </li>
-                <li>
-                    Правила посещения
-                </li>
-            </ul>
-        </div>
+<section
+  itemscope
+  class="page-header bg_img"
+  data-background="{% static 'images/banner/page-header.jpg' %}"
+>
+  <div class="container">
+    <div class="page-header-content">
+      <h1 class="title">{% trans "Правила посещения" %}</h1>
+      <ul class="breadcrumb">
+        <li>
+          <a href='{% url "lessons_section:index" %}'>{% trans "Главная" %}</a>
+        </li>
+        <li>
+          <a href='{% url "lessons_section:about" %}'>{% trans "О нас" %}</a>
+        </li>
+        <li>{% trans "Правила посещения" %}</li>
+      </ul>
     </div>
+  </div>
 </section>
 <!-- ==========Banner Section Ends Here========== -->
 
-
 <!-- ==========Faqs Section Starts Here========== -->
-<section itemscope  class="faqs-single-section padding-top padding-bottom">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="section-header">
-                    <span class="cate">Часто задаваемые вопросы</span>
-                    <h3 class="title">Правила посещения детского центра</h3>
-                </div>
-            </div>
+<section itemscope class="faqs-single-section padding-top padding-bottom">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="section-header">
+          <span class="cate">{% trans "Часто задаваемые вопросы" %}</span>
+          <h3 class="title">{% trans "Правила посещения детского центра" %}</h3>
         </div>
-        <div class="row mb--10">
-            <div class="col-lg-6">
-                <div class="faq-wrapper">
-                    {% for left_faq in left %}
-                    <div class="faq-item">
-                          
-                        <div class="faq-title">
-                            <span class="right-icon"></span>
-                            <h5 class="title">{{ left_faq.question }}</h5>
-                        </div>
-                        <div class="faq-content">
-                            <p>{{ left_faq.answer }}</p>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="faq-wrapper">
-                    {% for right_faq in right %}
-                    <div class="faq-item">
-                        <div class="faq-title">
-                            <span class="right-icon"></span>
-                            <h5 class="title">{{ right_faq.question }}</h5>
-                        </div>
-                        <div class="faq-content">
-                            <p>{{ right_faq.answer }}</p>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="row mb--10">
+      <div class="col-lg-6">
+        <div class="faq-wrapper">
+          {% for left_faq in left %}
+          <div class="faq-item">
+            {% if request.session.lang == 'uk' %}
+            <div class="faq-title">
+              <span class="right-icon"></span>
+              <h5 class="title">{{ left_faq.question_ukr }}</h5>
+            </div>
+            <div class="faq-content">
+              <p>{{ left_faq.answer_ukr }}</p>
+            </div>
+            {% else %}
+            <div class="faq-title">
+              <span class="right-icon"></span>
+              <h5 class="title">{{ left_faq.question }}</h5>
+            </div>
+            <div class="faq-content">
+              <p>{{ left_faq.answer }}</p>
+            </div>
+            {% endif %}
+
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="faq-wrapper">
+          {% for right_faq in right %}
+          <div class="faq-item">
+            {% if request.session.lang == 'uk' %}
+            <div class="faq-title">
+              <span class="right-icon"></span>
+              <h5 class="title">{{ right_faq.question_ukr }}</h5>
+            </div>
+            <div class="faq-content">
+              <p>{{ right_faq.answer_ukr }}</p>
+            </div>
+            {% else %}
+            <div class="faq-title">
+              <span class="right-icon"></span>
+              <h5 class="title">{{ right_faq.question }}</h5>
+            </div>
+            <div class="faq-content">
+              <p>{{ right_faq.answer }}</p>
+            </div>
+            {% endif %}
+
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 <!-- ==========Faqs Section Ends Here========== -->
 {% endblock main_content %}

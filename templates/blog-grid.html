@@ -1,17 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
+
 {% block main_content %}
 <!-- ==========Banner Section Starts Here========== -->
 <section itemscope  class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
-            <h1 class="title">Статьи об обучении детей</h1>
+            <h1 class="title">{% trans "Статьи об обучении детей" %}</h1>
             <ul class="breadcrumb">
                 <li>
-                    <a href='{% url "lessons_section:index" %}'>Главная</a>
+                    <a href='{% url "lessons_section:index" %}'>{% trans "Главная" %}</a>
                 </li>
                 <li>
-                    Статьи
+                    {% trans "Статьи" %}
                 </li>
             </ul>
         </div>
@@ -30,16 +32,28 @@
                     </div>
                     <div class="post-content">
                         <div class="post-top">
-                            <h5 class="title"><a href="{% url 'blog_section:post_detail' post.slug %}">{{ post.title }}</a>
+                            <h5 class="title">
+                                <a href="{% url 'blog_section:post_detail' post.slug %}">
+                                    {% if request.session.lang == 'uk' %}
+                                        {{ post.title_ukr }}
+                                    {% else %}
+                                        {{ post.title }}
+                                    {% endif %}
+                                </a>
                             </h5>
                             <div class="post-meta cate">
                                 <a href="#"><i class="far fa-calendar"></i> {{ post.created_at|date }} </a>
                                 <a href="#"><i class="fas fa-user"></i> {{ post.author.fio }} </a>
                             </div>
-                            <p>{{ post.preview_text }}</p>
+                            {% if request.session.lang == 'uk' %}
+                                <p>{{ post.preview_text_ukr }}</p>
+                            {% else %}
+                                <p>{{ post.preview_text }}</p>
+                            {% endif %}
+
                         </div>
                         <div class="post-bottom">
-                            <a href="{% url 'blog_section:post_detail' post.slug %}" class="read">Подробнее</a>
+                            <a href="{% url 'blog_section:post_detail' post.slug %}" class="read">{% trans "Подробнее" %}</a>
                         </div>
                     </div>
                 </div>

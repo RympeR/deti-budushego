@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 {% load mptt_tags %}
 {% load cart_template_tags %}
@@ -13,21 +14,23 @@
                         <a href="tel:+38(095)082-99-89"><i class="fas fa-phone-alt"></i> +38 (095) 082-99-89</a>
                     </li>
                     <li>
-                        <i class="fas fa-map-marker-alt"></i> Фонтанская дорога 49/1, Одесса 
+                        <i class="fas fa-map-marker-alt"></i> {% trans "Фонтанская дорога 49/1, Одесса" %}
                     </li>
                 </ul>
                 <ul class="social-icons">
                     <li>
                         <a href="https://www.facebook.com/detibudushego"><i class="fab fa-facebook"></i></a>
                     </li>
-                    <li>
-                        <a href="https://www.facebook.com/groups/ilearning.tools"><i class="fas fa-user-friends"></i></a>
-                    </li>
+                    <!-- <li>
+                        <a href="https://www.facebook.com/groups/ilearning.tools"><i
+                                class="fas fa-user-friends"></i></a>
+                    </li> -->
                     <!-- <li>
                         <a href="https://t.me/detibudushego"><i class="fab fa-telegram"></i></a>
                     </li> -->
                     <li>
-                        <a href="https://www.instagram.com/detibudushego.odessa?r=nametag"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/detibudushego.odessa?r=nametag"><i
+                                class="fab fa-instagram"></i></a>
                     </li>
                     <li>
                         <a href="viber://chat?number=%2B380988423919"><i class="fab fa-viber"></i></a>
@@ -35,7 +38,24 @@
                     <li>
                         <a href="https://www.youtube.com/user/detibudushego/featured"><i class="fab fa-youtube"></i></a>
                     </li>
-                    <!-- <li>
+                    <li>
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        <h5 class="dropdown">{{LANGUAGE_CODE}}</h5>
+                        <div class="dropdown-content">
+
+                            <ul>
+                                {% for language in languages %}
+                                <li value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}
+                                    selected{% endif %}>
+                                    <h5>{{ language.code }}</h5>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- <li>x`
                         <a href="https://www.youtube.com/user/detibudushego/featured">RU</a>
                     </li> -->
                     {% if request.user.is_authenticated %}
@@ -45,10 +65,10 @@
                     {% else %}
                     <li>
                         <a href="/profile"><i class="fas fa-sign-in-alt"></i></a>
-                    </li>  
+                    </li>
                     {% endif %}
-                    
-                    
+
+
                 </ul>
             </div>
         </div>
@@ -58,24 +78,44 @@
             <div class="header-wrapper">
                 <div class="logo">
                     <a href='{% url "lessons_section:index" %}'>
-                        <img src="{% static 'images/logo/logo_svg.svg' %}" height="60" width="180" alt="logo">
+                        {% if request.session.lang == 'uk' %}
+                            <img src="{% static 'images/logo/ukr_logo.svg' %}" height="60" width="180" alt="logo">
+                        {% else %}
+                            <img src="{% static 'images/logo/logo_svg.svg' %}" height="60" width="180" alt="logo">
+                        {% endif %}
                     </a>
                 </div>
                 <div class="menu-area">
                     <ul class="menu">
-                        
-                        {% recursetree menu %}
+                        {% if request.session.lang == 'uk' %}
+                            {% recursetree menu %}
                             <li>
                                 <a href='{{node.link}}'>{% if node.icon_class %}
                                     <i class="fas {{ node.icon_class }}"></i>
-                                {% endif %}{{ node.name }}</a>
+                                    {% endif %}{{ node.name_ukr }}</a>
                                 {% if not node.is_leaf_node %}
-                                    <ul class="submenu">
-                                        {{ children }}
-                                    </ul>
+                                <ul class="submenu">
+                                    {{ children }}
+                                </ul>
                                 {% endif %}
                             </li>
-                        {% endrecursetree %}
+                            {% endrecursetree %}
+                        {% else %}
+                            {% recursetree menu %}
+                            <li>
+                                <a href='{{node.link}}'>{% if node.icon_class %}
+                                    <i class="fas {{ node.icon_class }}"></i>
+                                    {% endif %}{{ node.name }}</a>
+                                {% if not node.is_leaf_node %}
+                                <ul class="submenu">
+                                    {{ children }}
+                                </ul>
+                                {% endif %}
+                            </li>
+                            {% endrecursetree %}
+                        {% endif %}
+
+                        
                         <!-- <li>
                             <a href='{% url "lessons_section:index" %}'><i class="fas fa-home"></i>Home</a>
                         </li>

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load static %}
 {% load cart_template_tags %}
 {% block main_content %}
@@ -9,13 +10,18 @@
 			<h1 class="title">{{ object.title }}</h1>
 			<ul class="breadcrumb">
 				<li>
-					<a href='{% url "lessons_section:index" %}'>Главная</a>
+					<a href='{% url "lessons_section:index" %}'>{% trans "Главная" %}</a>
 				</li>
 				<li>
-					<a href='{% url "shop_section:shop" %}'>Магазин</a>
+					<a href='{% url "shop_section:shop" %}'>{% trans "Магазин" %}</a>
 				</li>
 				<li>
+					{% if request.session.lang == 'uk' %}
+					{{ object.title_ukr }}
+					{% else %}
 					{{ object.title }}
+					{% endif %}
+		
 				</li>
 			</ul>
 		</div>
@@ -59,15 +65,20 @@
 								<h5 class="amount">₴{{ object.price }} грн</h5>
 								{% endif %}
 								<h5 class="subtitle">
-									Описание
+									{% trans "Описание" %}
 								</h5>
 								<p class="info mb-5">
+									{% if request.session.lang == 'uk' %}
+									{{ object.description_ukr }}
+									{% else %}
 									{{ object.description }}
+									{% endif %}
+						
 								</p>
 								{% if product.check_bought %}
-											<a href="{{ product.download_archive.url }}" class="custom-button" download><span>Скачать</span></a>
+									<a href="{{ product.download_archive.url }}" class="custom-button" download><span>{% trans "Скачать" %}</span></a>
 								{% else %}
-									<a href='{{ object.get_add_to_cart_url }}' class="custom-button"><span>Добавить в корзину</span></a>
+									<a href='{{ object.get_add_to_cart_url }}' class="custom-button"><span>{% trans "Добавить в корзину" %}</span></a>
 								{% endif %}
 							</div>
 						</div>
@@ -76,7 +87,12 @@
 				<div class="review">
 					<div class="review-content description-show">
 						<div class="description">
+							{% if request.session.lang == 'uk' %}
+							<p>{{ object.full_text_ukr|safe }}</p>
+							{% else %}
 							<p>{{ object.full_text|safe }}</p>
+							{% endif %}
+				
 							<!-- <div class="rev-item">
 								<div class="rev-thumb">
 									<img src="assets/images/shop/rev.jpg" alt="shop">
@@ -123,14 +139,20 @@
 				<div class="single-sidebar">
 					<div class="widget widget-category">
 						<div class="widget-header">
-							<h5 class="title">Категории</h5>
+							<h5 class="title">{% trans "Категории" %}</h5>
 						</div>
 						<div class="widget-body">
 							<ul>
 								{% for category in request|shop_categories %}
 								<li>
 									<a href="{% url 'shop_section:filtered_shop' category.slug %}"><span><i
-												class="fas fa-angle-double-right"></i>{{ category.name }}</span></a>
+												class="fas fa-angle-double-right"></i>
+												{% if request.session.lang == 'uk' %}
+												{{ category.name_ukr }}
+												{% else %}
+												{{ category.name }}
+												{% endif %}
+								</span></a>
 								</li>
 								{% endfor %}
 							</ul>
@@ -138,7 +160,7 @@
 					</div>
 					<div class="widget widget-product">
 						<div class="widget-header">
-							<h5 class="title">Последние товары</h5>
+							<h5 class="title">{% trans "Последние товары" %}</h5>
 						</div>
 						<div class="widget-body">
 							<ul>
@@ -148,8 +170,13 @@
 										<a href="#"><img src="{{ latest_product.preview.url }}" alt="shop"></a>
 									</div>
 									<div class="product-content">
-										<h6><a
-												href="{% url 'shop_section:single_shop' latest_product.slug %}">{{ latest_product.title }}</a>
+										<h6>
+											{% if request.session.lang == 'uk' %}
+											<a href="{% url 'shop_section:single_shop' latest_product.slug %}">{{ latest_product.title_ukr }}</a>
+											{% else %}
+											<a href="{% url 'shop_section:single_shop' latest_product.slug %}">{{ latest_product.title }}</a>
+											{% endif %}
+								
 										</h6>
 										{% if latest_product.discount_price %}
 										<h6 class="subtitle">₴{{ latest_product.discount_price }}</h6>

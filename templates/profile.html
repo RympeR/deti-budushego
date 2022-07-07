@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load static %}
 {% load cart_template_tags %}
 {% block main_content %}
@@ -9,10 +10,10 @@
                 <h1 class="title">{{ user.fio }}</h1>
                 <ul class="breadcrumb">
                     <li>
-                        <a href='{% url "lessons_section:index" %}'>Главная</a>
+                        <a href='{% url "lessons_section:index" %}'>{% trans "Главная" %}</a>
                     </li>
                     <li>
-                        Профиль
+                        {% trans "Профиль" %}
                     </li>
                 </ul>
             </div>
@@ -69,20 +70,20 @@
 					<div class="single-sidebar">
 						<div class="widget widget-category">
                             <div class="widget-header">
-                                <h5 class="title">Информация</h5>
+                                <h5 class="title">{% trans "Информация" %}</h5>
                             </div>
                             <div class="widget-body">
                                 <ul>
 									<li>
-                                        <span><strong>Логин:</strong> {{ user.username }}</span></a>
+                                        <span><strong>{% trans "Логин" %}:</strong> {{ user.username }}</span></a>
                                     </li>
 									<li>
-                                        <span><strong>ФИО</strong>: {{ user.fio }}</span></a>
+                                        <span><strong>{% trans "ФИО" %}</strong>: {{ user.fio }}</span></a>
                                     </li>
 									<li>
 										<form action="/logout">
 											<button class="widget-btn-custom" type="submit">
-												<span style="color:white">Выйти</span>
+												<span style="color:white">{% trans "Выйти" %}</span>
 											</button>
 										</form>
                                     </li>
@@ -118,6 +119,16 @@
 		                  				</div>
 		                  			</div>
 		                            <div class="col-lg-7">
+										{% if request.session.lang == 'uk' %}
+		                                <div class="product-content">
+											<h5 class="title"><a href="{% url 'shop_section:single_shop' product.slug %}">{{ product.title_ukr }}</a></h5>									
+											<p>
+												{{ product.description_ukr }}
+											</p>
+											<div class="cart-button-2">
+											</div>
+										</div>
+										{% else %}
 		                                <div class="product-content">
 											<h5 class="title"><a href="{% url 'shop_section:single_shop' product.slug %}">{{ product.title }}</a></h5>									
 											<p>
@@ -126,6 +137,8 @@
 											<div class="cart-button-2">
 											</div>
 										</div>
+										{% endif %}
+			
 		                            </div>
 		                        </div>
 		                    </div>

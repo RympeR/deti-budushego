@@ -1,17 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
+
 {% block main_content %}
 <!-- ==========Banner Section Starts Here========== -->
 <section itemscope  class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
-            <h1 itemprop="title" class="title">Корзина</h1>
+            <h1 itemprop="title" class="title">{% trans "Корзина" %}</h1>
             <ul class="breadcrumb">
                 <li>
-                    <a itemprop="url" href='{% url "lessons_section:index" %}'>Главная</a>
+                    <a itemprop="url" href='{% url "lessons_section:index" %}'>{% trans "Главная" %}</a>
                 </li>
                 <li>
-                    Корзина
+                    {% trans "Корзина" %}
                 </li>
             </ul>
         </div>
@@ -27,9 +29,9 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Товар</th>
-                        <th>Цена</th>
-                        <th>Убрать</th>
+                        <th>{% trans "Товар" %}</th>
+                        <th>{% trans "Цена" %}</th>
+                        <th>{% trans "Убрать" %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,7 +43,12 @@
                                 <a href="#"><img src="{{ product.preview.url }}" alt="product"></a>
                             </div>
                             <div class="p-content">
+                                {% if request.session.lang == 'uk' %}
+                                <a itemprop="name" href="#">{{ product.title_ukr }}</a>
+                                {% else %}
                                 <a itemprop="name" href="#">{{ product.title }}</a>
+                                {% endif %}
+
                             </div>
                         </td>
                         {% if product.discount_price %}
@@ -65,26 +72,26 @@
                     <input type="text" name="coupon" id="coupon" placeholder="Код купона" class="cart-page-input-text">
                     <input type="submit" value="Промокод">
                 </form>
-                <button onclick="pay()" style="max-width:100px;" class="widget-btn-custom" value="Оплата"><span style="color:white">Оплата</span></button>
+                <button onclick="pay()" style="max-width:100px;" class="widget-btn-custom" value="Оплата"><span style="color:white">{% trans "Оплата" %}</span></button>
             </div>
         </div>
         <div class="shiping-box mb-widget">
             <div class="row">
                 <div class="col-md-6 col-12">
                     <div class="cart-overview">
-                        <h5 class="title">Итого</h5>
+                        <h5 class="title">{% trans "Итого" %}</h5>
                         <ul>
                             <li>
-                                <span class="pull-left">Сумма заказа</span>
+                                <span class="pull-left">{% trans "Сумма заказа" %}</span>
                                 <p class="pull-right">₴ {{ order.get_raw_total }}</p>
                             </li>
                             {% if order.coupon %}
                             <li>
-                                <span class="pull-left">Сумма со скидкой</span>
+                                <span class="pull-left">{% trans "Сумма со скидкой" %}</span>
                                 <p class="pull-right">₴ {{ order.get_total }}</p>
                             </li>
                             <li>
-                                <span class="pull-left">Процент скидки</span>
+                                <span class="pull-left">{% trans "Процент скидки" %}</span>
                                 <p class="pull-right">{{ order.coupon.discount_percent }} %</p>
                             </li> 
                             {% endif %}

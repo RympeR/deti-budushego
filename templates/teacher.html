@@ -1,17 +1,18 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load static %}
 {% block main_content %}
 <!-- ==========Banner Section Starts Here========== -->
 <section itemscope  class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
-            <h1 class="title">Наш коллектив</h1>
+            <h1 class="title">{% trans "Наш коллектив" %}</h1>
             <ul class="breadcrumb">
                 <li>
-                    <a href='{% url "lessons_section:index" %}'>Главная</a>
+                    <a href='{% url "lessons_section:index" %}'>{% trans "Главная" %}</a>
                 </li>
                 <li>
-                    Наш коллектив
+                    {% trans "Наш коллектив" %}
                 </li>
             </ul>
         </div>
@@ -29,8 +30,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header">
-                    <span class="cate">Профессиональный и дружелюбный</span>
-                    <h3 class="title">Наш коллектив</h3>
+                    <span class="cate">{% trans "Профессиональный и дружный" %}</span>
+                    <h3 class="title">{% trans "Наш коллектив" %}</h3>
                 </div>
             </div>
         </div>
@@ -64,11 +65,11 @@
     <div class="container">
         <div class="call-wrapper">
             <div class="section-header mb-olpo">
-                <h3 class="title">Стать преподавателем</h3>
-                <p>Если вы хотите присоедениться к дружелюбной команде профессионалов.</p>
+                <h3 class="title">{% trans "Стать преподавателем" %}</h3>
+                <p>{% trans "Если вы хотите работать в команде профессионалов." %}</p>
             </div>
             <div class="text-center">
-                <a href="tel:+38(095)082-99-89" class="custom-button"><span>Позвонить</span></a>
+                <a href="tel:+38(095)082-99-89" class="custom-button"><span>{% trans "Позвоните нам" %}</span></a>
             </div>
         </div>
     </div>
@@ -84,7 +85,7 @@
             <div class="col-lg-8">
                 <div class="section-header">
                     <!-- <span class="cate">Meet Our Stuffy</span> -->
-                    <h3 class="title"><a href='{% url "users_section:vacancy_list" %}'>Наши вакансии</a></h3>
+                    <h3 class="title"><a href='{% url "users_section:vacancy_list" %}'>{% trans "Наши вакансии" %}</a></h3>
                 </div>
             </div>
         </div>
