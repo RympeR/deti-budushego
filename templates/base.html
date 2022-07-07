@@ -33,6 +33,7 @@
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-MZCP6TS');
     </script>
+    
     <!-- End Google Tag Manager -->
 
     <meta property="og:site_name" content="detibudushego">
@@ -82,6 +83,9 @@
         position: relative;
         display: inline-block;
     }
+    .active {
+        display: block;
+    }
 </style>
 
 <body>
@@ -113,7 +117,64 @@
     <script src="{% static 'js/map.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/custom.js' %}"></script>
+    <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- ✅ load Bootstrap JS ✅ -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    crossorigin="anonymous"
+  ></script>
     <script src="https://maps.google.com/maps/api/js?key=AIzaSyCo_pcAdFNbTDCAvMwAD19oRTuEmb9M50c"></script>
+    <script>
+        function toggle_lang_block(){
+            var lang_block = document.getElementById('dropdownLangBlock');
+            lang_block.classList.toggle('active');
+        }
+        $("#uk-lang").click(function () {
+            $.ajax({
+                
+                url: "{% url 'set_language' %}",
+                type: "post",
+                data: {
+                    language: "uk",
+                    name: "{{ request.get_full_path|slice:'3:' }}"
+                },
+                success: function (result) {
+                    localStorage.lang = "uk";
+                    console.log(result);
+                    window.location.href = '/';
+
+                },
+                error: function (result) {
+                    console.log(result, "location is bad");
+                },
+            });
+        });
+        $("#ru-lang").click(function () {
+            $.ajax({
+                url: "{% url 'set_language' %}",
+                type: "post",
+                data: {
+                    language: "ru",
+                    name: "{{ request.get_full_path|slice:'3:' }}"
+                },
+                success: function (result) {
+                    localStorage.lang = "ru";
+                    console.log(result);
+                    window.location.href = '/';
+                    //location.reload();
+                },
+                error: function (result) {
+                    console.log(result, "location is bad");
+                },
+            });
+        });
+    </script>
     {% block custom_scripts %}
     {% endblock custom_scripts %}
 </body>

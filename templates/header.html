@@ -42,8 +42,24 @@
                         {% get_current_language as LANGUAGE_CODE %}
                         {% get_available_languages as LANGUAGES %}
                         {% get_language_info_list for LANGUAGES as languages %}
-                        <h5 class="dropdown">{{LANGUAGE_CODE}}</h5>
-                        <div class="dropdown-content">
+                        <div class="dropdown">
+                            <button 
+                                class="btn dropdown-toggle" 
+                                type="button" 
+                                id="dropdownLangBtn" 
+                                {% comment %} data-toggle="dropdown" {% endcomment %}
+                                onclick="toggle_lang_block()"
+                                {% comment %} aria-haspopup="true" 
+                                aria-expanded="false"> {% endcomment %}>
+                                {{LANGUAGE_CODE}}
+                            </button>
+                            <div class="dropdown-menu" style="min-width: 4rem" id="dropdownLangBlock"  aria-labelledby="dropdownLangBtn">
+                                {% for language in languages %}
+                                    <a class="dropdown-item" style="color: black" id="{{ language.code }}-lang" href="#">{{ language.code }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% comment %} <div class="dropdown-content">
 
                             <ul>
                                 {% for language in languages %}
@@ -53,7 +69,7 @@
                                 </li>
                                 {% endfor %}
                             </ul>
-                        </div>
+                        </div> {% endcomment %}
                     </li>
                     <!-- <li>x`
                         <a href="https://www.youtube.com/user/detibudushego/featured">RU</a>
