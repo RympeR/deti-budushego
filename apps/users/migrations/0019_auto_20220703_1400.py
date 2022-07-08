@@ -7,16 +7,16 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0018_auto_20210725_0052'),
+        
     ]
 
     operations = [
-        # migrations.AddField(
-        #     model_name='program',
-        #     name='hours_ukr',
-        #     field=models.TextField(default='', verbose_name='Часы проведения программы ukr'),
-        #     preserve_default=False,
-        # ),
+        migrations.AddField(
+            model_name='program',
+            name='hours_ukr',
+            field=models.TextField(default='', verbose_name='Часы проведения программы ukr'),
+            preserve_default=False,
+        ),
         migrations.AlterField(
             model_name='vacancy',
             name='full_text',
