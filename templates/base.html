@@ -138,6 +138,17 @@
         $("#uk-lang").click(function () {
             $.ajax({
                 
+                url: "{% url 'uk' %}",
+                type: "get",
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (result) {
+                    console.log(result, "location is bad");
+                },
+            });
+            $.ajax({
+                
                 url: "{% url 'set_language' %}",
                 type: "post",
                 data: {
@@ -157,7 +168,18 @@
         });
         $("#ru-lang").click(function () {
             $.ajax({
-                url: "{% url 'set_language' %}",
+                
+                url: "{% url 'ru' %}",
+                type: "get",
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (result) {
+                    console.log(result, "location is bad");
+                },
+            });
+            $.ajax({
+                url: "{% url 'ru' %}",
                 type: "post",
                 data: {
                     language: "ru",

@@ -17,16 +17,8 @@ from django.utils.translation import LANGUAGE_SESSION_KEY, get_language
 
 def switch_to_Russian_link(request):
     request.session['lang'] = 'ru'
-    user_language = 'ru'
-    translation.activate(user_language)
     response = HttpResponse(...)
-    print(user_language)
-    print(dir(translation))
-    print(translation.get_language())
-    print(settings.LANGUAGE_COOKIE_NAME)
-    response.set_cookie(settings.LANGUAGE_COOKIE_NAME, translation.get_language())
-    request.LANGUAGE_CODE = translation.get_language()
-    print(response.cookies)
+
     return response
 
 
@@ -35,18 +27,6 @@ def switch_to_Ukraiunian_link(request):
     user_language = 'uk'
     response = HttpResponse(...)
     request.session['django_language'] = user_language
-    response.set_cookie(settings.LANGUAGE_COOKIE_NAME, user_language)
-    translation.activate(user_language)
-    language = get_language()
-    
-    if hasattr(request, 'session'):
-        session_language = request.session.get(LANGUAGE_SESSION_KEY, None)
-        if session_language and not session_language == language:
-            request.session[LANGUAGE_SESSION_KEY] = language
-            request.session.save()
-    if settings.LANGUAGE_COOKIE_NAME in request.COOKIES and \
-                    request.COOKIES[settings.LANGUAGE_COOKIE_NAME] == language:
-        return response
     return response
 
 
