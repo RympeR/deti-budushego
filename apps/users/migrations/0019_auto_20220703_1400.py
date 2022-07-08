@@ -11,12 +11,12 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='program',
-            name='hours_ukr',
-            field=models.TextField(default='', verbose_name='Часы проведения программы ukr'),
-            preserve_default=False,
-        ),
+        # migrations.AddField(
+        #     model_name='program',
+        #     name='hours_ukr',
+        #     field=models.TextField(default='', verbose_name='Часы проведения программы ukr'),
+        #     preserve_default=False,
+        # ),
         migrations.AlterField(
             model_name='vacancy',
             name='full_text',
