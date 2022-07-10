@@ -124,8 +124,8 @@ LOGOUT_REDIRECT_URL = '/'
 LANGUAGE_CODE = 'ru'
 
 LANGUAGES = [
+    ('ru', 'Русский'),
     ('uk', 'Украинский'),
-    ('ru', 'Русский')
 ]
 
 LOCALE_PATHS = [
