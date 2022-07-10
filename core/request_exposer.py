@@ -11,7 +11,7 @@ def RequestExposerMiddleware(get_response):
 def RequestLangMiddleware(get_response):
     def middleware(request):
         if request.session.get('lang') is None:
-            request.session['lang'] = 'uk'
+            request.session['lang'] = 'ru'
         response = get_response(request)
         return response
     return middleware
