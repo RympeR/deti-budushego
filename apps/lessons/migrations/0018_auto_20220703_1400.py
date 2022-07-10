@@ -8,6 +8,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('lessons', '0017_auto_20210905_0054'),
+
     ]
 
     operations = [
@@ -68,11 +69,6 @@ class Migration(migrations.Migration):
             name='full_text_ukr',
             field=ckeditor.fields.RichTextField(default='', verbose_name='Полное описание украинский'),
             preserve_default=False,
-        ),
-        migrations.AddField(
-            model_name='lesson',
-            name='title_ukr',
-            field=models.CharField(help_text='Украинская версия', max_length=100, null=True, verbose_name='Заголовок группы ukr'),
         ),
         migrations.AddField(
             model_name='lesson',
