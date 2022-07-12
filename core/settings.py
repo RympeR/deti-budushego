@@ -121,11 +121,11 @@ LOGOUT_REDIRECT_URL = '/'
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'ru'
+LANGUAGE_CODE = 'uk'
 
 LANGUAGES = [
-    ('ru', 'Русский'),
     ('uk', 'Украинский'),
+    ('ru', 'Русский'),
 ]
 
 LOCALE_PATHS = [

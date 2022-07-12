@@ -137,7 +137,6 @@
         }
         $("#uk-lang").click(function () {
             $.ajax({
-                
                 url: "{% url 'uk' %}",
                 type: "get",
                 success: function (result) {
@@ -148,7 +147,6 @@
                 },
             });
             $.ajax({
-                
                 url: "{% url 'set_language' %}",
                 type: "post",
                 data: {
@@ -159,7 +157,6 @@
                     localStorage.lang = "uk";
                     console.log(result);
                     window.location.href = '/';
-
                 },
                 error: function (result) {
                     console.log(result, "location is bad");
@@ -179,7 +176,7 @@
                 },
             });
             $.ajax({
-                url: "{% url 'ru' %}",
+                url: "{% url 'set_language' %}",
                 type: "post",
                 data: {
                     language: "ru",
@@ -189,7 +186,6 @@
                     localStorage.lang = "ru";
                     console.log(result);
                     window.location.href = '/';
-                    //location.reload();
                 },
                 error: function (result) {
                     console.log(result, "location is bad");

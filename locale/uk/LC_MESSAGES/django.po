@@ -477,7 +477,7 @@ msgstr "Наш розклад"
 
 #: .\templates\index.html:108
 msgid "Группы дошкольников"
-msgstr ""
+msgstr "Группи дошкільників"
 
 #: .\templates\index.html:167 .\templates\index.html:213
 #: .\templates\index.html:327
