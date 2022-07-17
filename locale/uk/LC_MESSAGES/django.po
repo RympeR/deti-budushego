@@ -355,8 +355,12 @@ msgstr "Статті на тему"
 msgid "Тематические теги"
 msgstr "Тематичні теги"
 
+#: .\templates\index.html:217
+msgid "Праздники и мастер-классы"
+msgstr "Майстер-класи і свята"
+
 #: .\templates\events.html:10 .\templates\footer.html:45
-#: .\templates\index.html:182
+#: .\templates\index.html:218
 msgid "Наши мероприятия"
 msgstr "Наші заходи"
 

@@ -4230,6 +4230,7 @@ div[class*=col]:nth-of-type(4n + 4) .teacher-item .teacher-thumb::before {
   .feature-item {
     margin-left: -5px;
     margin-right: -5px;
+    height: 500px;
   }
 }
 .feature-item .feature-thumb {
