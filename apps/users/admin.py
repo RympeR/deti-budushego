@@ -23,7 +23,7 @@ class DropDownPointAdmin(DraggableMPTTAdmin):
     list_display_links = 'title',
     list_filter = 'main_page', 'opened'
     search_fields = 'title',
-    fields = 'title', 'description', 'main_page', 'opened'
+    fields = 'title', 'title_ukr', 'description', 'description_ukr', 'main_page', 'opened'
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):

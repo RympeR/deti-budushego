@@ -12,6 +12,7 @@ def RequestLangMiddleware(get_response):
     def middleware(request):
         if request.session.get('lang') is None:
             request.session['lang'] = 'uk'
+        if request.session.get('django_language') is None:
             request.session['django_language'] = 'uk'
         response = get_response(request)
         return response
