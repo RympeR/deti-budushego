@@ -40,8 +40,11 @@
                         <div  itemprop="description" class="class-single-content">
                             {% if request.session.lang == 'uk' %}
                             {{ object.full_text_ukr|safe }}
-                            {% else %}
+                            {% elif request.session.lang == 'ru' %}
+                            
                             {{ object.full_text|safe }}
+                            {% else %}
+                            {{ object.full_text_ukr|safe }}
                             {% endif %}
 
                         </div>
@@ -137,16 +140,12 @@
 
                                 <li>
                                     <div class="ques cl-i-two"><i class="fas fa-user"></i>{% trans "Преподаватель" %}</div>
-                                    {% if request.session.lang == 'uk' %}
                                     <div itemprop="teacher-name" class="ans">{{ object.teacher.fio_ukr }}</div>
-                                    {% else %}
-                                    <div itemprop="teacher-name" class="ans">{{ object.teacher.fio }}</div>
-                                    {% endif %}
-                
                                 </li>
                             </ul>
                         </div>
-                        {% else %}
+                        
+                        {% elif request.session.lang == 'ru' %}
                         <div class="widget-body">
                             <ul>
                                 <li>
@@ -206,12 +205,71 @@
 
                                 <li>
                                     <div class="ques cl-i-two"><i class="fas fa-user"></i>{% trans "Преподаватель" %}</div>
-                                    {% if request.session.lang == 'uk' %}
+                                    <div itemprop="teacher-name" class="ans">{{ object.teacher.fio }}</div>                
+                                </li>
+                            </ul>
+                        </div>
+                        {% else %}
+                        <div class="widget-body">
+                            <ul>
+                                <li>
+                                    <div class="ques cl-i-two"><i class="fas fa-child"></i>{% trans "Возраст" %}</div>
+                                    <div  itemprop="age" class="ans">{{ object.years_old_ukr }}</div>
+                                </li>
+                                <li>
+                                    <div class="ques cl-i-six"><i class="fas fa-clock"></i>{% trans "Дни, время" %}</div>
+                                    <div  itemprop="class-time" class="ans">{{ object.class_time_ukr }}</div>
+                                </li>
+                                <li>
+                                    <div class="ques cl-i-three"><i class="fas fa-sitemap"></i>{% trans "Количество" %}</div>
+                                    <div  itemprop="class-size" class="ans">{{ object.class_size_ukr }}</div>
+                                </li>
+                                <li>
+                                    <div class="ques cl-i-five"><i class="fas fa-address-book"></i>{% trans "Абонемент" %}</div>
+                                    <div  itemprop="class-duration" class="ans">{{ object.class_duration_ukr }}</div>
+                                </li>
+                                <li>
+                                    <div class="ques cl-i-eight"><i class="fas fa-coins"></i>{% trans "Стоимость" %}</div>
+                                    <div  itemprop="fee" class="ans">₴{{ object.fee }}</div>
+                                </li>
+                                {% if object.discount_fee %}
+                                <li>
+                                    <div class="ques cl-i-eight"><i class="fas fa-percentage"></i>{% trans "Cо скидкой" %}</div>
+                                    <div class="ans">₴{{ object.discount_fee }}</div>
+                                </li>
+                                {% endif %}
+                                {% if object.try_lesson != 0 %}
+                                <li>
+                                    <div class="ques cl-i-one"><i class="fas fa-bell"></i>{% trans "Пробное" %}</div>
+                                    <div class="ans">₴{{ object.try_lesson }}</div>
+                                </li>
+                                {% endif %}
+                                {% if object.date_start %}
+                                <li>
+                                    <div class="ques cl-i-one"><i class="fas fa-bell"></i>{% trans "Старт группы" %}</div>
+                                    <div  itemprop="date-start" class="ans">{{ object.date_start }}</div>
+                                </li>
+                                {% endif %}
+
+                                <li>
+                                    <div class="ques cl-i-one"><i class="fas 
+                                        {% if object.online %}
+                                        fa-desktop
+                                        {% else %}
+                                        fa-school
+                                        {% endif %}
+                                        "></i>{% trans "Формат" %}</div>
+                                    <div class="ans">{% if object.online %}
+                                        {% trans "Онлайн" %}
+                                        {% else %}
+                                        {% trans "Офлайн" %}
+                                        {% endif %}
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="ques cl-i-two"><i class="fas fa-user"></i>{% trans "Преподаватель" %}</div>
                                     <div itemprop="teacher-name" class="ans">{{ object.teacher.fio_ukr }}</div>
-                                    {% else %}
-                                    <div itemprop="teacher-name" class="ans">{{ object.teacher.fio }}</div>
-                                    {% endif %}
-                
                                 </li>
                             </ul>
                         </div>
@@ -235,8 +293,10 @@
                                     <div class="content">
                                         {% if request.session.lang == 'uk' %}
                                         <a href="{% url 'blog_section:post_detail' post.slug %}">{{ post.title_ukr }}</a>
-                                        {% else %}
+                                        {% elif request.session.lang == 'ru' %}
                                         <a href="{% url 'blog_section:post_detail' post.slug %}">{{ post.title }}</a>
+                                        {% else %}
+                                        <a href="{% url 'blog_section:post_detail' post.slug %}">{{ post.title_ukr }}</a>
                                         {% endif %}
             
                                         <span>{{ post.created_at|date }}</span>
@@ -262,13 +322,20 @@
                                         <div class="content">
                                             <a href="{% url 'lessons_section:lesson_detail' rel_lesson.slug %}">
                                                 {% if request.session.lang == 'uk' %}
-                                                {{ rel_lesson.title_ukr }} 
+                                                        {{ rel_lesson.title_ukr }}
+                                                        - {{ rel_lesson.years_old_ukr }}</a>
+                                                    <span>{{ rel_lesson.class_time_ukr }}</span>
+                                                {% elif request.session.lang == 'ru' %}
+                                                    {{ rel_lesson.title }} 
+                                                        - {{ rel_lesson.years_old }}</a>
+                                                        <span>{{ rel_lesson.class_time }}</span>
+                                                
                                                 {% else %}
-                                                {{ rel_lesson.title }} 
+                                                        {{ rel_lesson.title_ukr }}
+                                                        - {{ rel_lesson.years_old_ukr }}</a>
+                                                    <span>{{ rel_lesson.class_time_ukr }}</span>
                                                 {% endif %}
-                    
-                                                - {{ rel_lesson.years_old }}</a>
-                                            <span>{{ rel_lesson.class_time }}</span>
+                                                
                                         </div>
                                     </li>
                                   
@@ -303,7 +370,10 @@
                                 <li>
                                     <a href="{% url 'lessons_section:lesson_list_filtered' tag.slug %}">
                                         {% if request.session.lang == 'uk' %}
+                                        {{ tag.title_ukr }}
+                                        {% elif request.session.lang == 'ru' %}
                                         {{ tag.title }}
+                                        
                                         {% else %}
                                         {{ tag.title_ukr }}
                                         {% endif %}

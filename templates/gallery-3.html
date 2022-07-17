@@ -37,10 +37,10 @@
         <ul class="filter-2">
             <li data-filter="*" class="active"><span class="category">{% trans "Все фотографии" %}</span></li>
             {% for category in request|gallery_categories %}
-            {% if request.session.lang == 'uk' %}
-            <li data-filter=".{{category.slug}}"><span class="category">{{category.title_ukr}}</span></li>
-            {% else %}
+            {% if request.session.lang == 'ru' %}
             <li data-filter=".{{category.slug}}"><span class="category">{{category.title}}</span></li>
+            {% else %}
+            <li data-filter=".{{category.slug}}"><span class="category">{{category.title_ukr}}</span></li>
             {% endif %}
 
             {% endfor %}

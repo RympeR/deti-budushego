@@ -45,14 +45,18 @@
                             <div class="p-content">
                                 {% if request.session.lang == 'uk' %}
                                 <a itemprop="name" href="#">{{ product.title_ukr }}</a>
-                                {% else %}
+                                {% elif request.session.lang == 'ru' %}
+                                
                                 <a itemprop="name" href="#">{{ product.title }}</a>
+                                {% else %}
+                                <a itemprop="name" href="#">{{ product.title_ukr }}</a>
                                 {% endif %}
 
                             </div>
                         </td>
                         {% if product.discount_price %}
                         <td itemprop="price">₴{{ product.discount_price }}</td>
+                        
                         {% else %}
                         <td itemprop="price">₴{{ product.price }}</td>
                         {% endif %}

@@ -56,10 +56,10 @@
 							<div class="product-content">
 								<h5 class="title"><a
 										href="{% url 'shop_section:single_shop' product.slug %}">
-										{% if request.session.lang == 'uk' %}
-										{{ product.title_ukr }}
-										{% else %}
+										{% if request.session.lang == 'ru' %}
 										{{ product.title }}
+										{% else %}
+										{{ product.title_ukr }}
 										{% endif %}
 							
 									</a>
@@ -84,10 +84,10 @@
 							<div class="product-content">
 								<h5 class="title">
 									<a href="{% url 'shop_section:single_shop' product.slug %}">
-										{% if request.session.lang == 'uk' %}
-										{{ product.title_ukr }}
-										{% else %}
+										{% if request.session.lang == 'ru' %}
 										{{ product.title }}
+										{% else %}
+										{{ product.title_ukr }}
 										{% endif %}
 							
 									</a>
@@ -98,10 +98,10 @@
 								<h6 class="subtitle">₴{{ product.price }}</h6>
 								{% endif %}
 								<p>
-									{% if request.session.lang == 'uk' %}
-									{{ product.description_ukr }}
-									{% else %}
+									{% if request.session.lang == 'ru' %}
 									{{ product.description }}
+									{% else %}
+									{{ product.description_ukr }}
 									{% endif %}
 						
 								</p>
@@ -148,10 +148,10 @@
 								<li>
 									<a href="{% url 'shop_section:filtered_shop' category.slug %}">
 										<span>
-											{% if request.session.lang == 'uk' %}
-											<i class="fas fa-angle-double-right"></i>{{ category.name_ukr }}
-											{% else %}
+											{% if request.session.lang == 'ru' %}
 											<i class="fas fa-angle-double-right"></i>{{ category.name }}
+											{% else %}
+											<i class="fas fa-angle-double-right"></i>{{ category.name_ukr }}
 											{% endif %}
 								
 									</span>
@@ -175,10 +175,10 @@
 									<div class="product-content">
 										<h6><a
 												href="{% url 'shop_section:single_shop' latest_product.slug %}">
-												{% if request.session.lang == 'uk' %}
-												{{ latest_product.title_ukr }}</a>
-												{% else %}
+												{% if request.session.lang == 'ru' %}
 												{{ latest_product.title }}</a>
+												{% else %}
+												{{ latest_product.title_ukr }}</a>
 												{% endif %}
 									
 										</h6>
@@ -227,10 +227,10 @@
 										<div class="product-content">
 											<h5 class="title mb-3"><a
 													href="{% url 'shop_section:single_shop' product.slug %}">
-													{% if request.session.lang == 'uk' %}
-													{{ product.title_ukr }}
-													{% else %}
+													{% if request.session.lang == 'ru' %}
 													{{ product.title }}
+													{% else %}
+													{{ product.title_ukr }}
 													{% endif %}
 										
 												</a>

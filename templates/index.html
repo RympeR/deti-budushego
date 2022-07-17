@@ -46,18 +46,18 @@
                         <div class="faq-item {% if dropdown.opened %}active open{% endif %} ">
                             <div class="faq-title">
                                 <span class="right-icon"></span>
-                                {% if request.session.lang == 'uk' %}
-                                <h5 class="title">{{ dropdown.title_ukr }}</h5>
-                                {% else %}
+                                {% if request.session.lang == 'ru' %}
                                 <h5 class="title">{{ dropdown.title }}</h5>
+                                {% else %}
+                                <h5 class="title">{{ dropdown.title_ukr }}</h5>
                                 {% endif %}
                     
                             </div>
                             <div class="faq-content">
-                                {% if request.session.lang == 'uk' %}
-                                <p>{{ dropdown.description_ukr }}</p>
-                                {% else %}
+                                {% if request.session.lang == 'ru' %}
                                 <p>{{ dropdown.description }}</p>
+                                {% else %}
+                                <p>{{ dropdown.description_ukr }}</p>
                                 {% endif %}
                     
                             </div>
@@ -92,10 +92,10 @@
                                 <h2 class="title">{{ counter.symbol }}</h2>
                             {% endif %}
                         </div>
-                        {% if request.session.lang == 'uk' %}
-                        <span class="cate">{{ counter.description_ukr }}</span>
-                        {% else %}
+                        {% if request.session.lang == 'ru' %}
                         <span class="cate">{{ counter.description }}</span>
+                        {% else %}
+                        <span class="cate">{{ counter.description_ukr }}</span>
                         {% endif %}
             
                     </div>
@@ -136,10 +136,10 @@
                     </div>
                     <div class="class-content">
                         <h5 class="title">
-                            {% if request.session.lang == 'uk' %}
-                            <a href="{% url 'lessons_section:lesson_detail' lesson.slug %}">{{ lesson.title_ukr }}</a>
-                            {% else %}
+                            {% if request.session.lang == 'ru' %}
                             <a href="{% url 'lessons_section:lesson_detail' lesson.slug %}">{{ lesson.title }}</a>
+                            {% else %}
+                            <a href="{% url 'lessons_section:lesson_detail' lesson.slug %}">{{ lesson.title_ukr }}</a>
                             {% endif %}
                 
                         </h5>
@@ -151,10 +151,10 @@
                                 </div>
                                 <div class="content">
                                     <h6 class="subtitle">
-                                        {% if request.session.lang == 'uk' %}
-                                        <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}">{{ lesson.teacher.fio_ukr }}</a>
-                                        {% else %}
+                                        {% if request.session.lang == 'ru' %}
                                         <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}">{{ lesson.teacher.fio }}</a>
+                                        {% else %}
+                                        <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}">{{ lesson.teacher.fio_ukr }}</a>
                                         {% endif %}
                                         
                                     </h6>
@@ -166,20 +166,20 @@
                                 <h6 class="subtitle">₴{{ lesson.fee }}{% if lesson.discount_fee %}
                                     /₴ {{ lesson.discount_fee }}
                                     {% endif %}</h6>
-                                    {% if request.session.lang == 'uk' %}
-                                    <span class="info">{{ lesson.class_duration_ukr }}</span>
-                                    {% else %}
+                                    {% if request.session.lang == 'ru' %}
                                     <span class="info">{{ lesson.class_duration }}</span>
+                                    {% else %}
+                                    <span class="info">{{ lesson.class_duration_ukr }}</span>
                                     {% endif %}
                         
                             </div>
                         </div>
                         <div class="schedule-area">
                             <div class="schedule-item">
-                                {% if request.session.lang == 'uk' %}
-                                <h6 class="sub-title">{{ lesson.class_size_ukr }}</h6>
-                                {% else %}
+                                {% if request.session.lang == 'ru' %}
                                 <h6 class="sub-title">{{ lesson.class_size }}</h6>
+                                {% else %}
+                                <h6 class="sub-title">{{ lesson.class_size_ukr }}</h6>
                                 {% endif %}
                     
                                 <span class="info">{% translate "Количество" %}</span>
@@ -189,10 +189,10 @@
                                 <span class="info">{% translate "Расписание" %}</span>
                             </div>
                             <div class="schedule-item"  style="flex-basis: 100%">
-                                {% if request.session.lang == 'uk' %}
-                                <h6 class="sub-title">{{ lesson.years_old_ukr }}</h6>
-                                {% else %}
+                                {% if request.session.lang == 'ru' %}
                                 <h6 class="sub-title">{{ lesson.years_old }}</h6>
+                                {% else %}
+                                <h6 class="sub-title">{{ lesson.years_old_ukr }}</h6>
                                 {% endif %}
                     
                                 <span class="info">{% translate "Возраст" %}</span>
@@ -238,20 +238,20 @@
                     </div>
                     <div class="event-content">
                         <h5 class="title">
-                            {% if request.session.lang == 'uk' %}
-                            <a href="{% url 'lessons_section:event_detail' event.slug %}">{{ event.title_ukr }}</a>
-                            {% else %}
+                            {% if request.session.lang == 'ru' %}
                             <a href="{% url 'lessons_section:event_detail' event.slug %}">{{ event.title }}</a>
+                            {% else %}
+                            <a href="{% url 'lessons_section:event_detail' event.slug %}">{{ event.title_ukr }}</a>
                             {% endif %}
                 
                         </h5>
                         <ul class="events-info">
                             <li><i class="fas fa-clock"></i> {{ event.date_start|date }}&nbsp;&nbsp; {{ event.timer_time|time}} - {{ event.time }} 
                             </li>
-                            {% if request.session.lang == 'uk' %}
-                            <li><i class="fas fa-home"></i> {{ event.location_ukr }}. </li>
-                            {% else %}
+                            {% if request.session.lang == 'ru' %}
                             <li><i class="fas fa-home"></i> {{ event.location }}. </li>
+                            {% else %}
+                            <li><i class="fas fa-home"></i> {{ event.location_ukr }}. </li>
                             {% endif %}
                 
                         </ul>

@@ -36,8 +36,10 @@
                                 <a href="{% url 'blog_section:post_detail' post.slug %}">
                                     {% if request.session.lang == 'uk' %}
                                         {{ post.title_ukr }}
-                                    {% else %}
+                                    {% elif request.session.lang == 'ru' %}
                                         {{ post.title }}
+                                    {% else %}
+                                        {{ post.title_ukr }}
                                     {% endif %}
                                 </a>
                             </h5>
@@ -47,8 +49,10 @@
                             </div> -->
                             {% if request.session.lang == 'uk' %}
                                 <p>{{ post.preview_text_ukr }}</p>
-                            {% else %}
+                            {% elif request.session.lang == 'ru' %}
                                 <p>{{ post.preview_text }}</p>
+                            {% else %}
+                                <p>{{ post.preview_text_ukr }}</p>
                             {% endif %}
 
                         </div>

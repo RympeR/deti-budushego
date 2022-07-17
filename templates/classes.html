@@ -42,8 +42,10 @@
                 <a href="{% url 'lessons_section:lesson_list_filtered_ages' category.slug %}">
                     {% if request.session.lang == 'uk' %}
                     {{category.title_ukr}}
-                    {% else %}
+                    {% elif request.session.lang == 'ru' %}                    
                     {{category.title}}
+                    {% else %}
+                    {{category.title_ukr}}
                     {% endif %}
 
                 </a>
@@ -65,8 +67,10 @@
                             <a href="{% url 'lessons_section:lesson_detail' lesson.slug %}">
                                 {% if request.session.lang == 'uk' %}
                                 {{ lesson.title_ukr }}
-                                {% else %}
+                                {% elif request.session.lang == 'ru' %}                    
                                 {{ lesson.title }}
+                                {% else %}
+                                {{ lesson.title_ukr }}
                                 {% endif %}
     
                             </a>
@@ -81,8 +85,10 @@
                                     <h6 class="subtitle">
                                         {% if request.session.lang == 'uk' %}
                                         <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}">{{ lesson.teacher.fio_ukr }}</a>
-                                        {% else %}
+                                        {% elif request.session.lang == 'ru' %}
                                         <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}">{{ lesson.teacher.fio }}</a>
+                                        {% else %}
+                                        <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}">{{ lesson.teacher.fio_ukr }}</a>
                                         {% endif %}
                     
                                     </h6>

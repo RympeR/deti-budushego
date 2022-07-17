@@ -46,12 +46,12 @@
                                 </a>
                             </div>
                             <div class="content">
-                                {% if request.session.lang == 'uk' %}
-                                <h5 class="title"><a href="{% url 'users_section:teacher_detail' teacher.slug %}">{{ teacher.fio_ukr }}</a></h5>
-                                <span>{{ teacher.specialization_ukr }}</span>
-                                {% else %}
+                                {% if request.session.lang == 'ru' %}
                                 <h5 class="title"><a href="{% url 'users_section:teacher_detail' teacher.slug %}">{{ teacher.fio }}</a></h5>
                                 <span>{{ teacher.specialization }}</span>
+                                {% else %}
+                                <h5 class="title"><a href="{% url 'users_section:teacher_detail' teacher.slug %}">{{ teacher.fio_ukr }}</a></h5>
+                                <span>{{ teacher.specialization_ukr }}</span>
                                 {% endif %}
         
                             </div>

@@ -47,16 +47,16 @@
                             </div>
                             <div class="content">
                                 <h5 class="title"><a href="{% url 'users_section:vacancy_detail' vacancy.slug %}">
-                                    {% if request.session.lang == 'uk' %}
-                                    {{ vacancy.name_ukr }}
-                                    {% else %}                            
+                                    {% if request.session.lang == 'ru' %}
                                     {{ vacancy.name }}
+                                    {% else %}                            
+                                    {{ vacancy.name_ukr }}
                                     {% endif %}
                                 </a></h5>
-                                {% if request.session.lang == 'uk' %}
-                                <span>{{ vacancy.short_description_ukr }}</span>
-                                {% else %}
+                                {% if request.session.lang == 'ru' %}
                                 <span>{{ vacancy.short_description }}</span>
+                                {% else %}
+                                <span>{{ vacancy.short_description_ukr }}</span>
                                 {% endif %}
     
                             </div>

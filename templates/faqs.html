@@ -39,21 +39,21 @@ main_content %}
         <div class="faq-wrapper">
           {% for left_faq in left %}
           <div class="faq-item">
-            {% if request.session.lang == 'uk' %}
-            <div class="faq-title">
-              <span class="right-icon"></span>
-              <h5 class="title">{{ left_faq.question_ukr }}</h5>
-            </div>
-            <div class="faq-content">
-              <p>{{ left_faq.answer_ukr }}</p>
-            </div>
-            {% else %}
+            {% if request.session.lang == 'ru' %}
             <div class="faq-title">
               <span class="right-icon"></span>
               <h5 class="title">{{ left_faq.question }}</h5>
             </div>
             <div class="faq-content">
               <p>{{ left_faq.answer }}</p>
+            </div>
+            {% else %}
+            <div class="faq-title">
+              <span class="right-icon"></span>
+              <h5 class="title">{{ left_faq.question_ukr }}</h5>
+            </div>
+            <div class="faq-content">
+              <p>{{ left_faq.answer_ukr }}</p>
             </div>
             {% endif %}
 
@@ -65,21 +65,21 @@ main_content %}
         <div class="faq-wrapper">
           {% for right_faq in right %}
           <div class="faq-item">
-            {% if request.session.lang == 'uk' %}
-            <div class="faq-title">
-              <span class="right-icon"></span>
-              <h5 class="title">{{ right_faq.question_ukr }}</h5>
-            </div>
-            <div class="faq-content">
-              <p>{{ right_faq.answer_ukr }}</p>
-            </div>
-            {% else %}
+            {% if request.session.lang == 'ru' %}
             <div class="faq-title">
               <span class="right-icon"></span>
               <h5 class="title">{{ right_faq.question }}</h5>
             </div>
             <div class="faq-content">
               <p>{{ right_faq.answer }}</p>
+            </div>
+            {% else %}
+            <div class="faq-title">
+              <span class="right-icon"></span>
+              <h5 class="title">{{ right_faq.question_ukr }}</h5>
+            </div>
+            <div class="faq-content">
+              <p>{{ right_faq.answer_ukr }}</p>
             </div>
             {% endif %}
 
