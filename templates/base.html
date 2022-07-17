@@ -192,6 +192,35 @@
                 },
             });
         });
+        if (!localStorage.lang) {
+            ($.ajax({
+                url: "{% url 'uk' %}",
+                type: "get",
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (result) {
+                    console.log(result, "location is bad");
+                },
+            }));
+            ($.ajax({
+                url: "{% url 'set_language' %}",
+                type: "post",
+                data: {
+                    language: "uk",
+                    name: "{{ request.get_full_path|slice:'3:' }}"
+                },
+                success: function (result) {
+                    localStorage.lang = "uk";
+                    console.log(result);
+                    window.location.pathname = "{{request.path |slice:'4:'}}";
+                },
+                error: function (result) {
+                    console.log(result, "location is bad");
+                },
+            }));
+        }
+        
     </script>
     {% block custom_scripts %}
     {% endblock custom_scripts %}
