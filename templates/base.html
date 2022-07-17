@@ -156,7 +156,7 @@
                 success: function (result) {
                     localStorage.lang = "uk";
                     console.log(result);
-                    window.location.href = "uk/{{request.path |slice:'4:'}}";
+                    window.location.pathname = "uk/{{request.path |slice:'4:'}}";
                 },
                 error: function (result) {
                     console.log(result, "location is bad");
