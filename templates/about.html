@@ -10,7 +10,7 @@
             <h1 class="title">
                 {% if request.session.lang == 'uk' %}
                     Діти майбутнього
-                {% elif request.session.lang =='ru' %}
+                {% elif request.session.lang == 'ru' %}
                     Дети будущего
                 {% else %}
                     Діти майбутнього
@@ -21,7 +21,7 @@
                     <a href='{% url "lessons_section:index" %}'>                        
                         {% if request.session.lang == 'uk' %}
                             Головна
-                        {% elif request.session.lang =='ru' %}
+                        {% elif request.session.lang == 'ru' %}
                             Главная
                         {% else %}
                             Головна
@@ -31,7 +31,7 @@
                 <li>
                     {% if request.session.lang == 'uk' %}
                         О нас
-                    {% elif request.session.lang =='ru' %}
+                    {% elif request.session.lang == 'ru' %}
                         О нас
                     {% else %}
                         О нас
@@ -57,7 +57,7 @@
                     {% if request.session.lang == 'uk' %}
                         <span class="cate">Програми </span>
                         <h3 class="title">Навчання дітей</h3>
-                    {% elif request.session.lang =='ru' %}
+                    {% elif request.session.lang == 'ru' %}
                         <span class="cate">Программы </span>
                         <h3 class="title">Обучение детей</h3>
                     {% else %}
@@ -80,7 +80,7 @@
                             <p>Розвиваючі заняття, музичні казки, англійська мова (з 2,5 років)
                                 <br><br><br><br><br><br>
                             </p>
-                        {% elif request.session.lang =='ru' %}
+                        {% elif request.session.lang == 'ru' %}
                             <h5 class="title">Младшая группа</h5>
                             <span class="cate">(1,5 - 3 года)</span>
                             <p>Развивающие занятия, музыкальные сказки, английский язык (с 2,5 лет)
