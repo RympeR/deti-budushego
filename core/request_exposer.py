@@ -3,8 +3,6 @@ from apps.ecommerce import models
 
 def RequestExposerMiddleware(get_response):
     def middleware(request):
-        if request.session.get('lang') is None:
-            request.session['lang'] = 'uk'
         models.exposed_request = request
         response = get_response(request)
         return response
@@ -14,6 +12,7 @@ def RequestLangMiddleware(get_response):
     def middleware(request):
         if request.session.get('lang') is None:
             request.session['lang'] = 'uk'
+            request.session['django_language'] = 'uk'
         response = get_response(request)
         return response
     return middleware
