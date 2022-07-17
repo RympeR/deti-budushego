@@ -151,7 +151,8 @@
                                         fa-school
                                         {% endif %}
                                         "></i>{% trans "Формат" %}</div>
-                                    <div class="ans">{% if object.online %}
+                                    <div class="ans">
+                                        {% if object.online %}
                                         {% trans "Онлайн" %}
                                         {% else %}
                                         {% trans "Офлайн" %}

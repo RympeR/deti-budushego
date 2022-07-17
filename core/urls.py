@@ -23,7 +23,6 @@ urlpatterns += i18n_patterns(
     path('', include('apps.lessons.urls')),
     path('', include('apps.blog.urls')),
     path('', include('apps.ecommerce.urls')),
-    prefix_default_language=True,
 )
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
