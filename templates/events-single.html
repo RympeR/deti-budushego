@@ -160,7 +160,12 @@
                                 </li>
                                 <li>
                                     <div class="ques cl-i-six"><i class="fas fa-user"></i>{% trans "Организатор" %}</div>
+                                    {% if request.session.lang == 'uk' %}
+                                    <div class="ans">{{ object.organizer.fio_ukr }}</div>
+                                    {% else %}
                                     <div class="ans">{{ object.organizer.fio }}</div>
+                                    {% endif %}
+                
                                 </li>
 
                             </ul>
@@ -219,7 +224,12 @@
                                 </li>
                                 <li>
                                     <div class="ques cl-i-six"><i class="fas fa-user"></i>{% trans "Организатор" %}</div>
+                                    {% if request.session.lang == 'uk' %}
+                                    <div class="ans">{{ object.organizer.fio_ukr }}</div>
+                                    {% else %}
                                     <div class="ans">{{ object.organizer.fio }}</div>
+                                    {% endif %}
+                
                                 </li>
 
                             </ul>

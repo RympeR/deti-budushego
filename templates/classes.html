@@ -78,8 +78,13 @@
                                             src="{{ lesson.teacher.image.url }}" alt="class"></a>
                                 </div>
                                 <div class="content">
-                                    <h6 class="subtitle"><a
-                                            href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}">{{ lesson.teacher.fio }}</a>
+                                    <h6 class="subtitle">
+                                        {% if request.session.lang == 'uk' %}
+                                        <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}">{{ lesson.teacher.fio_ukr }}</a>
+                                        {% else %}
+                                        <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}">{{ lesson.teacher.fio }}</a>
+                                        {% endif %}
+                    
                                     </h6>
                                     <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}"
                                         class="info">{% trans "Профиль" %}</a>

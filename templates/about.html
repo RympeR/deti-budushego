@@ -290,8 +290,14 @@
                                 alt="teacher"></a>
                         </div>
                         <div class="content">
+                            {% if request.session.lang == 'uk' %}
+                            <h6 class="title"><a href="{% url 'users_section:teacher_detail' teacher.slug %}">{{ teacher.fio_ukr }}</a></h6>
+                            <span>{{ teacher.specialization_ukr }}</span>
+                            {% else %}
                             <h6 class="title"><a href="{% url 'users_section:teacher_detail' teacher.slug %}">{{ teacher.fio }}</a></h6>
                             <span>{{ teacher.specialization }}</span>
+                            {% endif %}
+                            
                         </div>
                     </div>
                     <div class="teacher-content">
@@ -345,7 +351,12 @@
                             </h5>
                             <div class="post-meta cate">
                                 <a href="#"><i class="far fa-calendar"></i> {{ post.created_at|date }} </a>
+                                {% if request.session.lang == 'uk' %}
+                                <a href="#"><i class="fas fa-user"></i> {{ post.author.fio_ukr }} </a>
+                                {% else %}
                                 <a href="#"><i class="fas fa-user"></i> {{ post.author.fio }} </a>
+                                {% endif %}
+            
                             </div>
                             {% if request.session.lang == 'uk' %}
                                 <p>{{ post.preview_text_ukr }}</p>

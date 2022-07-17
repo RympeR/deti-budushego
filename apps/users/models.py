@@ -101,6 +101,7 @@ class User(AbstractUser):
         max_length=20
     )
     fio = models.CharField('ФИО', max_length=255, null=True, blank=True)
+    fio_ukr = models.CharField('ФИО  ukr', max_length=255, null=True, blank=True)
     preview_avatar = ProcessedImageField(
         verbose_name='Картинка в маленьком блоке',
         processors=[ResizeToFill(312, 312)],
@@ -120,10 +121,16 @@ class User(AbstractUser):
     slug = models.SlugField("Url part")
     specialization = models.TextField(
         verbose_name='Специализация', null=True, blank=True)
+    specialization_ukr = models.TextField(
+        verbose_name='Специализация ukr', null=True, blank=True)
     personal_statement = models.TextField(
         verbose_name='Название программ', null=True, blank=True)
+    personal_statement_ukr = models.TextField(
+        verbose_name='Название программ ukr', null=True, blank=True)
     characteristic = models.TextField(
         verbose_name='О преподавателе', null=True, blank=True)
+    characteristic_ukr = models.TextField(
+        verbose_name='О преподавателе ukr', null=True, blank=True)
     teacher = models.BooleanField(verbose_name='Учитель', default=False)
     sertificates = models.ManyToManyField(
         Attachments, related_name='user_sertificates', verbose_name='Сертификаты', blank=True)

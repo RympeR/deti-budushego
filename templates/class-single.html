@@ -137,7 +137,12 @@
 
                                 <li>
                                     <div class="ques cl-i-two"><i class="fas fa-user"></i>{% trans "Преподаватель" %}</div>
+                                    {% if request.session.lang == 'uk' %}
+                                    <div itemprop="teacher-name" class="ans">{{ object.teacher.fio_ukr }}</div>
+                                    {% else %}
                                     <div itemprop="teacher-name" class="ans">{{ object.teacher.fio }}</div>
+                                    {% endif %}
+                
                                 </li>
                             </ul>
                         </div>
@@ -201,7 +206,12 @@
 
                                 <li>
                                     <div class="ques cl-i-two"><i class="fas fa-user"></i>{% trans "Преподаватель" %}</div>
+                                    {% if request.session.lang == 'uk' %}
+                                    <div itemprop="teacher-name" class="ans">{{ object.teacher.fio_ukr }}</div>
+                                    {% else %}
                                     <div itemprop="teacher-name" class="ans">{{ object.teacher.fio }}</div>
+                                    {% endif %}
+                
                                 </li>
                             </ul>
                         </div>
