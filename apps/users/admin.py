@@ -27,7 +27,7 @@ class DropDownPointAdmin(DraggableMPTTAdmin):
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = 'username', 'fio', 'user_photo'
+    list_display = 'username', 'fio', 'fio_ukr', 'user_photo'
     list_display_links = 'username',
     search_fields = 'username', 'fio',
     fieldsets = (
@@ -36,7 +36,13 @@ class UserAdmin(admin.ModelAdmin):
             'fields': ('username', 'fio', 'image')
         }),
         ('Дополнительная информация', {
-            'fields': ('specialization', 'personal_statement', 'characteristic', 'sertificates')
+            'fields': ('specialization', 
+            'specialization_ukr', 
+            'personal_statement', 
+            'personal_statement_ukr', 
+            'characteristic', 
+            'characteristic_ukr', 
+            'sertificates')
         }),
         ('Информация для сайта', {
             'fields': ('slug','most_popular', 'teacher')

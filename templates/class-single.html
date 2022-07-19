@@ -9,7 +9,12 @@
 <section itemscope  class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
+            {% elif request.session.lang == 'ru' %}
             <h3  itemprop="title" class="title">{{ object.title }}</h3>
+            {% else %}
+            <h3  itemprop="title" class="title">{{ object.title_ukr }}</h3>
+            {% endif %}
+
             <ul class="breadcrumb">
                 <li>
                     <a itemprop="url" href='{% url "lessons_section:index" %}'>{% trans "Главная" %}</a>
@@ -38,10 +43,7 @@
                             <img src="{{ object.background_image.url }}" alt="class">
                         </div>
                         <div  itemprop="description" class="class-single-content">
-                            {% if request.session.lang == 'uk' %}
-                            {{ object.full_text_ukr|safe }}
-                            {% elif request.session.lang == 'ru' %}
-                            
+                            {% if request.session.lang == 'ru' %} 
                             {{ object.full_text|safe }}
                             {% else %}
                             {{ object.full_text_ukr|safe }}
@@ -80,72 +82,7 @@
                         <div class="widget-header">
                             <h5  class="title">{% trans "Информация о группе" %}</h5>
                         </div>
-                        {% if request.session.lang == 'uk' %}
-                        <div class="widget-body">
-                            <ul>
-                                <li>
-                                    <div class="ques cl-i-two"><i class="fas fa-child"></i>{% trans "Возраст" %}</div>
-                                    <div  itemprop="age" class="ans">{{ object.years_old_ukr }}</div>
-                                </li>
-                                <li>
-                                    <div class="ques cl-i-six"><i class="fas fa-clock"></i>{% trans "Дни, время" %}</div>
-                                    <div  itemprop="class-time" class="ans">{{ object.class_time_ukr }}</div>
-                                </li>
-                                <li>
-                                    <div class="ques cl-i-three"><i class="fas fa-sitemap"></i>{% trans "Количество" %}</div>
-                                    <div  itemprop="class-size" class="ans">{{ object.class_size_ukr }}</div>
-                                </li>
-                                <li>
-                                    <div class="ques cl-i-five"><i class="fas fa-address-book"></i>{% trans "Абонемент" %}</div>
-                                    <div  itemprop="class-duration" class="ans">{{ object.class_duration_ukr }}</div>
-                                </li>
-                                <li>
-                                    <div class="ques cl-i-eight"><i class="fas fa-coins"></i>{% trans "Стоимость" %}</div>
-                                    <div  itemprop="fee" class="ans">₴{{ object.fee }}</div>
-                                </li>
-                                {% if object.discount_fee %}
-                                <li>
-                                    <div class="ques cl-i-eight"><i class="fas fa-percentage"></i>{% trans "Cо скидкой" %}</div>
-                                    <div class="ans">₴{{ object.discount_fee }}</div>
-                                </li>
-                                {% endif %}
-                                {% if object.try_lesson != 0 %}
-                                <li>
-                                    <div class="ques cl-i-one"><i class="fas fa-bell"></i>{% trans "Пробное" %}</div>
-                                    <div class="ans">₴{{ object.try_lesson }}</div>
-                                </li>
-                                {% endif %}
-                                {% if object.date_start %}
-                                <li>
-                                    <div class="ques cl-i-one"><i class="fas fa-bell"></i>{% trans "Старт группы" %}</div>
-                                    <div  itemprop="date-start" class="ans">{{ object.date_start }}</div>
-                                </li>
-                                {% endif %}
-
-                                <li>
-                                    <div class="ques cl-i-one"><i class="fas 
-                                        {% if object.online %}
-                                        fa-desktop
-                                        {% else %}
-                                        fa-school
-                                        {% endif %}
-                                        "></i>{% trans "Формат" %}</div>
-                                    <div class="ans">{% if object.online %}
-                                        {% trans "Онлайн" %}
-                                        {% else %}
-                                        {% trans "Офлайн" %}
-                                        {% endif %}
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="ques cl-i-two"><i class="fas fa-user"></i>{% trans "Преподаватель" %}</div>
-                                    <div itemprop="teacher-name" class="ans">{{ object.teacher.fio_ukr }}</div>
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        {% elif request.session.lang == 'ru' %}
+                        {% if request.session.lang == 'ru' %}
                         <div class="widget-body">
                             <ul>
                                 <li>
