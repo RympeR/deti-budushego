@@ -33,7 +33,7 @@ class UserAdmin(admin.ModelAdmin):
     fieldsets = (
 
         ('Личная информация', {
-            'fields': ('username', 'fio', 'image')
+            'fields': ('username', 'fio',  'fio_ukr', 'image')
         }),
         ('Дополнительная информация', {
             'fields': ('specialization', 
