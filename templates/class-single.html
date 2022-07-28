@@ -9,7 +9,7 @@
 <section itemscope  class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
-            {% elif request.session.lang == 'ru' %}
+            {% if request.session.lang == 'ru' %}
             <h3  itemprop="title" class="title">{{ object.title }}</h3>
             {% else %}
             <h3  itemprop="title" class="title">{{ object.title_ukr }}</h3>
