@@ -31,7 +31,7 @@ class LessonThemeAdmin(ActionsModelAdmin):
     list_display = 'pk', 'title_ukr', 'small_image', 'display', 'created_at'
     list_display_links = 'title_ukr',
     filter_fields = 'language', 'display'
-    search_fields = 'name',
+    search_fields = 'name_ukr',
     list_filter = (
         ('created_at', DateFieldListFilter),
     )

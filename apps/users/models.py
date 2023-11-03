@@ -159,7 +159,7 @@ class User(AbstractUser):
         return self._create_user(password,  **extra_fields)
 
     def __str__(self):
-        return str(self.fio)
+        return str(self.fio_ukr)
 
     class Meta:
         verbose_name = 'Учитель'
