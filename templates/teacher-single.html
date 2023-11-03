@@ -6,12 +6,7 @@
 <section itemscope class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
-            {% if request.session.lang == 'ru' %}
-            <h1 class="title">{{ object.fio }}</h1>
-            {% else %}
             <h1 class="title">{{ object.fio_ukr }}</h1>
-            {% endif %}
-
             <ul class="breadcrumb">
                 <li>
                     <a href='{% url "lessons_section:index" %}'>{% trans "Главная" %}</a>
@@ -20,12 +15,7 @@
                     <a href='{% url "users_section:teachers_list" %}'>{% trans "Наш коллектив" %}</a>
                 </li>
                 <li>
-                    {% if request.session.lang == 'ru' %}
-                    {{ object.fio }}
-                    {% else %}
                     {{ object.fio_ukr }}
-                    {% endif %}
-
                 </li>
             </ul>
         </div>
@@ -44,20 +34,11 @@
                         <img src="{{ object.image.url }}" alt="teacher">
                     </div>
                     <div class="teacher-single-content">
-                        {% if request.session.lang == 'ru' %}
-                        <h4 class="title">{{ object.fio }}</h4>
-                        <pre>{{ object.specialization }}</pre>
-                        <pre class="header-p">{{ object.personal_statement }}</pre>
-                        <h6 class="subtitle">{% trans "О преподавателе" %}</h6>
-                        <pre class="header-p">{{ object.characteristic }}</pre>
-                        {% else %}
                         <h4 class="title">{{ object.fio_ukr }}</h4>
                         <pre>{{ object.specialization_ukr }}</pre>
                         <pre class="header-p">{{ object.personal_statement_ukr }}</pre>
                         <h6 class="subtitle">{% trans "О преподавателе" %}</h6>
                         <pre class="header-p">{{ object.characteristic_ukr }}</pre>
-                        {% endif %}
-    
                     </div>
                 </div>
             </div>

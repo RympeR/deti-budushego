@@ -97,29 +97,11 @@
             <div class="header-wrapper">
                 <div class="logo">
                     <a href='{% url "lessons_section:index" %}'>
-                        {% if request.session.lang == 'ru' %}
-                        <img src="{% static 'images/logo/logo_svg.svg' %}" height="60" width="180" alt="logo">
-                        {% else %}
                         <img src="{% static 'images/logo/ukr_logo.svg' %}" height="60" width="180" alt="logo">
-                        {% endif %}
                     </a>
                 </div>
                 <div class="menu-area">
                     <ul class="menu">
-                        {% if request.session.lang == 'ru' %}
-                        {% recursetree menu %}
-                        <li>
-                            <a href='{{node.link}}'>{% if node.icon_class %}
-                                <i class="fas {{ node.icon_class }}"></i>
-                                {% endif %}{{ node.name }}</a>
-                            {% if not node.is_leaf_node %}
-                            <ul class="submenu">
-                                {{ children }}
-                            </ul>
-                            {% endif %}
-                        </li>
-                        {% endrecursetree %}
-                        {% else %}
                         {% recursetree menu %}
                         <li>
                             <a href='{{node.link}}'>{% if node.icon_class %}
@@ -132,8 +114,6 @@
                             {% endif %}
                         </li>
                         {% endrecursetree %}
-                        {% endif %}
-
                         
                         <!-- <li>
                             <a href='{% url "lessons_section:index" %}'><i class="fas fa-home"></i>Home</a>

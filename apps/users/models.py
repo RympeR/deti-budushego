@@ -11,7 +11,6 @@ from django.template.defaultfilters import truncatechars
 class MenuCategory(MPTTModel):
     parent = TreeForeignKey(
         'self', verbose_name='Родительская категория', blank=True, null=True, related_name='parent_category', on_delete=models.CASCADE)
-    name = models.CharField('Название', max_length=100)
     name_ukr = models.CharField('Название ukr', null=True, help_text='Украинская версия', max_length=100)
     link = models.URLField('Ссылка')
     icon_class = models.CharField(
@@ -19,7 +18,7 @@ class MenuCategory(MPTTModel):
     display = models.BooleanField('Отобразить', default=True)
     
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.name_ukr}"
 
     class MPTTMeta:
         level_attr = 'mеnu_cat'
@@ -32,9 +31,7 @@ class MenuCategory(MPTTModel):
 class DropDownPoint(MPTTModel):
     parent = TreeForeignKey(
         'self', verbose_name='Родительская категория', blank=True, null=True, related_name='parent_category', on_delete=models.CASCADE)
-    title = models.TextField('Заголовок')
     title_ukr = models.TextField('Заголовок ukr', null=True, help_text='Украинская версия',)
-    description = models.TextField('Описание')
     description_ukr = models.TextField('Описание ukr', null=True, help_text='Украинская версия',)
     main_page = models.BooleanField('Отобразить на главной?', default=True)
     opened = models.BooleanField('Развернут', default=False)
@@ -42,10 +39,10 @@ class DropDownPoint(MPTTModel):
         level_attr = 'mеnu_cat'
 
     def short_description(self):
-        return truncatechars(self.description, 20)
+        return truncatechars(self.description_ukr, 20)
 
     def __str__(self):
-        return self.title
+        return self.title_ukr
 
     class Meta:
         verbose_name = 'Раскрывающийся пункт'
@@ -73,17 +70,14 @@ class Attachments(models.Model):
         verbose_name_plural = 'Вложения'
 
 class Vacancy(models.Model):
-    name = models.TextField(verbose_name='Название вакансии')
     name_ukr = models.TextField(verbose_name='Название вакансии ukr', null=True, help_text='Украинская версия',)
     icon = models.ImageField(verbose_name='Заставка вакансии')
-    short_description = models.TextField(verbose_name='Краткое описание', null=True, blank=True)
     short_description_ukr = models.TextField(verbose_name='Краткое описание', null=True, help_text='Украинская версия', blank=True)
     slug = models.SlugField(("Url part"), unique=True)
-    full_text = RichTextField(verbose_name='Полное описание русский')
     full_text_ukr = RichTextField(verbose_name='Полное описание украинский')
 
     def __str__(self):
-        return str(self.name)
+        return str(self.name_ukr)
 
     def vacancy_photo(self):
         if self.icon and hasattr(self.icon, 'url'):
@@ -100,7 +94,6 @@ class User(AbstractUser):
         unique=True,
         max_length=20
     )
-    fio = models.CharField('ФИО', max_length=255, null=True, blank=True)
     fio_ukr = models.CharField('ФИО  ukr', max_length=255, null=True, blank=True)
     preview_avatar = ProcessedImageField(
         verbose_name='Картинка в маленьком блоке',
@@ -119,16 +112,10 @@ class User(AbstractUser):
         blank=True
     )
     slug = models.SlugField("Url part")
-    specialization = models.TextField(
-        verbose_name='Специализация', null=True, blank=True)
     specialization_ukr = models.TextField(
         verbose_name='Специализация ukr', null=True, blank=True)
-    personal_statement = models.TextField(
-        verbose_name='Название программ', null=True, blank=True)
     personal_statement_ukr = models.TextField(
         verbose_name='Название программ ukr', null=True, blank=True)
-    characteristic = models.TextField(
-        verbose_name='О преподавателе', null=True, blank=True)
     characteristic_ukr = models.TextField(
         verbose_name='О преподавателе ukr', null=True, blank=True)
     teacher = models.BooleanField(verbose_name='Учитель', default=False)
@@ -185,9 +172,7 @@ class Program(models.Model):
         fitness = 'fitness', 'Оранжевый'
         english = 'english', 'Фиолетовый'
 
-    name = models.TextField("Название программы")
     name_ukr = models.TextField("Название программы ukr", null=True, help_text='Украинская версия',)
-    hours = models.TextField("Часы проведения программы")
     hours_ukr = models.TextField("Часы проведения программы ukr")
     class_name = models.CharField(
         'Цвет строки', choices=ClassNames.choices, max_length=10, default='')
@@ -239,7 +224,6 @@ class ParentComment(models.Model):
 class MainCounters(models.Model):
     amount = models.IntegerField('Значение счетчика')
     symbol = models.CharField(verbose_name='Символ после числа', max_length=1, blank=True, null=True)
-    description = models.CharField(verbose_name='Описание счетчика', max_length=50)
     description_ukr = models.CharField(verbose_name='Описание счетчика ukr', null=True, help_text='Украинская версия',max_length=50)
     image = ProcessedImageField(
         verbose_name='Заставка описания',
@@ -251,7 +235,7 @@ class MainCounters(models.Model):
     )
 
     def __str__(self):
-        return f'{self.description} -> {self.amount}'
+        return f'{self.description_ukr} -> {self.amount}'
 
     class Meta:
         verbose_name = 'Счетчик на главной'
@@ -260,7 +244,6 @@ class MainCounters(models.Model):
 class AboutCounters(models.Model):
     amount = models.IntegerField('Значение счетчика')
     symbol = models.CharField(verbose_name='Символ после числа', max_length=1, blank=True, null=True)
-    description = models.CharField(verbose_name='Описание счетчика', max_length=50)
     description_ukr = models.CharField(verbose_name='Описание счетчика ukr', null=True, help_text='Украинская версия', max_length=50)
     image = ProcessedImageField(
         verbose_name='Заставка описания',
@@ -272,7 +255,7 @@ class AboutCounters(models.Model):
     )
 
     def __str__(self):
-        return f'{self.description} -> {self.amount}'
+        return f'{self.description_ukr} -> {self.amount}'
 
     class Meta:
         verbose_name = 'Счетчик на странице о нас'

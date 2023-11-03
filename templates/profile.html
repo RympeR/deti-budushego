@@ -119,16 +119,6 @@
 		                  				</div>
 		                  			</div>
 		                            <div class="col-lg-7">
-										{% if request.session.lang == 'ru' %}
-										<div class="product-content">
-											<h5 class="title"><a href="{% url 'shop_section:single_shop' product.slug %}">{{ product.title }}</a></h5>									
-											<p>
-												{{ product.description }}
-											</p>
-											<div class="cart-button-2">
-											</div>
-										</div>
-										{% else %}
 		                                <div class="product-content">
 											<h5 class="title"><a href="{% url 'shop_section:single_shop' product.slug %}">{{ product.title_ukr }}</a></h5>									
 											<p>
@@ -137,8 +127,6 @@
 											<div class="cart-button-2">
 											</div>
 										</div>
-										{% endif %}
-			
 		                            </div>
 		                        </div>
 		                    </div>

@@ -39,18 +39,8 @@
                                     <a href="#"><i class="far fa-user"></i> {{ object.author.fio }}</a>
                                 </li> -->
                             </ul>
-                            {% if request.session.lang == 'uk' %}
                                 <p>{{ object.preview_text_ukr }}</p>
                                 {{ object.full_text_ukr|safe }}
-                            {% elif request.session.lang == 'ru' %}
-                                <p>{{ object.preview_text }}</p>
-                                {{ object.full_text|safe }}
-                            {% else %}
-                                <p>{{ object.preview_text_ukr }}</p>
-                                {{ object.full_text_ukr|safe }}
-                            {% endif %}
-
-                            
                         </div>
                         <div class="tags-area">
                             <ul class="tags">
@@ -123,15 +113,7 @@
                                         </div>
                                         <div class="content">
                                             <a href="{% url 'blog_section:post_detail' rel_post.slug %}">
-                                                {% if request.session.lang == 'uk' %}
                                                     {{ rel_post.title_ukr }}
-                                                    {% elif request.session.lang == 'ru' %}
-                                                    {{ rel_post.title }}
-                                                    
-                                                    {% else %}
-                                                    {{ rel_post.title_ukr }}
-                                                {% endif %}
-                    
                                             </a>
                                             <span>{{ rel_post.created_at|date }}</span>
                                         </div>

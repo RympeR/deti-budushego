@@ -34,27 +34,14 @@
                         <div class="post-top">
                             <h5 class="title">
                                 <a href="{% url 'blog_section:post_detail' post.slug %}">
-                                    {% if request.session.lang == 'uk' %}
                                         {{ post.title_ukr }}
-                                    {% elif request.session.lang == 'ru' %}
-                                        {{ post.title }}
-                                    {% else %}
-                                        {{ post.title_ukr }}
-                                    {% endif %}
                                 </a>
                             </h5>
                             <!-- <div class="post-meta cate">
                                 <a href="#"><i class="far fa-calendar"></i> {{ post.created_at|date }} </a>
                                 <a href="#"><i class="fas fa-user"></i> {{ post.author.fio }} </a>
                             </div> -->
-                            {% if request.session.lang == 'uk' %}
                                 <p>{{ post.preview_text_ukr }}</p>
-                            {% elif request.session.lang == 'ru' %}
-                                <p>{{ post.preview_text }}</p>
-                            {% else %}
-                                <p>{{ post.preview_text_ukr }}</p>
-                            {% endif %}
-
                         </div>
                         <div class="post-bottom">
                             <a href="{% url 'blog_section:post_detail' post.slug %}" class="read">{% trans "Подробнее" %}</a>

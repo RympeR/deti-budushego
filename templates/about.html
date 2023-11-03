@@ -8,34 +8,16 @@
     <div class="container">
         <div class="page-header-content">
             <h1 class="title">
-                {% if request.session.lang == 'uk' %}
                     Діти майбутнього
-                {% elif request.session.lang == 'ru' %}
-                    Дети будущего
-                {% else %}
-                    Діти майбутнього
-                {% endif %}
             </h1>
             <ul class="breadcrumb">
                 <li>
                     <a href='{% url "lessons_section:index" %}'>                        
-                        {% if request.session.lang == 'uk' %}
-                            Головна
-                        {% elif request.session.lang == 'ru' %}
-                            Главная
-                        {% else %}
-                            Головна
-                        {% endif %}
+                        Головна
                     </a>
                 </li>
                 <li>
-                    {% if request.session.lang == 'uk' %}
-                        О нас
-                    {% elif request.session.lang == 'ru' %}
-                        О нас
-                    {% else %}
-                        О нас
-                    {% endif %}
+                    О нас
                 </li>
             </ul>
         </div>
@@ -54,16 +36,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header">
-                    {% if request.session.lang == 'uk' %}
-                        <span class="cate">Програми </span>
-                        <h3 class="title">Навчання дітей</h3>
-                    {% elif request.session.lang == 'ru' %}
-                        <span class="cate">Программы </span>
-                        <h3 class="title">Обучение детей</h3>
-                    {% else %}
-                        <span class="cate">Програми </span>
-                        <h3 class="title">Навчання дітей</h3>
-                    {% endif %}
+                    <span class="cate">Програми </span>
+                    <h3 class="title">Навчання дітей</h3>
                 </div>
             </div>
         </div>
@@ -74,26 +48,11 @@
                         <img src="{% static 'images/feature/01.png' %}" class="ml--8" alt="feature">
                     </div>
                     <div class="feature-content">
-                        {% if request.session.lang == 'uk' %}
                             <h5 class="title">Молодша група</h5>
                             <span class="cate">(1,5 - 3 роки)</span>
                             <p>Розвиваючі заняття, музичні казки, англійська мова (з 2,5 років)
                                 <br><br><br><br><br><br>
                             </p>
-                        {% elif request.session.lang == 'ru' %}
-                            <h5 class="title">Младшая группа</h5>
-                            <span class="cate">(1,5 - 3 года)</span>
-                            <p>Развивающие занятия, музыкальные сказки, английский язык (с 2,5 лет)
-                                <br><br><br><br><br><br>
-                            </p>
-                        {% else %}
-                            <h5 class="title">Молодша група</h5>
-                            <span class="cate">(1,5 - 3 роки)</span>
-                            <p>Розвиваючі заняття, музичні казки, англійська мова (з 2,5 років)
-                                <br><br><br><br><br><br>
-                            </p>
-                        {% endif %}
-                        
                     </div>
                 </div>
             </div>
@@ -103,25 +62,11 @@
                         <img src="{% static 'images/feature/02.png' %}" class="ml--8" alt="feature">
                     </div>
                     <div class="feature-content">
-                        {% if request.session.lang == 'uk' %}
-                            <h5 class="title">Середня група </h5>
-                            <span class="cate">(3 - 4 роки)</span>
-                            <p>Розвиваючі заняття, англійська мова, крафт-студія, музичні казки
-                                <br><br><br><br><br><br>
-                            </p>
-                        {% elif request.session.lang == 'ru' %}
-                        <h5 class="title">Средняя группа</h5>
-                        <span class="cate">(3 - 4 года)</span>
-                        <p>Развивающие занятия, английский язык, изостудия, музыкальные сказки
-                            <br><br><br><br><br><br>
-                        </p>
-                        {% else %}
                         <h5 class="title">Середня група </h5>
                         <span class="cate">(3 - 4 роки)</span>
                         <p>Розвиваючі заняття, англійська мова, крафт-студія, музичні казки
                             <br><br><br><br><br><br>
                         </p>
-                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -131,30 +76,12 @@
                         <img src="{% static 'images/feature/03.png' %}" class="ml--8" alt="feature">
                     </div>
                     <div class="feature-content">
-                        {% if request.session.lang == 'uk' %}
-                            <h5 class="title">Старша група</h5>
-                            <span class="cate">(4 – 6 років)</span>
-                            <p>Підготовка до школи, англійська мова, українська мова, 
-                                логіка+математика, крафт-студія, дослідники, 
-                                програмування, мнемотехніка, заняття з логопедом, 
-                                креативне мислення, мої емоції. Офлайн і онлайн.</p>
-                        {% elif request.session.lang == 'ru' %}
-                        <h5 class="title">Старшая группа</h5>
-                        <span class="cate">(4 – 6 лет)</span>
-                        <p>Подготовка к школе, английский язык, украинский язык, 
-                            логика+математика, крафт-студия, исследователь, 
-                            программирование, мнемотехника, занятия с логопедом, 
-                            креативное мышление, мои эмоции. Офлайн и онлайн.</p>
-                        {% else %}
                         <h5 class="title">Старша група</h5>
                         <span class="cate">(4 – 6 років)</span>
                         <p>Підготовка до школи, англійська мова, українська мова, 
                             логіка+математика, крафт-студія, дослідники, 
                             програмування, мнемотехніка, заняття з логопедом, 
                             креативне мислення, мої емоції. Офлайн і онлайн.</p>
-
-                        {% endif %}
-
                     </div>
                 </div>
             </div>
@@ -164,22 +91,12 @@
                         <img src="{% static 'images/feature/04.png' %}" class="ml--8" alt="feature">
                     </div>
                     <div class="feature-content">
-                        {% if request.session.lang == 'ru' %}
-                        <h5 class="title">Начальная школа</h5>
-                        <span class="cate">(6 – 8 років)</span>
-                        <p>Программирование, английский язык, украинский язык, 
-                                логика+математика, крафт-студия,  мнемотехника, 
-                                исследователь, креативное мышление, занятия с 
-                                логопедом. Офлайн и онлайн.<br><br><br><br><br></p>
-                        {% else %}
                         <h5 class="title">Початкова школа</h5>
                         <span class="cate">(6 – 8 лет)</span>
                         <p>Програмування, англійська мова, україньска мова, 
                             логіка+математика, крафт-студія, мнемотехніка, 
                             дослідники, креативне мислення, заняття з логопедом. 
                             Офлайн і онлайн.<br><br><br><br><br></p>
-                        {% endif %}
-
                     </div>
                 </div>
             </div>
@@ -196,21 +113,6 @@
                 <div class="col-lg-6">
                     <div class="about-content">
                         <div class="section-header left-style mb-olpo">
-                            {% if request.session.lang == 'ru' %}
-                                <span class="cate">Наша цель</span>
-                                <h3 class="title">Развитие высоких способностей у детей</h3>
-                                <p>Именно поэтому уже 12 лет детский центр "Дети будущего" 
-                                    является партнером Института одаренного ребенка НАПН Украины.
-                                    С момента создания центра мы пребываем в постоянном поиске 
-                                    эффективных методов и приемов обучения, разрабатываем 
-                                    авторские игры и пособия, создаем новые обучающие программы. 
-                                    Мы с радостью презентуем наш опыт работы на всеукраинских 
-                                    и международных конференциях, а также участвуем в 
-                                    образовательных проектах.
-                                    </p>
-                                <br>
-                                <p>Подробнее о развитии нашего центра и о нашем сотрудничестве с Институтом одаренного ребенка читайте ниже:</p>
-                            {% else %}
                                 <span class="cate">Наша мета</span>
                                 <h3 class="title">Розвинути у дітей здібності високого рівня</h3>
                                 <p>Саме тому дитячий центр «Діти майбутнього» є партнером 
@@ -225,28 +127,16 @@
                                     </p>
                                 <br>
                                 <p>Детальніше про розвиток нашого центру та нашу співпрацю з Інститутом обдарованої дитини читайте нижче:</p>
-                            {% endif %}
-    
                         </div>
                         <div class="faq-wrapper mb--10">
                             {% for dropdown in  drop_down%}
                             <div class="faq-item {% if dropdown.opened %}active open{% endif %} ">
                                 <div class="faq-title">
                                     <span class="right-icon"></span>
-                                    {% if request.session.lang == 'ru' %}
-                                    <h5 class="title">{{ dropdown.title }}</h5>
-                                    {% else %}
                                     <h5 class="title">{{ dropdown.title_ukr }}</h5>
-                                    {% endif %}
-
                                 </div>
                                 <div class="faq-content">
-                                    {% if request.session.lang == 'ru' %}
-                                    <p>{{ dropdown.description }}</p>
-                                    {% else %}
                                     <p>{{ dropdown.description_ukr }}</p>
-                                    {% endif %}
-            
                                 </div>
                             </div>
                             {% endfor %}
@@ -279,12 +169,7 @@
                                 <h2 class="title">{{ counter.symbol }}</h2>
                             {% endif %}
                         </div>
-                        {% if request.session.lang == 'ru' %}
-                            <span class="cate">{{ counter.description }}</span>
-                        {% else %}
                             <span class="cate">{{ counter.description_ukr }}</span>
-                        {% endif %}
-    
                     </div>
                 </div>
             </div>
@@ -352,17 +237,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-header">
-                    {% if request.session.lang == 'uk' %}
                     <a href='{% url "blog_section:post_list" %}'><span class="cate">Цікаві та пізнавальні</span></a>
                     <h3 class="title"><a href='{% url "blog_section:post_list" %}'>Статті про навчання дітей</a></h3>
-                    {% elif request.session.lang == 'ru' %}
-                    <a href='{% url "blog_section:post_list" %}'><span class="cate">Интересные и познавательные</span></a>
-                    <h3 class="title"><a href='{% url "blog_section:post_list" %}'>Статьи об обучении детей</a></h3>
-                    {% else %}
-                    <a href='{% url "blog_section:post_list" %}'><span class="cate">Цікаві та пізнавальні</span></a>
-                    <h3 class="title"><a href='{% url "blog_section:post_list" %}'>Статті про навчання дітей</a></h3>
-                    {% endif %}
-
                 </div>
             </div>
         </div>
@@ -376,36 +252,17 @@
                     <div class="post-content">
                         <div class="post-top">
                             <h5 class="title"><a href="{% url 'blog_section:post_detail' post.slug %}">
-                                {% if request.session.lang == 'uk' %}
                                     {{ post.title_ukr }}
-                                {% elif request.session.lang == 'ru' %}
-                                    {{ post.title }}
-                                {% else %}
-                                    {{ post.title_ukr }}
-                                {% endif %}
                             </a>
                             </h5>
                             <div class="post-meta cate">
                                 <a href="#"><i class="far fa-calendar"></i> {{ post.created_at|date }} </a>
-                                {% if request.session.lang == 'uk' %}
                                 <a href="#"><i class="fas fa-user"></i> {{ post.author.fio_ukr }} </a>
-                                {% elif request.session.lang == 'ru' %}
-                                <a href="#"><i class="fas fa-user"></i> {{ post.author.fio }} </a>
-                                {% else %}
-                                <a href="#"><i class="fas fa-user"></i> {{ post.author.fio_ukr }} </a>
-                                {% endif %}
-            
                             </div>
-                            {% if request.session.lang == 'uk' %}
                                 <p>{{ post.preview_text_ukr }}</p>
-                            {% elif request.session.lang == 'ru' %}
-                                <p>{{ post.preview_text }}</p>
-                            {% else %}
-                                <p>{{ post.preview_text_ukr }}</p>
-                            {% endif %}
                         </div>
                         <div class="post-bottom">
-                            <a href="{% url 'blog_section:post_detail' post.slug %}" class="read">Подробнее</a>
+                            <a href="{% url 'blog_section:post_detail' post.slug %}" class="read">Детальніше</a>
                         </div>
                     </div>
                 </div>

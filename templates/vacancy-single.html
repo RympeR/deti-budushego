@@ -33,20 +33,11 @@
                     <div class="teacher-single-thumb">
                         <img src="{{ object.icon.url }}" alt="teacher">
                     </div>
-                    {% if request.session.lang == 'ru' %}
-                    <div class="teacher-single-content">
-                        <h4 class="title">{{ object.name }}</h4>
-                        <h6 class="subtitle">{% trans "О вакансии" %}</h6>
-                        <p class="header-p">{{ object.full_text|safe }}</p>
-                    </div>
-                    {% else %}
                     <div class="teacher-single-content">
                         <h4 class="title">{{ object.name_ukr }}</h4>
                         <h6 class="subtitle">{% trans "О вакансии" %}</h6>
                         <p class="header-p">{{ object.full_text_ukr|safe }}</p>
                     </div>
-                    {% endif %}
-
                 </div>
             </div>
             <div class="row teacher-single-bottom mb--50">

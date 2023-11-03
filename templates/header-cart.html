@@ -18,12 +18,7 @@
                     <img src="{{ product.preview.url }}" alt="shop">
                 </div>
                 <div class="content">
-                    {% if request.session.lang == 'ru' %}
-                    <h4 class="title">{{ product.title }}</h4>
-                    {% else %}
                     <h4 class="title">{{ product.title_ukr }}</h4>
-                    {% endif %}
-        
                     {% if product.discount_price %}
                     <div class="price"><span class="pprice">₴{{ product.discount_price }}</span> <del class="dprice">₴{{ product.price }}</del></div>
                     {% else %}

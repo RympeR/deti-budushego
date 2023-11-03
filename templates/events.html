@@ -38,11 +38,7 @@
                 <li data-filter="*">{% trans "Все" %}</li>
                 {% for category in request|events_categories %}
                     <li data-filter=".{{category.slug}}">
-                        {% if request.session.lang == 'ru' %}
-                        {{category.title}}
-                        {% else %}
                         {{category.title_ukr}}
-                        {% endif %}
                     </li>
                 {% endfor %}
                 
@@ -65,23 +61,13 @@
                         <div class="event-content">
                             <h5 class="title">
                                 <a href="{% url 'lessons_section:event_detail' event.slug %}">
-                                    {% if request.session.lang == 'ru' %}
-                                    {{ event.title }}
-                                    {% else %}
                                     {{ event.title_ukr }}
-                                    {% endif %}
-                        
                                 </a>
                             </h5>
                             <ul class="events-info">
                                 <li><i class="fas fa-clock"></i> {{ event.date_start|date }}&nbsp;&nbsp; {{ event.timer_time|time}} - {{ event.time }} </li>
-                                <li><i class="fas fa-home"></i> 
-                                    {% if request.session.lang == 'ru' %}
-                                    {{ event.location }}. 
-                                    {% else %}
-                                    {{ event.location_ukr }}. 
-                                    {% endif %}
-                        
+                                <li><i class="fas fa-home"></i>
+                                    {{ event.location_ukr }}.
                                 </li>
                             </ul>
                         </div>

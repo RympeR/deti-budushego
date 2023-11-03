@@ -40,14 +40,7 @@
             {% for category in request|lesson_categories %}
             <li data-filter=".{{category.slug}}" class="{% if active_tag == category.slug %}active{% endif %}">
                 <a href="{% url 'lessons_section:lesson_list_filtered_ages' category.slug %}">
-                    {% if request.session.lang == 'uk' %}
                     {{category.title_ukr}}
-                    {% elif request.session.lang == 'ru' %}                    
-                    {{category.title}}
-                    {% else %}
-                    {{category.title_ukr}}
-                    {% endif %}
-
                 </a>
             </li>
             {% endfor %}
@@ -65,14 +58,7 @@
                     <div class="class-content">
                         <h5 class="title">
                             <a href="{% url 'lessons_section:lesson_detail' lesson.slug %}">
-                                {% if request.session.lang == 'uk' %}
                                 {{ lesson.title_ukr }}
-                                {% elif request.session.lang == 'ru' %}                    
-                                {{ lesson.title }}
-                                {% else %}
-                                {{ lesson.title_ukr }}
-                                {% endif %}
-    
                             </a>
                         </h5>
                         <div class="class-meta">
@@ -83,14 +69,7 @@
                                 </div>
                                 <div class="content">
                                     <h6 class="subtitle">
-                                        {% if request.session.lang == 'uk' %}
                                         <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}">{{ lesson.teacher.fio_ukr }}</a>
-                                        {% elif request.session.lang == 'ru' %}
-                                        <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}">{{ lesson.teacher.fio }}</a>
-                                        {% else %}
-                                        <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}">{{ lesson.teacher.fio_ukr }}</a>
-                                        {% endif %}
-                    
                                     </h6>
                                     <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}"
                                         class="info">{% trans "Профиль" %}</a>
@@ -104,20 +83,6 @@
                             </div>
                         </div>
                         <div class="schedule-area">
-                            {% if request.session.lang == 'ru' %}
-                            <div class="schedule-item">
-                                <h6 class="sub-title">{{ lesson.class_size }}</h6>
-                                <span class="info">{% trans "Количество" %}</span>
-                            </div>
-                            <div class="schedule-item">
-                                <h6 class="sub-title">{{ lesson.class_time }}</h6>
-                                <span class="info">{% trans "Расписание" %}</span>
-                            </div>
-                            <div class="schedule-item" style="flex-basis: 100%">
-                                <h6 class="sub-title">{{ lesson.years_old }}</h6>
-                                <span class="info">{% trans "Возраст" %}</span>
-                            </div>
-                            {% else %}
                             <div class="schedule-item">
                                 <h6 class="sub-title">{{ lesson.class_size_ukr }}</h6>
                                 <span class="info">{% trans "Количество" %}</span>
@@ -130,9 +95,6 @@
                                 <h6 class="sub-title">{{ lesson.years_old_ukr }}</h6>
                                 <span class="info">{% trans "Возраст" %}</span>
                             </div>
-                            {% endif %}
-
-                            
                         </div>
                     </div>
                 </div>

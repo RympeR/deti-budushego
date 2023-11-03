@@ -36,18 +36,8 @@
                     <ul>
                         {% for program in day.programs.all %}
                         <li>
-                            {% if request.session.lang == 'uk' %}
                             <h6 itemprop="name" class="title {{ program.class_name }}">{{ program.name_ukr }}</h6>
                             <span itemprop="hours" class="time">{{ program.hours_ukr }}</span>
-                            
-                            {% elif request.session.lang == 'ru' %}
-                            <h6 itemprop="name" class="title {{ program.class_name }}">{{ program.name }}</h6>
-                            <span itemprop="hours" class="time">{{ program.hours }}</span>
-                            {% else %}
-                            <h6 itemprop="name" class="title {{ program.class_name }}">{{ program.name_ukr }}</h6>
-                            <span itemprop="hours" class="time">{{ program.hours_ukr }}</span>
-                            {% endif %}
-
                         </li>
                         {% endfor %}
                     </ul>
