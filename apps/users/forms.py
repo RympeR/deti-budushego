@@ -4,18 +4,18 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 
 class RegisterForm(UserCreationForm):
-    fio = forms.CharField(label='Имя', required=True, max_length=150, widget=forms.TextInput(attrs={'required': True, 'placeholder': 'Имя:'}))
+    fio_ukr = forms.CharField(label='Имя', required=True, max_length=150, widget=forms.TextInput(attrs={'required': True, 'placeholder': 'Имя:'}))
     username = forms.EmailField(label='Логин', required=True, max_length=150, widget=forms.EmailInput(attrs={'required': True, 'placeholder': 'Логин:'}))
     password1 = forms.CharField(label='Пароль', required=True, widget=forms.PasswordInput(attrs={'required': True, 'placeholder': 'Пароль:', 'id': 'password'}))
     password2 = forms.CharField(label='Подтвердите пароль', required=True,  widget=forms.PasswordInput(attrs={'required': True, 'placeholder': 'Подтвердите пароль:', 'id': 'confirm_password'}))
 
     class Meta:
         model = User
-        fields = 'username', 'fio', 'password1', 'password2'
+        fields = 'username', 'fio_ukr', 'password1', 'password2'
 
     def save(self, commit=True):
         user = super(RegisterForm, self).save(commit=False)
-        user.fio = self.cleaned_data['fio']
+        user.fio_ukr = self.cleaned_data['fio_ukr']
 
         if commit:
             user.save()

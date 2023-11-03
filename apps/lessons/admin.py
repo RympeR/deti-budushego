@@ -11,22 +11,22 @@ from .models import (
 
 @admin.register(LessonCategory, EventCategory)
 class TemplateLessonAdmin(admin.ModelAdmin):
-    list_display = 'title',
-    list_display_links = 'title',
-    search_fields = 'title',
+    list_display = 'title_ukr',
+    list_display_links = 'title_ukr',
+    search_fields = 'title_ukr',
 
 @admin.register(Faq)
 class FaqAdmin(admin.ModelAdmin):
-    list_display = 'question', 'short_description', 'right'
-    list_display_links = 'question',
-    search_fields = 'question',
+    list_display = 'question_ukr', 'short_description', 'right'
+    list_display_links = 'question_ukr',
+    search_fields = 'question_ukr',
     list_filter = 'right',
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
-    list_display = 'title', 'small_image', 'organizer', 'timer_time', 'date_end', 'date_start'
-    list_display_links = 'title',
-    search_fields = 'name',
+    list_display = 'title_ukr', 'small_image', 'organizer', 'timer_time', 'date_end', 'date_start'
+    list_display_links = 'title_ukr',
+    search_fields = 'title_ukr',
     list_filter = (
         ('timer_time', DateFieldListFilter),
         ('date_end', DateFieldListFilter),
@@ -42,12 +42,10 @@ class EventAdmin(admin.ModelAdmin):
 
 @admin.register(Lesson)
 class LessonAdmin(admin.ModelAdmin):
-    list_display = 'title', 'small_image', 'teacher', 'class_duration', 'date_start', 'display'
-    list_display_links = 'title',
-    search_fields = 'name',
+    list_display = 'title_ukr', 'small_image', 'teacher', 'class_duration_ukr', 'date_start_ukr', 'display'
+    list_display_links = 'title_ukr',
+    search_fields = 'name_ukr',
     list_filter = (
-        ('class_duration', DateFieldListFilter),
-        ('date_start', DateFieldListFilter),
         'display',
     )
     filter_horizontal = (

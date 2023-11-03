@@ -15,9 +15,9 @@ from .models import (
 
 @admin.register(Tag, GalleryCategory, PostCategory)
 class TemplateAdmin(admin.ModelAdmin):
-    list_display = 'title',
-    list_display_links = 'title',
-    search_fields = 'title',
+    list_display = 'title_ukr',
+    list_display_links = 'title_ukr',
+    search_fields = 'title_ukr',
 
 
 @admin.register(Gallery,)
@@ -28,8 +28,8 @@ class GalleryAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class LessonThemeAdmin(ActionsModelAdmin):
-    list_display = 'pk', 'title', 'small_image', 'display', 'created_at'
-    list_display_links = 'title',
+    list_display = 'pk', 'title_ukr', 'small_image', 'display', 'created_at'
+    list_display_links = 'title_ukr',
     filter_fields = 'language', 'display'
     search_fields = 'name',
     list_filter = (
