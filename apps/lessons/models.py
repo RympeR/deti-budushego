@@ -18,7 +18,7 @@ class LessonCategory(models.Model):
         verbose_name_plural = 'Возрастные группы занятий'
 
     def __str__(self):
-        return self.title_ukr
+        return self.title_ukr or ''
 
 
 class EventCategory(models.Model):
@@ -31,7 +31,7 @@ class EventCategory(models.Model):
         verbose_name_plural = 'Возрастные группы мероприятий'
 
     def __str__(self):
-        return self.title_ukr
+        return self.title_ukr or ''
 
 
 class Event(models.Model):
@@ -74,7 +74,7 @@ class Event(models.Model):
         verbose_name_plural = 'Мероприятия'
 
     def __str__(self):
-        return self.title_ukr
+        return self.title_ukr or ''
 
 
 class Lesson(models.Model):
@@ -145,4 +145,4 @@ class Faq(models.Model):
         verbose_name_plural = 'FAQs'
 
     def __str__(self):
-        return self.question
+        return self.question_ukr or ''

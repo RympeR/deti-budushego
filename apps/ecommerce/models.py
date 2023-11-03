@@ -17,7 +17,7 @@ class Category(models.Model):
         verbose_name_plural = 'Категории'
 
     def __str__(self):
-        return self.name_ukr
+        return self.name_ukr or ''
 
     def get_absolute_url(self):
         return reverse("ecommerce_section:product", kwargs={
@@ -62,7 +62,7 @@ class Product(models.Model):
         return None
 
     def __str__(self):
-        return self.title_ukr
+        return self.title_ukr or ''
 
     def check_bought(self):
         if exposed_request.user.is_authenticated:

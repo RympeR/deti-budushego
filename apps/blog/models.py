@@ -18,7 +18,7 @@ class Tag(models.Model):
         verbose_name_plural = 'Тэги'
 
     def __str__(self):
-        return self.title_ukr
+        return self.title_ukr or ''
 
 
 class GalleryCategory(models.Model):
@@ -31,7 +31,7 @@ class GalleryCategory(models.Model):
         verbose_name_plural = 'Категории галереи'
 
     def __str__(self):
-        return self.title_ukr
+        return self.title_ukr or ''
 
 
 class PostCategory(models.Model):
@@ -44,7 +44,7 @@ class PostCategory(models.Model):
         verbose_name_plural = 'Категории публикаций'
 
     def __str__(self):
-        return self.title_ukr
+        return self.title_ukr or ''
 
 
 class Gallery(models.Model):
@@ -61,7 +61,7 @@ class Gallery(models.Model):
     most_popular = models.BooleanField('Отобразить на главной', default=False)
 
     def __str__(self):
-        return self.image.name
+        return self.image.name or ''
 
     class Meta:
         verbose_name = 'Галерея'
@@ -110,4 +110,4 @@ class Post(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        return self.title_ukr
+        return self.title_ukr or ''

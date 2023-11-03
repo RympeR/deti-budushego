@@ -42,7 +42,7 @@ class DropDownPoint(MPTTModel):
         return truncatechars(self.description_ukr, 20)
 
     def __str__(self):
-        return self.title_ukr
+        return self.title_ukr or ''
 
     class Meta:
         verbose_name = 'Раскрывающийся пункт'
@@ -214,7 +214,7 @@ class ParentComment(models.Model):
         return truncatechars(self.comment, 20)
 
     def __str__(self):
-        return self.parent_name
+        return self.parent_name or ''
 
     class Meta:
         verbose_name = 'Комментарий родителя'
