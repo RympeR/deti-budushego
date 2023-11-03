@@ -59,7 +59,7 @@ class UserDetail(DetailView):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
-        context['title'] = context['object'].fio
+        context['title'] = context['object'].fio_ukr
         footer_context = {
             'menu': MenuCategory.objects.filter(display=True),
             'footer_events': Event.objects.all().order_by(
