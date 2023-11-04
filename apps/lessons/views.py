@@ -64,7 +64,7 @@ class LessonListFiltered(ListView):
 
     def get_queryset(self):
         tag = Tag.objects.get(slug=self.kwargs['slug'])
-        return Lesson.objects.filter(tags__in=[tag])
+        return Lesson.objects.filter(tags__in=[tag], display=True)
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
@@ -88,7 +88,7 @@ class LessonListFilteredByTag(ListView):
         if self.kwargs['slug'] == 'all':
             return Lesson.objects.all()
         lessonCategory = LessonCategory.objects.get(slug=self.kwargs['slug'])
-        return Lesson.objects.filter(category__in=[lessonCategory])
+        return Lesson.objects.filter(category__in=[lessonCategory], display=True)
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)

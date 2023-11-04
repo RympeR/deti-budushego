@@ -98,9 +98,9 @@
 
 <!-- ==========Class Section Starts Here========== -->
 <section itemscope  class="class-section padding-top  pos-rel">
-    <div class="top-shape-center">
-        <img src="{% static 'css/img/gallery1.png' %}" alt="css">
-    </div>
+{#    <div class="top-shape-center">#}
+{#        <img src="{% static 'css/img/gallery1.png' %}" alt="css">#}
+{#    </div>#}
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
@@ -140,8 +140,8 @@
                                 </div>
                             </div>
                             <div class="cost-area">
-                                <h6 class="subtitle">₴{{ lesson.fee }}{% if lesson.discount_fee %}
-                                    /₴ {{ lesson.discount_fee }}
+                                <h6 class="subtitle">₴{{ lesson.fee_ukr }}{% if lesson.discount_fee_ukr %}
+                                    /₴ {{ lesson.discount_fee_ukr }}
                                     {% endif %}</h6>
                                     <span class="info">{{ lesson.class_duration_ukr }}</span>
                             </div>
@@ -152,7 +152,7 @@
                                 <span class="info">{% translate "Количество" %}</span>
                             </div>
                             <div class="schedule-item">
-                                <h6 class="sub-title">{{ lesson.class_time }}</h6>
+                                <h6 class="sub-title">{{ lesson.class_time_ukr }}</h6>
                                 <span class="info">{% translate "Расписание" %}</span>
                             </div>
                             <div class="schedule-item"  style="flex-basis: 100%">
@@ -173,9 +173,9 @@
 <!-- ==========Class Section Ends Here========== -->
 <!-- ==========Blog Section Starts Here========== -->
 <section itemscope  class="blog-section padding-top pos-rel">
-    <div class="top-shape-center">
-        <img src="{% static 'css/img/gallery1.png' %}" alt="css">
-    </div>
+{#    <div class="top-shape-center">#}
+{#        <img src="{% static 'css/img/gallery1.png' %}" alt="css">#}
+{#    </div>#}
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
@@ -297,9 +297,9 @@
 
 <!-- ==========Gallery Section Starts Here========== -->
 <section  itemscope  class="gallery-section padding-top padding-bottom pos-rel">
-    <div class="top-shape-center">
-        <img src="{% static 'css/img/gallery1.png' %}" alt="css">
-    </div>
+{#    <div class="top-shape-center">#}
+{#        <img src="{% static 'css/img/gallery1.png' %}" alt="css">#}
+{#    </div>#}
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">

@@ -44,7 +44,7 @@ class EventAdmin(admin.ModelAdmin):
 class LessonAdmin(admin.ModelAdmin):
     list_display = 'title_ukr', 'small_image', 'teacher', 'class_duration_ukr', 'date_start_ukr', 'display'
     list_display_links = 'title_ukr',
-    search_fields = 'name_ukr',
+    search_fields = 'title_ukr',
     list_filter = (
         'display',
     )
