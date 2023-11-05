@@ -8,15 +8,16 @@ from mptt.models import MPTTModel, TreeForeignKey
 from ckeditor.fields import RichTextField
 from django.template.defaultfilters import truncatechars
 
+
 class MenuCategory(MPTTModel):
     parent = TreeForeignKey(
         'self', verbose_name='Родительская категория', blank=True, null=True, related_name='parent_category', on_delete=models.CASCADE)
     name_ukr = models.CharField('Название ukr', null=True, help_text='Украинская версия', max_length=100)
-    link = models.URLField('Ссылка')
+    link = models.URLField('Ссылка', null=True, blank=True)
     icon_class = models.CharField(
         'Класс иконки', max_length=20, null=True, blank=True)
     display = models.BooleanField('Отобразить', default=True)
-    
+
     def __str__(self):
         return f"{self.name_ukr}"
 
@@ -35,6 +36,7 @@ class DropDownPoint(MPTTModel):
     description_ukr = models.TextField('Описание ukr', null=True, help_text='Украинская версия',)
     main_page = models.BooleanField('Отобразить на главной?', default=True)
     opened = models.BooleanField('Развернут', default=False)
+
     class MPTTMeta:
         level_attr = 'mеnu_cat'
 
