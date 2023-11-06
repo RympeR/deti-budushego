@@ -121,8 +121,6 @@ class News(models.Model):
         verbose_name='Картинка в блоке', upload_to=preview)
     background_image = models.ImageField(
         verbose_name='Картинка на странице', upload_to=preview)
-    related_tags = models.ManyToManyField(
-        Tag, related_name='news_related_tags', verbose_name='Связанные тэги', blank=True)
     created_at = models.DateField('Дата создания', auto_now_add=True)
     preview_text_ukr = models.TextField(
         null=True, help_text='Украинская версия', verbose_name='Текст заставки укр')
