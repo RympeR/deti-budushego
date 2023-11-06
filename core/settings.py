@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'xwe@5(%6r34w+ofnvie)8fkeur$53i0$3bp+b!pxs9b3da7*-6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 524288000000000
 
@@ -95,6 +95,10 @@ DATABASES = {
             'NAME': 'test_deti_budushego',
         },
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # },
 }
 
 

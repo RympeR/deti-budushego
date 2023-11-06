@@ -127,7 +127,7 @@ class User(AbstractUser):
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = [
-        'fio'
+        'fio_ukr'
     ]
 
     def user_photo(self):

@@ -7,6 +7,7 @@ from .models import (
     PostCategory,
     Gallery,
     Post,
+    News,
 )
 from apps.users.models import MenuCategory
 
@@ -15,6 +16,19 @@ class PostList(ListView):
     model = Post
     context_object_name = 'posts'
     template_name = 'blog-grid.html'
+    paginate_by = 9
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = MenuCategory.objects.filter(display=True)
+        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
+        return context
+
+
+class NewsList(ListView):
+    model = News
+    context_object_name = 'news'
+    template_name = 'news-grid.html'
     paginate_by = 9
 
     def get_context_data(self, **kwargs):
@@ -39,7 +53,8 @@ class PostListFiltered(ListView):
         context['footer_events'] = Event.objects.all().order_by(
             '-date_start')[:2]
         return context
-        
+
+
 class PostDetail(DetailView):
     model = Post
     template_name = 'blog-single.html'
@@ -48,6 +63,17 @@ class PostDetail(DetailView):
         context = super().get_context_data(**kwargs)
         context['categories'] = PostCategory.objects.all()
         context['tags'] = Tag.objects.all()
+        context['menu'] = MenuCategory.objects.filter(display=True)
+        context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
+        return context
+
+
+class NewsDetail(DetailView):
+    model = News
+    template_name = 'news-single.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         context['menu'] = MenuCategory.objects.filter(display=True)
         context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context

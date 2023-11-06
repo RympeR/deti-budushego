@@ -84,13 +84,13 @@
                                     <li>
                                         <div class="ques cl-i-eight"><i class="fas fa-coins"></i>{% trans "Стоимость" %}
                                         </div>
-                                        <div itemprop="fee" class="ans">₴{{ object.fee }}</div>
+                                        <div itemprop="fee" class="ans">₴{{ object.fee_ukr }}</div>
                                     </li>
                                     {% if object.discount_fee %}
                                         <li>
                                             <div class="ques cl-i-eight"><i
                                                     class="fas fa-percentage"></i>{% trans "Cо скидкой" %}</div>
-                                            <div class="ans">₴{{ object.discount_fee }}</div>
+                                            <div class="ans">₴{{ object.discount_fee_ukr }}</div>
                                         </li>
                                     {% endif %}
                                     {% if object.try_lesson != 0 %}
