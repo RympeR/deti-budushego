@@ -26,7 +26,7 @@
 <div itemscope class="blog-section padding-top padding-bottom">
     <div class="container">
         <div class="row mb--50">
-            <div class="col-lg-12 mb-50">
+            <div class="col-lg-8 mb-50">
                 <div class="class-single-item mb-30">
                     <div class="class-single-inner">
                         <div class="class-single-thumb">
@@ -42,6 +42,25 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-4 mb-50">
+                <aside>
+                    <div class="widget widget-tags">
+                        <div class="widget-header">
+                            <h5 class="title">{% trans "Теги статьи" %}</h5>
+                        </div>
+                        <div class="widget-body">
+                            <ul class="tags">
+                                {% for tag in object.related_tags.all %}
+                                    <li>
+                                        <a href="{% url 'blog_section:news_detail_filtered' tag.slug %}">{{ tag.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
 
         </div>
     </div>

@@ -126,6 +126,8 @@ class News(models.Model):
         null=True, help_text='Украинская версия', verbose_name='Текст заставки укр')
     display = models.BooleanField(verbose_name='Отображать', default=True)
     full_text_ukr = RichTextField(verbose_name='Полный текст укр',)
+    related_tags = models.ManyToManyField(
+        Tag, related_name='news_related_tags', verbose_name='Связанные тэги', blank=True)
 
     def small_image(self):
         if self.preview and hasattr(self.preview, 'url'):

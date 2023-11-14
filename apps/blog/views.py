@@ -37,6 +37,26 @@ class NewsList(ListView):
         context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context
 
+
+class NewsListFiltered(ListView):
+    model = News
+    context_object_name = 'posts'
+    template_name = 'news-grid.html'
+    paginate_by = 9
+
+    def get_queryset(self):
+        tag = Tag.objects.get(slug=self.kwargs['slug'])
+        return News.objects.filter(related_tags__in=[tag], display=True)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Новини"
+        context['menu'] = MenuCategory.objects.filter(display=True)
+        context['footer_events'] = Event.objects.all().order_by(
+            '-date_start')[:2]
+        return context
+
+
 class PostListFiltered(ListView):
     model = Post
     context_object_name = 'posts'
@@ -49,6 +69,7 @@ class PostListFiltered(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['title'] = "Статті"
         context['menu'] = MenuCategory.objects.filter(display=True)
         context['footer_events'] = Event.objects.all().order_by(
             '-date_start')[:2]

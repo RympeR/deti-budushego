@@ -85,6 +85,9 @@ class NewsAdmin(ActionsModelAdmin):
         ('created_at', DateFieldListFilter),
     )
     actions_row = actions_detail = 'display_news', 'hide_news',
+    filter_horizontal = (
+        'related_tags',
+    )
 
     def display_news(self, request, pk):
         news = News.objects.get(pk=pk)
