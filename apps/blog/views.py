@@ -63,6 +63,7 @@ class PostDetail(DetailView):
         context = super().get_context_data(**kwargs)
         context['categories'] = PostCategory.objects.all()
         context['tags'] = Tag.objects.all()
+        context['title'] = self.get_object().title_ukr
         context['menu'] = MenuCategory.objects.filter(display=True)
         context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context
@@ -75,6 +76,7 @@ class NewsDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['menu'] = MenuCategory.objects.filter(display=True)
+        context['title'] = self.get_object().title_ukr
         context['footer_events'] = Event.objects.all().order_by('-date_start')[:2]
         return context
 
