@@ -9,7 +9,6 @@ from django.utils.safestring import mark_safe
 exposed_request = ''
 
 class Category(models.Model):
-    name = models.CharField(verbose_name='Название', max_length=255)
     name_ukr = models.CharField(null=True, help_text='Украинская версия',verbose_name='Название', max_length=255)
     slug = models.SlugField(verbose_name='Slug')
 
@@ -18,7 +17,7 @@ class Category(models.Model):
         verbose_name_plural = 'Категории'
 
     def __str__(self):
-        return self.name
+        return self.name_ukr or ''
 
     def get_absolute_url(self):
         return reverse("ecommerce_section:product", kwargs={
@@ -37,7 +36,6 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    title = models.CharField(verbose_name='Заголовок товара', max_length=100)
     title_ukr = models.CharField(verbose_name='Заголовок товара ukr', null=True, help_text='Украинская версия', max_length=100)
     slug = models.SlugField("Url part", unique=True)
     preview = models.ImageField(
@@ -45,12 +43,10 @@ class Product(models.Model):
     price = models.FloatField(verbose_name='Цена')
     discount_price = models.FloatField(
         verbose_name='Цена со скидкой', null=True, blank=True)
-    description = models.TextField(verbose_name='Описание')
     description_ukr = models.TextField(null=True, help_text='Украинская версия',verbose_name='Описание Укр')
     attachments = models.ManyToManyField(
         Attachments, related_name='attachments_shop', verbose_name='Вложеия товара')
     created_at = models.DateField('Дата создания', auto_now_add=True)
-    full_text = RichTextField(verbose_name='О товаре')
     full_text_ukr = RichTextField(verbose_name='О товаре Укр')
     category = models.ForeignKey(Category, related_name='product_category', verbose_name='Категория', null=True, on_delete=models.SET_NULL,)
     download_archive = models.FileField('Загружаемый файл', null=True, blank=True)
@@ -66,7 +62,7 @@ class Product(models.Model):
         return None
 
     def __str__(self):
-        return self.title
+        return self.title_ukr or ''
 
     def check_bought(self):
         if exposed_request.user.is_authenticated:

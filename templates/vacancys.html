@@ -24,7 +24,7 @@
 <!-- ==========Teacher Section Starts Here========== -->
 <section itemscope  class="teacher-section padding-top padding-bottom pos-rel">
     <div class="top-shape-center">
-        <img src="{% static 'css/img/gallery1.png' %}" alt="css">
+{#        <img src="{% static 'css/img/gallery1.png' %}" alt="css">#}
     </div>
     <div class="container">
         <div class="row justify-content-center">
@@ -47,18 +47,9 @@
                             </div>
                             <div class="content">
                                 <h5 class="title"><a href="{% url 'users_section:vacancy_detail' vacancy.slug %}">
-                                    {% if request.session.lang == 'ru' %}
-                                    {{ vacancy.name }}
-                                    {% else %}                            
                                     {{ vacancy.name_ukr }}
-                                    {% endif %}
                                 </a></h5>
-                                {% if request.session.lang == 'ru' %}
-                                <span>{{ vacancy.short_description }}</span>
-                                {% else %}
                                 <span>{{ vacancy.short_description_ukr }}</span>
-                                {% endif %}
-    
                             </div>
                         </div>
                     </div>

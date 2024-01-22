@@ -9,8 +9,6 @@ from apps.users.models import User
 
 
 class LessonCategory(models.Model):
-    title = models.CharField(
-        verbose_name='Заголовок категории', max_length=100)
     title_ukr = models.CharField(
         verbose_name='Заголовок категории ukr', null=True, help_text='Украинская версия', max_length=100)
     slug = models.SlugField(verbose_name='Класс фильтра категории')
@@ -20,12 +18,10 @@ class LessonCategory(models.Model):
         verbose_name_plural = 'Возрастные группы занятий'
 
     def __str__(self):
-        return self.title
+        return self.title_ukr or ''
 
 
 class EventCategory(models.Model):
-    title = models.CharField(
-        verbose_name='Заголовок категории', max_length=100)
     title_ukr = models.CharField(
         verbose_name='Заголовок категории ukr', null=True, help_text='Украинская версия', max_length=100)
     slug = models.SlugField(verbose_name='Класс фильтра категории')
@@ -35,11 +31,10 @@ class EventCategory(models.Model):
         verbose_name_plural = 'Возрастные группы мероприятий'
 
     def __str__(self):
-        return self.title
+        return self.title_ukr or ''
 
 
 class Event(models.Model):
-    title = models.CharField(verbose_name='Заголовок события', max_length=100)
     title_ukr = models.CharField(verbose_name='Заголовок события ukr',
                                  null=True, help_text='Украинская версия', max_length=100)
     slug = models.SlugField("Slug")
@@ -47,16 +42,12 @@ class Event(models.Model):
         verbose_name='Картинка в блоке', upload_to=preview)
     background_image = models.ImageField(
         verbose_name='Картинка на странице', upload_to=preview)
-    location = models.TextField(verbose_name='Место проведения')
     location_ukr = models.TextField(verbose_name='Место проведения ukr')
-    years_old = models.TextField(verbose_name='Возраст')
     years_old_ukr = models.TextField(verbose_name='Возраст ukr')
-    fee = models.TextField(verbose_name='Цена мероприятия')
     fee_ukr = models.TextField(verbose_name='Цена мероприятия ukr')
     date_start = models.DateField(verbose_name="Дата начала мероприятия")
     date_end = models.DateField(
         verbose_name="Дата конца мероприятия", blank=True, null=True)
-    time = models.TextField(verbose_name='Окончание')
     time_ukr = models.TextField(verbose_name='Окончание ukr')
     timer_time = models.DateTimeField(verbose_name='Время начала мероприятия')
     related_posts = models.ManyToManyField(
@@ -70,7 +61,6 @@ class Event(models.Model):
     category = models.ManyToManyField(
         EventCategory, related_name='event_category', verbose_name='Категория мероприятия')
     online = models.BooleanField('Онлайн формат', default=False)
-    full_text = RichTextField(verbose_name='Полное описание русский')
     full_text_ukr = RichTextField(verbose_name='Полное описание украинский')
     most_popular = models.BooleanField('Отобразить на главной', default=False)
 
@@ -84,11 +74,10 @@ class Event(models.Model):
         verbose_name_plural = 'Мероприятия'
 
     def __str__(self):
-        return self.title
+        return self.title_ukr or ''
 
 
 class Lesson(models.Model):
-    title = models.CharField(verbose_name='Заголовок группы', max_length=100)
     title_ukr = models.CharField(verbose_name='Заголовок группы ukr',
                                  null=True, help_text='Украинская версия', max_length=100)
     slug = models.SlugField("Url part")
@@ -96,24 +85,15 @@ class Lesson(models.Model):
         verbose_name='Картинка в блоке', upload_to=preview)
     background_image = models.ImageField(
         verbose_name='Картинка на странице', upload_to=preview)
-    years_old = models.TextField(verbose_name='Возраст')
     years_old_ukr = models.TextField(verbose_name='Возраст')
-    class_size = models.TextField(verbose_name='Размер группы')
     class_size_ukr = models.TextField(verbose_name='Размер группы')
-    date_start = models.TextField(
-        verbose_name="Дата начала занятий группы", null=True, blank=True)
     date_start_ukr = models.TextField(
         verbose_name="Дата начала занятий группы", null=True, blank=True)
-    fee = models.TextField(verbose_name='Цена абонемента')
     fee_ukr = models.TextField(verbose_name='Цена абонемента')
-    discount_fee = models.TextField(
-        verbose_name='Цена абонемента со скидкой', null=True, blank=True)
     discount_fee_ukr = models.TextField(
         verbose_name='Цена абонемента со скидкой', null=True, blank=True)
-    class_duration = models.TextField(verbose_name="Длительность абонемента")
     class_duration_ukr = models.TextField(
         verbose_name="Длительность абонемента")
-    class_time = models.TextField(verbose_name='Расписание')
     class_time_ukr = models.TextField(
         verbose_name='Расписание ukr', null=True, help_text='Украинская версия',)
     tags = models.ManyToManyField(
@@ -133,7 +113,6 @@ class Lesson(models.Model):
     most_popular = models.BooleanField('Отобразить на главной', default=False)
     online = models.BooleanField('Онлайн формат', default=False)
     display = models.BooleanField('Отображать', default=True)
-    full_text = RichTextField(verbose_name='Полное описание русский')
     full_text_ukr = RichTextField(verbose_name='Полное описание украинский')
 
     def small_image(self):
@@ -146,15 +125,12 @@ class Lesson(models.Model):
         verbose_name_plural = 'Группы'
 
     def __str__(self):
-        return f'{self.title} -- {self.years_old} -- {self.class_time}'
+        return f'{self.title_ukr} -- {self.years_old_ukr} -- {self.class_time_ukr}'
 
 
 class Faq(models.Model):
-    question = models.CharField(
-        max_length=150, verbose_name='Заголовок вопроса')
     question_ukr = models.CharField(
         max_length=150, verbose_name='Заголовок вопроса', null=True, help_text='Украинская версия',)
-    answer = models.TextField('Ответ')
     answer_ukr = models.TextField(
         'Ответ ukr', null=True, help_text='Украинская версия',)
     right = models.BooleanField(
@@ -162,11 +138,11 @@ class Faq(models.Model):
 
     @property
     def short_description(self):
-        return truncatechars(self.answer, 20)
+        return truncatechars(self.answer_ukr, 20)
 
     class Meta:
         verbose_name = 'FAQ'
         verbose_name_plural = 'FAQs'
 
     def __str__(self):
-        return self.question
+        return self.question_ukr or ''

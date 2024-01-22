@@ -50,17 +50,17 @@ class OrderAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = 'name', 'slug', 
-    list_display_links = 'name',
-    search_fields = 'name',
+    list_display = 'name_ukr', 'slug',
+    list_display_links = 'name_ukr',
+    search_fields = 'name_ukr',
 
 
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = 'title', 'admin_preview', 'created_at'
-    list_display_links = 'title',
-    search_fields = 'title', 
+    list_display = 'title_ukr', 'admin_preview', 'created_at'
+    list_display_links = 'title_ukr',
+    search_fields = 'title_ukr',
     list_filter = (
         ('created_at', DateFieldListFilter),
         'category',

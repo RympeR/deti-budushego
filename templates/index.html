@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="about-video mr-lg-4">
-                    <img src="{% static 'images/about/about01.jpg' %}" alt="about">
+                    <img src="{% static 'images/about/about01.png' %}" alt="about">
                     <!-- <a href="https://www.youtube.com/embed/6E9J8biF8RE" class="video-button popup"><i
                             class="flaticon-play"></i></a> -->
                 </div>
@@ -32,12 +32,13 @@
             <div class="col-lg-6">
                 <div class="about-content">
                     <div class="section-header left-style mb-olpo">
-                        <span class="cate">{% translate "Мы работаем в военное время" %}</span>
-                        <h3 class="title">{% translate 'Продолжаем обучать наших детей онлайн' %}</h3>
-                        <p>{% translate "Мы разработали онлайн-формат, который больше похож на увлекательную игру, в которой дети выполняют задания на экранах своих устройств, используя инструменты Zoom. " %}</p>
-                        <p>{% translate "Мы начали работать уже на 10-ый день войны, и за два месяца провели около 200 бесплатных онлайн-занятий для детей 4-8 лет. Это более 4000 посещений за этот период! В мае мы объявили набор новых групп, при этом снизили наши цены на обучение на 30% и предоставили возможность оплачивать обучение частями. Сейчас работают около 20 онлайн-групп – это 9 программ различных направлений для детей от 4-х до 8-ми лет. И мы продолжаем развиваться. Потому что с нами всегда комфортно и интересно! " %}</p>
-                        <p>{% translate "Хотите попробовать? Выбирайте группу на странице «Занятия», после напишите нам в Телеграм или Viber (кнопки перехода вверху страницы) – и мы ответим на все ваши вопросы. " %}</p>
-                        {% translate "А ниже вы найдете информацию о том, как проходит обучение в нашем центре." %}</p>
+                        <span class="cate">Ми працюємо офлайн і онлайн</span>
+                        <h3 class="title">Чому варто вибрати саме наш центр?</h3>
+                        <p>Центр «Діти майбутнього» — це місце, де ваші діти можуть ефективно розвивати свої здібності, отримувати нові знання та взаємодіяти з експертами в галузі освіти.</p><br/>
+                        <p>На протязі 15 років ми створюємо ефективне освітнє середовище для дітей від 1,5 до 7 років - як офлайн, так і онлайн. Різноманітність наших програм допомагає дітям гармонійно розвиватися в різних напрямках і якісно готуватися до школи.</p><br/>
+                        <p>Ключовою особливістю нашого підходу до освіти є інноваційні методики. Понад десять років ми плідно співпрацюємо з Інститутом обдарованої дитини, розробляючи власні офлайн та онлайн-курси.</p><br/>
+                        <p>Особлива гордість для нас — це недавня перемога нашої керівниці, Тетяни Рашкової, на Всеукраїнському конкурсі «Творчий вчитель – обдарований учень», який відзначив її унікальний підхід до використання цифрових технологій у дистанційному навчанні дошкільників.</p><br/>
+                        <p>Протягом років ми створили унікальну систему занять, яка спрямована на всебічний розвиток дитини. Дізнайтеся більше про особливості нашого підходу, структуру занять та інші ключові аспекти роботи центру.</p>
                             <br>
                         {% comment %} <p>{% translate "Почему это так важно вы можете узнать, прочитав статьи об одаренности на нашем сайте. А ниже вы найдете информацию о том, что мы делаем в центре для развития высоких способностей у детей. " %}</p> {% endcomment %}
                     </div>
@@ -46,20 +47,10 @@
                         <div class="faq-item {% if dropdown.opened %}active open{% endif %} ">
                             <div class="faq-title">
                                 <span class="right-icon"></span>
-                                {% if request.session.lang == 'ru' %}
-                                <h5 class="title">{{ dropdown.title }}</h5>
-                                {% else %}
                                 <h5 class="title">{{ dropdown.title_ukr }}</h5>
-                                {% endif %}
-                    
                             </div>
                             <div class="faq-content">
-                                {% if request.session.lang == 'ru' %}
-                                <p>{{ dropdown.description }}</p>
-                                {% else %}
                                 <p>{{ dropdown.description_ukr }}</p>
-                                {% endif %}
-                    
                             </div>
                         </div>
                         {% endfor %}
@@ -82,7 +73,7 @@
                 <div class="counter-item">
                     <div class="counter-thumb">
                         {% if counter.image %}
-                            <img width="155" height="155" src="{{ counter.image.url }}" alt="counter">
+                            <img src="{{ counter.image.url }}" alt="counter">
                         {% endif %}
                     </div>
                     <div class="counter-content">
@@ -92,12 +83,7 @@
                                 <h2 class="title">{{ counter.symbol }}</h2>
                             {% endif %}
                         </div>
-                        {% if request.session.lang == 'ru' %}
-                        <span class="cate">{{ counter.description }}</span>
-                        {% else %}
                         <span class="cate">{{ counter.description_ukr }}</span>
-                        {% endif %}
-            
                     </div>
                 </div>
             </div>
@@ -112,9 +98,9 @@
 
 <!-- ==========Class Section Starts Here========== -->
 <section itemscope  class="class-section padding-top  pos-rel">
-    <div class="top-shape-center">
-        <img src="{% static 'css/img/gallery1.png' %}" alt="css">
-    </div>
+{#    <div class="top-shape-center">#}
+{#        <img src="{% static 'css/img/gallery1.png' %}" alt="css">#}
+{#    </div>#}
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
@@ -136,12 +122,8 @@
                     </div>
                     <div class="class-content">
                         <h5 class="title">
-                            {% if request.session.lang == 'ru' %}
-                            <a href="{% url 'lessons_section:lesson_detail' lesson.slug %}">{{ lesson.title }}</a>
-                            {% else %}
                             <a href="{% url 'lessons_section:lesson_detail' lesson.slug %}">{{ lesson.title_ukr }}</a>
-                            {% endif %}
-                
+
                         </h5>
                         <div class="class-meta">
                             <div class="class-author">
@@ -151,50 +133,30 @@
                                 </div>
                                 <div class="content">
                                     <h6 class="subtitle">
-                                        {% if request.session.lang == 'ru' %}
-                                        <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}">{{ lesson.teacher.fio }}</a>
-                                        {% else %}
                                         <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}">{{ lesson.teacher.fio_ukr }}</a>
-                                        {% endif %}
-                                        
                                     </h6>
                                     <a href="{% url 'users_section:teacher_detail' lesson.teacher.slug %}"
                                         class="info">{% translate "Профиль" %}</a>
                                 </div>
                             </div>
                             <div class="cost-area">
-                                <h6 class="subtitle">₴{{ lesson.fee }}{% if lesson.discount_fee %}
-                                    /₴ {{ lesson.discount_fee }}
+                                <h6 class="subtitle">₴{{ lesson.fee_ukr }}{% if lesson.discount_fee_ukr %}
+                                    /₴ {{ lesson.discount_fee_ukr }}
                                     {% endif %}</h6>
-                                    {% if request.session.lang == 'ru' %}
-                                    <span class="info">{{ lesson.class_duration }}</span>
-                                    {% else %}
                                     <span class="info">{{ lesson.class_duration_ukr }}</span>
-                                    {% endif %}
-                        
                             </div>
                         </div>
                         <div class="schedule-area">
                             <div class="schedule-item">
-                                {% if request.session.lang == 'ru' %}
-                                <h6 class="sub-title">{{ lesson.class_size }}</h6>
-                                {% else %}
                                 <h6 class="sub-title">{{ lesson.class_size_ukr }}</h6>
-                                {% endif %}
-                    
                                 <span class="info">{% translate "Количество" %}</span>
                             </div>
                             <div class="schedule-item">
-                                <h6 class="sub-title">{{ lesson.class_time }}</h6>
+                                <h6 class="sub-title">{{ lesson.class_time_ukr }}</h6>
                                 <span class="info">{% translate "Расписание" %}</span>
                             </div>
                             <div class="schedule-item"  style="flex-basis: 100%">
-                                {% if request.session.lang == 'ru' %}
-                                <h6 class="sub-title">{{ lesson.years_old }}</h6>
-                                {% else %}
                                 <h6 class="sub-title">{{ lesson.years_old_ukr }}</h6>
-                                {% endif %}
-                    
                                 <span class="info">{% translate "Возраст" %}</span>
                             </div>
                         </div>
@@ -211,9 +173,9 @@
 <!-- ==========Class Section Ends Here========== -->
 <!-- ==========Blog Section Starts Here========== -->
 <section itemscope  class="blog-section padding-top pos-rel">
-    <div class="top-shape-center">
-        <img src="{% static 'css/img/gallery1.png' %}" alt="css">
-    </div>
+{#    <div class="top-shape-center">#}
+{#        <img src="{% static 'css/img/gallery1.png' %}" alt="css">#}
+{#    </div>#}
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
@@ -238,22 +200,13 @@
                     </div>
                     <div class="event-content">
                         <h5 class="title">
-                            {% if request.session.lang == 'ru' %}
-                            <a href="{% url 'lessons_section:event_detail' event.slug %}">{{ event.title }}</a>
-                            {% else %}
                             <a href="{% url 'lessons_section:event_detail' event.slug %}">{{ event.title_ukr }}</a>
-                            {% endif %}
-                
                         </h5>
                         <ul class="events-info">
                             <li><i class="fas fa-clock"></i> {{ event.date_start|date }}&nbsp;&nbsp; {{ event.timer_time|time}} - {{ event.time }} 
                             </li>
-                            {% if request.session.lang == 'ru' %}
-                            <li><i class="fas fa-home"></i> {{ event.location }}. </li>
-                            {% else %}
                             <li><i class="fas fa-home"></i> {{ event.location_ukr }}. </li>
-                            {% endif %}
-                
+
                         </ul>
                     </div>
                 </div>
@@ -344,9 +297,9 @@
 
 <!-- ==========Gallery Section Starts Here========== -->
 <section  itemscope  class="gallery-section padding-top padding-bottom pos-rel">
-    <div class="top-shape-center">
-        <img src="{% static 'css/img/gallery1.png' %}" alt="css">
-    </div>
+{#    <div class="top-shape-center">#}
+{#        <img src="{% static 'css/img/gallery1.png' %}" alt="css">#}
+{#    </div>#}
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">

@@ -3,3 +3,4 @@ Disallow: /admin/
 Disallow: /mdedia/
 Disallow: /static/
 Sitemap: https://detibudushego.club/sitemap.xml
+Sitemap: https://ditymaybutnyogo.com/sitemap.xml

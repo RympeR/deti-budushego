@@ -7,7 +7,7 @@
 <section itemscope  class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
     <div class="container">
         <div class="page-header-content">
-            <h3 class="title">{{ object.title }}</h3>
+            <h3 class="title">{{ object.title_ukr }}</h3>
             <ul class="breadcrumb">
                 <li>
                     <a href='{% url "lessons_section:index" %}'>{% trans "Главная" %}</a>
@@ -39,18 +39,8 @@
                                     <a href="#"><i class="far fa-user"></i> {{ object.author.fio }}</a>
                                 </li> -->
                             </ul>
-                            {% if request.session.lang == 'uk' %}
                                 <p>{{ object.preview_text_ukr }}</p>
                                 {{ object.full_text_ukr|safe }}
-                            {% elif request.session.lang == 'ru' %}
-                                <p>{{ object.preview_text }}</p>
-                                {{ object.full_text|safe }}
-                            {% else %}
-                                <p>{{ object.preview_text_ukr }}</p>
-                                {{ object.full_text_ukr|safe }}
-                            {% endif %}
-
-                            
                         </div>
                         <div class="tags-area">
                             <ul class="tags">
@@ -60,38 +50,9 @@
                                     </li>
                                 {% endfor %} -->
                             </ul>
-                            <!-- <ul class="share">
-                                <li>
-                                    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dribble"><i class="fab fa-dribbble"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="google"><i class="fab fa-google-plus-g"></i></a>
-                                </li>
-                            </ul> -->
                         </div>
                     </div>
                 </div>
-                <!-- <div class="widget widget-author">
-                    <div class="widget-body">
-                        <div class="post-author">
-                            <div class="thumb">
-                                <img src="{{ object.author.image.url }}" alt="blog">
-                            </div>
-                            <div class="content">
-                                <h5 class="title">{{ object.author.fio }}</h5>
-                                <p>{{ object.author.characteristic }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-
-
             </div>
             <div class="col-lg-4 mb-50">
                 <aside>
@@ -123,15 +84,7 @@
                                         </div>
                                         <div class="content">
                                             <a href="{% url 'blog_section:post_detail' rel_post.slug %}">
-                                                {% if request.session.lang == 'uk' %}
                                                     {{ rel_post.title_ukr }}
-                                                    {% elif request.session.lang == 'ru' %}
-                                                    {{ rel_post.title }}
-                                                    
-                                                    {% else %}
-                                                    {{ rel_post.title_ukr }}
-                                                {% endif %}
-                    
                                             </a>
                                             <span>{{ rel_post.created_at|date }}</span>
                                         </div>

@@ -16,26 +16,28 @@
                                 <i class="fas fa-phone-alt"></i><a href="tel:+38(095)082-99-89"> +38 (095) 082-99-89</a>
                             </li>
                             <li><i class="fas fa-home"></i>{% trans "Фонтанская дорога 49/1, Одесса" %}</li>
-                            <li><i class="fas fa-globe-asia"></i><a href="detibudushego.club">detibudushego.club </a></li>
+                            <li><i class="fas fa-globe-asia"></i><a href="ditymaybutnyogo.com">ditymaybutnyogo.com</a>
+                            </li>
                         </ul>
                         <ul class="social-icons">
                             <li>
-                                <a href="https://www.facebook.com/detibudushego"><i class="fab fa-facebook"></i></a>
+                                <a href="https://www.facebook.com/ditymaybutnyogo"><i class="fab fa-facebook"></i></a>
                             </li>
                             <li>
-                                <a href="https://www.facebook.com/groups/ilearning.tools"><i class="fas fa-user-friends"></i></a>
+                                <a href="https://www.facebook.com/groups/ilearning.tools"><i
+                                        class="fas fa-user-friends"></i></a>
                             </li>
                             <li>
-                                <a href="https://t.me/ditymaybutnyogo_admin"><i class="fab fa-telegram"></i></a>
+                                <a href="https://t.me/dityMaybutnyogo"><i class="fab fa-telegram"></i></a>
                             </li>
                             <li>
-                                <a href="https://www.instagram.com/ditymaybutnyogo.odessa/"><i class="fab fa-instagram"></i></a>
+                                <a href="https://www.instagram.com/ditymaybutnyogo"><i class="fab fa-instagram"></i></a>
                             </li>
                             <li>
                                 <a href="viber://chat?number=%2B380988423919"><i class="fab fa-viber"></i></a>
                             </li>
                             <li>
-                                <a href="https://www.youtube.com/user/detibudushego/featured"><i class="fab fa-youtube"></i></a>
+                                <a href="https://www.youtube.com/@ditymaybutnyogo"><i class="fab fa-youtube"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -45,26 +47,21 @@
                         <h5 class="title">{% trans "Наши мероприятия" %}</h5>
                         <ul class="footer-blog">
                             {% for footer_event in footer_events %}
-                              
-                            <li>
-                                <div class="thumb">
-                                    <a href="{% url 'lessons_section:event_detail' footer_event.slug %}">
-                                        <img src="{{ footer_event.preview.url }}" alt="footer">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    {% if request.session.lang == 'ru' %}
-                                    <a href="{% url 'lessons_section:event_detail' footer_event.slug %}">{{footer_event.title}}</a>
-                                    {% else %}
-                                    <a href="{% url 'lessons_section:event_detail' footer_event.slug %}">{{footer_event.title_ukr}}</a>
-                                    {% endif %}
-                        
-                                    <span>{{ footer_event.date_start|date:"M d,Y" }}</span>
-                                </div>
-                            </li>
+
+                                <li>
+                                    <div class="thumb">
+                                        <a href="{% url 'lessons_section:event_detail' footer_event.slug %}">
+                                            <img src="{{ footer_event.preview.url }}" alt="footer">
+                                        </a>
+                                    </div>
+                                    <div class="content">
+                                        <a href="{% url 'lessons_section:event_detail' footer_event.slug %}">{{ footer_event.title_ukr }}</a>
+                                        <span>{{ footer_event.date_start|date:"M d,Y" }}</span>
+                                    </div>
+                                </li>
 
                             {% endfor %}
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -73,10 +70,10 @@
                         <h5 class="title">{% trans "Хотите перейти к расписанию занятий?" %}</h5>
                         <!-- <p>Enter your email and get latest updates and offers subscribe us</p> -->
                         <form action="/classes" class="footer-form">
-                                <button type="submit">
-                                    <span class="shape"></span>
-                                    <span>{% trans "Выбрать занятие" %}</span>
-                                </button>
+                            <button type="submit">
+                                <span class="shape"></span>
+                                <span>{% trans "Выбрать занятие" %}</span>
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -85,10 +82,10 @@
     </div>
     <div class="footer-bottom">
         <div class="container">
-            <p>
-                &copy; 2007 - 2022 All Rights Reserved. «Дети будущего»/ «Діти майбутнього» є зареєстрованою торговельною маркою (ТМ), св-во на знак для товарів і послуг №267877 від 25.11.2019 (кл. 9 і 41).  
 
-            </p>
+            <p> 2007 - 2023 All Rights Reserved.</p>
+            <p> «Діти майбутнього» є зареєстрованою ТМ, св-во №334545 від 28.06.2023 (кл. 41).</p>
+            <p>«Дети будущего» є зареєстрованаою ТМ, св-во №267877 від 25.11.2019 (кл. 9 і 41).</p>
         </div>
     </div>
 </footer>

@@ -45,7 +45,7 @@ class LessonList(ListView):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Группы'
+        context['title'] = 'Групи'
         footer_context = {
             'categories': LessonCategory.objects.all(),
             'menu': MenuCategory.objects.filter(display=True),
@@ -64,11 +64,11 @@ class LessonListFiltered(ListView):
 
     def get_queryset(self):
         tag = Tag.objects.get(slug=self.kwargs['slug'])
-        return Lesson.objects.filter(tags__in=[tag])
+        return Lesson.objects.filter(tags__in=[tag], display=True)
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Группы'
+        context['title'] = 'Групи'
         footer_context = {
             'menu': MenuCategory.objects.filter(display=True),
             'footer_events': Event.objects.all().order_by(
@@ -88,18 +88,18 @@ class LessonListFilteredByTag(ListView):
         if self.kwargs['slug'] == 'all':
             return Lesson.objects.all()
         lessonCategory = LessonCategory.objects.get(slug=self.kwargs['slug'])
-        return Lesson.objects.filter(category__in=[lessonCategory])
+        return Lesson.objects.filter(category__in=[lessonCategory], display=True)
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Группы'
+        context['title'] = 'Групи'
         context['active_tag'] = self.kwargs['slug']
         footer_context = {
             'menu': MenuCategory.objects.filter(display=True),
             'footer_events': Event.objects.all().order_by(
                 '-date_start')[:2]
         }
-        context = {**context, ** footer_context}
+        context = {**context, **footer_context}
         return context
 
 
@@ -109,12 +109,12 @@ class LessonDetail(DetailView):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
-        context['title'] = context['object'].title
+        context['title'] = context['object'].title_ukr
         footer_context = {
             'menu': MenuCategory.objects.filter(display=True),
             'footer_events': Event.objects.all().order_by('-date_start')[:2]
         }
-        context = {**context, ** footer_context}
+        context = {**context, **footer_context}
         return context
 
 
@@ -137,7 +137,7 @@ class EventsList(ListView, FooterContentMixin):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Мероприятия'
+        context['title'] = 'Заходи'
         footer_context = {
             'menu': MenuCategory.objects.filter(display=True),
             'footer_events': Event.objects.all().order_by('-date_start')[:2]
@@ -159,7 +159,7 @@ class EventsListFiltered(ListView):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Мероприятия'
+        context['title'] = 'Заходи'
         footer_context = {
             'menu': MenuCategory.objects.filter(display=True),
             'footer_events': Event.objects.all().order_by('-date_start')[:2]
@@ -174,12 +174,12 @@ class EventDetail(DetailView):
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
-        context['title'] = context['object'].title
+        context['title'] = context['object'].title_ukr
         footer_context = {
             'menu': MenuCategory.objects.filter(display=True),
             'footer_events': Event.objects.all().order_by('-date_start')[:2]
         }
-        context = {**context, ** footer_context}
+        context = {**context, **footer_context}
         return context
 
 
@@ -212,7 +212,6 @@ class About(TemplateView):
         base_context = {
             'teachers': User.objects.filter(most_popular=True),
             'posts': Post.objects.filter(most_popular=True),
-            'teachers': User.objects.filter(most_popular=True),
             'drop_down': DropDownPoint.objects.filter(main_page=False),
             'counters': AboutCounters.objects.all(),
         }
@@ -221,8 +220,7 @@ class About(TemplateView):
             'menu': MenuCategory.objects.filter(display=True),
             'footer_events': Event.objects.all().order_by('-date_start')[:2]
         }
-        context = {**context, **base_context, **
-                   footer_context}
+        context = {**context, **base_context, **footer_context}
         return context
 
 

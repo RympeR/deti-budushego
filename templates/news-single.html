@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block main_content %}
+<!-- ==========Banner Section Starts Here========== -->
+<section itemscope  class="page-header bg_img" data-background="{% static 'images/banner/page-header.jpg' %}">
+    <div class="container">
+        <div class="page-header-content">
+            <h3 class="title">{{ object.title_ukr }}</h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href='{% url "lessons_section:index" %}'>{% trans "Главная" %}</a>
+                </li>
+                <li>
+                    {% trans "Статья" %}
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- ==========Banner Section Ends Here========== -->
+
+
+<!-- ==========Blog Section Starts Here========== -->
+<div itemscope class="blog-section padding-top padding-bottom">
+    <div class="container">
+        <div class="row mb--50">
+            <div class="col-lg-8 mb-50">
+                <div class="class-single-item mb-30">
+                    <div class="class-single-inner">
+                        <div class="class-single-thumb">
+                            <img src="{{ object.background_image.url }}" alt="class">
+                        </div>
+                        <div class="class-single-content">
+
+                            <ul class="meta-post">
+                            </ul>
+                                <p>{{ object.preview_text_ukr }}</p>
+                                {{ object.full_text_ukr|safe }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-50">
+                <aside>
+                    <div class="widget widget-tags">
+                        <div class="widget-header">
+                            <h5 class="title">{% trans "Теги статьи" %}</h5>
+                        </div>
+                        <div class="widget-body">
+                            <ul class="tags">
+                                {% for tag in object.related_tags.all %}
+                                    <li>
+                                        <a href="{% url 'blog_section:news_detail_filtered' tag.slug %}">{{ tag.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- ==========Blog Section Ends Here========== -->
+
+{% endblock main_content %}
