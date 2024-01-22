@@ -132,7 +132,8 @@ class EventsList(ListView, FooterContentMixin):
     base_context = {'categories': EventCategory.objects.all()}
 
     def get_queryset(self):
-        return sorted(Event.objects.all(), key=filter_date)
+        return Event.objects.all().order_by('-date_start')
+        # return sorted(Event.objects.all(), key=filter_date)
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
@@ -142,8 +143,7 @@ class EventsList(ListView, FooterContentMixin):
             'footer_events': Event.objects.all().order_by('-date_start')[:2]
         }
         base_context = {'categories': EventCategory.objects.all()}
-        context = {**context, **base_context, **
-                   footer_context}
+        context = {**context, **base_context, **footer_context}
         return context
 
 
@@ -155,7 +155,7 @@ class EventsListFiltered(ListView):
 
     def get_queryset(self):
         tag = Tag.objects.get(slug=self.kwargs['slug'])
-        return sorted(Event.objects.filter(tags__in=[tag]), key=filter_date)
+        return Event.objects.filter(tags__in=[tag]).order_by('-date_start')
 
     def get_context_data(self, **kwargs: any) -> dict:
         context = super().get_context_data(**kwargs)
@@ -164,7 +164,7 @@ class EventsListFiltered(ListView):
             'menu': MenuCategory.objects.filter(display=True),
             'footer_events': Event.objects.all().order_by('-date_start')[:2]
         }
-        context = {**context, ** footer_context}
+        context = {**context, **footer_context}
         return context
 
 
